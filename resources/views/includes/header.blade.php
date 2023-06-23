@@ -197,7 +197,7 @@
                   </li>
                   <li class="active">
                     <a href="{{url('contacts')}}">
-                    <i class="fa fa-envelope-o"></i> <span>Contacts</span>
+                    <i class="fas fa-phone"></i> <span>Contacts</span>
                     <span class="pull-right-container">
                     </span>
                     </a>
@@ -205,7 +205,21 @@
 
                  <li class="active">
                     <a href="{{url('materials')}}">
-                    <i class="fa fa-envelope-o"></i> <span>Material </span>
+                    <i class="fa fa-archive"></i> <span>Material </span>
+                    <span class="pull-right-container">
+                    </span>
+                    </a>
+                 </li>
+                 <li class="active">
+                    <a href="{{url('invoice')}}">
+                    <i class="fa fa-money"></i> <span>Invoice </span>
+                    <span class="pull-right-container">
+                    </span>
+                    </a>
+                 </li>
+                 <li class="active">
+                    <a href="{{url('tasks')}}">
+                    <i class="fa fa-check-square-o"></i> <span>Tasks </span>
                     <span class="pull-right-container">
                     </span>
                     </a>

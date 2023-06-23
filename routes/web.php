@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +60,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit-material/{id}',[MaterialController::class,'editMaterial'])->name('material.edit');
     Route::post('edit-material/{id}',[MaterialController::class,'editMaterialSubmit'])->name('material.edit');
 
+    //invoice
+    Route::get('invoice',[InvoiceController::class,'index'])->name('invoice.list');
+    Route::get('create-invoice',[InvoiceController::class,'addEnvoice'])->name('invoice.add');
+    Route::post('create-invoice',[InvoiceController::class,'addInvoiceSubmit'])->name('invoice.add');
+    Route::get('edit-invoice',[InvoiceController::class,'editEnvoice'])->name('invoice.edit');
+   // Route::get('company-invoice/{id}',[InvoiceController::class,'companyWiseInvoice'])->name('invoice.company');
 
 
+   //Tasks
+   Route::get('tasks',[TaskController::class,'index'])->name('task.list');
 });
