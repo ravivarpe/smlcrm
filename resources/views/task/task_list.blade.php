@@ -18,9 +18,11 @@
          Select Company
        </button>
        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-         <a class="dropdown-item" href="#">Yorkshire Resin</a>
-         <a class="dropdown-item" href="#">Build a Drive</a>
-         <a class="dropdown-item" href="#">Power Clean</a>
+        @foreach ($companies as $company)
+
+        <a class="dropdown-item" href="#">{{$company->name}}</a>
+         @endforeach
+
        </div>
      </div>
      <div class="dropdown col">
@@ -28,9 +30,11 @@
          Categories Type
        </button>
        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Every One</a>
-         <a class="dropdown-item" href="#">You</a>
-         <a class="dropdown-item" href="#">Present</a>
+         @foreach ($jobcategories as $cat)
+
+           <a class="dropdown-item" href="{{route('task.catwise',$cat->id)}}">{{$cat->name}}</a>
+         @endforeach
+
        </div>
      </div>
     </div>
@@ -51,9 +55,7 @@
                                   <button class="buttonexport"  data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
                                   <ul class="dropdown-menu exp-drop" role="menu">
 
-                                     <li><a href="#" onclick="$('#dataTableExample1').tableExport({type:'xml',escape:'false'});">
-                                        <img src="assets/dist/img/xml.png" width="24" alt="logo"> XML</a>
-                                     </li>
+
 
                                      <li class="dropdown-divider"></li>
                                      <li>
@@ -73,9 +75,7 @@
                                   <button class="buttonexport"  data-toggle="dropdown"><i class="fa fa-bars"></i> Import Table Data</button>
                                   <ul class="dropdown-menu exp-drop" role="menu">
 
-                                     <li><a href="#" onclick="$('#dataTableExample1').tableExport({type:'xml',escape:'false'});">
-                                        <img src="assets/dist/img/xml.png" width="24" alt="logo"> XML</a>
-                                     </li>
+
 
                                      <li class="dropdown-divider"></li>
                                      <li>
@@ -94,7 +94,7 @@
 
                                <div class="btn-group" role="group">
                                 <div class="buttonexport" id="buttonlist">
-                                   <a class="btn btn-add" href="{{url('create-task')}}"> <i class="fa fa-plus"></i> Add Tasks
+                                   <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtask"> <i class="fa fa-plus"></i> Add Tasks
                                    </a>
                                 </div>
                              </div>
@@ -127,31 +127,40 @@
                                      </thead>
                                      <tbody>
                                      <tr>
-                                        @foreach ($teams as $team )
+                                        @foreach ($tasks as $task )
 
                                         <tr>
-                                           <td>{{$team->id}}</td>
-                                           <td>{{$team->task_name}}</td>
-                                           <td>{{$team->start_date}}</td>
-                                           <td>{{$team->end_date}}</td>
-                                           <td>{{$team->job_cat_id}}</td>
-                                           <td>{{$team->task_name}}</td>
-                                           <td>{{$team->discription}}</td>
-                                           <td>@if($team->task!=null){{$team->task->name}}@endif</td>
-                                           <td>@if($team->category!=null){{$team->category->name}}@endif</td>
-                                           {{-- <td>
-                                            <button class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</button>
-                                            <input type="number" id="number" value="{{$material->quantity}}">
-                                            <button class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</button>
-                                            </td> --}}
-                                           {{-- <td><span class="label-custom label label-default">{{$material->tags}}</span></td> --}}
+                                           <td>{{$task->id}}</td>
+                                           <td>{{$task->task_name}}</td>
+                                           <td>@if($task->jobcategories!=null){{$task->jobcategories->name}}@endif</td>
+                                           <td>@if($task->team!=null){{$task->team->team_name}}@endif</td>
+                                           <td>{{$task->start_date}}</td>
+                                           <td>{{$task->end_date}}</td>
 
+                                           <td>{{$task->discription}}</td>
+                                           <td>@if($task->status==1)
+                                            <span class="label-custom label label-default">Active</span>
+                                            @else
+                                            <span class="label-custom label label-default">InActive</span>
 
+                                            @endif
+
+                                            </td>
 
 
                                            <td>
+                                            <button type="button" class="btn btn-add btn-sm editbtn" data-toggle="modal" data-id="{{$task->id}}"><i class="fa fa-pencil"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm deletebtn" data-toggle="modal"  data-id="{{$task->id}}"><i class="fa fa-trash-o"></i> </button>
+                                         </td>
 
-                                        <tr>
+
+
+
+                                        </tr>
+
+                                        @endforeach
+
+                                        {{-- <tr>
                                            <td><input type="checkbox" class="" value=""></td>
                                            <td>meeting at home</td>
                                            <td>Quote Visit</td>
@@ -164,50 +173,9 @@
                                               <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtask"><i class="fa fa-pencil"></i></button>
                                               <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox" class="" value=""></td>
-                                            <td>meeting at home</td>
-                                            <td>Quote Visit</td>
-                                            <td>Team A</td>
-                                            <td>16 wednesday 2023 </td>
-                                            <td>26 wednesday 2023</td>
-                                            <td>Give full details about products & prices</td>
-                                            <td><span class="label-custom label label-default">Active</span></td>
-                                            <td>
-                                               <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtask"><i class="fa fa-pencil"></i></button>
-                                               <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
-                                            </td>
-                                         </tr>
-                                         <tr>
-                                            <td><input type="checkbox" class="" value=""></td>
-                                            <td>meeting at home</td>
-                                            <td>Quote Visit</td>
-                                            <td>Team A</td>
-                                            <td>16 wednesday 2023 </td>
-                                            <td>26 wednesday 2023</td>
-                                            <td>Give full details about products & prices</td>
-                                            <td><span class="label-custom label label-default">Active</span></td>
-                                            <td>
-                                               <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtask"><i class="fa fa-pencil"></i></button>
-                                               <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
-                                            </td>
-                                         </tr>
-                                         <tr>
-                                            <td><input type="checkbox" class="" value=""></td>
-                                            <td>meeting at home</td>
-                                            <td>Quote Visit</td>
-                                            <td>Team A</td>
-                                            <td>16 wednesday 2023 </td>
-                                            <td>26 wednesday 2023</td>
-                                            <td>Give full details about products & prices</td>
-                                            <td><span class="label-custom label label-default">Active</span></td>
-                                            <td>
-                                               <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtask"><i class="fa fa-pencil"></i></button>
-                                               <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
-                                            </td>
-                                         </tr>
-                                         @endforeach
+                                        </tr> --}}
+
+
                                      </tbody>
                                   </table>
                                </div>
@@ -220,7 +188,7 @@
     <div class="modal-dialog">
        <div class="modal-content">
           <div class="modal-header modal-header-primary">
-             <h3><i class="fa fa-plus m-r-5"></i> add new task</h3>
+             <h3><i class="fa fa-plus m-r-5"></i> Add New Task</h3>
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
@@ -228,7 +196,7 @@
                 @csrf
              <div class="row">
                 <div class="col-md-12">
-                   <form class="form-horizontal">
+
                       <div class="row">
                             <!-- Text input-->
                             <div class="col-md-12 form-group">
@@ -293,6 +261,87 @@
     </div>
     <!-- /.modal-dialog -->
  </div>
+
+  <!-- Modal1 -->
+  <div class="modal fade" id="edittsk" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+       <div class="modal-content">
+          <div class="modal-header modal-header-primary">
+             <h3><i class="fa fa-plus m-r-5"></i> Eidt Task</h3>
+             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+            <form  method="post" enctype="multipart/form-data" id="editForm">
+                @csrf
+             <div class="row">
+                <div class="col-md-12">
+
+                      <div class="row">
+                            <!-- Text input-->
+                            <div class="col-md-12 form-group">
+                               <label class="control-label">Task Name</label>
+                               <input type="text" placeholder="Task Name" name="task_name"class="form-control" id="task_name">
+                            </div>
+                            <div class="col-md-6 form-group">
+                               <label class="control-label">When to do it?</label>
+                               <input type="date" placeholder="Due title"  name="start_date" class="form-control" id="start_date">
+                            </div>
+                            <div class="col-md-6 form-group">
+                               <label class="control-label">Add a deadline</label>
+                               <input type="date" placeholder="Due title"  name="end_date" class="form-control" id="end_date">
+                            </div>
+                            <div class="col-md-12 form-group">
+                               <label class="control-label">Description</label>
+                               <textarea class="form-control" rows="3" placeholder="description"  name="discription" id="discription"></textarea>
+                            </div>
+                            <div class="col-md-6 form-group">
+                               <label class="control-label">Responsible to</label>
+                               <select class="form-control"  multiple="" name="team_id" id="team_id">
+                                @foreach ($teams as $team)
+                                     <option value="{{$team->id}}">{{$team->team_name}}</option>
+                                  @endforeach
+                                  {{-- <option>Team A</option>
+                                  <option>Team Build Drive</option>
+                                  <option>Team Power Clean</option>
+                                  <option>Team A</option>
+                                  <option>Team A</option> --}}
+                               </select>
+                            </div>
+                            <!-- Text input-->
+                            <div class="col-md-6 form-group">
+                               <label class="control-label">Job Categories</label>
+                               <select class="form-control"  name="job_cat_id" id="job_cat_id">
+                                @foreach ($jobcategories as $cat)
+                               <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                @endforeach
+                                  {{-- <option>Meeting</option>
+                                  <option>Follow Up</option>
+                                  <option>Job Pack</option>
+                                  <option>Site Visit</option>
+                                  <option>Callback</option> --}}
+                               </select>
+                            </div>
+                            <div class="col-md-12 form-group user-form-group">
+                               <div class="float-right">
+                                  <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                  <button type="submit" class="btn btn-add btn-sm">Save</button>
+                               </div>
+                            </div>
+                      </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+          <div class="modal-footer">
+             <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+          </div>
+       </div>
+       <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+ </div>
+
+
        <!-- Customer Modal2 -->
        <div class="modal fade" id="customer2" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
@@ -304,7 +353,9 @@
                 <div class="modal-body">
                    <div class="row">
                       <div class="col-md-12">
-                         <form class="form-horizontal">
+                         <form class="form-horizontal" method="post" action="{{route('task.delete')}}">
+                            @csrf
+                            <input type="hidden" name="task_id" id="task_id"/>
                                <div class="row">
                                      <div class="col-md-12 form-group user-form-group">
                                         <label class="control-label">Delete Tasks</label>
@@ -331,4 +382,37 @@
     <!-- /.content -->
  </div>
  <!-- /.content-wrapper -->
+ @endsection
+
+ @section('footer_scripts')
+ <script>
+    $(document).ready(function(){
+
+        $('.editbtn').on('click',function(){
+            var id=$(this).attr('data-id');
+            $.get("{{url('edit-task')}}/"+id, function (data) {
+                console.log(data);
+                var id=data.id;
+                $('#editForm').attr('action','{{url("edit-task")}}/'+id);
+                $('#task_name').val(data.task_name);
+                $('#start_date').val(data.start_date);
+                $('#end_date').val(data.end_date);
+                $('#discription').text(data.discription);
+                $("job_cat_id select").val(data.job_cat_id).change();
+                $("#team_id select").val(data.team_id).change();
+
+            });
+            $('#edittsk').modal('show');
+        });
+
+        $('.deletebtn').on('click',function(){
+
+            var id=$(this).attr('data-id');
+            $('#task_id').attr('value',id);
+            $('#customer2').modal('show');
+
+        });
+
+    });
+ </script>
  @endsection

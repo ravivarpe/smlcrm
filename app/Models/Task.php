@@ -11,15 +11,15 @@ class Task extends Model
         protected $table ='tasks';
 
         protected $fillable = [
-            'id','task_name', 'start_date', 'end_date', 'discription', 'job_cat_id', 'team_id' ];
+            'id','task_name', 'start_date', 'end_date', 'discription', 'job_cat_id', 'team_id' ,'status'];
 
 
-            // public function team()
-            // {
-            //     return $this->hasOne(Team::class,'id','team_id');
-            // }
-            // public function jobcategories()
-            // {
-            //     return $this->hasOne(JobCategories::class,'id','job_cat_id');
-            // }
+        public function team()
+        {
+            return $this->hasOne(Team::class,'id','team_id');
         }
+        public function jobcategories()
+        {
+            return $this->hasOne(JobCategories::class,'id','job_cat_id');
+        }
+}

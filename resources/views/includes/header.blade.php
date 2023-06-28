@@ -225,6 +225,24 @@
                     </a>
                  </li>
 
+                 <li class="active">
+                    <a href="{{url('team')}}">
+                    <i class="fa fa-tree"></i> <span>Team </span>
+                    <span class="pull-right-container">
+                    </span>
+                    </a>
+                 </li>
+
+                 <li class="active">
+                    <a href="{{url('users')}}">
+                    <i class="fa fa-user-circle"></i> <span>Users</span>
+                    <span class="pull-right-container">
+                    </span>
+                    </a>
+                 </li>
+
+
+
 
 
 

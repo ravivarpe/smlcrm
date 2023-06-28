@@ -8,6 +8,10 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +74,25 @@ Route::group(['middleware' => 'auth'], function () {
 
    //Tasks
    Route::get('tasks',[TaskController::class,'index'])->name('task.list');
-   Route::get('create-task',[TaskController::class,'addTasks'])->name('task.add');
    Route::post('create-task',[TaskController::class,'addTaskSubmit'])->name('task.add');
+   Route::get('edit-task/{id}',[TaskController::class,'editTask'])->name('task.edit');
+   Route::post('edit-task/{id}',[TaskController::class,'editTaskSubmit'])->name('task.edit');
+   Route::post('delete-task',[TaskController::class,'deleteTask'])->name('task.delete');
+   Route::get('job-catwise-task/{id}',[TaskController::class,'jobCategoryWiseTask'])->name('task.catwise');
+
+    //Team
+    Route::get('team',[TeamController::class,'index'])->name('team.list');
+    Route::post('create-team',[TeamController::class,'addTeamSubmit'])->name('team.add');
+    Route::get('edit-team/{id}',[TeamController::class,'editTeam'])->name('team.edit');
+    Route::post('edit-team/{id}',[TeamController::class,'editTeamSubmit'])->name('team.edit');
+    Route::post('delete-team',[TeamController::class,'deleteTeam'])->name('team.delete');
+
+    //users
+    Route::get('users',[UserController::class,'index'])->name('user.list');
+    Route::post('create-user',[UserController::class,'addUserSubmit'])->name('user.add');
+    Route::get('edit-user/{id}',[UserController::class,'editUser'])->name('user.edit');
+    Route::post('edit-user/{id}',[UserController::class,'editUserSubmit'])->name('user.edit');
+    Route::post('delete-user',[UserController::class,'deleteUser'])->name('user.delete');
+
+
 });
