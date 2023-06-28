@@ -70,4 +70,6 @@ Route::group(['middleware' => 'auth'], function () {
 
    //Tasks
    Route::get('tasks',[TaskController::class,'index'])->name('task.list');
+   Route::get('create-task',[TaskController::class,'addTasks'])->name('task.add');
+   Route::post('create-task',[TaskController::class,'addTaskSubmit'])->name('task.add');
 });

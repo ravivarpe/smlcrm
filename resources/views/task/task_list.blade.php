@@ -92,12 +92,12 @@
                                   </ul>
                                </div>
 
-
                                <div class="btn-group" role="group">
-                                  <div class="buttonexport" id="buttonlist">
-                                    <a href="#" class="btn btn-add" data-toggle="modal" data-target="#addtask"><i class="fa fa-plus"></i> Add Tasks</a>
-                                  </div>
-                               </div>
+                                <div class="buttonexport" id="buttonlist">
+                                   <a class="btn btn-add" href="{{url('create-task')}}"> <i class="fa fa-plus"></i> Add Tasks
+                                   </a>
+                                </div>
+                             </div>
                                <div class="btn-group" role="menu">
                                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     30
@@ -126,6 +126,31 @@
                                         </tr>
                                      </thead>
                                      <tbody>
+                                     <tr>
+                                        @foreach ($teams as $team )
+
+                                        <tr>
+                                           <td>{{$team->id}}</td>
+                                           <td>{{$team->task_name}}</td>
+                                           <td>{{$team->start_date}}</td>
+                                           <td>{{$team->end_date}}</td>
+                                           <td>{{$team->job_cat_id}}</td>
+                                           <td>{{$team->task_name}}</td>
+                                           <td>{{$team->discription}}</td>
+                                           <td>@if($team->task!=null){{$team->task->name}}@endif</td>
+                                           <td>@if($team->category!=null){{$team->category->name}}@endif</td>
+                                           {{-- <td>
+                                            <button class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</button>
+                                            <input type="number" id="number" value="{{$material->quantity}}">
+                                            <button class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</button>
+                                            </td> --}}
+                                           {{-- <td><span class="label-custom label label-default">{{$material->tags}}</span></td> --}}
+
+
+
+
+                                           <td>
+
                                         <tr>
                                            <td><input type="checkbox" class="" value=""></td>
                                            <td>meeting at home</td>
@@ -182,6 +207,7 @@
                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
                                             </td>
                                          </tr>
+                                         @endforeach
                                      </tbody>
                                   </table>
                                </div>
@@ -198,6 +224,8 @@
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
+            <form action="{{route('task.add')}}" method="post" enctype="multipart/form-data">
+                @csrf
              <div class="row">
                 <div class="col-md-12">
                    <form class="form-horizontal">
@@ -205,39 +233,45 @@
                             <!-- Text input-->
                             <div class="col-md-12 form-group">
                                <label class="control-label">Task Name</label>
-                               <input type="text" placeholder="Task Name" class="form-control">
+                               <input type="text" placeholder="Task Name" name="task_name"class="form-control">
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">When to do it?</label>
-                               <input type="date" placeholder="Due title" class="form-control">
+                               <input type="date" placeholder="Due title"  name="start_date" class="form-control">
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Add a deadline</label>
-                               <input type="date" placeholder="Due title" class="form-control">
+                               <input type="date" placeholder="Due title"  name="end_date" class="form-control">
                             </div>
                             <div class="col-md-12 form-group">
                                <label class="control-label">Description</label>
-                               <textarea class="form-control" rows="3" placeholder="description" ></textarea>
+                               <textarea class="form-control" rows="3" placeholder="description"  name="discription" ></textarea>
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Responsible to</label>
-                               <select class="form-control"  multiple="">
-                                  <option>Team A</option>
+                               <select class="form-control"  multiple="" name="team_id">
+                                @foreach ($teams as $team)
+                                     <option value="{{$team->id}}">{{$team->team_name}}</option>
+                                  @endforeach
+                                  {{-- <option>Team A</option>
                                   <option>Team Build Drive</option>
                                   <option>Team Power Clean</option>
                                   <option>Team A</option>
-                                  <option>Team A</option>
+                                  <option>Team A</option> --}}
                                </select>
                             </div>
                             <!-- Text input-->
                             <div class="col-md-6 form-group">
                                <label class="control-label">Job Categories</label>
-                               <select class="form-control">
-                                  <option>Meeting</option>
+                               <select class="form-control"  name="job_cat_id">
+                                @foreach ($jobcategories as $cat)
+                               <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                @endforeach
+                                  {{-- <option>Meeting</option>
                                   <option>Follow Up</option>
                                   <option>Job Pack</option>
                                   <option>Site Visit</option>
-                                  <option>Callback</option>
+                                  <option>Callback</option> --}}
                                </select>
                             </div>
                             <div class="col-md-12 form-group user-form-group">
