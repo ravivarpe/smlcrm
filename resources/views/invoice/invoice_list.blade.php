@@ -44,7 +44,7 @@
                    <div class="card lobicard"  data-sortable="true">
                        <div class="card-header">
                            <div class="card-title custom_title">
-                               <h4>Add customer</h4>
+                               <h4>Invoice List</h4>
                            </div>
                        </div>
                        <div class="card-body">
@@ -131,16 +131,9 @@
                                         </tr>
                                      </thead>
                                      <tbody>
-                                        @foreach ($invoiceTypes as $type )
+                                        @foreach ($invoices as $invoice )
 
-                                        <tr>
-                                           <td>{{$type->id}}</td>
-                                           <td>{{$type->name}}</td>
-                                           <td>{{$type->contact_number}}</td>
-                                           <td>{{$type->email1}}</td>
-                                           <td>@if($type->address!=null){{$type->address->pincode}}@endif</td>
-                                           <td>@if($type->company!=null){{$type->company->name}}@endif</td>
-                                           <td>
+
                                         <tr>
                                            <td>695</td>
                                            <td>Test By sml</td>
