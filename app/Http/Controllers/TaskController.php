@@ -31,9 +31,7 @@ class TaskController extends Controller
     public function addTaskSubmit(Request $request)
     {
         $data=$request->except('_token');
-
         $task=Task::create($data);
-
         return redirect('tasks')->with('success','Task added successfully!');
     }
 

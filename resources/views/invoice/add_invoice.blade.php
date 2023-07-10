@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -36,7 +33,7 @@
                       <div class="row">
                       <div class="form-group col-sm-5">
                          <label>Company Name</label>
-                         <select class="form-control" name="company_id" >
+                         <select class="form-control" name="company_id" id="company_id">
                             @foreach ($companies as $company)
                                <option value="{{$company->id}}">{{$company->name}}</option>
                            @endforeach
@@ -63,7 +60,8 @@
                       </div>
                        <div class="form-group">
                         <label>Customer Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Customer Name" name="contact_id" required>
+                        <input type="text" class="form-control" placeholder="Enter Customer Name" name="contact_name" id="contact_name" required>
+                        <input type="hidden" name="contact_id" id="contact_id" value=""/>
                      </div>
                      <div class="form-group row mx-0">
                         <label>Phone/Mobile</label>
@@ -138,7 +136,7 @@
                                      <input type="text" class="quantity" name="item[1][quantity]" what="1" value="">
                                      </td>
                                      <td class="stb_pdf">
-                                     <input type="text" class="search_type" name="item[1][title]" what="1" autocomplete="off" placeholder="Item" value="">
+                                     <input type="text" class="search_type select_material" name="item[1][title]" what="1"  placeholder="Item" value="" id="select_material">
                                      <span class="s_t_b search_type_box_items1" style="display: none;"></span>
                                      </td>
                                     <td>
@@ -166,6 +164,38 @@
                                     <input type="hidden" name="item[1][product_id]" value="">
                                 </tr>
 
+                                <tr class="item" id="row_1">
+                                    <td class="sml1">
+                                     <input type="text" class="quantity" name="item[1][quantity]" what="1" value="">
+                                     </td>
+                                     <td class="stb_pdf">
+                                     <input type="text" class="search_type select_material" name="item[1][title]" what="1"  placeholder="Item" value="" id="select_material">
+                                     <span class="s_t_b search_type_box_items1" style="display: none;"></span>
+                                     </td>
+                                    <td>
+                                    <textarea name="item[1][description]" placeholder="Item Details" rows="1"></textarea>
+                                    </td>
+                                    <td class="sml">
+                                    <input type="text" class="price" name="item[1][price]" placeholder="Price" what="1" value="">
+                                    </td>
+                                    <td class="sml">
+                                    <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>
+                                    </td>
+                                    <td class="sml1">
+                                    <input type="text" class="chargeperiod" name="item[1][chargeperiod]" what="1" value="">
+                                    </td>
+                                    <td class="sml">
+                                        <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>
+                                    </td>
+                                    <td class="sml">
+                                    <input type="text" class="a_total" name="item[1][total]" placeholder="Total" what="1" readonly="" value="">
+                                    </td>
+                                    <td class="sml0">
+                                    <i class="fa fa-times" item_id="" id="1"></i>
+                                    </td>
+                                    <input type="hidden" name="item[1][id]" value="">
+
+                                </tr>
                             </tbody>
                             </table>
 
@@ -235,4 +265,79 @@
  </div>
  <!-- /.content-wrapper -->
 
+@endsection
+
+@section('footer_scripts')
+<script>
+   $(document).ready(function(){
+    var cid;
+
+    $("#company_id").change(function(){
+        cid= $("#company_id").val();
+    });
+
+       $('#contact_name').on('keyup',function(){
+
+           $("#contact_name" ).autocomplete({
+              source: function( request, response ) {
+
+                    $.ajax({
+                    url:"{{url('search-contact')}}",
+                    type: 'get',
+
+                    success: function( data ) {
+                        console.log(data);
+                        response(data);
+                        console.log(response);
+                    }
+                });
+                },
+                 focus: function(event, ui) {
+                     $("contact_name").val(ui.item.label);
+                     $('#contact_id').val(ui.item.value);
+                     return false;
+                  },
+                select: function (event, ui) {
+                 event.preventDefault();
+                 $('#contact_name').val(ui.item.label); // display the selected text
+                 $('#contact_id').val(ui.item.value); // save selected id to input
+                  return false;
+                }
+        });
+
+
+          //$('#editcustom').modal('show');
+       });
+
+
+       $(".select_material" ).autocomplete({
+              source: function( request, response ) {
+
+                    $.ajax({
+                    url:"{{url('search-material')}}",
+                    type: 'get',
+
+                    success: function( data ) {
+                        console.log(data);
+                        response(data);
+                        console.log(response);
+                    }
+                });
+                },
+                 focus: function(event, ui) {
+                     $("select_material").val(ui.item.label);
+                   //  $('#contact_id').val(ui.item.value);
+                     return false;
+                  },
+                select: function (event, ui) {
+                 event.preventDefault();
+                 $('#select_material').val(ui.item.label); // display the selected text
+               //  $('#contact_id').val(ui.item.value); // save selected id to input
+                  return false;
+                }
+        });
+
+
+   });
+</script>
 @endsection

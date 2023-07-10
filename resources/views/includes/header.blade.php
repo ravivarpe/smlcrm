@@ -39,6 +39,10 @@
       <link href="{{url('assets/plugins/monthly/monthly.css')}}" rel="stylesheet" />
       <!-- End page Label Plugins
          =====================================================================-->
+        <link href="{{url('assets/plugins/fullcalendar/fullcalendar.min.css')}}" rel="stylesheet" />
+         <!-- fullcalendar print css -->
+        <link href="{{url('assets/plugins/fullcalendar/fullcalendar.print.min.css')}}" rel="stylesheet" media='print' />
+
       <!-- Start Theme Layout Style
          =====================================================================-->
       <!-- Theme style -->
@@ -210,13 +214,31 @@
                     </span>
                     </a>
                  </li>
-                 <li class="active">
+                 {{-- <li class="active">
                     <a href="{{url('invoice')}}">
                     <i class="fa fa-money"></i> <span>Invoice </span>
                     <span class="pull-right-container">
                     </span>
                     </a>
-                 </li>
+                 </li> --}}
+
+                  <li class="treeview active">
+                     <a href="#">
+                     <i class="fa fa-money"></i><span>Finance</span>
+                     <span class="pull-right-container">
+                     <i class="fa fa-angle-left float-right"></i>
+                     </span>
+                     </a>
+                     <ul class="treeview-menu">
+                        <li class="active"><a href="{{url('invoice')}}">Invoice</a></li>
+                        <li><a href="{{url('create-invoice')}}">Add Invoice</a></li>
+                        <li><a href="{{url('invoice')}}">Add Quote</a></li>
+                        <li><a href="{{url('invoice')}}">Add Job Pack</a></li>
+                        <li><a href="{{url('invoice')}}">Add Purchase</a></li>
+                        <li><a href="{{url('invoice')}}">Add Estimate</a></li>
+                     </ul>
+                  </li>
+
                  <li class="active">
                     <a href="{{url('tasks')}}">
                     <i class="fa fa-check-square-o"></i> <span>Tasks </span>
@@ -228,6 +250,21 @@
                  <li class="active">
                     <a href="{{url('team')}}">
                     <i class="fa fa-tree"></i> <span>Team </span>
+                    <span class="pull-right-container">
+                    </span>
+                    </a>
+                 </li>
+
+                 <li class="active">
+                    <a href="{{url('calendar')}}">
+                    <i class="fa fa-calendar"></i> <span>Calendar </span>
+                    <span class="pull-right-container">
+                    </span>
+                    </a>
+                 </li>
+                 <li class="active">
+                    <a href="{{url('jobs')}}">
+                    <i class="fa fa-briefcase"></i> <span>Jobs</span>
                     <span class="pull-right-container">
                     </span>
                     </a>
@@ -246,18 +283,7 @@
 
 
 
-                  {{-- <li class="treeview active">
-                     <a href="#">
-                     <i class="fa fa-users"></i><span>Customers</span>
-                     <span class="pull-right-container">
-                     <i class="fa fa-angle-left float-right"></i>
-                     </span>
-                     </a>
-                     <ul class="treeview-menu">
-                        <li class="active"><a href="clist.html">List</a></li>
-                        <li><a href="add-customer.html">Add Customer</a></li>
-                     </ul>
-                  </li> --}}
+
                </ul>
             </div>
             <!-- /.sidebar -->

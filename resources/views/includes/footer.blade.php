@@ -58,6 +58,10 @@
  =====================================================================-->
 <!-- Start Theme label Script
  =====================================================================-->
+
+<!-- fullcalendar js -->
+<script src="{{url('assets/plugins/fullcalendar/lib/moment.min.js')}}" ></script>
+<script src="{{url('assets/plugins/fullcalendar/fullcalendar.min.js')}}" ></script>
 <!-- Dashboard js -->
 <script src="{{url('assets/dist/js/dashboard.js')}}" ></script>
 <!-- End Theme label Script

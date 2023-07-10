@@ -10,6 +10,8 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\JobController;
 
 
 
@@ -66,10 +68,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     //invoice
     Route::get('invoice',[InvoiceController::class,'index'])->name('invoice.list');
-    Route::get('create-invoice',[InvoiceController::class,'addEnvoice'])->name('invoice.add');
+    Route::get('create-invoice',[InvoiceController::class,'addInvoice'])->name('invoice.add');
     Route::post('create-invoice',[InvoiceController::class,'addInvoiceSubmit'])->name('invoice.add');
-    Route::get('edit-invoice',[InvoiceController::class,'editEnvoice'])->name('invoice.edit');
-   // Route::get('company-invoice/{id}',[InvoiceController::class,'companyWiseInvoice'])->name('invoice.company');
+    Route::get('edit-invoice/{id}',[InvoiceController::class,'editInvoice'])->name('invoice.edit');
+    Route::post('edit-invoice/{id}',[InvoiceController::class,'editInvoiceSubmit'])->name('invoice.edit');
+    Route::get('delete-invoice/{id}',[InvoiceController::class,'deleteInvoice'])->name('invoice.delete');
+    Route::get('search-contact',[InvoiceController::class,'getContact'])->name('invoice.contact');
+    Route::get('search-material',[InvoiceController::class,'getMaterial'])->name('invoice.material');
+
+
 
 
    //Tasks
@@ -94,5 +101,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('edit-user/{id}',[UserController::class,'editUserSubmit'])->name('user.edit');
     Route::post('delete-user',[UserController::class,'deleteUser'])->name('user.delete');
 
+    //calendar
+    Route::get('calendar',[CalendarController::class,'index'])->name('calendar.list');
+    Route::get('get-cal-event',[CalendarController::class,'getEvents'])->name('calendar.event');
 
+
+    //jobs
+    Route::get('jobs',[JobController::class,'index'])->name('job.list');
+    Route::get('create-job',[JobController::class,'addJob'])->name('job.add');
+    Route::post('create-job',[JobController::class,'addJobSubmit'])->name('job.add');
+    Route::get('edit-job/{id}',[JobController::class,'editJob'])->name('job.edit');
+    Route::post('edit-job/{id}',[JobController::class,'editJobSubmit'])->name('job.edit');
+    Route::get('delete-job/{id}',[JobController::class,'deleteJob'])->name('job.delete');
+    Route::get('company-wise-job/{id}',[JobController::class,'companyWiseJob'])->name('job.company');
+    Route::get('category-wise-job/{id}',[JobController::class,'categoryWiseJob'])->name('job.category');
 });

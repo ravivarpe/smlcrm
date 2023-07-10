@@ -4428,7 +4428,7 @@ text-align: center;
 ==============================================================================*/
 
 #calendar {
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
 }
 #external-events h4 {
@@ -5099,12 +5099,18 @@ text-align: center;
     text-align: left;
     display: inline-block;
     vertical-align: middle;
-    color: #93a3b5;
+    color: #000;
 }
-.customer-name {
-    color: #43525A;
-    font-weight: 600;
-}
+.avatar-name {
+    margin-left: 20px;
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+  }
+.mailbox-body {
+    background: #9b7e4a;
+  }
+
 .badge.customer-text {
     margin-right: 5px;
     display: inline;
@@ -6151,5 +6157,10 @@ label {
     margin-top:30px;
 }
 }
-
-
+.details-cust {
+    color: #000;
+  }
+  .cal_selects.toggle_area {
+    position: absolute;
+    left: 15%;
+}

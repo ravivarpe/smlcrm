@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use App\Models\Address;
 use App\Models\Contact;
 use App\Models\InvoiceType;
+use App\Models\Material;
 
 class InvoiceController extends Controller
 {
@@ -16,7 +17,7 @@ class InvoiceController extends Controller
         $invoices=Invoice::all();
         return view('invoice.invoice_list',['invoices'=>$invoices]);
     }
-    public function addEnvoice()
+    public function addInvoice()
     {
         $companies=Company::all();
         $invoiceTypes=InvoiceType::all();
@@ -33,9 +34,45 @@ class InvoiceController extends Controller
          return redirect('invoice')->with('success','Invoice added successfully!');
     }
 
-    public function editEnvoice()
+    public function editInvoice($id)
     {
         return view('invoice.edit_invoice');
+    }
+
+    public function deleteInvoice($id)
+    {
+        Invoice::where('id',$id)->delete();
+        return redirect('invoice')->with('success','Invoice deleted successfully!');
+    }
+
+    public function getContact(Request $request)
+    {
+       $contacts=Contact::select('id','name')->where('name', 'LIKE', "%{$request->term}%")->get();
+       foreach($contacts as $contact ){
+        $usersArray[] = array(
+          "label" => $contact->name,
+          "value" => $contact->id
+        );
+      }
+       return response()->json($usersArray);
+
+    }
+
+    public function getMaterial(Request $request)
+    {
+        $materials=Material::select('id','title')->where('title', 'LIKE', "%{$request->term}%")->get();
+        foreach($materials as $material ){
+         $materialArray[] = array(
+           "label" => $material->title,
+           "value" => $material->id
+         );
+       }
+        return response()->json($materialArray);
+    }
+
+    public function getContactDetails($id)
+    {
+
     }
 
 }
