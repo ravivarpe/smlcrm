@@ -47,7 +47,7 @@
                 <div class="statistic-box">
                    <i class="fa fa-money fa-3x"></i>
                    <div class="counter-number pull-right">
-                      <i class="ti ti-money"></i><span class="count-number">965</span>
+                      {{-- <i class="ti ti-money"></i> --}}<span class="count-number">£965</span>
                       <span class="slight"><i class="fa fa-play fa-rotate-270"> </i>
                       </span>
                    </div>
@@ -147,17 +147,17 @@
                                  <tr class="info1">
                                     <td>The Yorkshire Resin Company</td>
                                     <td>25</td>
-                                    <td>$189000</td>
+                                    <td>£189000</td>
                                  </tr>
                                  <tr>
                                     <td>Build a Drive</td>
                                     <td>2</td>
-                                    <td>$18900</td>
+                                    <td>£18900</td>
                                  </tr>
                                  <tr>
                                     <td>Power Clean</td>
                                     <td>10</td>
-                                    <td>$9999</td>
+                                    <td>£9999</td>
                                  </tr>
                               </tbody>
                            </table>
@@ -241,27 +241,27 @@
                                  <tr class="info1">
                                     <td>Martin Garix</td>
                                     <td>25</td>
-                                    <td>$189000</td>
+                                    <td>£189000</td>
                                  </tr>
                                  <tr>
                                     <td>Ricky Martin</td>
                                     <td>2</td>
-                                    <td>$18900</td>
+                                    <td>£18900</td>
                                  </tr>
                                  <tr>
                                     <td>Akon</td>
                                     <td>10</td>
-                                    <td>$9999</td>
+                                    <td>£9999</td>
                                  </tr>
                                  <tr>
                                   <td>Akon</td>
                                   <td>10</td>
-                                  <td>$9999</td>
+                                  <td>£9999</td>
                                </tr>
                                <tr>
                                   <td>Akon</td>
                                   <td>10</td>
-                                  <td>$9999</td>
+                                  <td>£9999</td>
                                </tr>
                               </tbody>
                            </table>
@@ -389,17 +389,17 @@
                                   <tr class="info1">
                                      <td>The Yorkshire Resin Company</td>
                                      <td>25</td>
-                                     <td>$189000</td>
+                                     <td>£189000</td>
                                   </tr>
                                   <tr>
                                      <td>Build a Drive</td>
                                      <td>2</td>
-                                     <td>$18900</td>
+                                     <td>£18900</td>
                                   </tr>
                                   <tr>
                                      <td>Power Clean</td>
                                      <td>10</td>
-                                     <td>$9999</td>
+                                     <td>£9999</td>
                                   </tr>
                                </tbody>
                             </table>
@@ -559,7 +559,7 @@
     }
     });
           //monthly calender
-          $('#m_calendar').monthly({
+          £('#m_calendar').monthly({
             mode: 'event',
             //jsonUrl: 'events.json',
             //dataType: 'json'
@@ -602,7 +602,7 @@
     }
     });
         //counter
-        $('.count-number').counterUp({
+        £('.count-number').counterUp({
             delay: 10,
             time: 5000
         });

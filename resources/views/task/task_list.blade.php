@@ -126,7 +126,7 @@
                                         </tr>
                                      </thead>
                                      <tbody>
-                                     <tr>
+
                                         @foreach ($tasks as $task )
 
                                         <tr>
@@ -160,20 +160,7 @@
 
                                         @endforeach
 
-                                        {{-- <tr>
-                                           <td><input type="checkbox" class="" value=""></td>
-                                           <td>meeting at home</td>
-                                           <td>Quote Visit</td>
-                                           <td>Team A</td>
-                                           <td>16 wednesday 2023 </td>
-                                           <td>26 wednesday 2023</td>
-                                           <td>Give full details about products & prices</td>
-                                           <td><span class="label-custom label label-default">Active</span></td>
-                                           <td>
-                                              <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtask"><i class="fa fa-pencil"></i></button>
-                                              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
-                                           </td>
-                                        </tr> --}}
+
 
 
                                      </tbody>
@@ -411,6 +398,37 @@
             $('#task_id').attr('value',id);
             $('#customer2').modal('show');
 
+        });
+
+        $('#dataTableExample1').dataTable({
+
+            lengthMenu: [30,50,100],
+            ordering:  false,
+            paging: true,
+            dom: 'lBfrtip',
+            buttons: [
+                'csv', 'pdf',
+            ],
+        initComplete: function () {
+        this.api()
+            .columns()
+            .every(function () {
+                let column = this;
+                let title = column.header().textContent;
+
+                // Create input element
+                let input = document.createElement('input');
+                input.placeholder = title;
+                column.header().replaceChildren(input);
+
+                // Event listener for user input
+                input.addEventListener('keyup', () => {
+                    if (column.search() !== this.value) {
+                        column.search(input.value).draw();
+                    }
+                });
+            });
+        }
         });
 
     });

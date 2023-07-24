@@ -66,12 +66,19 @@
                       </div>
                     </div>
                       <div class="form-group">
-                        <label>Name</label>
+                        <label>Postal Code</label>
                         <input type="text" class="form-control" name="post_code" placeholder="Enter Post Code" value="{{$enquiry->post_code}}"  required>
                      </div>
                      <div class="form-group">
                         <label>Enquiry From</label>
-                        <input type="text" class="form-control" name="enquiry_form" placeholder="Enquiry From"  value="{{$enquiry->enquiry_form}}" required>
+                        <select class="form-control" name="enquiry_form" required>
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                            <option value="Magzines"></option>
+                            <option value="News Paper">News Paper</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Website">Website</option>
+                         </select>
                      </div>
 
                       <div class="form-check">

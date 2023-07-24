@@ -181,8 +181,6 @@
                         <input type="hidden" name="old_picture">
                      </div>
 
-
-
                       <div class="reset-button">
                          <button type="submit" class="btn btn-success"> Save</button>
                          <button type="reset" class="btn btn-warning"> Reset</button>

@@ -52,7 +52,7 @@
 
                                <li class="dropdown-divider"></li>
                                <li>
-                                  <a href="#" > Add to Contact</a>
+                                  <a href="{{route('enquiries.addcontact',$enquiry->id)}}" > Add to Contact</a>
                                </li>
 
                                <li class="dropdown-divider"></li>
@@ -87,79 +87,98 @@
                          </div>
                       </div>
                    </div>
+                   <div class="col-xs-12 col-sm-12 col-md-12 p-0 inbox-mail border-btm ">
+                      <div class="inbox-avatar-text ">
+                        <div class="avatar-name"><h3>Information</h3></div>
+                      </div>
+                    </div>
+
+
+
                 </div>
+
              </div>
           </div>
        </div>
 
-          <!-- Modal1 -->
-          <div class="modal fade" id="addtask" tabindex="-1" role="dialog">
-             <div class="modal-dialog">
-                <div class="modal-content">
-                   <div class="modal-header modal-header-primary">
-                      <h3><i class="fa fa-plus m-r-5"></i> add new task</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                   </div>
-                   <div class="modal-body">
+        <!-- Modal1 -->
+   <div class="modal fade" id="addtask" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+       <div class="modal-content">
+          <div class="modal-header modal-header-primary">
+             <h3><i class="fa fa-plus m-r-5"></i> Add New Task</h3>
+             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+            <form action="{{route('task.add')}}" method="post" enctype="multipart/form-data">
+                @csrf
+             <div class="row">
+                <div class="col-md-12">
+
                       <div class="row">
-                         <div class="col-md-12">
-                            <form class="form-horizontal">
-                               <div class="row">
-                                     <!-- Text input-->
-                                     <div class="col-md-12 form-group">
-                                        <label class="control-label">Task Name</label>
-                                        <input type="text" placeholder="Task Name" class="form-control">
-                                     </div>
-                                     <div class="col-md-6 form-group">
-                                        <label class="control-label">When to do it?</label>
-                                        <input type="date" placeholder="Due title" class="form-control">
-                                     </div>
-                                     <div class="col-md-6 form-group">
-                                        <label class="control-label">Add a deadline</label>
-                                        <input type="date" placeholder="Due title" class="form-control">
-                                     </div>
-                                     <div class="col-md-12 form-group">
-                                        <label class="control-label">Description</label>
-                                        <textarea class="form-control" rows="3" placeholder="description" ></textarea>
-                                     </div>
-                                     <div class="col-md-6 form-group">
-                                        <label class="control-label">Responsible to</label>
-                                        <select class="form-control"  multiple="">
-                                           <option>Team A</option>
-                                           <option>Team Build Drive</option>
-                                           <option>Team Power Clean</option>
-                                           <option>Team A</option>
-                                           <option>Team A</option>
-                                        </select>
-                                     </div>
-                                     <!-- Text input-->
-                                     <div class="col-md-6 form-group">
-                                        <label class="control-label">Job Categories</label>
-                                        <select class="form-control">
-                                           <option>Meeting</option>
-                                           <option>Follow Up</option>
-                                           <option>Job Pack</option>
-                                           <option>Site Visit</option>
-                                           <option>Callback</option>
-                                        </select>
-                                     </div>
-                                     <div class="col-md-12 form-group user-form-group">
-                                        <div class="float-right">
-                                           <button type="button" class="btn btn-danger btn-sm">Cancel</button>
-                                           <button type="submit" class="btn btn-add btn-sm">Save</button>
-                                        </div>
-                                     </div>
+                            <!-- Text input-->
+                            <div class="col-md-12 form-group">
+                               <label class="control-label">Task Name</label>
+                               <input type="text" placeholder="Task Name" name="task_name"class="form-control">
+                            </div>
+                            <div class="col-md-6 form-group">
+                               <label class="control-label">When to do it?</label>
+                               <input type="text" placeholder="yyyy-mm-dd" id="start_date"  name="start_date" class="form-control">
+                            </div>
+                            <div class="col-md-6 form-group">
+                               <label class="control-label">Add a deadline</label>
+                               <input type="text" placeholder="yyyy-mm-dd" id="end_date" name="end_date" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+                               <label class="control-label">Description</label>
+                               <textarea class="form-control" rows="3" placeholder="description"  name="discription" ></textarea>
+                            </div>
+                            <div class="col-md-6 form-group">
+                               <label class="control-label">Responsible to</label>
+                               <select class="form-control"  multiple="" name="team_id">
+                                @foreach ($teams as $team)
+                                     <option value="{{$team->id}}">{{$team->team_name}}</option>
+                                  @endforeach
+                                  {{-- <option>Team A</option>
+                                  <option>Team Build Drive</option>
+                                  <option>Team Power Clean</option>
+                                  <option>Team A</option>
+                                  <option>Team A</option> --}}
+                               </select>
+                            </div>
+                            <!-- Text input-->
+                            <div class="col-md-6 form-group">
+                               <label class="control-label">Job Categories</label>
+                               <select class="form-control"  name="job_cat_id">
+                                @foreach ($jobcategories as $cat)
+                               <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                @endforeach
+                                  {{-- <option>Meeting</option>
+                                  <option>Follow Up</option>
+                                  <option>Job Pack</option>
+                                  <option>Site Visit</option>
+                                  <option>Callback</option> --}}
+                               </select>
+                            </div>
+                            <div class="col-md-12 form-group user-form-group">
+                               <div class="float-right">
+                                  <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                  <button type="submit" class="btn btn-add btn-sm">Save</button>
                                </div>
-                            </form>
-                         </div>
+                            </div>
                       </div>
-                   </div>
-                   <div class="modal-footer">
-                      <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
-                   </div>
+                   </form>
                 </div>
-                <!-- /.modal-content -->
              </div>
+          </div>
+          <div class="modal-footer">
+             <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+          </div>
+       </div>
+       <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+
              <!-- /.modal-dialog -->
           </div>
     </section>
@@ -168,3 +187,17 @@
  <!-- /.content-wrapper -->
 
 @endsection
+
+@section('footer_scripts')
+ <script>
+    $(document).ready(function(){
+        $('#end_date').datepicker({
+        format: "yyyy-mm-dd",
+      });
+        $('#start_date').datepicker({
+        format: "yyyy-mm-dd",
+      });
+
+    });
+ </script>
+ @endsection

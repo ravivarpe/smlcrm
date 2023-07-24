@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Http;
 
 use App\Models\Company;
 use App\Models\Category;
@@ -117,6 +117,22 @@ class ContactController extends Controller
     {
         Contact::where('id',$id)->delete();
         return redirect('contacts')->with('success','Contacts added successfully!');
+    }
+
+
+    public function getAddressData($postcode)
+    {
+        //$post_code="LS122EJ";
+        $url1='https://maps.googleapis.com/maps/api/geocode/json?address=' . $postcode . '&key=AIzaSyBX3lodV8krCjDf-4Vub4OfWeLm_kP5-UE&region=GB';
+        $response1 = Http::get($url1);
+        $data=json_decode($response1->body(),true);
+        $addrArray=$data['results'][0]['address_components'];
+        $addrLine1=$addrArray[1]['long_name'];
+        //dd($addrArray);
+        $city=$addrArray[2]['long_name'];
+        $state=$addrArray[3]['long_name'];
+        echo $addrLine1.'<~>'.$city.'<~>'.$state;
+
     }
 
 }

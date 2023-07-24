@@ -15,24 +15,22 @@
        </div>
     </section>
     <div class="btn-group">
-    <div class="dropdown col">
-       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Select Company
-       </button>
-       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        @foreach ($companies as $company)
 
-           <a class="dropdown-item" href="{{route('enquiries.company',$company->id)}}">{{$company->name}}</a>
-        @endforeach
-
+       <div class="dropdown col">
+        <select class="btn btn-secondary dropdown-toggle px-2" id="dropdownMenuButton">
+            @foreach ($companies as $company)
+            <option value="{{$company->id}}">{{$company->name}}</option>
+            @endforeach
+        </select>
        </div>
-     </div>
+
+
      <div class="dropdown col">
        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          Status
        </button>
        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Pending</a>
+         <a class="dropdown-item" href="#">Pending</a>
          <a class="dropdown-item" href="#">Callback</a>
          <a class="dropdown-item" href="#">Won</a>
          <a class="dropdown-item" href="#">Lost</a>
@@ -63,7 +61,7 @@
 
                                      <li class="dropdown-divider"></li>
                                      <li>
-                                        <a href="#" onclick="$('#dataTableExample1').tableExport({type:'csv',escape:'false'});">
+                                        <a href="#" onclick="$('#dataTableExample1').tableExport({type:'csv',escape:'false', mimeType: 'text/csv',fileExtension: '.csv',  enforceStrictRFC4180: true});">
                                         <img src="assets/dist/img/csv.png" width="24" alt="logo"> CSV</a>
                                      </li>
 
@@ -121,13 +119,13 @@
                                   <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
                                      <thead class="back_table_color">
                                         <tr class="info">
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Ref"/></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Customer Name" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Mobile" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Email" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Post Code" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Enquiry Come From" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Status" /></th>
+                                           <th>Ref</th>
+                                           <th>Customer Name</th>
+                                           <th>Mobile</th>
+                                           <th>Email</th>
+                                           <th>Post Code</th>
+                                           <th>Enquiry Come From</th>
+                                           <th>Status</th>
                                            <th>Action</th>
                                         </tr>
                                      </thead>
@@ -137,7 +135,7 @@
 
                                         <tr>
                                            <td>{{$enquiry->id}}</td>
-                                           <td>{{$enquiry->name}}</td>
+                                           <td> <a href="{{route('enquiries.view',$enquiry->id)}}" > {{$enquiry->name}} </a></td>
                                            <td>{{$enquiry->phone}}</td>
                                            <td>{{$enquiry->email}}</td>
                                            <td>{{$enquiry->post_code}}</td>
@@ -264,3 +262,44 @@
 
 
 @endsection
+
+@section('footer_scripts')
+<script>
+   $(document).ready(function(){
+
+     $('#dataTableExample1').dataTable({
+
+        lengthMenu: [30,50,100],
+        ordering:  false,
+        paging: true,
+        dom: 'lBfrtip',
+        buttons: [
+             'csv', 'pdf',
+        ],
+        processing: true,
+       // serverSide: true,
+       // ajax: "{{route('enquiries.list')}}",
+        initComplete: function () {
+        this.api()
+            .columns()
+            .every(function () {
+                let column = this;
+                let title = column.header().textContent;
+
+                // Create input element
+                let input = document.createElement('input');
+                input.placeholder = title;
+                column.header().replaceChildren(input);
+
+                // Event listener for user input
+                input.addEventListener('keyup', () => {
+                    if (column.search() !== this.value) {
+                        column.search(input.value).draw();
+                    }
+                });
+            });
+    }
+     });
+    });
+ </script>
+ @endsection

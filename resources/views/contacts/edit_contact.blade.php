@@ -168,3 +168,31 @@
  <!-- /.content-wrapper -->
 
 @endsection
+
+@section('footer_scripts')
+ <script>
+    $(document).ready(function(){
+        $('#postcode_lookup').click(function(){
+             var postcode=$('#zip').val();
+             if(postcode!=null && postcode!='undefined' && postcode!='')
+             {
+                $.ajax({
+                    url:"{{url('get-address')}}/"+postcode,
+                    type: 'get',
+
+                    success: function( data ) {
+                        console.log(data);
+                        var  addr=data.split('<~>');
+                        $('#line2').val(addr[0]);
+                        $('#city').val(addr[1]);
+                        $('#state').val(addr[2]);
+
+                    }
+                });
+             }
+        });
+
+
+    });
+ </script>
+ @endsection

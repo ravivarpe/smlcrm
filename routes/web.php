@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('delete-enquiry/{id}',[EnquiryController::class,'enquiryDelete'])->name('enquiries.delete');
     Route::get('view-enquiry/{id}',[EnquiryController::class,'enquiryDetails'])->name('enquiries.view');
     Route::get('company-enquiry/{id}',[EnquiryController::class,'companyWiseEnquiry'])->name('enquiries.company');
+    Route::get('enquiry-contact/{id}',[EnquiryController::class,'enquiryToContact'])->name('enquiries.addcontact');
 
     //contact
     Route::get('contacts',[ContactController::class,'index'])->name('contact.list');
@@ -55,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('category-contact/{id}',[ContactController::class,'categoryWiseContact'])->name('contact.category');
     Route::get('edit-contact/{id}',[ContactController::class,'editContact'])->name('contact.edit');
     Route::post('edit-contact/{id}',[ContactController::class,'editContactSubmit'])->name('contact.edit');
+    Route::get('get-address/{postcode}',[ContactController::class,'getAddressData'])->name('address.pincode');
 
     //material
     Route::get('materials',[MaterialController::class,'index'])->name('material.list');

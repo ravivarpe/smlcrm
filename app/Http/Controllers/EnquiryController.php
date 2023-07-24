@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Models\Enquiry;
 use App\Models\Company;
-
+use App\Models\Task;
+use App\Models\JobCategories;
+use App\Models\Team;
+use App\Models\Category;
+use App\Models\SubCategory;
 
 class EnquiryController extends Controller
 {
@@ -21,6 +25,9 @@ class EnquiryController extends Controller
     {
         $companies=Company::all();
         $enquiries=Enquiry::with(['company'])->get();
+        $teams=Team::all();
+        $jobcategories=JobCategories::all();
+
         return view('enquiries.enquiry_list',['enquiries'=>$enquiries,'companies'=>$companies]);
     }
 
@@ -44,7 +51,6 @@ class EnquiryController extends Controller
             'email' =>'required|email',
             'phone' =>'required |numeric|min:11',
 
-
              ]);
          $data=$request->except('_token');
          Enquiry::create($data);
@@ -65,7 +71,6 @@ class EnquiryController extends Controller
             'email' =>'required|email',
             'phone' =>'required |numeric|min:11',
 
-
              ]);
          $data=$request->except('_token');
          Enquiry::where('id',$id)->update($data);
@@ -75,8 +80,12 @@ class EnquiryController extends Controller
     public function enquiryDetails($id)
     {
         $enquiry=Enquiry::with(['company'])->where('id',$id)->first();
+        $companies=Company::all();
 
-        return view('enquiries.view_enquiry',['enquiry'=>$enquiry]);
+        $teams=Team::all();
+        $jobcategories=JobCategories::all();
+
+        return view('enquiries.view_enquiry',['teams'=>$teams,'jobcategories'=>$jobcategories,'enquiry'=>$enquiry]);
 
     }
 
@@ -89,8 +98,10 @@ class EnquiryController extends Controller
     public function enquiryToContact($id)
     {
         $enquiry=Enquiry::with(['company'])->where('id',$id)->first();
-
-        return view('enquiries.view_enquiry',['enquiry'=>$enquiry]);
+        $companies=Company::all();
+        $categories=Category::all();
+        $subcategories=SubCategory::all();
+        return view('enquiries.add_contact_enq',['companies'=>$companies,'categories'=>$categories,'subcategories'=>$subcategories,'enquiry'=>$enquiry]);
 
     }
 

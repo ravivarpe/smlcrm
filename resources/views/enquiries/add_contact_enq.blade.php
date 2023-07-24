@@ -34,7 +34,9 @@
                          <label>Company Name</label>
                          <select class="form-control" name="company_id">
                            @foreach ($companies as $company)
-                               <option value="{{$company->id}}">{{$company->name}}</option>
+                               <option value="{{$company->id}}" @if ($enquiry->company_id==$company->id)
+                                   {{'selected'}}
+                               @endif>{{$company->name}}</option>
                            @endforeach
 
                          </select>
@@ -58,7 +60,7 @@
                       </div>
                       <div class="form-group">
                          <label>Name</label>
-                         <input type="text" class="form-control" name="name" placeholder="Enter Customer Name" required>
+                         <input type="text" class="form-control" name="name" placeholder="Enter Customer Name" value="{{$enquiry->name}}" required>
                       </div>
                       <div class="form-group">
                         <label>Tags</label>
@@ -71,13 +73,13 @@
                      <div class="form-group row mx-0">
                         <label>Phone/Mobile</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="number" class="form-control" placeholder="Enter Phone" name="contact_number" required>
+                        <input class="col-sm-5" type="number" class="form-control" placeholder="Enter Phone" name="contact_number" value="{{$enquiry->phone}}" required>
                         <input class="col-sm-5"  type="number" class="form-control" placeholder="Enter Mobile" name="mobile"></div>
                      </div>
                      <div class="form-group row mx-0">
                         <label>Email Id</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="email" class="form-control" placeholder="Enter email"  name="email1" required>
+                        <input class="col-sm-5" type="email" class="form-control" placeholder="Enter email"  name="email1" value="{{$enquiry->email}}" required>
                         <input class="col-sm-5"  type="email" class="form-control" placeholder="Enter email" name="email2"></div>
                      </div>
 
@@ -132,7 +134,7 @@
                            <div>
                            <input type="text" name="city" placeholder="City" value="" id="city">
                            <input type="text" name="state" placeholder="County/State" value="" id="state">
-                           <input type="text" name="pincode" placeholder="Postcode/Zip" value="" id="zip">
+                           <input type="text" name="pincode" placeholder="Postcode/Zip" value="{{$enquiry->post_code}}" id="zip">
                            <a href="#" id="postcode_lookup">Find address</a>
                            </div>
 
@@ -167,6 +169,8 @@
  <!-- /.content-wrapper -->
 
 @endsection
+
+
 @section('footer_scripts')
  <script>
     $(document).ready(function(){

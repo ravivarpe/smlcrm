@@ -54,7 +54,7 @@
                       </div>
                       <div class="form-group">
                          <label>Phone</label>
-                         <input type="text" class="form-control"  name="phone" placeholder="Tags" >
+                         <input type="text" class="form-control"  name="phone" placeholder="Phone No" >
                       </div>
 
 
@@ -66,13 +66,21 @@
                       </div>
                     </div>
                       <div class="form-group">
-                        <label>Name</label>
+                        <label>Postal Code</label>
                         <input type="text" class="form-control" name="post_code" placeholder="Enter Post Code" required>
                      </div>
                      <div class="form-group">
                         <label>Enquiry From</label>
-                        <input type="text" class="form-control" name="enquiry_form" placeholder="Enquiry From" required>
-                     </div>
+
+                        <select class="form-control" name="enquiry_form" required>
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                            <option value="Magzines"></option>
+                            <option value="News Paper">News Paper</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Website">Website</option>
+                         </select>
+                    </div>
 
                       <div class="form-check">
                          <label>Customer Status</label><br>

@@ -125,7 +125,7 @@
                                         </tr>
                                      </thead>
                                      <tbody>
-                                        <tr>
+
                                             @foreach ($materials as $material )
 
                                             <tr>
@@ -139,9 +139,6 @@
                                                 <button class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</button>
                                                 </td>
                                                <td><span class="label-custom label label-default">{{$material->tags}}</span></td>
-
-
-
 
                                                <td>
                                                 {{-- <a href="{{route('enquiries.view',$contact->id)}}" >
@@ -205,3 +202,41 @@
  </div>
  <!-- /.content-wrapper -->
  @endsection
+
+ @section('footer_scripts')
+ <script>
+    $(document).ready(function(){
+
+      $('#dataTableExample1').dataTable({
+
+         lengthMenu: [30,50,100],
+         ordering:  false,
+         paging: true,
+         dom: 'lBfrtip',
+         buttons: [
+              'csv', 'pdf',
+         ],
+         initComplete: function () {
+         this.api()
+             .columns()
+             .every(function () {
+                 let column = this;
+                 let title = column.header().textContent;
+
+                 // Create input element
+                 let input = document.createElement('input');
+                 input.placeholder = title;
+                 column.header().replaceChildren(input);
+
+                 // Event listener for user input
+                 input.addEventListener('keyup', () => {
+                     if (column.search() !== this.value) {
+                         column.search(input.value).draw();
+                     }
+                 });
+             });
+     }
+      });
+     });
+  </script>
+  @endsection

@@ -121,13 +121,13 @@
                                   <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
                                      <thead class="back_table_color">
                                         <tr class="info">
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Ref"/></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Customer Name" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Mobile" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Email" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Post Code" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Enquiry Come From" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Status" /></th>
+                                           <th>Ref</th>
+                                           <th>Customer Name</th>
+                                           <th>Mobile</th>
+                                           <th>Email</th>
+                                           <th>Post Code</th>
+                                           <th>Enquiry Come From</th>
+                                           <th>Status</th>
                                            <th>Action</th>
                                         </tr>
                                      </thead>
@@ -264,3 +264,41 @@
 
 
 @endsection
+
+@section('footer_scripts')
+<script>
+   $(document).ready(function(){
+
+     $('#dataTableExample1').dataTable({
+
+        lengthMenu: [30,50,100],
+        ordering:  false,
+        paging: true,
+        dom: 'lBfrtip',
+        buttons: [
+             'csv', 'pdf',
+        ],
+        initComplete: function () {
+        this.api()
+            .columns()
+            .every(function () {
+                let column = this;
+                let title = column.header().textContent;
+
+                // Create input element
+                let input = document.createElement('input');
+                input.placeholder = title;
+                column.header().replaceChildren(input);
+
+                // Event listener for user input
+                input.addEventListener('keyup', () => {
+                    if (column.search() !== this.value) {
+                        column.search(input.value).draw();
+                    }
+                });
+            });
+    }
+     });
+    });
+ </script>
+ @endsection
