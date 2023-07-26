@@ -12,7 +12,7 @@ class Material extends Model
     protected $table = 'materials';
 
     protected $fillable = [
-        'id', 'title', 'tags', 'descriptions', 'non_consumable', 'quantity', 'minimum_quntity', 'purchase_price', 'sale_price', 'purchase_vat', 'contact', 'indivisuals', 'material_status', 'mcategory_id', 'company_id', 'mpicture'
+        'id', 'title', 'tags', 'descriptions', 'non_consumable', 'quantity', 'minimum_quntity', 'purchase_price', 'sale_price', 'purchase_vat', 'contact', 'indivisuals', 'material_status', 'mcategory_id', 'company_id', 'mpicture','material_sub_cat'
     ];
 
     public function category()

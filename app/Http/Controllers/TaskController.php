@@ -31,6 +31,8 @@ class TaskController extends Controller
     public function addTaskSubmit(Request $request)
     {
         $data=$request->except('_token');
+        $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
+        $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
         $task=Task::create($data);
         return redirect('tasks')->with('success','Task added successfully!');
     }
@@ -49,6 +51,8 @@ class TaskController extends Controller
 
     public function editTaskSubmit(Request $request,$id){
         $data=$request->except('_token');
+        $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
+        $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
         Task::where('id',$id)->update($data);
         return redirect('tasks')->with('success','Task Deleted successfully!');
     }

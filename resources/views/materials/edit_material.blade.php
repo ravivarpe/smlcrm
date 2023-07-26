@@ -30,8 +30,8 @@
                     @csrf
                    <div class="col-sm-12">
                       <div class="row">
-                        <div class="form-group col-sm-5">
-                            <label>Company Name</label>
+                        <div class="form-group col-sm-4">
+                            <label>Material Category</label>
                             <select class="form-control" name="company_id">
                               @foreach ($companies as $company)
                                   <option value="{{$company->id}}" @if ($material->id==$company->id)
@@ -41,14 +41,20 @@
 
                             </select>
                          </div>
-                         <div class="form-group col-sm-5">
-                            <label>Material Category</label>
-                            <select class="form-control" name="mcategory_id">
+                         <div class="form-group col-sm-4">
+                            <label>Material Sub Category</label>
+                            <select class="form-control" name="mcategory_id" id="mcategory_id">
                                @foreach ($categories as $category)
                                   <option value="{{$category->id}}" @if ($material->id==$category->id)
                                     {{"selected"}}
                                 @endif>{{$category->name}}</option>
                               @endforeach
+                            </select>
+                         </div>
+                         <div class="form-group col-sm-4">
+                            <label>Material Sub Sub Category</label>
+                            <select class="form-control" name="material_sub_cat" id="material_sub_cat">
+
                             </select>
                          </div>
                       </div>
@@ -140,11 +146,11 @@
                         @endif>Inactive</label>
 
                       </div>
-                      <div class="form-group">
+                      {{-- <div class="form-group">
                          <label>Picture upload</label>
                          <input type="file" name="mpicture">
-                         {{-- <input type="hidden" name="old_picture"> --}}
-                      </div>
+                         {{-- <input type="hidden" name="old_picture">
+                      </div> --}}
                       <div class="reset-button">
                          <button type="reset" class="btn btn-warning"> Reset</button>
                          <button type="submit" class="btn btn-success"> Save</button>
@@ -160,4 +166,25 @@
  </div>
  <!-- /.content-wrapper -->
 
+@endsection
+
+
+@section('footer_scripts')
+<script>
+   $(document).ready(function(){
+
+       $('#mcategory_id').on('change',function(){
+           var id=$(this).val();
+           $.get("{{url('get-sub-cat')}}/"+id, function (data) {
+               console.log(data);
+
+               $('#material_sub_cat').html(data);
+
+           });
+
+       });
+
+
+   });
+</script>
 @endsection

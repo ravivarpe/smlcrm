@@ -46,6 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('view-enquiry/{id}',[EnquiryController::class,'enquiryDetails'])->name('enquiries.view');
     Route::get('company-enquiry/{id}',[EnquiryController::class,'companyWiseEnquiry'])->name('enquiries.company');
     Route::get('enquiry-contact/{id}',[EnquiryController::class,'enquiryToContact'])->name('enquiries.addcontact');
+    Route::post('add-enquiry-note',[EnquiryController::class,'addEnquiryNote'])->name('enquiries.addNote');
+    Route::get('delete-enquiry-note/{id}',[EnquiryController::class,'deleteNote'])->name('enquiries.deleNote');
+
 
     //contact
     Route::get('contacts',[ContactController::class,'index'])->name('contact.list');
@@ -57,6 +60,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit-contact/{id}',[ContactController::class,'editContact'])->name('contact.edit');
     Route::post('edit-contact/{id}',[ContactController::class,'editContactSubmit'])->name('contact.edit');
     Route::get('get-address/{postcode}',[ContactController::class,'getAddressData'])->name('address.pincode');
+    Route::get('view-contact/{id}',[ContactController::class,'viewContact'])->name('contact.view');
+    Route::post('create-contact-note',[ContactController::class,'addContactNote'])->name('contact.addNote');
+    Route::get('delete-contact-note/{id}',[ContactController::class,'deleteNote'])->name('contact.delNote');
+
+
 
     //material
     Route::get('materials',[MaterialController::class,'index'])->name('material.list');
@@ -67,6 +75,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('category-material/{id}',[MaterialController::class,'categoryWiseMaterial'])->name('material.category');
     Route::get('edit-material/{id}',[MaterialController::class,'editMaterial'])->name('material.edit');
     Route::post('edit-material/{id}',[MaterialController::class,'editMaterialSubmit'])->name('material.edit');
+    Route::get('get-sub-cat/{catId}',[MaterialController::class,'getMaterialSubCategory'])->name('material.subCat');
+
 
     //invoice
     Route::get('invoice',[InvoiceController::class,'index'])->name('invoice.list');

@@ -192,11 +192,11 @@
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">When to do it?</label>
-                               <input type="date" placeholder="Due title"  name="start_date" class="form-control">
+                               <input type="text" placeholder="Due title"  name="start_date" class="form-control" id="start_date1">
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Add a deadline</label>
-                               <input type="date" placeholder="Due title"  name="end_date" class="form-control">
+                               <input type="text" placeholder="Due title"  name="end_date" class="form-control" id="end_date1">
                             </div>
                             <div class="col-md-12 form-group">
                                <label class="control-label">Description</label>
@@ -254,7 +254,7 @@
     <div class="modal-dialog">
        <div class="modal-content">
           <div class="modal-header modal-header-primary">
-             <h3><i class="fa fa-plus m-r-5"></i> Eidt Task</h3>
+             <h3><i class="fa fa-plus m-r-5"></i> Edit Task</h3>
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
@@ -271,11 +271,11 @@
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">When to do it?</label>
-                               <input type="date" placeholder="Due title"  name="start_date" class="form-control" id="start_date">
+                               <input type="text" placeholder="Due title"  name="start_date" class="form-control" id="start_date">
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Add a deadline</label>
-                               <input type="date" placeholder="Due title"  name="end_date" class="form-control" id="end_date">
+                               <input type="text" placeholder="Due title"  name="end_date" class="form-control" id="end_date">
                             </div>
                             <div class="col-md-12 form-group">
                                <label class="control-label">Description</label>
@@ -430,6 +430,20 @@
             });
         }
         });
+
+        $('#end_date').datepicker({
+        format: "yyyy-mm-dd",
+      });
+        $('#start_date').datepicker({
+        format: "yyyy-mm-dd",
+      });
+
+      $('#end_date1').datepicker({
+        format: "yyyy-mm-dd",
+      });
+        $('#start_date1').datepicker({
+        format: "yyyy-mm-dd",
+      });
 
     });
  </script>

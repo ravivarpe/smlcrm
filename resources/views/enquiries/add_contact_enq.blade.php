@@ -147,11 +147,11 @@
                         <label class="radio-inline"><input type="radio" name="email_subscription" value="0" > No</label>
 
                      </div>
-                     <div class="form-group">
+                     {{-- <div class="form-group">
                         <label>Picture upload</label>
                         <input type="file" name="profile_photo">
                         <input type="hidden" name="old_picture">
-                     </div>
+                     </div> --}}
 
                       <div class="reset-button">
                          <button type="reset" class="btn btn-warning"> Reset</button>

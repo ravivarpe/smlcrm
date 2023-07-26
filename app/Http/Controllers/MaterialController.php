@@ -18,6 +18,7 @@ use App\Models\SubCategory;
 use App\Models\Address;
 use App\Models\Material;
 use App\Models\MaterialCategory;
+use App\Models\MaterialSubCategory;
 
 
 class MaterialController extends Controller
@@ -95,6 +96,21 @@ class MaterialController extends Controller
     {
         Material::where('id',$id)->delete();
         return redirect('materials')->with('success','Material deleted successfully!');
+    }
+
+    public function getMaterialSubCategory($catId)
+    {
+       $res= MaterialSubCategory::where('category_id',$catId)->get();
+       $str="";
+       foreach($res as $cat)
+       {
+
+          $str.="<option value=".$cat->id.">".$cat->sub_cat_name."</option>";
+
+       }
+
+       echo $str;
+
     }
 
 }

@@ -17,6 +17,10 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Address;
 use App\Models\Contact;
+use App\Models\ContactNote;
+use App\Models\Team;
+use App\Models\JobCategories;
+use App\Models\Task;
 
 
 class ContactController extends Controller
@@ -135,4 +139,35 @@ class ContactController extends Controller
 
     }
 
+    public function viewContact($id)
+    {
+        $companies=Company::all();
+
+        $teams=Team::all();
+        $jobcategories=JobCategories::all();
+
+        $contact=Contact::with(['company','category','address'])->where('id',$id)->first();
+        $notesdata=ContactNote::where('contact_id',$id)->get();
+        $contasks=Task::where('contact_id',$id)->where('en_contact','Contact')->get();
+
+        return view('contacts.view_contact',['teams'=>$teams,'jobcategories'=>$jobcategories,'contact'=>$contact,'notesdata'=>$notesdata,'contasks'=>$contasks]);
+    }
+
+
+
+    public function addContactNote(Request $request)
+    {
+        $data=$request->except('_token');
+        ContactNote::create($data);
+
+        return redirect('view-contact/'.$data['contact_id'])->with('success','Note added successfully@');
+
+    }
+
+    public function deleteNote($id)
+    {
+        ContactNote::where('id',$id)->delete();
+
+        return redirect('contacts')->with('success','Contact Note added successfully!');
+    }
 }

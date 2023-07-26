@@ -270,7 +270,7 @@
      $('#dataTableExample1').dataTable({
 
         lengthMenu: [30,50,100],
-        ordering:  false,
+        ordering:  true,
         paging: true,
         dom: 'lBfrtip',
         buttons: [

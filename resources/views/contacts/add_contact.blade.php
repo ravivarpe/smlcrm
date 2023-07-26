@@ -122,7 +122,7 @@
                      <div class="form-group">
                         <label>Address</label>
                            <div>
-                           <input type="text" name="line1" placeholder="Address" value="" id="line1">
+                           <input type="text" name="line1" placeholder="Address" value="" id="line1" required>
                            <input type="text" name="line2" placeholder="Address 2" value="" id="line2">
                            <input type="text" name="line3" placeholder="Address 3" value="" id="line3">
                            <input type="text" name="country" placeholder="Country " value="United Kingdom" id="country">
@@ -132,7 +132,7 @@
                            <div>
                            <input type="text" name="city" placeholder="City" value="" id="city">
                            <input type="text" name="state" placeholder="County/State" value="" id="state">
-                           <input type="text" name="pincode" placeholder="Postcode/Zip" value="" id="zip">
+                           <input type="text" name="pincode" placeholder="Postcode/Zip" value="" id="zip" required>
                            <a href="#" id="postcode_lookup">Find address</a>
                            </div>
 
@@ -145,11 +145,11 @@
                         <label class="radio-inline"><input type="radio" name="email_subscription" value="0" > No</label>
 
                      </div>
-                     <div class="form-group">
+                     {{-- <div class="form-group">
                         <label>Picture upload</label>
                         <input type="file" name="profile_photo">
                         <input type="hidden" name="old_picture">
-                     </div>
+                     </div> --}}
 
                       <div class="reset-button">
                          <button type="reset" class="btn btn-warning"> Reset</button>

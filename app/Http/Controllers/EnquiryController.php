@@ -18,6 +18,8 @@ use App\Models\JobCategories;
 use App\Models\Team;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\EnquiryNote;
+
 
 class EnquiryController extends Controller
 {
@@ -85,7 +87,12 @@ class EnquiryController extends Controller
         $teams=Team::all();
         $jobcategories=JobCategories::all();
 
-        return view('enquiries.view_enquiry',['teams'=>$teams,'jobcategories'=>$jobcategories,'enquiry'=>$enquiry]);
+        $notes=EnquiryNote::where('enquiry_id',$id)->orderBy('added_date','DESC')->get();
+
+        $entasks=Task::where('contact_id',$id)->where('en_contact','Enquiry')->get();
+
+
+        return view('enquiries.view_enquiry',['teams'=>$teams,'jobcategories'=>$jobcategories,'enquiry'=>$enquiry,'notesdata'=>$notes,'entasks'=>$entasks]);
 
     }
 
@@ -103,6 +110,22 @@ class EnquiryController extends Controller
         $subcategories=SubCategory::all();
         return view('enquiries.add_contact_enq',['companies'=>$companies,'categories'=>$categories,'subcategories'=>$subcategories,'enquiry'=>$enquiry]);
 
+    }
+
+    public function addEnquiryNote(Request $request)
+    {
+        $data=$request->except('_token');
+        EnquiryNote::create($data);
+
+        return redirect('view-enquiry/'.$data['enquiry_id'])->with('success','Note added successfully@');
+
+    }
+
+    public function deleteNote($id)
+    {
+        EnquiryNote::where('id',$id)->delete();
+
+        return redirect('enquiries')->with('success','Enquiry added successfully!');
     }
 
 }

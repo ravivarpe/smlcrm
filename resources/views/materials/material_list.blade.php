@@ -115,12 +115,12 @@
                                   <table id="dataTableExample1" class="table table-bordered table-striped table-hover data-table">
                                      <thead class="back_table_color">
                                         <tr class="info">
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Ref"/></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Name" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Websites" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Material Type" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Quantity" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Tag" /></th>
+                                           <th>Ref</th>
+                                           <th>Name</th>
+                                           <th>Websites</th>
+                                           <th>Material Type</th>
+                                           <th>Quantity</th>
+                                           <th>Tag</th>
                                            <th>Action</th>
                                         </tr>
                                      </thead>

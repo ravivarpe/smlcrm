@@ -87,19 +87,157 @@
                          </div>
                       </div>
                    </div>
-                   <div class="col-xs-12 col-sm-12 col-md-12 p-0 inbox-mail border-btm ">
-                      <div class="inbox-avatar-text ">
-                        <div class="avatar-name"><h3>Information</h3></div>
-                      </div>
+                   <div class="in
+                   <div class="inbox-mail-details ">
+
+               <div class="mailbox-body">
+
+                  <div class="row m-0 p-20" id="tabs_wrapper">
+                     <div id="tabs_container">
+                        <ul id="tabs">
+                        <li><a href="#tab0" data-toggle="tab"><i class="fa fa-pencil-square-o"></i></a></li>
+                        <li><a href="#tab1" data-toggle="tab"> <i class="fa fa-paperclip"></i> 0</a></li>
+                        <li><a href="#tab3" data-toggle="tab"><i class="fa fa-info-circle"></i></a></li>
+                        <span>
+
+                        <li class="active"><a href="#tab11" data-toggle="tab">Task </a></li>
+                        </span>
+                        </ul>
+                     </div>
+
+
+                     <div id="tabs_content_container" class="tab-content  clearfix">
+                        <div id="tab0" class="tab_content" >
+                            <form action="{{route('enquiries.addNote')}}" method="post">
+                             @csrf
+                                <input type="hidden" name="enquiry_id" value="{{$enquiry->id}}"/>
+                                <textarea class="note_text" resize="vertical" id="the_note" name="notes" placeholder="Add a note about Johnathan .." required></textarea>
+
+                                <button class="normal_button button" id="add_note" item_id="10" type="submit">Add this note</button>
+                            </form>
+                        <p class="next_to_button">Include in newsfeed? <input type="checkbox" value="yes" checked="" id="in_newsfeed"></p>
+                        <ul class="notes">
+                           @foreach ($notesdata as $note)
+
+
+                           <li class="sent_doc com"><span class="task_cat sent_doc"></span> <i class="fa fa-paper-plane"></i> {{$note->notes}}<span><a href="{{route('enquiries.deleNote',$note->id)}}" class="delete_note" id="43832">delete</a></span></li>
+                           @endforeach
+                           {{-- <li class="sent_doc com"><span class="task_cat sent_doc">SENT_DOC</span> <i class="fa fa-paper-plane"></i> Sent email with the subject 'Purchase (ref: 2038)' and with The Yorkshire Resin Company Ltd Purchase (2038-898).pdf attached to <a href="mailto:hayden@yorkshireresin.co.uk " target="_blank">hayden@yorkshireresin.co.uk </a> by Hayden Preshaw on Friday, 13th Aug 2021 at 08:05 <span><a href="#" class="delete_note" id="43832">delete</a></span></li>
+                           <li class="sent_doc com"><span class="task_cat sent_doc">SENT_DOC</span> <i class="fa fa-paper-plane"></i> Sent email with the subject 'Purchase (ref: 2038)' and with The Yorkshire Resin Company Ltd Purchase (2038-898).pdf attached to <a href="mailto:hayden@yorkshireresin.co.uk " target="_blank">hayden@yorkshireresin.co.uk </a> by Hayden Preshaw on Friday, 13th Aug 2021 at 08:05 <span><a href="#" class="delete_note" id="43832">delete</a></span></li>
+
+                           <li class="sent_doc com"><span class="task_cat sent_doc">SENT_DOC</span> <i class="fa fa-paper-plane"></i> Sent email with the subject 'Invoice (ref: 1)' and with The Yorkshire Resin Company Ltd Invoice (1-2eb).pdf attached to <a href="mailto:tecnibuild@gmail.com" target="_blank">tecnibuild@gmail.com</a> by Hayden Preshaw on Monday, 27th Oct 2014 at 14:37 <span><a href="#" class="delete_note" id="59">delete</a></span></li>--}}
+                        </ul></div>
+
+                        <div id="tab1" class="tab_content">
+                        <form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+                        <div class="row fileupload-buttonbar">
+                        <div class="span7">
+                        <input type="file" name="files[]" multiple="" id="choose_files">
+                        </div>
+                        </div>
+                        <div class="fileupload-loading"></div>
+                        <br>
+                        <table role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
+                        <input type="hidden" name="product_id" value="con_10" id="for_upload">
+                        </form>
+                        <table id="images_here" class="col_cont_large">
+                        <tbody><tr>
+                        <td colspan="7" class="add">
+                        <p>Add files by dragging and dropping them here or <span class="choose_files" onclick="$(&quot;#choose_files&quot;).click();">choose them manually</span>..</p>
+                        <a href="change_document?create_id=10&amp;type=contact" class="normal_button button">Create pdf document</a>
+                        </td>
+                        </tr></tbody></table></div>
+
+                        <div id="tab2" class="tab_content"> </div>
+                        <div id="tab3" class="tab_content print_show">
+
+                        <table class="col_cont_large">
+                        </table>
+                        </div>
+
+
+
+                        <div id="tab11" class="tab_content" ><table class="col_cont_large">
+                        <tbody>
+                            {{-- <tr>
+                        <td colspan="10" class="add">
+                        <a href="#" class="normal_button button">Add to Task</a></td>
+                        </tr> --}}
+                        @foreach ( $entasks as $task  )
+
+
+                        <tr>
+                            <td>{{$task->id}}</td>
+                            <td>{{$task->task_name}}</td>
+                            <td>@if($task->jobcategories!=null){{$task->jobcategories->name}}@endif</td>
+                            <td>@if($task->team!=null){{$task->team->team_name}}@endif</td>
+                            <td>{{$task->start_date}}</td>
+                            <td>{{$task->end_date}}</td>
+
+                            <td>{{$task->discription}}</td>
+                        <td>
+                        <a href="#" class="send_email" type="company" id="10" finance_id="17743">Send</a> |
+                        <a href="#" target="_blank"><i class="fa fa-eye"></i></a> |
+                        <a href="#"><i class="fa fa-pencil-square-o"></i></a> |
+                        <a href="#"><i class="fa fa-copy"></i></a> |
+                        <a href="#" class="delete_quick  deletebtn" type="finances" data-toggle="modal"  data-id="{{$task->id}}"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                        </tr>
+                        @endforeach
+                        </tbody></table></div>
+
+                     </div>
+
+
+
+                  </div>
+
+
+                  </div>
+               </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+
+       <!-- Customer Modal2 -->
+       <div class="modal fade" id="customer2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+           <div class="modal-content">
+              <div class="modal-header modal-header-primary">
+                 <h3><i class="fa fa-user m-r-5"></i> Delete Tasks</h3>
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              </div>
+              <div class="modal-body">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <form class="form-horizontal" method="post" action="{{route('task.delete')}}">
+                          @csrf
+                          <input type="hidden" name="task_id" id="task_id"/>
+                             <div class="row">
+                                   <div class="col-md-12 form-group user-form-group">
+                                      <label class="control-label">Delete Tasks</label>
+                                      <div class="float-right">
+                                         <button type="button" class="btn btn-danger btn-sm">NO</button>
+                                         <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                      </div>
+                                   </div>
+                             </div>
+                       </form>
                     </div>
+                 </div>
+              </div>
+              <div class="modal-footer">
+                 <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+           <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+     </div>
+     <!-- /.modal -->
 
-
-
-                </div>
-
-             </div>
-          </div>
-       </div>
 
         <!-- Modal1 -->
    <div class="modal fade" id="addtask" tabindex="-1" role="dialog">
@@ -112,6 +250,8 @@
           <div class="modal-body">
             <form action="{{route('task.add')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="contact_id" value="{{$enquiry->id}}"/>
+                <input type="hidden" name="en_contact" value="Enquiry"/>
              <div class="row">
                 <div class="col-md-12">
 
@@ -197,6 +337,14 @@
         $('#start_date').datepicker({
         format: "yyyy-mm-dd",
       });
+
+      $('.deletebtn').on('click',function(){
+
+        var id=$(this).attr('data-id');
+        $('#task_id').attr('value',id);
+        $('#customer2').modal('show');
+
+     });
 
     });
  </script>

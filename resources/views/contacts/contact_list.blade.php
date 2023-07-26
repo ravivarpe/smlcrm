@@ -144,8 +144,8 @@
                                            <td>@if($contact->category!=null){{$contact->category->name}}@endif</td>
                                            <td>@if($contact->company!=null){{$contact->company->name}}@endif</td>
                                            <td>
-                                            {{-- <a href="{{route('enquiries.view',$contact->id)}}" >
-                                              <button type="button" class="btn btn-add btn-sm"><i class="fa fa-eye"></i></button></a> --}}
+                                            <a href="{{route('contact.view',$contact->id)}}" >
+                                              <button type="button" class="btn btn-add btn-sm"><i class="fa fa-eye"></i></button></a>
                                               <a href="{{route('contact.edit',$contact->id)}}" >
                                               <button type="button" class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></button></a>
 

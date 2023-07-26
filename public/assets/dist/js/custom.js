@@ -554,3 +554,4 @@ function increaseValue() {
     value--;
     document.getElementById('number').value = value;
   }
+

@@ -11,7 +11,7 @@ class Task extends Model
         protected $table ='tasks';
 
         protected $fillable = [
-            'id','task_name', 'start_date', 'end_date', 'discription', 'job_cat_id', 'team_id' ,'status'];
+            'id','task_name', 'start_date', 'end_date', 'discription', 'job_cat_id', 'team_id' ,'status','contact_id','en_contact'];
 
 
         public function team()

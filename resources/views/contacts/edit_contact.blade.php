@@ -119,7 +119,7 @@
                      <div class="form-group">
                         <label>Address</label>
                            <div>
-                           <input type="text" name="line1" placeholder="Address" value="" id="line1" @if($contact->address!=null) value="{{$contact->address->line1}}" @endif>
+                           <input type="text" name="line1" placeholder="Address" value="" id="line1" @if($contact->address!=null) value="{{$contact->address->line1}}" @endif  required>
                            <input type="text" name="line2" placeholder="Address 2" value="" id="line2" @if($contact->address!=null) value="{{$contact->address->line2}}" @endif>
                            <input type="text" name="line3" placeholder="Address 3" value="" id="line3" @if($contact->address!=null) value="{{$contact->address->line3}}" @endif>
                            <input type="text" name="country" placeholder="Country " value="United Kingdom" id="country">
@@ -129,7 +129,7 @@
                            <div>
                            <input type="text" name="city" placeholder="City" value="" id="city" @if($contact->address!=null) value="{{$contact->address->city}}" @endif>
                            <input type="text" name="state" placeholder="County/State" value="" id="state" @if($contact->address!=null) value="{{$contact->address->state}}" @endif>
-                           <input type="text" name="pincode" placeholder="Postcode/Zip" value="" id="zip" @if($contact->address!=null) value="{{$contact->address->pincode}}" @endif>
+                           <input type="text" name="pincode" placeholder="Postcode/Zip" value="" id="zip" @if($contact->address!=null) value="{{$contact->address->pincode}}" @endif required>
                            <a href="#" id="postcode_lookup">Find address</a>
                            </div>
 
@@ -146,11 +146,11 @@
                         @endif> No</label>
 
                      </div>
-                     <div class="form-group">
+                     {{-- <div class="form-group">
                         <label>Picture upload</label>
                         <input type="file" name="profile_photo">
-                        {{-- <input type="hidden" name="old_picture"> --}}
-                     </div>
+                        {{-- <input type="hidden" name="old_picture">
+                     </div> --}}
 
                       <div class="reset-button">
                          <button type="reset" class="btn btn-warning"> Reset</button>
