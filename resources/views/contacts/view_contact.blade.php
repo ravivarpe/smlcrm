@@ -126,7 +126,7 @@
                    <div class="row m-0 p-20" id="tabs_wrapper">
                       <div id="tabs_container">
                          <ul id="tabs">
-                         <li><a href="#tab0" data-toggle="tab"><i class="fa fa-pencil-square-o"></i></a></li>
+                         <li><a href="#tab0" data-toggle="tab" class="active"><i class="fa fa-pencil-square-o"></i></a></li>
                          <li><a href="#tab1" data-toggle="tab"> <i class="fa fa-paperclip"></i> 0</a></li>
                          <li><a href="#tab3" data-toggle="tab"><i class="fa fa-info-circle"></i></a></li>
                          <span>
@@ -142,14 +142,14 @@
 
                          <span>
 
-                            <li class="active"><a href="#tab12" data-toggle="tab">Task </a></li>
+                            <li><a href="#tab12" data-toggle="tab">Task </a></li>
                             </span>
                          </ul>
                       </div>
 
 
                       <div id="tabs_content_container" class="tab-content  clearfix">
-                         <div id="tab0" class="tab_content" >
+                         <div id="tab0" class="tab_content active" >
                             <form action="{{route('contact.addNote')}}" method="post">
                                 @csrf
                                    <input type="hidden" name="contact_id" value="{{$contact->id}}"/>

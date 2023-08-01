@@ -49,9 +49,13 @@ class JobController extends Controller
     {
         $request->validate([
             'job_title' =>'required'
-
              ]);
+
         $data=$request->except('_token');
+
+        $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
+        $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
+
         Job::create($data);
 
         return redirect('jobs')->with('success','Job added successfully!');
@@ -86,8 +90,10 @@ class JobController extends Controller
         unset($data['old_picture']);
         unset($data['contact_name']);
 
-        Job::where('id',$id)->update($data);
+        $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
+        $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
 
+        Job::where('id',$id)->update($data);
 
         return redirect('jobs')->with('success','Job added successfully!');
 

@@ -63,8 +63,8 @@
                      <div class="form-group row mx-0">
                         <label>Start Date/ End date</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="date" class="form-control" placeholder="Start Date" name="start_date" value="{{$job->start_date}}" required></div>
-                        <input class="col-sm-5" type="date" class="form-control" placeholder="ENd Date" name="end_date" value="{{$job->end_date}}" required></div>
+                        <input class="col-sm-5" type="date" class="form-control" placeholder="Start Date" name="start_date" value="{{$job->start_date}}" id="start_date" required></div>
+                        <input class="col-sm-5" type="date" class="form-control" placeholder="ENd Date" name="end_date" value="{{$job->end_date}}" id="end_date" required></div>
                      </div>
 
                      <div class="form-group">
@@ -249,6 +249,13 @@
           //$('#editcustom').modal('show');
        });
 
+
+     $('#end_date').datepicker({
+        format: "dd-mm-yyyy",
+      });
+        $('#start_date').datepicker({
+        format: "dd-mm-yyyy",
+      });
 
 
 

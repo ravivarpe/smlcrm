@@ -114,14 +114,14 @@
                                   <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
                                      <thead class="back_table_color">
                                         <tr class="info">
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Task No." /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="The Tasks" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Job Categories" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Team" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Date/Preset Category"/></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Deadline/Preset Order" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Description" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Status" /></th>
+                                           <th>Task No</th>
+                                           <th>The Tasks</th>
+                                           <th>Job Categories</th>
+                                           <th>Team</th>
+                                           <th>Start Date</th>
+                                           <th>End Date</th>
+                                           <th>Description</th>
+                                           <th>Status</th>
                                            <th>Action</th>
                                         </tr>
                                      </thead>
@@ -192,11 +192,11 @@
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">When to do it?</label>
-                               <input type="text" placeholder="Due title"  name="start_date" class="form-control" id="start_date1">
+                               <input type="text" placeholder="dd-mm-yyyy"  name="start_date" class="form-control" id="start_date1">
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Add a deadline</label>
-                               <input type="text" placeholder="Due title"  name="end_date" class="form-control" id="end_date1">
+                               <input type="text" placeholder="dd-mm-yyyy"  name="end_date" class="form-control" id="end_date1">
                             </div>
                             <div class="col-md-12 form-group">
                                <label class="control-label">Description</label>
@@ -271,11 +271,11 @@
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">When to do it?</label>
-                               <input type="text" placeholder="Due title"  name="start_date" class="form-control" id="start_date">
+                               <input type="text" placeholder="dd-mm-yyyy"  name="start_date" class="form-control" id="start_date">
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Add a deadline</label>
-                               <input type="text" placeholder="Due title"  name="end_date" class="form-control" id="end_date">
+                               <input type="text" placeholder="dd-mm-yyyy"  name="end_date" class="form-control" id="end_date">
                             </div>
                             <div class="col-md-12 form-group">
                                <label class="control-label">Description</label>
@@ -432,17 +432,17 @@
         });
 
         $('#end_date').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd-mm-yyyy",
       });
         $('#start_date').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd-mm-yyyy",
       });
 
       $('#end_date1').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd-mm-yyyy",
       });
         $('#start_date1').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd-mm-yyyy",
       });
 
     });

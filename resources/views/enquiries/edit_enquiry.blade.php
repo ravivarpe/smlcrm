@@ -74,7 +74,7 @@
                         <select class="form-control" name="enquiry_form" required>
                             <option value="Online">Online</option>
                             <option value="Offline">Offline</option>
-                            <option value="Magzines"></option>
+                            <option value="Magzines">Magzines</option>
                             <option value="News Paper">News Paper</option>
                             <option value="Social Media">Social Media</option>
                             <option value="Website">Website</option>

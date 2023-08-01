@@ -109,16 +109,16 @@
                                   <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
                                      <thead class="back_table_color">
                                         <tr class="info">
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Ref"/></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Job Title" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Responsible" /></th>
-                                           <th><input type="date" id="form1" class="form-control" placeholder="Start Date" /></th>
-                                           <th><input type="date" id="form1" class="form-control" placeholder="End Date" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Customer Name" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Email" /></th>
+                                           <th>Ref</th>
+                                           <th>Job Title</th>
+                                           <th>Responsible</th>
+                                           <th>Start Date</th>
+                                           <th>End Date</th>
+                                           <th>Customer Name</th>
+                                           <th>Email</th>
                                            {{-- <th><input type="search" id="form1" class="form-control" placeholder="Post Code" /></th> --}}
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Company" /></th>
-                                           <th><input type="search" id="form1" class="form-control" placeholder="Status" /></th>
+                                           <th>Company</th>
+                                           <th>Status</th>
                                            <th>Action</th>
                                         </tr>
                                      </thead>

@@ -146,7 +146,7 @@
                                           <!-- Text input-->
                                           <div class="col-md-6 form-group">
                                              <label class="control-label">Created Date</label>
-                                             <input type="text" placeholder="Date" class="form-control" name="added_date" id="added_date1">
+                                             <input type="text" placeholder="dd-mm-yyyy" class="form-control" name="added_date" id="added_date1">
                                           </div>
                                           <div class="col-md-6 form-group">
                                              <label class="control-label">Status</label>
@@ -215,7 +215,7 @@
                                             <!-- Text input-->
                                             <div class="col-md-6 form-group">
                                                <label class="control-label">Created Date</label>
-                                               <input type="text" placeholder="Date" class="form-control" name="added_date" id="added_date">
+                                               <input type="text" placeholder="dd-mm-yyyy" class="form-control" name="added_date" id="added_date">
                                             </div>
                                             <div class="col-md-6 form-group">
                                                <label class="control-label">Status</label>
@@ -356,10 +356,10 @@ this.api()
 });
 
 $('#added_date').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd-mm-yyyy",
       });
       $('#added_date1').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd-mm-yyyy",
       });
 
 

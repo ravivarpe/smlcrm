@@ -95,23 +95,23 @@
                   <div class="row m-0 p-20" id="tabs_wrapper">
                      <div id="tabs_container">
                         <ul id="tabs">
-                        <li><a href="#tab0" data-toggle="tab"><i class="fa fa-pencil-square-o"></i></a></li>
+                        <li class="active"><a href="#tab0" data-toggle="tab" class="active"><i class="fa fa-pencil-square-o"></i></a></li>
                         <li><a href="#tab1" data-toggle="tab"> <i class="fa fa-paperclip"></i> 0</a></li>
                         <li><a href="#tab3" data-toggle="tab"><i class="fa fa-info-circle"></i></a></li>
                         <span>
 
-                        <li class="active"><a href="#tab11" data-toggle="tab">Task </a></li>
+                        <li><a href="#tab11" data-toggle="tab">Task </a></li>
                         </span>
                         </ul>
                      </div>
 
 
                      <div id="tabs_content_container" class="tab-content  clearfix">
-                        <div id="tab0" class="tab_content" >
+                        <div id="tab0" class="tab_content active" >
                             <form action="{{route('enquiries.addNote')}}" method="post">
                              @csrf
                                 <input type="hidden" name="enquiry_id" value="{{$enquiry->id}}"/>
-                                <textarea class="note_text" resize="vertical" id="the_note" name="notes" placeholder="Add a note about Johnathan .." required></textarea>
+                                <textarea class="note_text" resize="vertical" id="the_note" name="notes" placeholder="Add a note here" required></textarea>
 
                                 <button class="normal_button button" id="add_note" item_id="10" type="submit">Add this note</button>
                             </form>
@@ -263,11 +263,11 @@
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">When to do it?</label>
-                               <input type="text" placeholder="yyyy-mm-dd" id="start_date"  name="start_date" class="form-control">
+                               <input type="text" placeholder="dd-mm-yyyy" id="start_date"  name="start_date" class="form-control">
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Add a deadline</label>
-                               <input type="text" placeholder="yyyy-mm-dd" id="end_date" name="end_date" class="form-control">
+                               <input type="text" placeholder="dd-mm-yyyy" id="end_date" name="end_date" class="form-control">
                             </div>
                             <div class="col-md-12 form-group">
                                <label class="control-label">Description</label>
@@ -332,10 +332,10 @@
  <script>
     $(document).ready(function(){
         $('#end_date').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd-mm-yyyy",
       });
         $('#start_date').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd-mm-yyyy",
       });
 
       $('.deletebtn').on('click',function(){

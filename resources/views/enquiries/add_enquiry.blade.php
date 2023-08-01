@@ -75,7 +75,7 @@
                         <select class="form-control" name="enquiry_form" required>
                             <option value="Online">Online</option>
                             <option value="Offline">Offline</option>
-                            <option value="Magzines"></option>
+                            <option value="Magzines">Magzines</option>
                             <option value="News Paper">News Paper</option>
                             <option value="Social Media">Social Media</option>
                             <option value="Website">Website</option>
@@ -85,10 +85,10 @@
                       <div class="form-check">
                          <label>Customer Status</label><br>
                          <label class="radio-inline">
-                         <input type="radio" name="status" value="Won" checked="checked"> Won</label>
+                         <input type="radio" name="status" value="Won" > Won</label>
                          <label class="radio-inline"><input type="radio" name="status" value="Lost" > Lost</label>
                          <label class="radio-inline"><input type="radio" name="status" value="Complete" > Complete</label>
-                         <label class="radio-inline"><input type="radio" name="status" value="Pending" > Pending</label>
+                         <label class="radio-inline"><input type="radio" name="status" value="Pending" checked="checked"> Pending</label>
                       </div>
 
                       <div class="reset-button">
