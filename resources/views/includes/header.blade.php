@@ -272,7 +272,7 @@
 
                  <li class="active">
                     <a href="{{url('users')}}">
-                    <i class="fa fa-user-circle"></i> <span>Users</span>
+                    <i class="fa fa-user-circle"></i> <span>Staff</span>
                     <span class="pull-right-container">
                     </span>
                     </a>
