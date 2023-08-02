@@ -12,8 +12,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\JobController;
-
-
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,7 +116,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('calendar',[CalendarController::class,'index'])->name('calendar.list');
     Route::get('get-cal-event',[CalendarController::class,'getEvents'])->name('calendar.event');
 
-
     //jobs
     Route::get('jobs',[JobController::class,'index'])->name('job.list');
     Route::get('create-job',[JobController::class,'addJob'])->name('job.add');
@@ -127,4 +125,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('delete-job/{id}',[JobController::class,'deleteJob'])->name('job.delete');
     Route::get('company-wise-job/{id}',[JobController::class,'companyWiseJob'])->name('job.company');
     Route::get('category-wise-job/{id}',[JobController::class,'categoryWiseJob'])->name('job.category');
+
+    //setting
+    Route::get('general-settings',[SettingController::class,'index'])->name('general.settings');
+    Route::post('create-catcontact',[TeamController::class,'addCatSubmit'])->name('catcontact.add');
+    Route::post('edit-contact/{id}', [SettingController::class, 'editContact'])->name('contact.edit');
+    Route::get('delete-contact/{id}', [SettingController::class, 'deleteContact'])->name('contact.delete');
+
+
+    
+
+
 });
