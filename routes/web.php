@@ -128,12 +128,18 @@ Route::group(['middleware' => 'auth'], function () {
 
     //setting
     Route::get('general-settings',[SettingController::class,'index'])->name('general.settings');
-    Route::post('create-catcontact',[TeamController::class,'addCatSubmit'])->name('catcontact.add');
-    Route::post('edit-contact/{id}', [SettingController::class, 'editContact'])->name('contact.edit');
-    Route::get('delete-contact/{id}', [SettingController::class, 'deleteContact'])->name('contact.delete');
+    Route::post('create-catcontact',[SettingController::class,'addCatSubmit'])->name('catcontact.add');
+    Route::get('edit-catcontact/{id}', [SettingController::class, 'editContact'])->name('catcontact.edit');
+    Route::post('edit-catcontact/{id}',[SettingController::class,'editCatSubmit'])->name('catcontact.edit');
+    Route::post('delete-catcontact', [SettingController::class, 'deleteContact'])->name('catcontact.delete');
 
+    Route::post('create-subcatcontact',[SettingController::class,'addSubCatSubmit'])->name('subcatcontact.add');
+   
 
-    
+    Route::post('create-catmaterial',[SettingController::class,'addMaterialCatSubmit'])->name('catmaterial.add');
+    Route::get('edit-catmaterial/{id}', [SettingController::class, 'editMaterial'])->name('catmaterial.edit');
+    Route::post('edit-catmaterial/{id}',[SettingController::class,'editMaterialSubmit'])->name('catmaterial.edit');
+    Route::post('delete-catmaterial', [SettingController::class, 'deleteMaterial'])->name('catmaterial.delete');
 
 
 });
