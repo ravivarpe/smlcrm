@@ -68,7 +68,7 @@
                                   </ul>
                                   <div class="tab-content custom_tabs2" >
                                  <!--   <p><strong>Lorem Ipsum is simply dummy text of the printing and. </strong></p> -->
-                                    <div class="tab-pane fade show active" id="enquiry" role="tabpanel" aria-labelledby="enquiry-tab">
+                                    {{-- <div class="tab-pane fade show active" id="enquiry" role="tabpanel" aria-labelledby="enquiry-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
                                           <td><strong>Enquiry Value</strong></td>
@@ -97,7 +97,7 @@
                                           </tr>
                                           </tbody>
                                           </table>
-                                    </div>
+                                    </div> --}}
 
                                  <!--contact Category-->
                                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -136,21 +136,52 @@
                                              <td></td>
                                              </tr>
                                              </tbody><tbody>
-                                                <!--@foreach($subcategories as $subcategory)
+                                              @foreach ($subcategories as $subcategory)
+
                                              <tr>
                                              <td>{{$subcategory->sub_category_name}}</td>
                                              <td>
-                                                <button type="button" class="btn btn-add btn-sm editbtn" data-toggle="modal"
-                                                data-target="#editcategory" data-id="{{$subcategory->id}}" ><i class="fa fa-pencil"></i></button>
-                                                <button type="button" class="btn btn-danger btn-sm deletebtn" data-toggle="modal"
-                                                data-target="#deletecategory" data-id="{{$subcategory->id}}"><i class="fa fa-trash-o"></i> </button>
+                                                <button type="button" class="btn btn-add btn-sm editsubbtn" data-toggle="modal"
+                                                data-target="#editsubcategory" data-id="{{$subcategory->id}}" ><i class="fa fa-pencil"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm deletesubbtn" data-toggle="modal"
+                                                data-target="#deletesubcategory" data-id="{{$subcategory->id}}"><i class="fa fa-trash-o"></i> </button>
                                              </td>
                                              </tr>
-                                             @endforeach-->
+                                             @endforeach
                                             
                                              <tr class="black">
                                              <td>
-                                                <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
+                                                <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addsubcategory">Add New Value</button>
+                                             </td>
+                                             <td>
+                                             </td>
+                                             </tr>
+                                             </tbody>
+                                             </table>
+
+                                          <!--contReferaalType-->
+                                          <table class="add_edit_table">
+                                             <tbody><tr class="th">
+                                             <td><strong>Referral Type</strong></td>
+                                             <td></td>
+                                             </tr>
+                                             </tbody><tbody>
+                                              @foreach ($referraltypies as $referraltype)
+
+                                             <tr>
+                                             <td>{{$referraltype->name}}</td>
+                                             <td>
+                                                <button type="button" class="btn btn-add btn-sm edittypebtn" data-toggle="modal"
+                                                data-target="#editreferraltype" data-id="{{$referraltype->id}}" ><i class="fa fa-pencil"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm deletetypebtn" data-toggle="modal"
+                                                data-target="#deletereferraltype" data-id="{{$referraltype->id}}"><i class="fa fa-trash-o"></i> </button>
+                                             </td>
+                                             </tr>
+                                             @endforeach
+                                            
+                                             <tr class="black">
+                                             <td>
+                                                <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addreferraltype">Add New Value</button>
                                              </td>
                                              <td>
                                              </td>
@@ -159,7 +190,7 @@
                                              </table>
                                     </div> 
 
-                                    <!--Material-->
+                                    <!--MaterialCat-->
                                     <div class="tab-pane fade" id="material" role="tabpanel" aria-labelledby="material-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
@@ -190,7 +221,7 @@
                                           </table>
                                     </div>
                                     
-                                    <!--Finance-->
+                                    <!--FinanceCat-->
                                     <div class="tab-pane fade" id="finance" role="tabpanel" aria-labelledby="finance-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
@@ -198,20 +229,20 @@
                                           <td></td>
                                           </tr>
                                           </tbody><tbody>
-                                             @foreach($materialcategories as $materialcategory)
+                                             @foreach($invoicecategories as $invoicecategory)
                                              <tr>
-                                             <td>{{$materialcategory->name}}</td>
+                                             <td>{{$invoicecategory->type_name}}</td>
                                              <td>
-                                                <button type="button" class="btn btn-add btn-sm editmatbtn" data-toggle="modal"
-                                                data-target="#editmaterialcat" data-id="{{$materialcategory->id}}" ><i class="fa fa-pencil"></i></button>
-                                                <button type="button" class="btn btn-danger btn-sm deletematbtn" data-toggle="modal"
-                                                data-target="#deletematerialcat" data-id="{{$materialcategory->id}}"><i class="fa fa-trash-o"></i> </button>
+                                                <button type="button" class="btn btn-add btn-sm editinvbtn" data-toggle="modal"
+                                                data-target="#editinvoicecat" data-id="{{$invoicecategory->id}}" ><i class="fa fa-pencil"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm deleteinvbtn" data-toggle="modal"
+                                                data-target="#deleteinvoicecat" data-id="{{$invoicecategory->id}}"><i class="fa fa-trash-o"></i> </button>
                                              </td>
                                              </tr>
                                              @endforeach
                                           <tr class="black">
                                           <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
+                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addinvoicecat">Add New Value</button>
                                           </td>
                                           <td>
                                           </td>
@@ -220,8 +251,8 @@
                                           </table>
                                     </div>
 
-
-                                    <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
+                                    <!--Task-->
+                                    {{-- <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
                                           <td><strong>Tasks Value</strong></td>
@@ -250,9 +281,10 @@
                                           </tr>
                                           </tbody>
                                           </table>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team-tab">
+                                    <!--Team-->
+                                    {{-- <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
                                           <td><strong>Team Value</strong></td>
@@ -281,9 +313,9 @@
                                           </tr>
                                           </tbody>
                                           </table>
-                                    </div>
+                                    </div> --}}
 
-
+                                    <!--Calender-->
                                     <div class="tab-pane fade" id="calender" role="tabpanel" aria-labelledby="calender-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
@@ -291,22 +323,20 @@
                                           <td></td>
                                           </tr>
                                           </tbody><tbody>
-                                          <tr>
-                                          <td><span>Agent</span> </td>
-                                          <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                          </td>
-                                          </tr><tr>
-                                          <td><span>Company</span> </td>
-                                          <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                          </td>
-                                          </tr>
+                                             @foreach($calendarcategories as $calendarcategory)
+                                             <tr>
+                                             <td>{{$calendarcategory->name}}</td>
+                                             <td>
+                                                <button type="button" class="btn btn-add btn-sm editcalbtn" data-toggle="modal"
+                                                data-target="#editcalendarcat" data-id="{{$calendarcategory->id}}" ><i class="fa fa-pencil"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm deletecalbtn" data-toggle="modal"
+                                                data-target="#deletecalendarcat" data-id="{{$calendarcategory->id}}"><i class="fa fa-trash-o"></i> </button>
+                                             </td>
+                                             </tr>
+                                             @endforeach
                                           <tr class="black">
                                           <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
+                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addcalendar">Add New Value</button>
                                           </td>
                                           <td>
                                           </td>
@@ -315,6 +345,7 @@
                                           </table>
                                     </div>
 
+                                    <!--Job Category-->
                                     <div class="tab-pane fade" id="jobs" role="tabpanel" aria-labelledby="jobs-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
@@ -322,22 +353,20 @@
                                           <td></td>
                                           </tr>
                                           </tbody><tbody>
-                                          <tr>
-                                          <td><span>Agent</span> </td>
-                                          <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                          </td>
-                                          </tr><tr>
-                                          <td><span>Company</span> </td>
-                                          <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                          </td>
-                                          </tr>
+                                             @foreach($jobcategories as $jobcategory)
+                                             <tr>
+                                             <td>{{$jobcategory->name}}</td>
+                                             <td>
+                                                <button type="button" class="btn btn-add btn-sm editjobbtn" data-toggle="modal"
+                                                data-target="#editjobcat" data-id="{{$jobcategory->id}}" ><i class="fa fa-pencil"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm deletejobbtn" data-toggle="modal"
+                                                data-target="#deletejobcat" data-id="{{$jobcategory->id}}"><i class="fa fa-trash-o"></i> </button>
+                                             </td>
+                                             </tr>
+                                             @endforeach
                                           <tr class="black">
                                           <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
+                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addjobcat">Add New Value</button>
                                           </td>
                                           <td>
                                           </td>
@@ -346,6 +375,7 @@
                                           </table>
                                     </div>
 
+                                    <!--Staff-->
                                     <div class="tab-pane fade" id="staff" role="tabpanel" aria-labelledby="staff-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
@@ -376,7 +406,8 @@
                                           </tbody>
                                           </table>
                                     </div>
-
+  
+                                    <!--CompanyInf-->
                                     <div class="tab-pane fade" id="cominfo" role="tabpanel" aria-labelledby="info-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
@@ -384,22 +415,20 @@
                                           <td></td>
                                           </tr>
                                           </tbody><tbody>
-                                          <tr>
-                                          <td><span>Agent</span> </td>
-                                          <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                          </td>
-                                          </tr><tr>
-                                          <td><span>Company</span> </td>
-                                          <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                          </td>
-                                          </tr>
+                                             @foreach($campanycategories as $campanycategory)
+                                             <tr>
+                                             <td>{{$campanycategory->name}}</td>
+                                             <td>
+                                                <button type="button" class="btn btn-add btn-sm editcompbtn" data-toggle="modal"
+                                                data-target="#editcompanycat" data-id="{{$campanycategory->id}}" ><i class="fa fa-pencil"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm deletecompbtn" data-toggle="modal"
+                                                data-target="#deletecompanycat" data-id="{{$campanycategory->id}}"><i class="fa fa-trash-o"></i> </button>
+                                             </td>
+                                             </tr>
+                                             @endforeach
                                           <tr class="black">
                                           <td>
-                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
+                                             <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addcompanycat">Add New Value</button>
                                           </td>
                                           <td>
                                           </td>
@@ -407,8 +436,6 @@
                                           </tbody>
                                           </table>
                                     </div>
-
-
                                   </div>
                           </div>
                         </div>
@@ -424,7 +451,7 @@
                   <div class="modal-dialog">
                      <div class="modal-content">
                         <div class="modal-header modal-header-primary">
-                           <h3><i class="fa fa-user m-r-5"></i> Delete Category</h3>
+                           <h3><i class="fa fa-user m-r-5"></i> Delete Contact Category</h3>
                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         </div>
                         <div class="modal-body">
@@ -461,7 +488,7 @@
                   <div class="modal-dialog">
                      <div class="modal-content">
                         <div class="modal-header modal-header-primary">
-                           <h3><i class="fa fa-user m-r-5"></i> Edit ContCategory</h3>
+                           <h3><i class="fa fa-user m-r-5"></i> Edit Contact Category</h3>
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"></button>
                         </div>
                         <div class="modal-body">
@@ -473,7 +500,7 @@
                                        <!-- Text input-->
                                        <div class="col-md-12 form-group">
                                           <label class="control-label">Category Name</label>
-                                          <input type="text" placeholder="Category Name" class="form-control"
+                                           <input type="text" placeholder="Category Name" class="form-control"
                                           name="name" id="name" required>
                                        </div>
                                     
@@ -503,7 +530,7 @@
                      <div class="modal-content">
                         <div class="modal-header modal-header-primary">
                            <h3><i class="fa fa-user m-r-5"></i>  	
-                              Add Contact</h3>
+                              Add Contact Category</h3>
                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         </div>
                         <div class="modal-body">
@@ -545,7 +572,7 @@
                      <div class="modal-content">
                         <div class="modal-header modal-header-primary">
                            <h3><i class="fa fa-user m-r-5"></i>  	
-                              Add Contact</h3>
+                              Add Contact Sub-Category</h3>
                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         </div>
                         <div class="modal-body">
@@ -556,13 +583,70 @@
                                     <div class="row">
                                        <!-- Text input-->
                                        <div class="col-md-12 form-group">
-                                          <label class="control-label">Add Subcategory</label>
-                                          <input type="text" placeholder="Subcategory Name" class="form-control" name="sub_category_nam" required>
-                                          <select class="form-control input-sm" id="addsubcategory" name="sub_category_nam">
-                                             <option value="Accountant">Accountant</option>
-                                             <option value="Aggregates">Aggregates</option>
-                                              
-                                           </select>
+                                          <label class="control-label">Add category</label>
+
+                                          <select class="custom-select2 form-control" name="category_id" id="category_id"  required>
+                                             <option value="">Select Category</option>
+                                             @foreach ($categories as $category)
+                                               <option value="{{$category->id}}">{{$category->name}}</option>
+                                             @endforeach
+                                          </select>
+                                       </div>
+
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label">Add Sub-Category</label>
+                                          <input type="text" placeholder="Sub-Category Name" class="form-control" name="sub_category_name" required>
+                                       </div>
+                                          
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+                <!-- Contact EditSubcat-->
+                <div class="modal fade" id="editsubcategory" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Edit Contact Sub-Category </h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal"   id="editSubform" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label">Edit Category</label>
+
+                                          <select class="custom-select2 form-control" name="category_id" id="category_id"  required>
+                                             <option value="">Select Category</option>
+                                             @foreach ($categories as $category)
+                                               <option value="{{$category->id}}">{{$category->name}}</option>
+                                             @endforeach
+                                          </select>
+                                       </div>
+
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label">Edit Sub-Category</label>
+                                          <input type="text" placeholder="Sub-Category Name" class="form-control" name="sub_category_name" required>
                                        </div>
                                     
                                        <div class="col-md-12 form-group user-form-group">
@@ -585,14 +669,169 @@
                   <!-- /.modal-dialog -->
                </div>
 
+               <!-- Contact DeleteSubcat-->
+               <div class="modal fade" id="deletesubcategory" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Delete Contact Sub-Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal" action="{{route('subcatcontact.delete')}}" method="Post">
+                                    @csrf
+                                    <input type="hidden" name="sub_category_id" id="sub_category_id"/>
+                                    <fieldset>
+                                       <div class="row">
+                                          <div class="col-md-12 form-group user-form-group">
+                                             <label class="control-label">Delete Sub-Category</label>
+                                             <div class="float-right">
+                                                <button type="button" class="btn btn-danger btn-sm">NO</button>
+                                                   <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                                </div>
+                                             </div>
+                                       </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
 
-               <!-- materila Addcat-->
+               <!-- ReferralType Add-->
+               <div class="modal fade" id="addreferraltype" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i>  	
+                              Add Referral Type</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form  action="{{route('referraltype.add')}}" method="Post">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label">Add Referral Type</label>
+                                          <input type="text" placeholder="Type" class="form-control" name="name" required>
+                                       </div>
+                                          
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+                <!-- ReferralType Edit-->
+                <div class="modal fade" id="editreferraltype" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Edit Contact Sub-Category </h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal"   id="edittype" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label">Edit Referral Type</label>
+                                          <input type="text" placeholder="Type" class="form-control" name="name" required>
+                                       </div>
+                                    
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- ReferralType Delete-->
+               <div class="modal fade" id="deletereferraltype" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Delete Contact Sub-Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal" action="{{route('subcatcontact.delete')}}" method="Post">
+                                    @csrf
+                                    <input type="hidden" name="sub_category_id" id="sub_category_id"/>
+                                    <fieldset>
+                                       <div class="row">
+                                          <div class="col-md-12 form-group user-form-group">
+                                             <label class="control-label">Delete Sub-Category</label>
+                                             <div class="float-right">
+                                                <button type="button" class="btn btn-danger btn-sm">NO</button>
+                                                   <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                                </div>
+                                             </div>
+                                       </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+
+               <!-- material Addcat-->
                <div class="modal fade" id="addmaterialcat" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog">
                      <div class="modal-content">
                         <div class="modal-header modal-header-primary">
                            <h3><i class="fa fa-user m-r-5"></i>  	
-                              Add Contact</h3>
+                              Add Material Category</h3>
                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                         </div>
                         <div class="modal-body">
@@ -632,7 +871,7 @@
                   <div class="modal-dialog">
                      <div class="modal-content">
                         <div class="modal-header modal-header-primary">
-                           <h3><i class="fa fa-user m-r-5"></i> Edit MaterialCategory</h3>
+                           <h3><i class="fa fa-user m-r-5"></i> Edit Material Category</h3>
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"></button>
                         </div>
                         <div class="modal-body">
@@ -643,7 +882,7 @@
                                     <div class="row">
                                        <!-- Text input-->
                                        <div class="col-md-12 form-group">
-                                          <label class="control-label">Category Name</label>
+                                          <label class="control-label">Edit Material Category</label>
                                           <input type="text" placeholder="Category Name" class="form-control"
                                           name="name" id="name" required>
                                        </div>
@@ -673,7 +912,7 @@
                   <div class="modal-dialog">
                      <div class="modal-content">
                         <div class="modal-header modal-header-primary">
-                           <h3><i class="fa fa-user m-r-5"></i> Delete Category</h3>
+                           <h3><i class="fa fa-user m-r-5"></i> Delete Material Category</h3>
                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         </div>
                         <div class="modal-body">
@@ -682,6 +921,483 @@
                                  <form class="form-horizontal" action="{{route('catmaterial.delete')}}" method="Post">
                                     @csrf
                                     <input type="hidden" name="mcategory_id" id="mcategory_id"/>
+                                    <fieldset>
+                                       <div class="row">
+                                          <div class="col-md-12 form-group user-form-group">
+                                             <label class="control-label">Delete Category</label>
+                                             <div class="float-right">
+                                                <button type="button" class="btn btn-danger btn-sm">NO</button>
+                                                   <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                                </div>
+                                             </div>
+                                       </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+
+               <!-- finance Addcat-->
+               <div class="modal fade" id="addinvoicecat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i>  	
+                              Add Invoice Category </h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form  action="{{route('catinvoice.add')}}" method="Post">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label"> Add Invoice category</label>
+                                          <input type="text" placeholder="Category Name" class="form-control" name="type_name" required>
+                                       </div>
+                                    
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- finance EditCat-->
+               <div class="modal fade" id="editinvoicecat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Edit Invoice Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal"   id="formedit" method="Post">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label">Edit Invoice Category </label>
+                                          <input type="text" placeholder="Category Name" class="form-control"
+                                          name="type_name" id="type_name" required>
+                                       </div>
+                                    
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- finance DeleteCat-->
+               <div class="modal fade" id="deleteinvoicecat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Delete Invoice Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal" action="{{route('catinvoice.delete')}}" method="Post">
+                                    @csrf
+                                    <input type="hidden" name="type_id" id="type_id"/>
+                                    <fieldset>
+                                       <div class="row">
+                                          <div class="col-md-12 form-group user-form-group">
+                                             <label class="control-label">Delete Category</label>
+                                             <div class="float-right">
+                                                <button type="button" class="btn btn-danger btn-sm">NO</button>
+                                                   <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                                </div>
+                                             </div>
+                                       </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- Job Addcat-->
+               <div class="modal fade" id="addjobcat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i>  	
+                              Add Job Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form  action="{{route('catjob.add')}}" method="Post">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label"> Add Job category</label>
+                                          <input type="text" placeholder="Category Name" class="form-control" name="name" required>
+                                       </div>
+                                    
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- Job EditCat-->
+               <div class="modal fade" id="editjobcat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Edit Job Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal"   id="Formedit" method="Post">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label">Edit Job Category </label>
+                                          <input type="text" placeholder="Category Name" class="form-control"
+                                          name="name" id="name" required>
+                                       </div>
+                                    
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- Job DeleteCat-->
+               <div class="modal fade" id="deletejobcat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Delete Job Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal" action="{{route('catjob.delete')}}" method="Post">
+                                    @csrf
+                                    <input type="hidden" name="job_cat_id" id="job_cat_id"/>
+                                    <fieldset>
+                                       <div class="row">
+                                          <div class="col-md-12 form-group user-form-group">
+                                             <label class="control-label">Delete Category</label>
+                                             <div class="float-right">
+                                                <button type="button" class="btn btn-danger btn-sm">NO</button>
+                                                   <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                                </div>
+                                             </div>
+                                       </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- Calendar Addcat-->
+               <div class="modal fade" id="addcalendar" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i>  	
+                              Add Calendar Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form  action="{{route('catcalendar.add')}}" method="Post">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label"> Add Calendar category</label>
+                                          <input type="text" placeholder="Category Name" class="form-control" name="name" required>
+                                       </div>
+                                    
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- Calendar EditCat-->
+               <div class="modal fade" id="editcalendarcat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Edit Calendar Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal"   id="editcal" method="Post">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label">Edit Calendar Category </label>
+                                          <input type="text" placeholder="Category Name" class="form-control"
+                                          name="name" id="name" required>
+                                       </div>
+                                    
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- Calendar DeleteCat-->
+               <div class="modal fade" id="deletecalendarcat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Delete Calendar Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal" action="{{route('catcalendar.delete')}}" method="Post">
+                                    @csrf
+                                    <input type="hidden" name="calendar_id" id="calendar_id"/>
+                                    <fieldset>
+                                       <div class="row">
+                                          <div class="col-md-12 form-group user-form-group">
+                                             <label class="control-label">Delete Category</label>
+                                             <div class="float-right">
+                                                <button type="button" class="btn btn-danger btn-sm">NO</button>
+                                                   <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                                </div>
+                                             </div>
+                                       </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- Company Addcat-->
+               <div class="modal fade" id="addcompanycat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i>  	
+                              Add Company Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form  action="{{route('catcompany.add')}}" method="Post">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label"> Add Company category</label>
+                                          <input type="text" placeholder="Category Name" class="form-control" name="name" required>
+                                       </div>
+                                    
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- Company EditCat-->
+               <div class="modal fade" id="editcompanycat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Edit Company Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal"   id="FormEdit" method="Post">
+                                    @csrf
+                                    <div class="row">
+                                       <!-- Text input-->
+                                       <div class="col-md-12 form-group">
+                                          <label class="control-label">Edit Company Category </label>
+                                          <input type="text" placeholder="Category Name" class="form-control"
+                                          name="name" id="name" required>
+                                       </div>
+                                    
+                                       <div class="col-md-12 form-group user-form-group">
+                                          <div class="float-right">
+                                             <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                             <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                     <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+               </div>
+
+               <!-- Company DeleteCat-->
+               <div class="modal fade" id="deletecompanycat" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header modal-header-primary">
+                           <h3><i class="fa fa-user m-r-5"></i> Delete Company Category</h3>
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form-horizontal" action="{{route('catcompany.delete')}}" method="Post">
+                                    @csrf
+                                    <input type="hidden" name="id" id="id"/>
                                     <fieldset>
                                        <div class="row">
                                           <div class="col-md-12 form-group user-form-group">
@@ -739,6 +1455,51 @@ $('.deletebtn').on('click',function(){
 
 });
 
+ //ContactSub-Cat
+ $('.editsubbtn').on('click',function(){
+    var id=$(this).attr('data-id');
+    $.get("{{url('edit-subcatcontact')}}/"+id, function (data) {
+        console.log(data);
+        var d=data.id;
+        $('#editSubform').attr('action','{{url("edit-subcatcontact")}}/'+id);
+        $('#sub_category_name').val(data.name);
+        
+ 
+    });
+    $('#editsubcategory').modal('show');
+});
+
+$('.deletesubbtn').on('click',function(){
+
+    var id=$(this).attr('data-id');
+    $('#sub_category_id').attr('value',id);
+    $('#deletesubcategory').modal('show');
+
+});
+
+
+//Contact ReferralType
+$('.edittypebtn').on('click',function(){
+    var id=$(this).attr('data-id');
+    $.get("{{url('edit-referraltype')}}/"+id, function (data) {
+        console.log(data);
+        var d=data.id;
+        $('#edittype').attr('action','{{url("edit-referraltype")}}/'+id);
+        $('#name').val(data.name);
+        
+ 
+    });
+    $('#editreferraltype').modal('show');
+});
+
+$('.deletetypebtn').on('click',function(){
+
+    var id=$(this).attr('data-id');
+    $('#referral_id').attr('value',id);
+    $('#deletereferraltype').modal('show');
+
+});
+
 //MaterialCat
 $('.editmatbtn').on('click',function(){
     var id=$(this).attr('data-id');
@@ -758,6 +1519,94 @@ $('.deletematbtn').on('click',function(){
     var id=$(this).attr('data-id');
     $('#mcategory_id').attr('value',id);
     $('#deletematerialcat').modal('show');
+
+});
+
+//FinanceCat
+$('.editinvbtn').on('click',function(){
+    var id=$(this).attr('data-id');
+    $.get("{{url('edit-catinvoice')}}/"+id, function (data) {
+        console.log(data);
+        var d=data.id;
+        $('#formedit').attr('action','{{url("edit-catinvoice")}}/'+id);
+        $('#type_name').val(data.name);
+        
+ 
+    });
+    $('#editinvoicecat').modal('show');
+});
+
+$('.deleteinvbtn').on('click',function(){
+
+    var id=$(this).attr('data-id');
+    $('#type_id').attr('value',id);
+    $('#deleteinvoicecat').modal('show');
+
+});
+
+//CalendarCat
+$('.editcalbtn').on('click',function(){
+    var id=$(this).attr('data-id');
+    $.get("{{url('edit-catcalendar')}}/"+id, function (data) {
+        console.log(data);
+        var d=data.id;
+        $('#editcal').attr('action','{{url("edit-catcalendar")}}/'+id);
+        $('#name').val(data.name);
+        
+ 
+    });
+    $('#editcalendarcat').modal('show');
+});
+
+$('.deletecalbtn').on('click',function(){
+
+    var id=$(this).attr('data-id');
+    $('#calendar_id').attr('value',id);
+    $('#deletecalendarcat').modal('show');
+
+});
+
+//JobCat
+$('.editjobbtn').on('click',function(){
+    var id=$(this).attr('data-id');
+    $.get("{{url('edit-catjob')}}/"+id, function (data) {
+        console.log(data);
+        var d=data.id;
+        $('#Formedit').attr('action','{{url("edit-catjob")}}/'+id);
+        $('#name').val(data.name);
+        
+ 
+    });
+    $('#editjobcat').modal('show');
+});
+
+$('.deletejobbtn').on('click',function(){
+
+    var id=$(this).attr('data-id');
+    $('#job_cat_id').attr('value',id);
+    $('#deletejobcat').modal('show');
+
+});
+
+//CompanyCat
+$('.editcompbtn').on('click',function(){
+    var id=$(this).attr('data-id');
+    $.get("{{url('edit-catcompany')}}/"+id, function (data) {
+        console.log(data);
+        var d=data.id;
+        $('#FormEdit').attr('action','{{url("edit-catcompany")}}/'+id);
+        $('#name').val(data.name);
+        
+ 
+    });
+    $('#editcompanycat').modal('show');
+});
+
+$('.deletecompbtn').on('click',function(){
+
+    var id=$(this).attr('data-id');
+    $('#id').attr('value',id);
+    $('#deletecompanycat').modal('show');
 
 });
 

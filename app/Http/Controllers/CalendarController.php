@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CalendarCategory;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\JobCategories;
@@ -14,9 +15,9 @@ class CalendarController extends Controller
     public function index()
     {
         $tasks=Task::with(['team','jobcategories'])->get();
-
+        
         $companies=Company::all();
-        return view('calendar.calendar_list',['tasks'=>$tasks,'companies'=>$companies]);
+        return view('calendar.calendar_list',['tasks'=>$tasks,'companies'=>$companies, 'categories'=>$categories]);
     }
 
     public function getEvents()
