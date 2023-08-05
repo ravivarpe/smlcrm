@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,6 +177,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('delete-catcompany', [SettingController::class, 'deleteCompany'])->name('catcompany.delete');
   
     //Permission
-    Route::get('user-permission',[SettingController::class,'index'])->name('user-permission');
+    Route::get('user-permission',[PermissionController::class,'index'])->name('user-permission');
+    Route::post('create-userpermission',[PermissionController::class,'addPermissionSubmit'])->name('userpermission.add');
+    Route::get('edit-userpermission/{id}', [PermissionController::class, 'editPermission'])->name('userpermission.edit');
+    Route::post('edit-userpermission/{id}',[PermissionController::class,'editPermissionSubmit'])->name('userpermission.edit');
+    Route::post('delete-userpermission', [PermissionController::class, 'deletePermission'])->name('userpermission.delete');
 
 });

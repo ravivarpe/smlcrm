@@ -9,8 +9,8 @@
           <i class="fa fa-gears"></i>
        </div>
        <div class="header-title">
-          <h1>General Settings</h1>
-          <small>General Settings</small>
+          <h1>User Permission</h1>
+          <small>User Permission</small>
        </div>
     </section>
     <!-- Main content -->
@@ -21,7 +21,7 @@
                 <div class="card lobicard"  data-sortable="true">
                     <div class="card-header">
                         <div class="card-title custom_title">
-                            <h4>General Settings</h4>
+                            <h4>User Permission</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -32,172 +32,33 @@
                   <div class="card2-body card_card">
                       <ul class="nav nav-tabs" id="myTab1" role="tablist">
                             <li class="nav-item">
-                              <a class="nav-link active" id="enquiry-tab" data-toggle="tab" href="#enquiry" role="tab" aria-controls="enquiry" aria-selected="true">Enquiry</a>
-                            </li>
-                            <li class="nav-item">
-                               <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                             </li>
-                             <li class="nav-item">
-                               <a class="nav-link" id="material-tab" data-toggle="tab" href="#material" role="tab" aria-controls="material" aria-selected="false">Material</a>
-                             </li>
-                             <li class="nav-item">
-                               <a class="nav-link" id="finance-tab" data-toggle="tab" href="#finance" role="tab" aria-controls="finance" aria-selected="false">Finance</a>
-                             </li>
-                             <li class="nav-item">
-                               <a class="nav-link" id="tasks-tab" data-toggle="tab" href="#tasks" role="tab" aria-controls="tasks" aria-selected="true">Tasks</a>
-                             </li>
-                             <li class="nav-item">
-                               <a class="nav-link" id="team-tab" data-toggle="tab" href="#team" role="tab" aria-controls="team" aria-selected="true">Team</a>
-                             </li>
-                            <li class="nav-item">
-                              <a class="nav-link" id="calender-tab" data-toggle="tab" href="#calender" role="tab" aria-controls="calender" aria-selected="false">Calender</a>
-                            </li>
-                            <li class="nav-item">
-                               <a class="nav-link" id="jobs-tab" data-toggle="tab" href="#jobs" role="tab" aria-controls="jobs" aria-selected="false">Jobs</a>
-                             </li>
-                         
-                             <li class="nav-item">
-                               <a class="nav-link" id="staff-tab" data-toggle="tab" href="#staff" role="tab" aria-controls="staff" aria-selected="false">Staff</a>
-                             </li>
-                             <li class="nav-item">
-                               <a class="nav-link" id="info-tab" data-toggle="tab" href="#cominfo" role="tab" aria-controls="info" aria-selected="false">Company Information</a>
-                             </li>
-                          </ul>
-                          <div class="tab-content custom_tabs2" >
+                              <a class="nav-link active" id="enquiry-tab" data-toggle="tab" href="#enquiry" role="tab" aria-controls="enquiry" aria-selected="true">User Permission</a>
+                              </li>
+                           </ul>
+                           <div class="tab-content custom_tabs2" >
                          <!--   <p><strong>Lorem Ipsum is simply dummy text of the printing and. </strong></p> -->
-                            <div class="tab-pane fade show active" id="enquiry" role="tabpanel" aria-labelledby="enquiry-tab">
+                            <div class="tab-pane fade show active" id="user permission" role="tabpanel" aria-labelledby="user permission-tab">
                                <table class="add_edit_table">
                                   <tbody><tr class="th">
-                                  <td><strong>Enquiry Value</strong></td>
+                                  <td><strong>User Permission</strong></td>
                                   <td></td>
                                   </tr>
                                   </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Company</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
+                                    @foreach($permissions as $permission)
+                                    <tr>
+                                    <td>{{$permission->role_name}}</td>
+                                    <td>
+                                       <button type="button" class="btn btn-add btn-sm editbtn" data-toggle="modal"
+                                       data-target="#editpermission" data-id="{{$permission->id}}" ><i class="fa fa-pencil"></i></button>
+                                       <button type="button" class="btn btn-danger btn-sm deletebtn" data-toggle="modal"
+                                       data-target="#deletepermission" data-id="{{$permission->id}}"><i class="fa fa-trash-o"></i> </button>
+                                    </td>
+                                    </tr>
+                                    @endforeach
+                                   
                                   <tr class="black">
                                   <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
-                                  </td>
-                                  <td>
-                                  </td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
-                            </div>
-                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                               <table class="add_edit_table">
-                                  <tbody><tr class="th">
-                                  <td><strong>Contact Value</strong></td>
-                                  <td></td>
-                                  </tr>
-                                  </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Customer</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Services</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Supplier</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Trade Resin</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
-                                  <tr class="black">
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
-                                  </td>
-                                  <td>
-                                  </td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
-                            </div>
-
-                            <div class="tab-pane fade" id="material" role="tabpanel" aria-labelledby="material-tab">
-                               <table class="add_edit_table">
-                                  <tbody><tr class="th">
-                                  <td><strong>Material Value</strong></td>
-                                  <td></td>
-                                  </tr>
-                                  </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Company</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
-                                  <tr class="black">
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
-                                  </td>
-                                  <td>
-                                  </td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
-                            </div>
-                            
-                            <div class="tab-pane fade" id="finance" role="tabpanel" aria-labelledby="finance-tab">
-                               <table class="add_edit_table">
-                                  <tbody><tr class="th">
-                                  <td><strong>Finance Value</strong></td>
-                                  <td></td>
-                                  </tr>
-                                  </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Company</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
-                                  <tr class="black">
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
+                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addpermission">Add New Value</button>
                                   </td>
                                   <td>
                                   </td>
@@ -207,192 +68,7 @@
                             </div>
 
 
-                            <div class="tab-pane fade" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
-                               <table class="add_edit_table">
-                                  <tbody><tr class="th">
-                                  <td><strong>Tasks Value</strong></td>
-                                  <td></td>
-                                  </tr>
-                                  </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Company</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
-                                  <tr class="black">
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
-                                  </td>
-                                  <td>
-                                  </td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
-                            </div>
-
-                            <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team-tab">
-                               <table class="add_edit_table">
-                                  <tbody><tr class="th">
-                                  <td><strong>Team Value</strong></td>
-                                  <td></td>
-                                  </tr>
-                                  </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Company</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
-                                  <tr class="black">
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
-                                  </td>
-                                  <td>
-                                  </td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
-                            </div>
-
-
-                            <div class="tab-pane fade" id="calender" role="tabpanel" aria-labelledby="calender-tab">
-                               <table class="add_edit_table">
-                                  <tbody><tr class="th">
-                                  <td><strong>Calender Value</strong></td>
-                                  <td></td>
-                                  </tr>
-                                  </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Company</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
-                                  <tr class="black">
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
-                                  </td>
-                                  <td>
-                                  </td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
-                            </div>
-
-                            <div class="tab-pane fade" id="jobs" role="tabpanel" aria-labelledby="jobs-tab">
-                               <table class="add_edit_table">
-                                  <tbody><tr class="th">
-                                  <td><strong>Jobs Value</strong></td>
-                                  <td></td>
-                                  </tr>
-                                  </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Company</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
-                                  <tr class="black">
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
-                                  </td>
-                                  <td>
-                                  </td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
-                            </div>
-
-                            <div class="tab-pane fade" id="staff" role="tabpanel" aria-labelledby="staff-tab">
-                               <table class="add_edit_table">
-                                  <tbody><tr class="th">
-                                  <td><strong>Staff Value</strong></td>
-                                  <td></td>
-                                  </tr>
-                                  </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Company</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
-                                  <tr class="black">
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
-                                  </td>
-                                  <td>
-                                  </td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
-                            </div>
-
-                            <div class="tab-pane fade" id="cominfo" role="tabpanel" aria-labelledby="info-tab">
-                               <table class="add_edit_table">
-                                  <tbody><tr class="th">
-                                  <td><strong>Company Information</strong></td>
-                                  <td></td>
-                                  </tr>
-                                  </tbody><tbody>
-                                  <tr>
-                                  <td><span>Agent</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr><tr>
-                                  <td><span>Company</span> </td>
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#editvalue"><i class="fa fa-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletevalue"><i class="fa fa-trash-o"></i> </button>
-                                  </td>
-                                  </tr>
-                                  <tr class="black">
-                                  <td>
-                                     <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#addvalue">Add New Value</button>
-                                  </td>
-                                  <td>
-                                  </td>
-                                  </tr>
-                                  </tbody>
-                                  </table>
-                            </div>
+                           
 
 
                           </div>
@@ -404,24 +80,27 @@
            
        </div>
 
-       <!-- Add Value -->
-
-       <div class="modal fade" id="deletevalue" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog">
-             <div class="modal-content">
-                <div class="modal-header modal-header-primary">
-                   <h3><i class="fa fa-user m-r-5"></i> Delete Value</h3>
-                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <!-- Add Value -->
+      <!--permission Delete-->
+      <div class="modal fade" id="deletepermission" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header modal-header-primary">
+                  <h3><i class="fa fa-user m-r-5"></i> Delete User Permission</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
                    <div class="row">
                       <div class="col-md-12">
-                         <form class="form-horizontal">
-                               <div class="row">
-                                     <div class="col-md-12 form-group user-form-group">
-                                        <label class="control-label">Delete Value</label>
-                                        <div class="float-right">
-                                           <button type="button" class="btn btn-danger btn-sm">NO</button>
+                         <form action="{{route('userpermission.delete')}}" method="Post">
+                           @csrf>
+                           <input type="hidden" name="permission_id" id="permission_id"/>
+                           <fieldset>
+                              <div class="row">
+                                    <div class="col-md-12 form-group user-form-group">
+                                       <label class="control-label">Delete User Permission</label>
+                                       <div class="float-right">
+                                          <button type="button" class="btn btn-danger btn-sm">NO</button>
                                            <button type="submit" class="btn btn-add btn-sm">YES</button>
                                         </div>
                                      </div>
@@ -439,24 +118,25 @@
           <!-- /.modal-dialog -->
        </div>
 
-
-       <div class="modal fade" id="editvalue" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog">
-             <div class="modal-content">
-                <div class="modal-header modal-header-primary">
-                   <h3><i class="fa fa-user m-r-5"></i>  	
-                      Edit Value</h3>
-                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+      <!--permission Edit-->
+      <div class="modal fade" id="editpermission" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header modal-header-primary">
+                  <h3><i class="fa fa-user m-r-5"></i>  	
+                     Edit User Permission</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <div class="modal-body">
                    <div class="row">
                       <div class="col-md-12">
-                         <form class="form-horizontal">
+                         <form class="form-horizontal" id="editForm" method="Post">
+                           @csrf
                             <div class="row">
                                <!-- Text input-->
                                <div class="col-md-12 form-group">
-                                  <label class="control-label">Value</label>
-                                  <input type="text" placeholder="Customer Name" class="form-control">
+                                  <label class="control-label">User Permission</label>
+                                  <input type="text" placeholder="Name" class="form-control" name="role_name" id="role_name" required>
                                </div>
                             
                                <div class="col-md-12 form-group user-form-group">
@@ -479,30 +159,28 @@
           <!-- /.modal-dialog -->
        </div>
 
-
-
-
-
-       <div class="modal fade" id="addvalue" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog">
-             <div class="modal-content">
-                <div class="modal-header modal-header-primary">
-                   <h3><i class="fa fa-user m-r-5"></i>  	
-                      Add Value</h3>
-                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+      <!--permission Add-->
+      <div class="modal fade" id="addpermission" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header modal-header-primary">
+                  <h3><i class="fa fa-user m-r-5"></i>  	
+                  Add User Permission</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <div class="modal-body">
                    <div class="row">
-                      <div class="col-md-12">
-                         <form class="form-horizontal">
-                            <div class="row">
-                               <!-- Text input-->
-                               <div class="col-md-12 form-group">
-                                  <label class="control-label">Add Value</label>
-                                  <input type="text" placeholder="Customer Name" class="form-control">
-                               </div>
+                     <div class="col-md-12">
+                        <form action="{{route('userpermission.add')}}" method="Post">
+                           @csrf
+                           <div class="row">
+                              <!-- Text input-->
+                              <div class="col-md-12 form-group">
+                                 <label class="control-label">Add user Permission</label>
+                                 <input type="text" placeholder="Name" class="form-control"name="role_name" required>
+                              </div>
                             
-                               <div class="col-md-12 form-group user-form-group">
+                              <div class="col-md-12 form-group user-form-group">
                                   <div class="float-right">
                                      <button type="button" class="btn btn-danger btn-sm">Cancel</button>
                                      <button type="submit" class="btn btn-add btn-sm">Save</button>
@@ -527,4 +205,34 @@
  </div>
  <!-- /.content-wrapper -->
 
+@endsection
+@section('footer_scripts')
+<script>
+   $(function()
+   {
+   //User Permission
+      $('.editbtn').on('click',function(){
+    var id=$(this).attr('data-id');
+    $.get("{{url('edit-userpermission')}}/"+id, function (data) {
+        console.log(data);
+        var d=data.id;
+        $('#editForm').attr('action','{{url("edit-userpermission")}}/'+id);
+        $('#role_name').val(data.name);
+        
+ 
+    });
+    $('#editpermission').modal('show');
+});
+
+$('.deletebtn').on('click',function(){
+
+    var id=$(this).attr('data-id');
+    $('#permission_id').attr('value',id);
+    $('#deletepermission').modal('show');
+
+});
+});
+    
+
+</script>
 @endsection
