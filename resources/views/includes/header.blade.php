@@ -156,9 +156,9 @@
                      <div class="dropdown-menu drop_down">
                         <div class="menus">
                            <a class="dropdown-item" href="#"> <i class="fa fa-user"></i> User Setting</a>
-                           <a class="dropdown-item" href="#"><i class="fa fa-files-o"></i>Genaral Setting</a>
+                           <a class="dropdown-item" href="{{url('general-settings')}}"><i class="fa fa-files-o"></i>Genaral Setting</a>
                            <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Add New User</a>
-                           <a class="dropdown-item" href="#"><i class="fa fa-user-secret"></i> User Permission</a>
+                           <a class="dropdown-item" href="{{url('user-permission')}}"><i class="fa fa-user-secret"></i> User Permission</a>
                         </div>
                      </div>
                    </li>
@@ -278,11 +278,7 @@
                     </a>
                  </li>
 
-
-
-
-
-
+         
 
                </ul>
             </div>
