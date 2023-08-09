@@ -136,7 +136,7 @@
                                      <input type="text" class="quantity" name="item[1][quantity]" what="1" value="">
                                      </td>
                                      <td class="stb_pdf">
-                                     <input type="text" class="search_type select_material" name="item[1][title]" what="1"  placeholder="Item" value="" id="select_material">
+                                     <input type="text" class="search_type select_material" name="material[]" what="1"  placeholder="Item" value="" id="select_material">
                                      <span class="s_t_b search_type_box_items1" style="display: none;"></span>
                                      </td>
                                     <td>
@@ -336,7 +336,6 @@
                   return false;
                 }
         });
-
 
    });
 </script>

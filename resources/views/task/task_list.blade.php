@@ -45,13 +45,13 @@
                    <div class="card lobicard"  data-sortable="true">
                        <div class="card-header">
                            <div class="card-title custom_title">
-                               <h4>Add Taska</h4>
+                               <h4>Add Task</h4>
                            </div>
                        </div>
                        <div class="card-body">
                             <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
-                            <div class="float-right">
-                               <div class="btn-group">
+                           <div class="float-right">
+                             {{--    <div class="btn-group">
                                   <button class="buttonexport"  data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
                                   <ul class="dropdown-menu exp-drop" role="menu">
 
@@ -90,7 +90,7 @@
                                         <img src="assets/dist/img/pdf.png" width="24" alt="logo"> PDF</a>
                                      </li>
                                   </ul>
-                               </div>
+                               </div> --}}
 
                                <div class="btn-group" role="group">
                                 <div class="buttonexport" id="buttonlist">
@@ -98,7 +98,7 @@
                                    </a>
                                 </div>
                              </div>
-                               <div class="btn-group" role="menu">
+                               {{-- <div class="btn-group" role="menu">
                                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     30
                                   </button>
@@ -107,7 +107,7 @@
                                     <a class="dropdown-item" href="#">100</a>
                                     <a class="dropdown-item" href="#">200</a>
                                   </div>
-                               </div>
+                               </div> --}}
                             </div>
                                <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
                                <div class="table-responsive">
@@ -407,7 +407,7 @@
             paging: true,
             dom: 'lBfrtip',
             buttons: [
-                'csv', 'pdf',
+                'csv',
             ],
         initComplete: function () {
         this.api()

@@ -34,7 +34,7 @@
                                           </a>
                                        </div>
                                     </div>
-                                       <div class="btn-group">
+                                       {{-- <div class="btn-group">
                                           <button class="btn btn-exp btn-sm" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
                                           <ul class="dropdown-menu exp-drop" role="menu">
 
@@ -49,7 +49,7 @@
                                                 <img src="assets/dist/img/pdf.png" width="24" alt="logo"> PDF</a>
                                              </li>
                                           </ul>
-                                       </div>
+                                       </div> --}}
                                        <!-- ./Plugin content:powerpoint,txt,pdf,png,word,xl -->
                                        <div class="table-responsive">
                                           <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
@@ -331,7 +331,7 @@ ordering:  false,
 paging: true,
 dom: 'lBfrtip',
 buttons: [
-     'csv', 'pdf',
+     'csv',
 ],
 initComplete: function () {
 this.api()
