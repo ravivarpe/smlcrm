@@ -274,7 +274,59 @@
         paging: true,
         dom: 'lBfrtip',
         buttons: [
-             'csv',
+             {
+               extend: 'csvHtml5',
+               title: 'Enquiry List',
+               exportOptions: {
+                    modifier: {
+                    page: 'all'
+                    },
+                        format: {
+                            header: function ( data, columnIdx ) {
+
+                              console.log(data);
+
+                              if(columnIdx==0)
+                              {
+                                 return "Ref";
+                              }
+                              if(columnIdx==1)
+                              {
+                                 return "Customer Name";
+                              }
+                              if(columnIdx==2)
+                              {
+                                 return "Mobile";
+                              }
+
+                              if(columnIdx==3)
+                              {
+                                 return "Email";
+                              }
+                              if(columnIdx==4)
+                              {
+                                 return "Post Code";
+                              }
+                              if(columnIdx==5)
+                              {
+                                 return "Enquiry Come From";
+                              }
+
+                              if(columnIdx==6)
+                              {
+                                 return "Status";
+                              }
+
+                              if(columnIdx==7)
+                              {
+                                 return "Action";
+                              }
+
+
+                            }
+                        }
+                }
+             },
         ],
         processing: true,
        // serverSide: true,
