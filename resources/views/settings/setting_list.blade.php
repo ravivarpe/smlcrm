@@ -375,7 +375,7 @@
                                           </table>
                                     </div>
 
-                                    <!--Staff-->
+                                    {{-- <!--Staff-->
                                     <div class="tab-pane fade" id="staff" role="tabpanel" aria-labelledby="staff-tab">
                                        <table class="add_edit_table">
                                           <tbody><tr class="th">
@@ -405,7 +405,7 @@
                                           </tr>
                                           </tbody>
                                           </table>
-                                    </div>
+                                    </div> --}}
   
                                     <!--CompanyInf-->
                                     <div class="tab-pane fade" id="cominfo" role="tabpanel" aria-labelledby="info-tab">
@@ -765,7 +765,7 @@
                                        <!-- Text input-->
                                        <div class="col-md-12 form-group">
                                           <label class="control-label">Edit Referral Type</label>
-                                          <input type="text" placeholder="Type" class="form-control" name="name" required>
+                                          <input type="text" placeholder="Type" class="form-control" name="name" id="typename" required>
                                        </div>
                                     
                                        <div class="col-md-12 form-group user-form-group">
@@ -885,7 +885,7 @@
                                        <div class="col-md-12 form-group">
                                           <label class="control-label">Edit Material Category</label>
                                           <input type="text" placeholder="Category Name" class="form-control"
-                                          name="name" id="name" required>
+                                          name="name" id="materialname" required>
                                        </div>
                                     
                                        <div class="col-md-12 form-group user-form-group">
@@ -1124,7 +1124,7 @@
                                        <div class="col-md-12 form-group">
                                           <label class="control-label">Edit Job Category </label>
                                           <input type="text" placeholder="Category Name" class="form-control"
-                                          name="name" id="name" required>
+                                          name="name" id="jobname" required>
                                        </div>
                                     
                                        <div class="col-md-12 form-group user-form-group">
@@ -1243,7 +1243,7 @@
                                        <div class="col-md-12 form-group">
                                           <label class="control-label">Edit Calendar Category </label>
                                           <input type="text" placeholder="Category Name" class="form-control"
-                                          name="name" id="name" required>
+                                          name="name" id="calendarname" required>
                                        </div>
                                     
                                        <div class="col-md-12 form-group user-form-group">
@@ -1362,7 +1362,7 @@
                                        <div class="col-md-12 form-group">
                                           <label class="control-label">Edit Company Category </label>
                                           <input type="text" placeholder="Category Name" class="form-control"
-                                          name="name" id="name" required>
+                                          name="name" id="companyname" required>
                                        </div>
                                     
                                        <div class="col-md-12 form-group user-form-group">
@@ -1442,8 +1442,6 @@
         var d=data.id;
         $('#editForm').attr('action','{{url("edit-catcontact")}}/'+id);
         $('#name').val(data.name);
-        
- 
     });
     $('#editcategory').modal('show');
 });
@@ -1460,10 +1458,12 @@ $('.deletebtn').on('click',function(){
  $('.editsubbtn').on('click',function(){
     var id=$(this).attr('data-id');
     $.get("{{url('edit-subcatcontact')}}/"+id, function (data) {
-        console.log(data);
+       
         var d=data.id;
+        $('#sub_category_name').val(data.sub_category_name);
         $('#editSubform').attr('action','{{url("edit-subcatcontact")}}/'+id);
-        $('#sub_category_name').val(data.name);
+        
+      $('#category_id').val(data.category_id).trigger('change');
         
  
     });
@@ -1486,7 +1486,8 @@ $('.edittypebtn').on('click',function(){
         console.log(data);
         var d=data.id;
         $('#edittype').attr('action','{{url("edit-referraltype")}}/'+id);
-        $('#name').val(data.name);
+        $('#typename').val(data.name);
+        console.log(data.name)
         
  
     });
@@ -1508,7 +1509,7 @@ $('.editmatbtn').on('click',function(){
         console.log(data);
         var d=data.id;
         $('#editform').attr('action','{{url("edit-catmaterial")}}/'+id);
-        $('#name').val(data.name);
+        $('#materialname').val(data.name);
         
  
     });
@@ -1530,7 +1531,7 @@ $('.editinvbtn').on('click',function(){
         console.log(data);
         var d=data.id;
         $('#formedit').attr('action','{{url("edit-catinvoice")}}/'+id);
-        $('#type_name').val(data.name);
+        $('#type_name').val(data.type_name);
         
  
     });
@@ -1552,7 +1553,7 @@ $('.editcalbtn').on('click',function(){
         console.log(data);
         var d=data.id;
         $('#editcal').attr('action','{{url("edit-catcalendar")}}/'+id);
-        $('#name').val(data.name);
+        $('#calendarname').val(data.name);
         
  
     });
@@ -1574,7 +1575,7 @@ $('.editjobbtn').on('click',function(){
         console.log(data);
         var d=data.id;
         $('#Formedit').attr('action','{{url("edit-catjob")}}/'+id);
-        $('#name').val(data.name);
+        $('#jobname').val(data.name);
         
  
     });
@@ -1596,7 +1597,7 @@ $('.editcompbtn').on('click',function(){
         console.log(data);
         var d=data.id;
         $('#FormEdit').attr('action','{{url("edit-catcompany")}}/'+id);
-        $('#name').val(data.name);
+        $('#companyname').val(data.name);
         
  
     });

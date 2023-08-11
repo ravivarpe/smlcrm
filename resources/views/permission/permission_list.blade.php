@@ -217,7 +217,7 @@
         console.log(data);
         var d=data.id;
         $('#editForm').attr('action','{{url("edit-userpermission")}}/'+id);
-        $('#role_name').val(data.name);
+        $('#role_name').val(data.role_name);
         
  
     });
