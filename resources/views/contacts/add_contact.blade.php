@@ -59,7 +59,11 @@
                       <div class="form-group">
                          <label>Name</label>
                          <input type="text" class="form-control" name="name" placeholder="Enter Customer Name" required>
+                         @if ($errors->has('name'))
+                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('name') }}</div>
+                        @endif
                       </div>
+
                       <div class="form-group">
                         <label>Tags</label>
                         <input type="text" class="form-control" placeholder="Tags" name="tags">
@@ -72,28 +76,31 @@
                         <label>Phone/Mobile</label>
                         <div class="col-sm-12 px-0">
                         <input class="col-sm-5" type="number" class="form-control" placeholder="Enter Phone" name="contact_number" required>
+                        @if ($errors->has('contact_number'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('contact_number') }}</div>
+                       @endif
                         <input class="col-sm-5"  type="number" class="form-control" placeholder="Enter Mobile" name="mobile"></div>
                      </div>
                      <div class="form-group row mx-0">
                         <label>Email Id</label>
                         <div class="col-sm-12 px-0">
                         <input class="col-sm-5" type="email" class="form-control" placeholder="Enter email"  name="email1" required>
+                        @if ($errors->has('email1'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('email1') }}</div>
+                        @endif
                         <input class="col-sm-5"  type="email" class="form-control" placeholder="Enter email" name="email2"></div>
                      </div>
-
-
-
 
                      <div class="form-group">
                         <label>Referral Type</label>
                         <select class="form-control" name="referance_from">
-                           <option value="Online">Online</option>
-                           <option value="Offline">Offline</option>
-                           <option value="Magzines">Magzines</option>
-                           <option value="News Paper">News Paper</option>
-                           <option value="Social Media">Social Media</option>
+                           @foreach ($referraltypes as $referraltype)
+                             <option value="{{$referraltype->id}}">{{$referraltype->name}}</option>
+                           @endforeach
+                         
                         </select>
                      </div>
+
                      <div class="form-group">
                         <label>Social Id </label>
                            <div>

@@ -1,6 +1,13 @@
 @extends('includes.header')
 
 @section('content')
+
+<style>
+   .error{
+      color:red;
+   }
+</style>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -179,7 +186,7 @@
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
-            <form action="{{route('task.add')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('task.add')}}" method="post" enctype="multipart/form-data" id="addTaskForm">
                 @csrf
              <div class="row">
                 <div class="col-md-12">
@@ -188,23 +195,23 @@
                             <!-- Text input-->
                             <div class="col-md-12 form-group">
                                <label class="control-label">Task Name</label>
-                               <input type="text" placeholder="Task Name" name="task_name"class="form-control">
+                               <input type="text" placeholder="Task Name" name="task_name"class="form-control" required>
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">When to do it?</label>
-                               <input type="text" placeholder="dd-mm-yyyy"  name="start_date" class="form-control" id="start_date1">
+                               <input type="text" placeholder="dd-mm-yyyy"  name="start_date" class="form-control" id="start_date1" required>
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Add a deadline</label>
-                               <input type="text" placeholder="dd-mm-yyyy"  name="end_date" class="form-control" id="end_date1">
+                               <input type="text" placeholder="dd-mm-yyyy"  name="end_date" class="form-control" id="end_date1" required>
                             </div>
                             <div class="col-md-12 form-group">
                                <label class="control-label">Description</label>
-                               <textarea class="form-control" rows="3" placeholder="description"  name="discription" ></textarea>
+                               <textarea class="form-control" rows="3" placeholder="description"  name="discription" required></textarea>
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Responsible to</label>
-                               <select class="form-control"  multiple="" name="team_id">
+                               <select class="form-control"  multiple="" name="team_id" required>
                                 @foreach ($teams as $team)
                                      <option value="{{$team->id}}">{{$team->team_name}}</option>
                                   @endforeach
@@ -218,7 +225,7 @@
                             <!-- Text input-->
                             <div class="col-md-6 form-group">
                                <label class="control-label">Job Categories</label>
-                               <select class="form-control"  name="job_cat_id">
+                               <select class="form-control"  name="job_cat_id" required>
                                 @foreach ($jobcategories as $cat)
                                <option value="{{$cat->id}}">{{$cat->name}}</option>
                                 @endforeach
@@ -267,23 +274,23 @@
                             <!-- Text input-->
                             <div class="col-md-12 form-group">
                                <label class="control-label">Task Name</label>
-                               <input type="text" placeholder="Task Name" name="task_name"class="form-control" id="task_name">
+                               <input type="text" placeholder="Task Name" name="task_name"class="form-control" id="task_name" required>
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">When to do it?</label>
-                               <input type="text" placeholder="dd-mm-yyyy"  name="start_date" class="form-control" id="start_date">
+                               <input type="text" placeholder="dd-mm-yyyy"  name="start_date" class="form-control" id="start_date" required>
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Add a deadline</label>
-                               <input type="text" placeholder="dd-mm-yyyy"  name="end_date" class="form-control" id="end_date">
+                               <input type="text" placeholder="dd-mm-yyyy"  name="end_date" class="form-control" id="end_date" required>
                             </div>
                             <div class="col-md-12 form-group">
                                <label class="control-label">Description</label>
-                               <textarea class="form-control" rows="3" placeholder="description"  name="discription" id="discription"></textarea>
+                               <textarea class="form-control" rows="3" placeholder="description"  name="discription" id="discription" required></textarea>
                             </div>
                             <div class="col-md-6 form-group">
                                <label class="control-label">Responsible to</label>
-                               <select class="form-control"  multiple="" name="team_id" id="team_id">
+                               <select class="form-control"  multiple="" name="team_id" id="team_id" required>
                                 @foreach ($teams as $team)
                                      <option value="{{$team->id}}">{{$team->team_name}}</option>
                                   @endforeach
@@ -297,7 +304,7 @@
                             <!-- Text input-->
                             <div class="col-md-6 form-group">
                                <label class="control-label">Job Categories</label>
-                               <select class="form-control"  name="job_cat_id" id="job_cat_id">
+                               <select class="form-control"  name="job_cat_id" id="job_cat_id" required>
                                 @foreach ($jobcategories as $cat)
                                <option value="{{$cat->id}}">{{$cat->name}}</option>
                                 @endforeach
@@ -444,6 +451,9 @@
         $('#start_date1').datepicker({
         format: "dd-mm-yyyy",
       });
+
+      $("#addTaskForm").validate();
+      $("#task_name").validate();
 
     });
  </script>

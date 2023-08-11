@@ -19,6 +19,7 @@ use App\Models\Team;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\EnquiryNote;
+use App\Models\ReferralType;
 
 
 class EnquiryController extends Controller
@@ -52,6 +53,7 @@ class EnquiryController extends Controller
             'name' =>'required',
             'email' =>'required|email',
             'phone' =>'required |numeric|min:11',
+            'post_code'=>'required |numeric',
 
              ]);
          $data=$request->except('_token');
@@ -61,7 +63,7 @@ class EnquiryController extends Controller
 
     public function editEnquiry($id)
     {
-        $companies=Company::all();
+        $companies=Company::all(); 
         $enquiry=Enquiry::with(['company'])->where('id',$id)->first();
         return view('enquiries.edit_enquiry',['companies'=>$companies,'enquiry'=>$enquiry]);
     }
@@ -72,6 +74,7 @@ class EnquiryController extends Controller
             'name' =>'required',
             'email' =>'required|email',
             'phone' =>'required |numeric|min:11',
+            'post_code'=>'required |numeric',
 
              ]);
          $data=$request->except('_token');
@@ -108,6 +111,7 @@ class EnquiryController extends Controller
         $companies=Company::all();
         $categories=Category::all();
         $subcategories=SubCategory::all();
+       
         return view('enquiries.add_contact_enq',['companies'=>$companies,'categories'=>$categories,'subcategories'=>$subcategories,'enquiry'=>$enquiry]);
 
     }

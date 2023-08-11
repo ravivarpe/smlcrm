@@ -51,10 +51,16 @@
                       <div class="form-group">
                          <label>Name</label>
                          <input type="text" class="form-control" name="name" placeholder="Enter Customer Name" required>
+                         @if ($errors->has('name'))
+                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('name') }}</div>
+                        @endif
                       </div>
                       <div class="form-group">
                          <label>Phone</label>
-                         <input type="text" class="form-control"  name="phone" placeholder="Phone No" >
+                         <input type="text" class="form-control"  name="phone" placeholder="Phone No" required>
+                         @if ($errors->has('phone'))
+                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('phone') }}</div>
+                        @endif
                       </div>
 
 
@@ -62,23 +68,28 @@
                          <label>Email Id</label>
                          <div class="col-sm-12 px-0">
                          <input class="col-sm-5" type="email" name="email" class="form-control" placeholder="Enter email" required>
-
+                         @if ($errors->has('email'))
+                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('email') }}</div>
+                        @endif
                       </div>
                     </div>
                       <div class="form-group">
                         <label>Postal Code</label>
                         <input type="text" class="form-control" name="post_code" placeholder="Enter Post Code" required>
+                        @if ($errors->has('post_code'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('post_code') }}</div>
+                       @endif
                      </div>
+
                      <div class="form-group">
                         <label>Enquiry From</label>
-
                         <select class="form-control" name="enquiry_form" required>
-                            <option value="Online">Online</option>
-                            <option value="Offline">Offline</option>
-                            <option value="Magzines">Magzines</option>
-                            <option value="News Paper">News Paper</option>
-                            <option value="Social Media">Social Media</option>
-                            <option value="Website">Website</option>
+                           <option value="Online">Online</option>
+                           <option value="Offline">Offline</option>
+                           <option value="Magzines">Magzines</option>
+                           <option value="News Paper">News Paper</option>
+                           <option value="Social Media">Social Media</option>
+                           <option value="Website">Website</option>
                          </select>
                     </div>
 

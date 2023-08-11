@@ -2,6 +2,12 @@
 
 @section('content')
 
+<style>
+   .error{
+      color:red;
+   }
+</style>
+
          <!-- Content Wrapper. Contains page content -->
          <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -123,30 +129,33 @@
                         <div class="modal-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 <form class="form-horizontal" action="{{route('team.add')}}" method="post">
+                                 <form class="form-horizontal" action="{{route('team.add')}}" method="post" id="addTeamForm">
                                     @csrf
                                     <div class="row">
                                           <!-- Text input-->
                                           <div class="col-md-6 form-group">
                                              <label class="control-label">Team Name:</label>
                                              <input type="text" placeholder="Customer Name" class="form-control" name="team_name" required>
+                                            
                                           </div>
                                           <div class="col-md-6 form-group">
                                              <label class="control-label">Email Id:</label>
-                                             <input type="email" placeholder="email id" class="form-control" name="email_id">
+                                             <input type="email" placeholder="email id" class="form-control" name="email_id" required>
+                                             
                                           </div>
                                           <div class="col-md-6 form-group">
                                              <label class="control-label">Colour Code</label>
-                                             <input type="color" placeholder="Colour Code" class="form-control"  name="colour_code">
+                                             <input type="color" placeholder="Colour Code" class="form-control"  name="colour_code" required>
                                           </div>
                                           <div class="col-md-6 form-group">
                                              <label class="control-label">Description</label>
-                                             <input type="text" placeholder="Description" class="form-control" name="discription">
+                                             <input type="text" placeholder="Description" class="form-control" name="discription" required> 
                                           </div>
                                           <!-- Text input-->
                                           <div class="col-md-6 form-group">
                                              <label class="control-label">Created Date</label>
-                                             <input type="text" placeholder="dd-mm-yyyy" class="form-control" name="added_date" id="added_date1">
+                                             <input type="text" placeholder="dd-mm-yyyy" class="form-control" name="added_date" id="added_date1" required>
+                                            
                                           </div>
                                           <div class="col-md-6 form-group">
                                              <label class="control-label">Status</label>
@@ -202,7 +211,7 @@
                                             </div>
                                             <div class="col-md-6 form-group">
                                                <label class="control-label">Email Id:</label>
-                                               <input type="email" placeholder="email id" class="form-control" name="email_id" id="email_id">
+                                               <input type="email" placeholder="email id" class="form-control" name="email_id" id="email_id" required>
                                             </div>
                                             <div class="col-md-6 form-group">
                                                <label class="control-label">Colour Code</label>
@@ -210,12 +219,12 @@
                                             </div>
                                             <div class="col-md-6 form-group">
                                                <label class="control-label">Description</label>
-                                               <input type="text" placeholder="Description" class="form-control" name="discription" id="discription">
+                                               <input type="text" placeholder="Description" class="form-control" name="discription" id="discription" required>
                                             </div>
                                             <!-- Text input-->
                                             <div class="col-md-6 form-group">
                                                <label class="control-label">Created Date</label>
-                                               <input type="text" placeholder="dd-mm-yyyy" class="form-control" name="added_date" id="added_date">
+                                               <input type="text" placeholder="dd-mm-yyyy" class="form-control" name="added_date" id="added_date" required>
                                             </div>
                                             <div class="col-md-6 form-group">
                                                <label class="control-label">Status</label>
@@ -297,6 +306,8 @@
 
  @section('footer_scripts')
  <script>
+
+  
     $(document).ready(function(){
 
         $('.editbtn').on('click',function(){
@@ -362,6 +373,9 @@ $('#added_date').datepicker({
         format: "dd-mm-yyyy",
       });
 
+
+      $("#addTeamForm").validate();
+      $("#editForm").validate();
 
     });
  </script>

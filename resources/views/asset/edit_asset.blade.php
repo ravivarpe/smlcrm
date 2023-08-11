@@ -40,6 +40,9 @@
                                 <option value="{{$company->id}}" @if($asset->company_id==$company->id) {{'selected'}}@endif>{{$company->name}}</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('company_id'))
+                            <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('company_id') }}</div>
+                            @endif
                         </div>
 
                        <div class="form-group col-sm-4">
@@ -49,6 +52,9 @@
                                 <option value="{{$category->id}}"  @if($asset->category_id==$category->id) {{'selected'}}@endif>{{$category->name}}</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('category_id'))
+                            <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('category_id') }}</div>
+                            @endif
                         </div>
 
                         <div class="form-group col-sm-4">
@@ -58,6 +64,9 @@
                                 <option value="{{$sub_cat->id}}"  @if($asset->subcat_id==$sub_cat->id) {{'selected'}}@endif>{{$sub_cat->name}}</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('subcat_id'))
+                            <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('subcat_id') }}</div>
+                            @endif
                         </div>
                         </div>
 
@@ -65,23 +74,35 @@
                             <label>Asset Type</label>
                             <input type="text" class="form-control"
                             name="asset_type" placeholder="Asset Type" value="{{$asset->asset_type}}">
+                            @if ($errors->has('asset_type'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('asset_type') }}</div>
+                        @endif
                         </div>
 
                         <div class="form-group">
                             <label>Asset Name</label>
                             <input type="text" class="form-control"
                             name="asset_name" placeholder="Asset Name" value="{{$asset->asset_name}}" required>
+                            @if ($errors->has('asset_nmae'))
+                            <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('asset_name') }}</div>
+                            @endif
                         </div>
 
                         <div class="form-group">
                         <label>Asset value</label>
                         <input type="number" class="form-control"
                         name="asset_value" placeholder="Asset Value £" value="{{$asset->asset_value}}" required>
+                        @if ($errors->has('asset_value'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('asset_value') }}</div>
+                        @endif
                         </div>
 
                         <div class="form-group">
                             <label>Purchase Date</label>
                             <input id='purchase_date' type="text" class="form-control" name="purchase_date" placeholder="Purchase Date..." value="{{$asset->purchase_date}}">
+                            @if ($errors->has('purchase_date'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('purchase_date') }}</div>
+                        @endif
                         </div>
 
                         <div class="form-group">
@@ -111,6 +132,9 @@
                         <div class="form-group">
                             <label>Service Date</label>
                             <input id='service_date' type="text" class="form-control" name="service_date" placeholder="Service Date..." value="{{$asset->service_date}}">
+                            @if ($errors->has('service_date'))
+                            <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('service_date') }}</div>
+                            @endif
                         </div>
 
                     <div class="form-group">

@@ -49,6 +49,9 @@
                       <div class="form-group">
                          <label>Job Title</label>
                          <input type="text" class="form-control" placeholder="Job Title" name="job_title" required>
+                         @if ($errors->has('job_title'))
+                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('job_title') }}</div>
+                         @endif
                       </div>
                       <div class="form-group">
                         <label>Tags</label>

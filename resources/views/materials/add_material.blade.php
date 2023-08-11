@@ -57,45 +57,70 @@
                       <div class="form-group">
                          <label>Material Name</label>
                          <input type="text" class="form-control" placeholder="Enter Material Name" name="title" required>
+                         @if ($errors->has('title'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('title') }}</div>
+                        @endif
                       </div>
+
                       <div class="form-group">
                          <label>Tags</label>
                          <input type="text" class="form-control" placeholder="Tags" name="tags">
                       </div>
+
                       <div class="form-group row mx-0">
                         <label>Non-Consumable</label>
                         <div class="col-sm-12 px-0">
                            <label class="checkbox-inline">
-                               <input type="checkbox" id="inlineCheckbox1" name="non_consumable"  value="1" checked> Yes
+                               <input type="checkbox" id="inlineCheckbox1" name="non_consumable" value="1" checked> Yes
                              </label>
 
                              <label class="checkbox-inline">
                                <input type="checkbox" id="inlineCheckbox2" name="non_consumable" value="2"> No
                              </label></div>
                      </div>
+
                       <div class="form-group">
                          <label>Material Description</label>
                          <textarea class="form-control" rows="3" placeholder="description" name="descriptions"></textarea>
                       </div>
+
                       <div class="form-group row mx-0">
                          <label>Quantity</label>
                          <div class="col-sm-12 px-0">
-                         <input class="col-sm-5" type="number" class="form-control" placeholder="Quantity" name="quantity" required></div>
+                         <input class="col-sm-5" type="number" class="form-control" placeholder="Quantity" name="quantity" required>
+                         @if ($errors->has('quantity'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('quantity') }}</div>
+                        @endif
+                        </div>
                       </div>
+
                       <div class="form-group row mx-0">
                         <label>Minimum Quantity</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="number" class="form-control" name="minimum_quntity" placeholder="Minimum Quantity" required></div>
+                        <input class="col-sm-5" type="number" class="form-control" name="minimum_quntity" placeholder="Minimum Quantity" required>
+                        @if ($errors->has('minimum_quntity'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('minimum_quntity') }}</div>
+                        @endif
                      </div>
+                     </div>
+
                      <div class="form-group row mx-0">
                         <label>Purchase Price</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="number" class="form-control" name="purchase_price" placeholder="Purchase Price £" required></div>
+                        <input class="col-sm-5" type="number" class="form-control" name="purchase_price" placeholder="Purchase Price £" required>
+                        @if ($errors->has('purchase_price'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('purchase_price') }}</div>
+                        @endif
+                     </div>
                      </div>
                      <div class="form-group row mx-0">
                        <label>Sale Price</label>
                        <div class="col-sm-12 px-0">
-                       <input class="col-sm-5" type="number" class="form-control" name="sale_price" placeholder="Sale Price £" required></div>
+                       <input class="col-sm-5" type="number" class="form-control" name="sale_price" placeholder="Sale Price £" required>
+                       @if ($errors->has('sale_price'))
+                       <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('sale_price') }}</div>
+                       @endif
+                     </div>
                     </div>
                     <div class="form-group row mx-0">
                         <label>Purchase Vat</label>

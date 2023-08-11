@@ -60,7 +60,10 @@
                       </div>
                       <div class="form-group">
                          <label>Material Name</label>
-                         <input type="text" class="form-control" placeholder="Enter Material Name" name="title"  value="{{$material->title}}" required>
+                         <input type="text" class="form-control" placeholder="Enter Material Name" name="title" value="{{$material->title}}" required>
+                         @if ($errors->has('title'))
+                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('title') }}</div>
+                         @endif
                       </div>
                       <div class="form-group">
                          <label>Tags</label>
@@ -88,17 +91,31 @@
                       <div class="form-group row mx-0">
                          <label>Quantity</label>
                          <div class="col-sm-12 px-0">
-                         <input class="col-sm-5" type="number" class="form-control" placeholder="Quantity" name="quantity" value="{{$material->quantity}}" required></div>
+                         <input class="col-sm-5" type="number" class="form-control" placeholder="Quantity" name="quantity" value="{{$material->quantity}}" required>  
+                         @if ($errors->has('quantity'))
+                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('quantity') }}</div>
+                         @endif
+                        </div>
                       </div>
+
                       <div class="form-group row mx-0">
                         <label>Minimum Quantity</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="number" class="form-control" name="minimum_quntity" placeholder="Minimum Quantity" value="{{$material->minimum_quntity}}" required></div>
+                        <input class="col-sm-5" type="number" class="form-control" name="minimum_quntity" placeholder="Minimum Quantity" value="{{$material->minimum_quntity}}" required>  
+                        @if ($errors->has('minimum_quntity'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('minimum_quntity') }}</div>
+                        @endif
                      </div>
+                     </div>
+
                      <div class="form-group row mx-0">
                         <label>Purchase Price</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="number" class="form-control" name="purchase_price" placeholder="Purchase Price £" value="{{$material->purchase_price}}" required></div>
+                        <input class="col-sm-5" type="number" class="form-control" name="purchase_price" placeholder="Purchase Price £" value="{{$material->purchase_price}}" required>
+                        @if ($errors->has('purchase_price'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('purchase_price') }}</div>
+                        @endif
+                     </div>
                      </div>
                      <div class="form-group row mx-0">
                        <label>Sale Price</label>

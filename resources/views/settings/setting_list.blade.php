@@ -3,6 +3,12 @@
 
 @section('content')
 
+<style>
+   .error{
+      color:red;
+   }
+</style>
+
  <!-- =============================================== -->
          <!-- Content Wrapper. Contains page content -->
          <div class="content-wrapper">
@@ -536,7 +542,7 @@
                         <div class="modal-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 <form  action="{{route('catcontact.add')}}" method="Post">
+                                 <form  action="{{route('catcontact.add')}}" method="Post" id="addContCat">
                                     @csrf
                                     <div class="row">
                                        <!-- Text input-->
@@ -578,7 +584,7 @@
                         <div class="modal-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 <form  action="{{route('subcatcontact.add')}}" method="Post">
+                                 <form  action="{{route('subcatcontact.add')}}" method="Post" id="addSubCat">
                                     @csrf
                                     <div class="row">
                                        <!-- Text input-->
@@ -719,7 +725,7 @@
                         <div class="modal-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 <form  action="{{route('referraltype.add')}}" method="Post">
+                                 <form  action="{{route('referraltype.add')}}" method="Post" id="addType">
                                     @csrf
                                     <div class="row">
                                        <!-- Text input-->
@@ -838,7 +844,7 @@
                         <div class="modal-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 <form  action="{{route('catmaterial.add')}}" method="Post">
+                                 <form  action="{{route('catmaterial.add')}}" method="Post" id="addMaterial">
                                     @csrf
                                     <div class="row">
                                        <!-- Text input-->
@@ -958,7 +964,7 @@
                         <div class="modal-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 <form  action="{{route('catinvoice.add')}}" method="Post">
+                                 <form  action="{{route('catinvoice.add')}}" method="Post" id="addInvoice">
                                     @csrf
                                     <div class="row">
                                        <!-- Text input-->
@@ -1077,7 +1083,7 @@
                         <div class="modal-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 <form  action="{{route('catjob.add')}}" method="Post">
+                                 <form  action="{{route('catjob.add')}}" method="Post" id="addJob">
                                     @csrf
                                     <div class="row">
                                        <!-- Text input-->
@@ -1196,7 +1202,7 @@
                         <div class="modal-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 <form  action="{{route('catcalendar.add')}}" method="Post">
+                                 <form  action="{{route('catcalendar.add')}}" method="Post" id="addCalendar">
                                     @csrf
                                     <div class="row">
                                        <!-- Text input-->
@@ -1315,7 +1321,7 @@
                         <div class="modal-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 <form  action="{{route('catcompany.add')}}" method="Post">
+                                 <form  action="{{route('catcompany.add')}}" method="Post" id="addCompany">
                                     @csrf
                                     <div class="row">
                                        <!-- Text input-->
@@ -1452,6 +1458,9 @@ $('.deletebtn').on('click',function(){
     $('#category_id').attr('value',id);
     $('#deletecategory').modal('show');
 
+    $("#addContCat").validate(); 
+    $("#editForm").validate(); 
+
 });
 
  //ContactSub-Cat
@@ -1475,6 +1484,9 @@ $('.deletesubbtn').on('click',function(){
     var id=$(this).attr('data-id');
     $('#sub_category_id').attr('value',id);
     $('#deletesubcategory').modal('show');
+
+    $("#addSubCat").validate(); 
+    $("#editSubform").validate(); 
 
 });
 
@@ -1500,6 +1512,9 @@ $('.deletetypebtn').on('click',function(){
     $('#referral_id').attr('value',id);
     $('#deletereferraltype').modal('show');
 
+    $("#addType").validate(); 
+    $("#edittype").validate(); 
+
 });
 
 //MaterialCat
@@ -1509,9 +1524,7 @@ $('.editmatbtn').on('click',function(){
         console.log(data);
         var d=data.id;
         $('#editform').attr('action','{{url("edit-catmaterial")}}/'+id);
-        $('#materialname').val(data.name);
-        
- 
+        $('#materialname').val(data.name); 
     });
     $('#editmaterialcat').modal('show');
 });
@@ -1521,6 +1534,9 @@ $('.deletematbtn').on('click',function(){
     var id=$(this).attr('data-id');
     $('#mcategory_id').attr('value',id);
     $('#deletematerialcat').modal('show');
+
+    $("#addMaterial").validate(); 
+    $("#editform").validate();
 
 });
 
@@ -1532,8 +1548,6 @@ $('.editinvbtn').on('click',function(){
         var d=data.id;
         $('#formedit').attr('action','{{url("edit-catinvoice")}}/'+id);
         $('#type_name').val(data.type_name);
-        
- 
     });
     $('#editinvoicecat').modal('show');
 });
@@ -1543,6 +1557,9 @@ $('.deleteinvbtn').on('click',function(){
     var id=$(this).attr('data-id');
     $('#type_id').attr('value',id);
     $('#deleteinvoicecat').modal('show');
+
+    $("#addInvoice").validate(); 
+    $("#formedit").validate();
 
 });
 
@@ -1554,8 +1571,7 @@ $('.editcalbtn').on('click',function(){
         var d=data.id;
         $('#editcal').attr('action','{{url("edit-catcalendar")}}/'+id);
         $('#calendarname').val(data.name);
-        
- 
+   
     });
     $('#editcalendarcat').modal('show');
 });
@@ -1565,6 +1581,9 @@ $('.deletecalbtn').on('click',function(){
     var id=$(this).attr('data-id');
     $('#calendar_id').attr('value',id);
     $('#deletecalendarcat').modal('show');
+
+    $("#addCalendar").validate(); 
+    $("#editcal").validate();
 
 });
 
@@ -1588,6 +1607,10 @@ $('.deletejobbtn').on('click',function(){
     $('#job_cat_id').attr('value',id);
     $('#deletejobcat').modal('show');
 
+    $("#addJob").validate(); 
+    $("#Formedit").validate();
+
+
 });
 
 //CompanyCat
@@ -1610,6 +1633,8 @@ $('.deletecompbtn').on('click',function(){
     $('#id').attr('value',id);
     $('#deletecompanycat').modal('show');
 
+    $("#addCompany").validate(); 
+    $("#FormEdit").validate();
 });
 
 });

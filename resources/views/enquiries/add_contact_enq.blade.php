@@ -94,6 +94,7 @@
                            <option value="Magzines">Magzines</option>
                            <option value="News Paper">News Paper</option>
                            <option value="Social Media">Social Media</option>
+                           <option value="Website">Website</option>
                         </select>
                      </div>
                      <div class="form-group">

@@ -14,6 +14,7 @@ class TeamController extends Controller
 
     public function addTeamSubmit(Request $request)
     {
+       
         $data=$request->except('_token');
         $data['added_date']=date('Y-m-d',strtotime($data['added_date']));
         $team=Team::create($data);
@@ -31,7 +32,10 @@ class TeamController extends Controller
        return response()->json($team);
     }
 
-    public function editTeamSubmit(Request $request,$id){
+    public function editTeamSubmit(Request $request,$id)
+    {
+      
+
         $data=$request->except('_token');
         $data['added_date']=date('Y-m-d',strtotime($data['added_date']));
         Team::where('id',$id)->update($data);

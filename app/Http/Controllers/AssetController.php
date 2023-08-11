@@ -77,14 +77,14 @@ class AssetController extends Controller
     public function editAssetSubmit(Request $request,$id)
     {
         $request->validate([
-            'category_id'          => 'required',
-            'subcat_id'          => 'required',
-            'company_id'          => 'required',
-            'asset_type'          => 'required',
-            'asset_name'          => 'required',
-            'asset_value'         => 'required',
-            'purchase_date'       => 'required',           
-            'service_date'        => 'required',
+            'category_id' => 'required',
+            'subcat_id'   => 'required',
+            'company_id'   => 'required',
+            'asset_type'   => 'required',
+            'asset_name'   => 'required',
+            'asset_value'  => 'required',
+            'purchase_date' => 'required',           
+            'service_date'  => 'required',
          
         ]);
 

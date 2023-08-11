@@ -34,6 +34,20 @@ class UserController extends Controller
 
     public function addUserSubmit(Request $request)
     {
+        $request->validate([
+            'staff_name' =>'required',
+            'email1' =>'required|email',
+            'phone' =>'required |numeric',
+            'licence_id' =>'required',
+            'color_code' =>'required',
+            'team_id' =>'required',
+            'added_date'=>'required',
+            'color_code'=>'required',
+            'line1'=>'required',
+            'pincode'=>'required',
+
+            ]);
+
         $data=$request->except('_token');
         $data['password'] = Hash::make($request->password);
         $data['expiration_date']=date('Y-m-d',strtotime($data['expiration_date']));
@@ -71,7 +85,22 @@ class UserController extends Controller
         return view('staff.edit_staff',['teams'=>$teams,'roles'=>$roles,'companies'=>$companies,'categories'=>$categories,'subcategories'=>$subcategories,'user'=>$user]);
     }
 
-    public function editUserSubmit(Request $request,$id){
+    public function editUserSubmit(Request $request,$id)
+    {
+        $request->validate([
+            'staff_name' =>'required',
+            'email1' =>'required|email',
+            'phone' =>'required |numeric',
+            'licence_id' =>'required',
+            'color_code' =>'required',
+            'team_id' =>'required',
+            'added_date'=>'required',
+            'color_code'=>'required',
+            'line1'=>'required',
+            'pincode'=>'required',
+
+            ]);
+
         $data=$request->except('_token');
         unset($data['confirm_pass']);
         $data['password'] = Hash::make($request->password);

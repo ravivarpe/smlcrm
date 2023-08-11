@@ -8,6 +8,8 @@
 
 <!-- jQuery -->
 <script src="{{url('assets/plugins/jQuery/jquery-1.12.4.min.js')}}" ></script>
+<!-- jQueryValidate -->
+<script src="{{url('assets/dist/js/jquery.validate.js')}}" ></script>
 <!-- Bootstrap proper -->
 <script src="{{url('assets/bootstrap/js/popper.min.js')}}" ></script>
 <!-- lobicard ui min js -->

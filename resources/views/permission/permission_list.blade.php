@@ -1,6 +1,12 @@
 @extends('includes.header')
 @section('content')
 
+<style>
+   .error{
+      color:red;
+   }
+</style>
+
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -171,7 +177,7 @@
                 <div class="modal-body">
                    <div class="row">
                      <div class="col-md-12">
-                        <form action="{{route('userpermission.add')}}" method="Post">
+                        <form action="{{route('userpermission.add')}}" method="Post" id="addPermissionForm">
                            @csrf
                            <div class="row">
                               <!-- Text input-->
@@ -231,6 +237,10 @@ $('.deletebtn').on('click',function(){
     $('#deletepermission').modal('show');
 
 });
+
+   $("#addPermissionForm").validate();editForm
+   $("#editForm").validate();
+
 });
     
 

@@ -61,6 +61,8 @@ class MaterialController extends Controller
     {
         $request->validate([
             'title' =>'required',
+            'quantity' =>'required|numeric',
+            'minimum_quntity' =>'required|numeric',
             'purchase_price' =>'required|numeric',
             'sale_price' =>'required |numeric',
              ]);
@@ -83,6 +85,8 @@ class MaterialController extends Controller
     {
         $request->validate([
             'title' =>'required',
+            'quantity' =>'required|numeric',
+            'minimum_quntity' =>'required|numeric',
             'purchase_price' =>'required|numeric',
             'sale_price' =>'required |numeric',
              ]);

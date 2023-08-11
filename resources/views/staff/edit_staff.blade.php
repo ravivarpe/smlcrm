@@ -75,16 +75,25 @@
                       <div class="form-group">
                          <label>Staff Name</label>
                          <input type="text" class="form-control" name="staff_name" placeholder="Enter Staff Name" value="{{$user->staff_name}}" required>
+                         @if ($errors->has('staff_name'))
+                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('staff_name') }}</div>
+                         @endif
                       </div>
                       <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" placeholder="Email" name="email"  value="{{$user->email}}" required>
+                        @if ($errors->has('email'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('email') }}</div>
+                        @endif
                      </div>
 
                      <div class="form-group row mx-0">
                         <label>Phone</label>
                         <div class="col-sm-12 px-0">
                         <input class="col-sm-5" type="number" class="form-control" placeholder="Enter Phone No" name="phone" value="{{$user->phone}}" required>
+                        @if ($errors->has('phone'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('phone') }}</div>
+                        @endif
                         </div>
                      </div>
 
@@ -113,6 +122,9 @@
                            <input type="text" name="line1" placeholder="Address" @if ($user->address!=null)
 
                             value="{{$user->address->line1}}"  @endif id="line1"  required>
+                            @if ($errors->has('line1'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('line1') }}</div>
+                        @endif
                            <input type="text" name="line2" placeholder="Address 2"  id="line2"  @if ($user->address!=null)
 
                            value="{{$user->address->line2}}"  @endif>
@@ -133,6 +145,9 @@
                            <input type="text" name="pincode" placeholder="Postcode/Zip"  id="zip"  @if ($user->address!=null)
 
                            value="{{$user->address->pincode}}"  @endif required>
+                           @if ($errors->has('pincode'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('pincode') }}</div>
+                        @endif
                            {{-- <a href="#" id="postcode_lookup">Find address</a> --}}
                            </div>
 
@@ -141,7 +156,10 @@
                      <div class="form-group row mx-0">
                         <label>Licence ID</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="text" class="form-control" placeholder="Enter Licence ID"  name="licence_id" value="{{$user->licence_id}}" >
+                        <input class="col-sm-5" type="text" class="form-control" placeholder="Enter Licence ID"  name="licence_id" value="{{$user->licence_id}}" required>
+                        @if ($errors->has('licence_id'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('licence_id') }}</div>
+                        @endif
                        </div>
                      </div>
 
@@ -187,6 +205,9 @@
                      <div class="form-group">
                         <label>Color Code</label>
                         <input id='color_code' type="color" class="form-control" placeholder="Enter color Code" name="color_code" value="{{$user->color_code}}" required>
+                        @if ($errors->has('color_code'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('color_code') }}</div>
+                        @endif
                      </div>
 
 
@@ -203,6 +224,9 @@
                                @endforeach
 
                             </select>
+                            @if ($errors->has('team_id'))
+                            <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('team_id') }}</div>
+                            @endif
                          </div>
 
 
@@ -220,6 +244,9 @@
                      <div class="form-group">
                         <label>Created Date</label>
                         <input type="text" class="form-control" placeholder="Created Date" name="added_date" id="added_date" value="{{$user->added_date}}" required>
+                        @if ($errors->has('added_date'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('added_date') }}</div>
+                        @endif
                      </div>
                      <div class="form-group">
                         <label>Picture Photo</label>

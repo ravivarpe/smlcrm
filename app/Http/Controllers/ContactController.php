@@ -20,6 +20,7 @@ use App\Models\Contact;
 use App\Models\ContactNote;
 use App\Models\Team;
 use App\Models\JobCategories;
+use App\Models\ReferralType;
 use App\Models\Task;
 
 
@@ -56,7 +57,8 @@ class ContactController extends Controller
         $companies=Company::all();
         $categories=Category::all();
         $subcategories=SubCategory::all();
-        return view('contacts.add_contact',['companies'=>$companies,'categories'=>$categories,'subcategories'=>$subcategories]);
+        $referraltypes=ReferralType::all();
+        return view('contacts.add_contact',['companies'=>$companies,'categories'=>$categories,'subcategories'=>$subcategories, 'referraltypes'=>$referraltypes]);
     }
 
     public function addContactSubmit(Request $request)
@@ -65,7 +67,7 @@ class ContactController extends Controller
             'name' =>'required',
             'email1' =>'required|email',
             'contact_number' =>'required |numeric',
-             ]);
+            ]);
          $data=$request->except('_token');
          $data['dob']=date('Y-m-d',strtotime($request->dob));
          $contact=Contact::create($data);
@@ -80,8 +82,9 @@ class ContactController extends Controller
         $companies=Company::all();
         $categories=Category::all();
         $subcategories=SubCategory::all();
+        $referraltypes=ReferralType::all();
         $contact=Contact::with(['company','category','address'])->where('id',$id)->first();
-        return view('contacts.edit_contact',['companies'=>$companies,'contact'=>$contact,'categories'=>$categories,'subcategories'=>$subcategories]);
+        return view('contacts.edit_contact',['companies'=>$companies,'contact'=>$contact,'categories'=>$categories,'subcategories'=>$subcategories, 'referraltypes'=>$referraltypes]);
     }
 
     public function editContactSubmit(Request $request,$id)
