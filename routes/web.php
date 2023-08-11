@@ -14,6 +14,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\AssetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,6 +88,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('delete-invoice/{id}',[InvoiceController::class,'deleteInvoice'])->name('invoice.delete');
     Route::get('search-contact',[InvoiceController::class,'getContact'])->name('invoice.contact');
     Route::get('search-material',[InvoiceController::class,'getMaterial'])->name('invoice.material');
+
+    //asset
+    Route::get('asset',[AssetController::class,'index'])->name('asset.list');
+    Route::get('create-asset',[AssetController::class,'addAsset'])->name('asset.add');
+    Route::post('create-asset',[AssetController::class,'addAssetSubmit'])->name('asset.add');
+    Route::get('edit-asset/{id}',[AssetController::class,'editAsset'])->name('asset.edit');
+    Route::post('edit-asset/{id}',[AssetController::class,'editAssetSubmit'])->name('asset.edit');
+    Route::post('delete-asset',[AssetController::class,'deleteAsset'])->name('asset.delete');
+    
 
    //Tasks
    Route::get('tasks',[TaskController::class,'index'])->name('task.list');

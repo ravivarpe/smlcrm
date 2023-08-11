@@ -646,7 +646,8 @@
 
                                        <div class="col-md-12 form-group">
                                           <label class="control-label">Edit Sub-Category</label>
-                                          <input type="text" placeholder="Sub-Category Name" class="form-control" name="sub_category_name" required>
+                                          <input type="text" placeholder="Sub-Category Name" class="form-control" name="sub_category_name
+                                          " id="sub_category_name" required>
                                        </div>
                                     
                                        <div class="col-md-12 form-group user-form-group">

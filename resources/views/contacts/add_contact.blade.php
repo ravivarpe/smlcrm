@@ -39,14 +39,14 @@
 
                          </select>
                       </div>
-                      <div class="form-group col-sm-5">
-                         <label>Customer Category</label>
-                         <select class="form-control" name="category_id">
-                            @foreach ($categories as $category)
-                               <option value="{{$category->id}}">{{$category->name}}</option>
+                     <div class="form-group col-sm-5">
+                        <label>Customer Category</label>
+                        <select class="form-control" name="category_id">
+                           @foreach ($categories as $category)
+                              <option value="{{$category->id}}">{{$category->name}}</option>
                            @endforeach
-                         </select>
-                      </div>
+                        </select>
+                     </div>
                       <div class="form-group col-sm-5">
                         <label>Customer Sub Category</label>
                         <select class="form-control" name="sub_category_id">
