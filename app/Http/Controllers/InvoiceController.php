@@ -75,4 +75,10 @@ class InvoiceController extends Controller
 
     }
 
+
+    public function viewJobPack()
+    {
+      return view('invoice.view_job_packdetails');
+    }
+
 }

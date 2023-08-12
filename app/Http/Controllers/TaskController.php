@@ -34,7 +34,7 @@ class TaskController extends Controller
         $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
         $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
         $task=Task::create($data);
-        $teams=Team::create($data);
+        
         return redirect('tasks')->with('success','Task added successfully!');
     }
 

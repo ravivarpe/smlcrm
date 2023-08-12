@@ -65,7 +65,7 @@
                                         <tr>
                                            <td>
                                                @if ($user->profile_image!=null)
-                                                <img src="{{URL::asset('/public/uploads/profiles/'.$user->profile_image)}}" class="img-circle" alt="User Image" width="50" height="50">
+                                                <img src="{{URL::asset('/uploads/profiles/'.$user->profile_image)}}" class="img-circle" alt="User Image" width="50" height="50">
 
                                                @else
                                                  <img src="assets/dist/img/m1.png" class="img-circle" alt="User Image" width="50" height="50">

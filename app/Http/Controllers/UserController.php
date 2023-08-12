@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         $request->validate([
             'staff_name' =>'required',
-            'email1' =>'required|email',
+            'email' =>'required|email',
             'phone' =>'required |numeric',
             'licence_id' =>'required',
             'color_code' =>'required',
@@ -89,7 +89,7 @@ class UserController extends Controller
     {
         $request->validate([
             'staff_name' =>'required',
-            'email1' =>'required|email',
+            'email' =>'required|email',
             'phone' =>'required |numeric',
             'licence_id' =>'required',
             'color_code' =>'required',

@@ -15,9 +15,9 @@ class CalendarController extends Controller
     public function index()
     {
         $tasks=Task::with(['team','jobcategories'])->get();
-        
+        $calanders=CalendarCategory::all();
         $companies=Company::all();
-        return view('calendar.calendar_list',['tasks'=>$tasks,'companies'=>$companies, 'categories'=>$categories]);
+        return view('calendar.calendar_list',['tasks'=>$tasks,'companies'=>$companies, 'calanders'=>$calanders]);
     }
 
     public function getEvents()

@@ -81,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //invoice
     Route::get('invoice',[InvoiceController::class,'index'])->name('invoice.list');
+    Route::get('view-jobdetails',[InvoiceController::class,'viewJobPack'])->name('jobdetails.list');
     Route::get('create-invoice',[InvoiceController::class,'addInvoice'])->name('invoice.add');
     Route::post('create-invoice',[InvoiceController::class,'addInvoiceSubmit'])->name('invoice.add');
     Route::get('edit-invoice/{id}',[InvoiceController::class,'editInvoice'])->name('invoice.edit');

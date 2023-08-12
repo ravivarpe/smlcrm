@@ -28,9 +28,9 @@
             Categories Type
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-             <a class="dropdown-item" href="#">Planning Calender</a>
-            <a class="dropdown-item" href="#">Calenders</a>
-            <a class="dropdown-item" href="#">Site Vists</a>
+            @foreach ($calanders as $calander)
+            <a class="dropdown-item" href="#">{{$calander->name}}</a>
+           @endforeach
           </div>
         </div>
        </div>

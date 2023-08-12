@@ -88,7 +88,7 @@
                       </div>
                    </div>
                    <div class="in
-                   <div class="inbox-mail-details ">
+                   <div class="inbox-mail-details">
 
                <div class="mailbox-body">
 

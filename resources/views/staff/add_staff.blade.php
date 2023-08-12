@@ -73,7 +73,7 @@
                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('staff_name') }}</div>
                         @endif
                       </div>
-                      <div class="form-group">
+                      <div class="form-grou">
                         <label>Email</label>
                         <input type="text" class="form-control" placeholder="Email" name="email" required>
                         @if ($errors->has('email'))
