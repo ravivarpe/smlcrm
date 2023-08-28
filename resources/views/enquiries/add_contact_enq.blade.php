@@ -28,7 +28,8 @@
                  <div class="card-body">
                 <form action="{{route('contact.add')}}" method="post">
                     @csrf
-                   <div class="col-sm-12">
+                     <input type="hidden" name="enquiry_id" value="{{$enquiry->id}}"/>
+                    <div class="col-sm-12">
                       <div class="row">
                       <div class="form-group col-sm-5">
                          <label>Company Name</label>

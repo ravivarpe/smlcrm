@@ -27,7 +27,7 @@ class EnquiryController extends Controller
     public function index()
     {
         $companies=Company::all();
-        $enquiries=Enquiry::with(['company'])->get();
+        $enquiries=Enquiry::with(['company'])->where('isDeleted',1)->orderBy('company_id')->get();
         $teams=Team::all();
         $jobcategories=JobCategories::all();
 
@@ -37,7 +37,7 @@ class EnquiryController extends Controller
     public function companyWiseEnquiry($id)
     {
         $companies=Company::all();
-        $enquiries=Enquiry::with(['company'])->where('company_id',$id)->get();
+        $enquiries=Enquiry::with(['company'])->where('isDeleted',1)->where('company_id',$id)->get();
         return view('enquiries.enquiry_list',['enquiries'=>$enquiries,'companies'=>$companies]);
     }
 
@@ -63,7 +63,7 @@ class EnquiryController extends Controller
 
     public function editEnquiry($id)
     {
-        $companies=Company::all(); 
+        $companies=Company::all();
         $enquiry=Enquiry::with(['company'])->where('id',$id)->first();
         return view('enquiries.edit_enquiry',['companies'=>$companies,'enquiry'=>$enquiry]);
     }
@@ -101,7 +101,7 @@ class EnquiryController extends Controller
 
     public function enquiryDelete($id)
     {
-        Enquiry::where('id',$id)->delete();
+        Enquiry::where('id',$id)->update(['isDeleted'=>0]);
         return redirect('enquiries')->with('success','Enquiry added successfully!');
     }
 
@@ -111,7 +111,7 @@ class EnquiryController extends Controller
         $companies=Company::all();
         $categories=Category::all();
         $subcategories=SubCategory::all();
-       
+
         return view('enquiries.add_contact_enq',['companies'=>$companies,'categories'=>$categories,'subcategories'=>$subcategories,'enquiry'=>$enquiry]);
 
     }

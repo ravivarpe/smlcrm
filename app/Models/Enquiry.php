@@ -12,7 +12,7 @@ class Enquiry extends Model
     protected $table = 'enquiries';
 
     protected $fillable = [
-        'id', 'name', 'phone', 'email', 'post_code', 'added_date', 'enquiry_form', 'note', 'status','company_id'
+        'id', 'name', 'phone', 'email', 'post_code', 'added_date', 'enquiry_form', 'note', 'status','company_id','isDeleted'
     ];
 
     public function company()

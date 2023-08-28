@@ -239,7 +239,7 @@
                      </ul>
                   </li>
 
-                  
+
 
                  <li class="active">
                     <a href="{{url('tasks')}}">
@@ -280,6 +280,16 @@
                     </a>
                  </li>
 
+                 <li class="active">
+                    <a href="{{url('maps')}}">
+                    <i class="fa fa-user-circle"></i> <span>Maps</span>
+                    <span class="pull-right-container">
+                    </span>
+                    </a>
+                 </li>
+
+
+
                  <li class="treeview">
                   <a href="#">
                   <i class="fa fa-truck"></i><span>Asset</span>
@@ -290,12 +300,12 @@
                   <ul class="treeview-menu">
                      <li class="active"><a href="{{url('asset')}}">List</a></li>
                      <li><a href="{{url('create-asset')}}">Add Asset</a></li>
-                     
+
                   </ul>
                </li>
 
-               
-         
+
+
 
                </ul>
             </div>

@@ -136,7 +136,7 @@
                      </div>
 
                      <div class="form-group row mx-0">
-                        <label>Licence ID</label>
+                        <label>Driving Licence ID</label>
                         <div class="col-sm-12 px-0">
                         <input class="col-sm-5" type="text" class="form-control" placeholder="Enter Licence ID" name="licence_id" required>
                         @if ($errors->has('licence_id'))
@@ -156,12 +156,12 @@
                         <input type="text" class="form-control" placeholder="Insurance Type" name="inshurance_type">
                      </div>
                      <div class="form-group">
-                        <label>URT</label>
+                        <label>UTR</label>
                         <input type="text" class="form-control" placeholder="URT " name="urt">
                      </div>
 
                      <div class="form-group">
-                        <label>NI</label>
+                        <label>NI Number</label>
                         <input type="text" class="form-control" placeholder="NI " name="ni">
                      </div>
 

@@ -18,6 +18,7 @@ use App\Models\SubCategory;
 use App\Models\Address;
 use App\Models\Contact;
 use App\Models\ContactNote;
+use App\Models\Enquiry;
 use App\Models\Team;
 use App\Models\JobCategories;
 use App\Models\ReferralType;
@@ -70,7 +71,9 @@ class ContactController extends Controller
             ]);
          $data=$request->except('_token');
          $data['dob']=date('Y-m-d',strtotime($request->dob));
+
          $contact=Contact::create($data);
+         Enquiry::where('id',$data['enquiry_id'])->update(['isDeleted'=>0]);
 
          Address::create(['contact_id'=>$contact->id, 'line1'=>$data['line1'], 'line2'=>$data['line2'], 'line3'=>$data['line3'], 'country'=>$data['country'], 'state'=>$data['state'], 'city'=>$data['city'], 'pincode'=>$data['pincode']]);
 

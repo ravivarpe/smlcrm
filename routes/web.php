@@ -15,6 +15,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\MapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,7 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit-asset/{id}',[AssetController::class,'editAsset'])->name('asset.edit');
     Route::post('edit-asset/{id}',[AssetController::class,'editAssetSubmit'])->name('asset.edit');
     Route::post('delete-asset',[AssetController::class,'deleteAsset'])->name('asset.delete');
-    
+
 
    //Tasks
    Route::get('tasks',[TaskController::class,'index'])->name('task.list');
@@ -157,7 +158,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('edit-referraltype/{id}',[SettingController::class,'editRefTypeSubmit'])->name('referraltype.edit');
     Route::post('delete-referraltype', [SettingController::class, 'deleteRefType'])->name('referraltype.delete');
 
-   
+
     //materialcat
     Route::post('create-catmaterial',[SettingController::class,'addMaterialCatSubmit'])->name('catmaterial.add');
     Route::get('edit-catmaterial/{id}', [SettingController::class, 'editMaterial'])->name('catmaterial.edit');
@@ -181,18 +182,21 @@ Route::group(['middleware' => 'auth'], function () {
      Route::get('edit-catcalendar/{id}', [SettingController::class, 'editCalender'])->name('catcalendar.edit');
      Route::post('edit-catcalendar/{id}',[SettingController::class,'editCalenderSubmit'])->name('catcalendar.edit');
      Route::post('delete-catcalendar', [SettingController::class, 'deleteCalender'])->name('catcalendar.delete');
- 
+
     //CompanyCat
     Route::post('create-catcompany',[SettingController::class,'addCompanyCatSubmit'])->name('catcompany.add');
     Route::get('edit-catcompany/{id}', [SettingController::class, 'editCompany'])->name('catcompany.edit');
     Route::post('edit-catcompany/{id}',[SettingController::class,'editCompanySubmit'])->name('catcompany.edit');
     Route::post('delete-catcompany', [SettingController::class, 'deleteCompany'])->name('catcompany.delete');
-  
+
     //Permission
     Route::get('user-permission',[PermissionController::class,'index'])->name('user-permission');
     Route::post('create-userpermission',[PermissionController::class,'addPermissionSubmit'])->name('userpermission.add');
     Route::get('edit-userpermission/{id}', [PermissionController::class, 'editPermission'])->name('userpermission.edit');
     Route::post('edit-userpermission/{id}',[PermissionController::class,'editPermissionSubmit'])->name('userpermission.edit');
     Route::post('delete-userpermission', [PermissionController::class, 'deletePermission'])->name('userpermission.delete');
+
+    //map MapController
+    Route::get('maps',[MapController::class,'index'])->name('view-maps');
 
 });
