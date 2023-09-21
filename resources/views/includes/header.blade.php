@@ -232,7 +232,7 @@
                      <ul class="treeview-menu">
                         <li class="active"><a href="{{url('invoice')}}">Invoice</a></li>
                         <li><a href="{{url('create-invoice')}}">Add Invoice</a></li>
-                         <li><a href="{{url('view-jobdetails')}}">Job Pack Details</a></li>
+                         {{-- <li><a href="{{url('view-jobdetails')}}">Job Pack Details</a></li> --}}
                         {{--<li><a href="{{url('invoice')}}">Add Job Pack</a></li>
                         <li><a href="{{url('invoice')}}">Add Purchase</a></li>
                         <li><a href="{{url('invoice')}}">Add Estimate</a></li> --}}

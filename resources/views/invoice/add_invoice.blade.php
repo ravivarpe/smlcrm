@@ -56,7 +56,8 @@
                       </div>
                       <div class="form-group">
                          <label>Job</label>
-                         <input type="text" class="form-control" placeholder="Job" name="job" >
+                         <input type="text" class="form-control" placeholder="Job" name="job"  id="job">
+                         <input type="hidden" name="job_id" id="job_id" value=""/>
                       </div>
                        <div class="form-group">
                         <label>Customer Name</label>
@@ -66,14 +67,14 @@
                      <div class="form-group row mx-0">
                         <label>Phone/Mobile</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="number" class="form-control" placeholder="Enter Phone" name="phone" required>
-                        <input class="col-sm-5"  type="number" class="form-control" placeholder="Enter Mobile" name="mobile" ></div>
+                        <input class="col-sm-5" type="number" class="form-control" placeholder="Enter Phone" name="phone"  id="phone" required>
+                        <input class="col-sm-5"  type="number" class="form-control" placeholder="Enter Mobile" name="mobile"  id="mobile"></div>
                      </div>
                      <div class="form-group row mx-0">
                         <label>Email Id</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="email" class="form-control" placeholder="Enter email" name="email1" required>
-                        <input class="col-sm-5"  type="email" class="form-control" placeholder="Enter email" name="email2"></div>
+                        <input class="col-sm-5" type="email" class="form-control" placeholder="Enter email" name="email1"  id="email1" required>
+                        <input class="col-sm-5"  type="email" class="form-control" placeholder="Enter email" name="email2" id="email2"></div>
                      </div>
                      <div class="form-group">
                         <label>Tags</label>
@@ -133,17 +134,17 @@
                              </tr>
                              <tr class="item" id="row_1">
                                     <td class="sml1">
-                                     <input type="text" class="quantity" name="item[1][quantity]" what="1" value="">
+                                     <input type="text" class="quantity" name="quantity[]" what="1" value="">
                                      </td>
                                      <td class="stb_pdf">
-                                     <input type="text" class="search_type select_material" name="material[]" what="1"  placeholder="Item" value="" id="select_material">
+                                     <input type="text" class="search_type select_material" name="material[]" what="1"  placeholder="Item" value="">
                                      <span class="s_t_b search_type_box_items1" style="display: none;"></span>
                                      </td>
                                     <td>
-                                    <textarea name="item[1][description]" placeholder="Item Details" rows="1"></textarea>
+                                    <textarea name="description[]" placeholder="Item Details" rows="1"></textarea>
                                     </td>
                                     <td class="sml">
-                                    <input type="text" class="price" name="item[1][price]" placeholder="Price" what="1" value="">
+                                    <input type="text" class="price" name="price[]" placeholder="Price" what="1" value="">
                                     </td>
                                     <td class="sml">
                                     <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>
@@ -164,38 +165,7 @@
                                     <input type="hidden" name="item[1][product_id]" value="">
                                 </tr>
 
-                                <tr class="item" id="row_1">
-                                    <td class="sml1">
-                                     <input type="text" class="quantity" name="item[1][quantity]" what="1" value="">
-                                     </td>
-                                     <td class="stb_pdf">
-                                     <input type="text" class="search_type select_material" name="item[1][title]" what="1"  placeholder="Item" value="" id="select_material">
-                                     <span class="s_t_b search_type_box_items1" style="display: none;"></span>
-                                     </td>
-                                    <td>
-                                    <textarea name="item[1][description]" placeholder="Item Details" rows="1"></textarea>
-                                    </td>
-                                    <td class="sml">
-                                    <input type="text" class="price" name="item[1][price]" placeholder="Price" what="1" value="">
-                                    </td>
-                                    <td class="sml">
-                                    <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>
-                                    </td>
-                                    <td class="sml1">
-                                    <input type="text" class="chargeperiod" name="item[1][chargeperiod]" what="1" value="">
-                                    </td>
-                                    <td class="sml">
-                                        <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>
-                                    </td>
-                                    <td class="sml">
-                                    <input type="text" class="a_total" name="item[1][total]" placeholder="Total" what="1" readonly="" value="">
-                                    </td>
-                                    <td class="sml0">
-                                    <i class="fa fa-times" item_id="" id="1"></i>
-                                    </td>
-                                    <input type="hidden" name="item[1][id]" value="">
 
-                                </tr>
                             </tbody>
                             </table>
 
@@ -276,7 +246,38 @@
         cid= $("#company_id").val();
     });
 
-       $('#contact_name').on('keyup',function(){
+    $('#job').on('keyup',function(){
+
+        $("#job" ).autocomplete({
+        source: function( request, response ) {
+
+                $.ajax({
+                url:"{{url('search-jobs')}}",
+                type: 'get',
+
+                success: function( data ) {
+                    console.log(data);
+                    response(data);
+                    console.log(response);
+                }
+            });
+            },
+            focus: function(event, ui) {
+                $("contact_name").val(ui.item.label);
+                $('#job_id').val(ui.item.value);
+                return false;
+            },
+            select: function (event, ui) {
+            event.preventDefault();
+            $('#job').val(ui.item.label); // display the selected text
+            $('#job_id').val(ui.item.value); // save selected id to input
+            return false;
+            }
+        });
+
+        });
+
+    $('#contact_name').on('keyup',function(){
 
            $("#contact_name" ).autocomplete({
               source: function( request, response ) {
@@ -301,16 +302,37 @@
                  event.preventDefault();
                  $('#contact_name').val(ui.item.label); // display the selected text
                  $('#contact_id').val(ui.item.value); // save selected id to input
-                  return false;
+                 var cid=$('#contact_id').val();
+                 $.ajax({
+                    url:"{{url('get-contact-details')}}/"+cid,
+                    type: 'get',
+                    success: function( data ) {
+                        console.log(data);
+                        var contactdata=data;
+                        $('#line1').val(contactdata.line1);
+                        $('#line2').val(contactdata.line2);
+                        $('#line3').val(contactdata.line3);
+                        $('#city').val(contactdata.city);
+                        $('#state').val(contactdata.state);
+                        $('#country').val(contactdata.country);
+                        $('#zip').val(contactdata.pincode);
+                        $('#phone').val(contactdata.contact_number);
+                        $('#mobile').val(contactdata.mobile);
+                        $('#email').val(contactdata.email1);
+                        $('#email2').val(contactdata.email2);
+
+                    }
+                  });
+
+                 return false;
                 }
         });
 
+    });
 
-          //$('#editcustom').modal('show');
-       });
+    $(document).on('keyup',".select_material",function(){
+       $(".select_material").autocomplete({
 
-
-       $(".select_material" ).autocomplete({
               source: function( request, response ) {
 
                     $.ajax({
@@ -326,15 +348,21 @@
                 },
                  focus: function(event, ui) {
                      $("select_material").val(ui.item.label);
-                   //  $('#contact_id').val(ui.item.value);
                      return false;
                   },
                 select: function (event, ui) {
                  event.preventDefault();
-                 $('#select_material').val(ui.item.label); // display the selected text
+                 $(this).val(ui.item.label); // display the selected text
                //  $('#contact_id').val(ui.item.value); // save selected id to input
                   return false;
                 }
+        });
+    });
+
+        $('.addmore').click(function(e){
+            e.preventDefault();
+            var row='<tr class="item" id="row_1">                                    <td class="sml1">                                     <input type="text" class="quantity" name="item[1][quantity]" what="1" value="">                                     </td>                                     <td class="stb_pdf">                                     <input type="text" class="search_type select_material" name="item[1][title]" what="1"  placeholder="Item" value="" id="select_material">                                     <span class="s_t_b search_type_box_items1" style="display: none;"></span>                                     </td><td>                                    <textarea name="item[1][description]" placeholder="Item Details" rows="1"></textarea>                                    </td><td class="sml">                                    <input type="text" class="price" name="item[1][price]" placeholder="Price" what="1" value="">                                    </td>                                    <td class="sml">                                    <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>                                    </td>                                    <td class="sml1">                                    <input type="text" class="chargeperiod" name="item[1][chargeperiod]" what="1" value="">                                    </td>                                    <td class="sml">                                        <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>                                    </td>                                    <td class="sml">                                    <input type="text" class="a_total" name="item[1][total]" placeholder="Total" what="1" readonly="" value="">                                    </td>                                    <td class="sml0">                                    <i class="fa fa-times" item_id="" id="1"></i>                                    </td>                                    <input type="hidden" name="item[1][id]" value="">    </tr>';
+            $('.product_list').append(row);
         });
 
    });

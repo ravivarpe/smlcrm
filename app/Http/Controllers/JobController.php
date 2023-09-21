@@ -9,6 +9,7 @@ use App\Models\Team;
 use App\Models\Company;
 use App\Models\Contact;
 use App\Models\User;
+use App\Models\JobImage;
 
 class JobController extends Controller
 {
@@ -56,7 +57,17 @@ class JobController extends Controller
         $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
         $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
 
-        Job::create($data);
+        $job=Job::create($data);
+        if($request->hasFile('photos'))
+        {
+            foreach($request->file('photos') as $key => $file)
+            {
+                $fileName = time().rand(1,99).'.'.$file->getClientOriginalExtension();
+                $file->move(public_path('uploads/jobphotos'), $fileName);
+                JobImage::create(['image_name'=>$fileName,'job_id'=>$job->id]);
+            }
+        }
+
 
         return redirect('jobs')->with('success','Job added successfully!');
     }
@@ -104,4 +115,5 @@ class JobController extends Controller
         Job::where('id',$id)->delete();
         return redirect('jobs')->with('success','Job deleted successfully!');
     }
+
 }

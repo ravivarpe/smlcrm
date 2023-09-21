@@ -9,12 +9,13 @@ use App\Models\Address;
 use App\Models\Contact;
 use App\Models\InvoiceType;
 use App\Models\Material;
+use App\Models\Job;
 
 class InvoiceController extends Controller
 {
     public function index()
     {
-        $invoices=Invoice::all();
+        $invoices=Invoice::with(['contact'])->get();
         return view('invoice.invoice_list',['invoices'=>$invoices]);
     }
     public function addInvoice()
@@ -72,6 +73,31 @@ class InvoiceController extends Controller
 
     public function getContactDetails($id)
     {
+
+       $contact=Contact::where('id',$id)->first();
+       $address=Address::where('contact_id',$id)->first();
+       $result=[
+        'contact_number'=>$contact->contact_number, 'mobile'=>$contact->mobile, 'email1'=>$contact->email1, 'email2'=>$contact->email2,
+        'line1'=>$address->line1,
+        'line2'=>$address->line2, 'line3'=>$address->line3, 'country'=>$address->country, 'state'=>$address->state,
+        'city'=>$address->city, 'pincode'=>$address->pincode
+
+       ];
+       return response()->json($result);
+    }
+
+    public function getJob(Request $request)
+    {
+
+       $jobs=Job::select('id','job_title')->where('job_title', 'LIKE', "%{$request->term}%")->get();
+       foreach($jobs as $job ){
+        $usersArray[] = array(
+          "label" => $job->job_title,
+          "value" => $job->id
+        );
+      }
+       return response()->json($usersArray);
+
 
     }
 

@@ -90,6 +90,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('delete-invoice/{id}',[InvoiceController::class,'deleteInvoice'])->name('invoice.delete');
     Route::get('search-contact',[InvoiceController::class,'getContact'])->name('invoice.contact');
     Route::get('search-material',[InvoiceController::class,'getMaterial'])->name('invoice.material');
+    Route::get('search-jobs',[InvoiceController::class,'getJob'])->name('invoice.job');
+    Route::get('get-contact-details/{id}',[InvoiceController::class,'getContactDetails'])->name('getContactDetails');
+
 
     //asset
     Route::get('asset',[AssetController::class,'index'])->name('asset.list');

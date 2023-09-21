@@ -11,6 +11,6 @@ class JobImage extends Model
     protected $table = 'job_images';
 
     protected $fillable = [
-        'id', 'image_name'
+        'id', 'image_name','job_id'
     ];
 }

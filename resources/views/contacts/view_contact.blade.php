@@ -132,7 +132,7 @@
                          <span>
                          <li><a href="#tab_site_visits" data-toggle="tab">Site Visits (1)</a></li>
                          <li><a href="#tab4" data-toggle="tab">People (3)</a></li>
-                         <li><a href="#tab5" data-toggle="tab">Jobs (50)</a></li>
+                         <li><a href="#tab5" data-toggle="tab">Jobs ({{count($jobs)}})</a></li>
                          <li><a href="#tab7" data-toggle="tab">Materials </a></li>
                          <li><a href="#tab8" data-toggle="tab">Quotes (47)</a></li>
                          <li><a href="#tab9" data-toggle="tab">Invoices (1) <span class="fin_cat not_paid not_tab">Not Paid</span></a></li>
@@ -215,14 +215,19 @@
                          <div id="tab5" class="tab_content print_show" >
                          <h2 class="print_only">Jobs</h2>
                          <table class="col_cont_large">
-                         <tbody><tr>
-                         <td colspan="3" class="add"><a href="change_project?company_id=10" class="normal_button button">Add a job</a></td>
-                         </tr>
-                         <tr class="Complete">
-                         <td><a href="project?id=33">Johnathan Upper deanbridge house</a></td>
-                         <td><span class="task_cat Complete">Complete</span> </td>
-                         <td><a href="project?id=33">View</a></td>
-                         </tr>
+                         <tbody>
+                            <tr>
+                            <td colspan="3" class="add"><a href="{{url('create-job')}}" class="normal_button button">Add a job</a></td>
+                           </tr>
+                         @foreach ($jobs  as $job )
+                            <tr class="Complete">
+                                <td>{{$job->id}}</td>
+                            <td><a href="#">{{$job->job_title}}</a></td>
+                            <td>@if($job->category!=null){{$job->category->name}}@endif</td>
+                            <td><span class="task_cat Complete">Complete</span> </td>
+                            <td><a href="#">View</a></td>
+                            </tr>
+                         @endforeach
                          </tbody></table>	</div>
                          <div id="tab7" class="tab_content print_show" >
                          <h2 class="print_only">Materials</h2>
@@ -237,22 +242,26 @@
                          <td colspan="10" class="add">
                          <a href="change_finance?company_id=10&amp;type=quote" class="normal_button button">Create quote</a></td>
                          </tr>
+                         @foreach ($quotes as $quote)
+
+
                          <tr><td>5</td>
                          <td class="no_mob">Quote </td>
-                         <td class="no_mob" style="max-width:200px;"><span title="LAY TARMAC SUBASE TO REQUIRED LEVEL. LAY RESIN BOUND SYSTEM.">LAY TARMAC SUBASE TO REQUIRED LEVEL. LAY RESIN BOU ...</span></td>
-                         <td>GBP 8,900.00</td>
-                         <td>21/10/2014</td>
+                         <td class="no_mob" style="max-width:200px;">{{$quote->contact->name}},{{$quote->price_unit}} ,{{$quote->total_price}}</td>
+                         <td>{{$quote->price_unit}} {{$quote->total_price}}</td>
+                         <td>{{$quote->total_price}}</td>
                          <td></td>
                          <td>
                          <a href="#" class="send_email" type="company" id="10" finance_id="8">Send</a> |
-                         <a href="/pdf/pdfs/The Yorkshire Resin Company Ltd Quote (5-f61).pdf" target="_blank"><i class="fa fa-eye"></i></a> |
+                         <a href="#" target="_blank"><i class="fa fa-eye"></i></a> |
                          <a href="change_finance?id=8"><i class="fa fa-pencil-square-o"></i></a> |
-                         <a href="change_finance?from__pack_id=8">Create Job Pack</a> |
+                         <a href="{{url('view-jobdetails')}}">Create Job Pack</a> |
                          <a href="change_finance?from_id=8">Create Invoice</a> |
                          <a href="change_finance?copy_id=8"><i class="fa fa-copy"></i></a> |
                          <a href="#" class="delete_quick" id="8" type="finances"><i class="fa fa-trash-o"></i></a>
                          </td>
                          </tr>
+                         @endforeach
                          </tbody></table></div>
                          <div id="tab9" class="tab_content"><table class="col_cont_large">
                          <tbody><tr>

@@ -23,6 +23,8 @@ use App\Models\Team;
 use App\Models\JobCategories;
 use App\Models\ReferralType;
 use App\Models\Task;
+use App\Models\Job;
+use App\Models\Invoice;
 
 
 class ContactController extends Controller
@@ -156,7 +158,13 @@ class ContactController extends Controller
         $notesdata=ContactNote::where('contact_id',$id)->get();
         $contasks=Task::where('contact_id',$id)->where('en_contact','Contact')->get();
 
-        return view('contacts.view_contact',['teams'=>$teams,'jobcategories'=>$jobcategories,'contact'=>$contact,'notesdata'=>$notesdata,'contasks'=>$contasks]);
+        $jobs=Job::with('category')->where('contact_id',$id)->get();
+
+
+
+        $quotes=Invoice::with(['invoicetype'])->where('contact_id',$id)->get();
+
+        return view('contacts.view_contact',['teams'=>$teams,'jobcategories'=>$jobcategories,'contact'=>$contact,'notesdata'=>$notesdata,'contasks'=>$contasks,'jobs'=>$jobs,'quotes'=>$quotes]);
     }
 
 

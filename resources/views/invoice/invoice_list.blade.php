@@ -135,47 +135,20 @@
 
 
                                         <tr>
-                                           <td>695</td>
-                                           <td>Test By sml</td>
-                                           <td>MD. Alimul Alrazy</td>
-                                           <td>GBP</td>
-                                           <td>£3000</td>
-                                           <td>13/03/2023</td>
-                                           <td>Test</td>
+                                           <td>{{$invoice->id}}</td>
+                                           <td>{{$invoice->contact->name}},{{$invoice->price_unit}} ,{{$invoice->total_price}}</td>
+                                           <td>{{$invoice->contact->name}}</td>
+                                           <td>{{$invoice->price_unit}}</td>
+                                           <td>{{$invoice->total_price}}</td>
+                                           <td>{{$invoice->added_date}}</td>
+                                           <td>{{$invoice->tags}}</td>
                                            <td><span class="label-success label label-default">Paid</span></td>
                                            <td>
                                               <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
                                               <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>695</td>
-                                            <td>Test By sml</td>
-                                            <td>MD. Alimul Alrazy</td>
-                                            <td>GBP</td>
-                                            <td>£3000</td>
-                                            <td>13/03/2023</td>
-                                            <td>Test</td>
-                                            <td><span class="label-success label label-default">Paid</span></td>
-                                            <td>
-                                               <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
-                                               <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
-                                            </td>
-                                         </tr>
-                                         <tr>
-                                            <td>695</td>
-                                            <td>Test By sml</td>
-                                            <td>MD. Alimul Alrazy</td>
-                                            <td>GBP</td>
-                                            <td>£3000</td>
-                                            <td>13/03/2023</td>
-                                            <td>Test</td>
-                                            <td><span class="label-danger label label-default">Not Paid</span></td>
-                                            <td>
-                                               <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
-                                               <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
-                                            </td>
-                                         </tr>
+
                                          @endforeach
                                         </tbody>
                                   </table>
