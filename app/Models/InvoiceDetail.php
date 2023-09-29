@@ -13,4 +13,9 @@ class InvoiceDetail extends Model
     protected $fillable = [
         'id', 'invoice_id', 'quantity', 'material_id', 'details', 'price', 'price_unit', 'period', 'period_unit', 'total'
     ];
+
+    public function material()
+    {
+        return $this->hasOne(Material::class,'id','material_id');
+    }
 }

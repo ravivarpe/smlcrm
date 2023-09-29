@@ -101,17 +101,17 @@
                      <div class="form-group" name="">
                         <label>Delivery Address</label>
                            <div>
-                           <input type="text" name="line1" placeholder="Address" value="" id="line1">
-                           <input type="text" name="line2" placeholder="Address 2" value="" id="line2">
-                           <input type="text" name="line3" placeholder="Address 3" value="" id="line3">
-                           <input type="text" name="country" placeholder="Country " value="United Kingdom" id="country">
+                           <input type="text" name="delivery_addr_line1" placeholder="Address" value="" id="delivery_addr_line1">
+                           <input type="text" name="delivery_addr_line2" placeholder="Address 2" value="" id="delivery_addr_line2">
+                           <input type="text" name="delivery_addr_line3" placeholder="Address 3" value="" id="delivery_addr_line3">
+                           <input type="text" name="delivery_addr_country" placeholder="Country " value="United Kingdom" id="delivery_addr_country">
                            {{-- <select name="country">
                             <option value="">Select a country..</option></select></div> --}}
                            </div>
                            <div>
-                           <input type="text" name="city" placeholder="City" value="" id="city">
-                           <input type="text" name="state" placeholder="County/State" value="" id="state">
-                           <input type="text" name="zip" placeholder="Postcode/Zip" value="" id="zip">
+                           <input type="text" name="delivery_addr_city" placeholder="City" value="" id="delivery_addr_city">
+                           <input type="text" name="delivery_addr_state" placeholder="County/State" value="" id="delivery_addr_state">
+                           <input type="text" name="delivery_addr_zip" placeholder="Postcode/Zip" value="" id="delivery_addr_zip">
                            <a href="#" id="postcode_lookup">Find address</a>
                            </div>
 
@@ -121,18 +121,21 @@
                              <tr>
                                 <td>
                                 <table class="product_list">
-                                <tbody>
-                                <tr class="item item_header">
-                                    <td class="sml1">Quantity</td>
-                                    <td>Item</td>
-                                    <td>Details</td>
-                                    <td class="sml">Price</td>
-                                    <td class="sml">Per</td>
-                                    <td colspan="2" class="sml1">Period</td>
-                                    <td class="sml">Total</td>
+                                    <thead>
+                                        <tr class="item item_header">
+                                            <td class="sml1">Quantity</td>
+                                            <td>Item</td>
+                                            <td>Details</td>
+                                            <td class="sml">Price</td>
+                                            <td class="sml">Per</td>
+                                            <td colspan="2" class="sml1">Period</td>
+                                            <td class="sml">Total</td>
 
-                             </tr>
-                             <tr class="item" id="row_1">
+                                     </tr>
+                                    </thead>
+                                <tbody>
+
+                              <tr class="item" id="row_1">
                                     <td class="sml1">
                                      <input type="text" class="quantity" name="quantity[]" what="1" value="">
                                      </td>
@@ -147,22 +150,22 @@
                                     <input type="text" class="price" name="price[]" placeholder="Price" what="1" value="">
                                     </td>
                                     <td class="sml">
-                                    <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>
+                                    <select name="priceunit[]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>
                                     </td>
                                     <td class="sml1">
-                                    <input type="text" class="chargeperiod" name="item[1][chargeperiod]" what="1" value="">
+                                    <input type="text" class="chargeperiod" name="duration[]" what="1" value="">
                                     </td>
                                     <td class="sml">
-                                        <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>
+                                        <select name="durationunit[]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>
                                     </td>
                                     <td class="sml">
-                                    <input type="text" class="a_total" name="item[1][total]" placeholder="Total" what="1" readonly="" value="">
+                                    <input type="text" class="a_total" name="rowTotal[]" placeholder="Total" what="1" readonly="" value="">
                                     </td>
                                     <td class="sml0">
-                                    <i class="fa fa-times" item_id="" id="1"></i>
+                                    <i class="fa fa-times  deleterow" id="1"></i>
                                     </td>
-                                    <input type="hidden" name="item[1][id]" value="">
-                                    <input type="hidden" name="item[1][product_id]" value="">
+                                    <input type="hidden" name="materialId[]" value="">
+
                                 </tr>
 
 
@@ -199,7 +202,7 @@
                             <option value="GBP" selected="">British Pound</option>
                             <option value="USD">United States Dollar</option>
                             </select>
-                            <input type="text" name="total_price" class="small1" placeholder="Price" >
+                            <input type="text" name="total_price" class="small1" placeholder="Price"  id="total_price">
                             </td>
                      </div>
 
@@ -353,7 +356,24 @@
                 select: function (event, ui) {
                  event.preventDefault();
                  $(this).val(ui.item.label); // display the selected text
-               //  $('#contact_id').val(ui.item.value); // save selected id to input
+                 $(this).closest('tr').find('input[type="hidden"]').val(ui.item.value);
+                 var price=$(this).closest('tr').find('td:eq(3)').find('input');
+                 var qty=$(this).closest('tr').find('td:eq(0)').find('input').val();
+                 var total=$(this).closest('tr').find('td:eq(7)').find('input');
+                 var description=$(this).closest('tr').find('td:eq(2)').find('textarea');
+                    $.ajax({
+                        url:"{{url('get-material-details')}}/"+ui.item.value,
+                        type: 'get',
+
+                        success: function( data ) {
+                            console.log(data);
+
+                            price.val(data.sale_price);
+                            description.val(data.descriptions);
+                            total.val(data.sale_price*qty);
+
+                        }
+                    });
                   return false;
                 }
         });
@@ -361,8 +381,23 @@
 
         $('.addmore').click(function(e){
             e.preventDefault();
-            var row='<tr class="item" id="row_1">                                    <td class="sml1">                                     <input type="text" class="quantity" name="item[1][quantity]" what="1" value="">                                     </td>                                     <td class="stb_pdf">                                     <input type="text" class="search_type select_material" name="item[1][title]" what="1"  placeholder="Item" value="" id="select_material">                                     <span class="s_t_b search_type_box_items1" style="display: none;"></span>                                     </td><td>                                    <textarea name="item[1][description]" placeholder="Item Details" rows="1"></textarea>                                    </td><td class="sml">                                    <input type="text" class="price" name="item[1][price]" placeholder="Price" what="1" value="">                                    </td>                                    <td class="sml">                                    <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>                                    </td>                                    <td class="sml1">                                    <input type="text" class="chargeperiod" name="item[1][chargeperiod]" what="1" value="">                                    </td>                                    <td class="sml">                                        <select name="item[1][terms]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>                                    </td>                                    <td class="sml">                                    <input type="text" class="a_total" name="item[1][total]" placeholder="Total" what="1" readonly="" value="">                                    </td>                                    <td class="sml0">                                    <i class="fa fa-times" item_id="" id="1"></i>                                    </td>                                    <input type="hidden" name="item[1][id]" value="">    </tr>';
+            var row='<tr class="item" id="row_1">                                    <td class="sml1">                                     <input type="text" class="quantity" name="quantity[]" what="1" value="">                                     </td>                                     <td class="stb_pdf">                                     <input type="text" class="search_type select_material" name="material[]" what="1"  placeholder="Item" value="" id="select_material">                                     <span class="s_t_b search_type_box_items1" style="display: none;"></span>                                     </td><td>                                    <textarea name="description[]" placeholder="Item Details" rows="1"></textarea>                                    </td><td class="sml">                                    <input type="text" class="price" name="price[]" placeholder="Price" what="1" value="">                                    </td>                                    <td class="sml">                                    <select name="priceunit[]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>                                    </td>                                    <td class="sml1">                                    <input type="text" class="chargeperiod" name="duration[]" what="1" value="">                                    </td>                                    <td class="sml">                                        <select name="durationunit[]" class="change_per" what="1"><option value="Each">Each</option><option value="Ton">Ton</option><option value="Day">Day</option><option value="Week">Week</option><option value="Month">Month</option></select>                                    </td>                                    <td class="sml">                                    <input type="text" class="a_total" name="rowTotal[]" placeholder="Total" what="1" readonly="" value="">                                    </td>                                    <td class="sml0">                                    <i class="fa fa-times deleterow" item_id="" id="1"></i>                                    </td>                                    <input type="hidden" name="materialId[]" value="">    </tr>';
             $('.product_list').append(row);
+        });
+
+        $(document).on('click','.deleterow',function(e){
+            e.preventDefault();
+            $(this).closest("tr").remove();
+        });
+
+        $('#total_price').focus(function(){
+            var grandTotal=0;
+            $(".product_list tbody tr").each(function(){
+                grandTotal+= parseFloat($(this).find('td:eq(7)').find('input').val());
+
+
+            });
+            $(this).val(grandTotal);
         });
 
    });

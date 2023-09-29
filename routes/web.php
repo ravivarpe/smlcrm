@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //invoice
     Route::get('invoice',[InvoiceController::class,'index'])->name('invoice.list');
-    Route::get('view-jobdetails',[InvoiceController::class,'viewJobPack'])->name('jobdetails.list');
+    Route::get('view-jobdetails/{id}',[InvoiceController::class,'viewJobPack'])->name('jobdetails.list');
     Route::get('create-invoice',[InvoiceController::class,'addInvoice'])->name('invoice.add');
     Route::post('create-invoice',[InvoiceController::class,'addInvoiceSubmit'])->name('invoice.add');
     Route::get('edit-invoice/{id}',[InvoiceController::class,'editInvoice'])->name('invoice.edit');
@@ -92,6 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('search-material',[InvoiceController::class,'getMaterial'])->name('invoice.material');
     Route::get('search-jobs',[InvoiceController::class,'getJob'])->name('invoice.job');
     Route::get('get-contact-details/{id}',[InvoiceController::class,'getContactDetails'])->name('getContactDetails');
+    Route::get('get-material-details/{id}',[InvoiceController::class,'getMaterialDetails'])->name('getMaterialDetails');
 
 
     //asset

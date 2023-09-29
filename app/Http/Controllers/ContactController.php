@@ -77,7 +77,7 @@ class ContactController extends Controller
          $contact=Contact::create($data);
          Enquiry::where('id',$data['enquiry_id'])->update(['isDeleted'=>0]);
 
-         Address::create(['contact_id'=>$contact->id, 'line1'=>$data['line1'], 'line2'=>$data['line2'], 'line3'=>$data['line3'], 'country'=>$data['country'], 'state'=>$data['state'], 'city'=>$data['city'], 'pincode'=>$data['pincode']]);
+         Address::create(['contact_id'=>$contact->id, 'line1'=>$data['line1'], 'line2'=>$data['line2'], 'line3'=>$data['line3'], 'country'=>$data['country'], 'state'=>$data['state'], 'city'=>$data['city'], 'pincode'=>$data['pincode'],'address_type'=>"Home"]);
 
          return redirect('contacts')->with('success','Contact added successfully!');
     }
