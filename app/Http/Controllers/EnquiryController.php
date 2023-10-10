@@ -81,7 +81,7 @@ class EnquiryController extends Controller
             'name' =>'required',
             'email' =>'required|email',
             'phone' =>'required |numeric|min:11',
-            'post_code'=>'required |numeric',
+            'post_code'=>'required',
 
              ]);
          $data=$request->except('_token');
