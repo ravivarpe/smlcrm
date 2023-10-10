@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('enquiry-contact/{id}',[EnquiryController::class,'enquiryToContact'])->name('enquiries.addcontact');
     Route::post('add-enquiry-note',[EnquiryController::class,'addEnquiryNote'])->name('enquiries.addNote');
     Route::get('delete-enquiry-note/{id}',[EnquiryController::class,'deleteNote'])->name('enquiries.deleNote');
-
+    Route::get('status-enquiry/{status}',[EnquiryController::class,'statusWiseEnquiry'])->name('enquiries.status');
 
     //contact
     Route::get('contacts',[ContactController::class,'index'])->name('contact.list');
@@ -111,7 +111,7 @@ Route::group(['middleware' => 'auth'], function () {
    Route::post('edit-task/{id}',[TaskController::class,'editTaskSubmit'])->name('task.edit');
    Route::post('delete-task',[TaskController::class,'deleteTask'])->name('task.delete');
    Route::get('job-catwise-task/{id}',[TaskController::class,'jobCategoryWiseTask'])->name('task.catwise');
-
+   Route::get('task-completed/{id}',[TaskController::class,'changeTaskStatus'])->name('task.complete');
     //Team
     Route::get('team',[TeamController::class,'index'])->name('team.list');
     Route::post('create-team',[TeamController::class,'addTeamSubmit'])->name('team.add');

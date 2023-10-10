@@ -30,11 +30,11 @@
          Status
        </button>
        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-         <a class="dropdown-item" href="#">Pending</a>
-         <a class="dropdown-item" href="#">Callback</a>
-         <a class="dropdown-item" href="#">Won</a>
-         <a class="dropdown-item" href="#">Lost</a>
-         <a class="dropdown-item" href="#">Complete</a>
+         <a class="dropdown-item" href="{{route('enquiries.status','Pending')}}">Pending</a>
+         <a class="dropdown-item" href="{{route('enquiries.status','Callback')}}">Callback</a>
+         <a class="dropdown-item" href="{{route('enquiries.status','Won')}}">Won</a>
+         <a class="dropdown-item" href="{{route('enquiries.status','Lost')}}">Lost</a>
+         <a class="dropdown-item" href="{{route('enquiries.status','Complete')}}">Complete</a>
        </div>
      </div>
     </div>

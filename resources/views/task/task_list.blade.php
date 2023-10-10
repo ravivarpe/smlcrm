@@ -148,7 +148,7 @@
                                            <td>@if($task->status==1)
                                             <span class="label-custom label label-default">Active</span>
                                             @else
-                                            <span class="label-custom label label-default">InActive</span>
+                                            <span class="label-custom label label-default">Completed</span>
 
                                             @endif
 
@@ -156,6 +156,9 @@
 
 
                                            <td>
+                                            @if($task->status==1)
+                                            <a href="{{route('task.complete',$task->id)}}" class="btn btn-add btn-sm">Complete</a>
+                                            @endif
                                             <button type="button" class="btn btn-add btn-sm editbtn" data-toggle="modal" data-id="{{$task->id}}"><i class="fa fa-pencil"></i></button>
                                             <button type="button" class="btn btn-danger btn-sm deletebtn" data-toggle="modal"  data-id="{{$task->id}}"><i class="fa fa-trash-o"></i> </button>
                                          </td>

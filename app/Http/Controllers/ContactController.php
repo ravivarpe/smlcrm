@@ -75,9 +75,12 @@ class ContactController extends Controller
          $data['dob']=date('Y-m-d',strtotime($request->dob));
 
          $contact=Contact::create($data);
-         Enquiry::where('id',$data['enquiry_id'])->update(['isDeleted'=>0]);
-
          Address::create(['contact_id'=>$contact->id, 'line1'=>$data['line1'], 'line2'=>$data['line2'], 'line3'=>$data['line3'], 'country'=>$data['country'], 'state'=>$data['state'], 'city'=>$data['city'], 'pincode'=>$data['pincode'],'address_type'=>"Home"]);
+
+         if(array_key_exists('enquiry_id',$data))
+         {
+           Enquiry::where('id',$data['enquiry_id'])->update(['status'=>'Complete']);
+         }
 
          return redirect('contacts')->with('success','Contact added successfully!');
     }
@@ -89,6 +92,7 @@ class ContactController extends Controller
         $subcategories=SubCategory::all();
         $referraltypes=ReferralType::all();
         $contact=Contact::with(['company','category','address'])->where('id',$id)->first();
+
         return view('contacts.edit_contact',['companies'=>$companies,'contact'=>$contact,'categories'=>$categories,'subcategories'=>$subcategories, 'referraltypes'=>$referraltypes]);
     }
 

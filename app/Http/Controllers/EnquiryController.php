@@ -27,7 +27,7 @@ class EnquiryController extends Controller
     public function index()
     {
         $companies=Company::all();
-        $enquiries=Enquiry::with(['company'])->where('isDeleted',1)->orderBy('company_id')->get();
+        $enquiries=Enquiry::with(['company'])->where('status','!=','Complete')->orderBy('company_id')->get();
         $teams=Team::all();
         $jobcategories=JobCategories::all();
 
@@ -37,7 +37,14 @@ class EnquiryController extends Controller
     public function companyWiseEnquiry($id)
     {
         $companies=Company::all();
-        $enquiries=Enquiry::with(['company'])->where('isDeleted',1)->where('company_id',$id)->get();
+        $enquiries=Enquiry::with(['company'])->where('company_id',$id)->get();
+        return view('enquiries.enquiry_list',['enquiries'=>$enquiries,'companies'=>$companies]);
+    }
+
+    public function statusWiseEnquiry($status)
+    {
+        $companies=Company::all();
+        $enquiries=Enquiry::with(['company'])->where('status',$status)->get();
         return view('enquiries.enquiry_list',['enquiries'=>$enquiries,'companies'=>$companies]);
     }
 
@@ -53,7 +60,7 @@ class EnquiryController extends Controller
             'name' =>'required',
             'email' =>'required|email',
             'phone' =>'required |numeric|min:11',
-            'post_code'=>'required |numeric',
+            'post_code'=>'required',
 
              ]);
          $data=$request->except('_token');

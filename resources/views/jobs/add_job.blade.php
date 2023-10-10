@@ -99,15 +99,18 @@
 
                      <div class="form-group">
                         <label>Responsilble</label>
-                        <select class="form-control" name="responsible">
-                           @foreach ($users as $user )
+                        <select class="form-control" name="responsible" required>
+
+                            <option value="">Select Resposiblity</option>
+                             @foreach ($users as $user )
                              <option value="{{$user->id}}">{{$user->staff_name}}</option>
                             @endforeach
                         </select>
                      </div>
                      <div class="form-group">
                         <label>Team</label>
-                        <select class="form-control" name="team_id">
+                        <select class="form-control" name="team_id" required>
+                            <option value="">Select Team</option>
                            @foreach ($teams as $team )
                              <option value="{{$team->id}}">{{$team->team_name}}</option>
                            @endforeach
@@ -116,10 +119,11 @@
                      </div>
                      <div class="form-group">
                         <label>Job Priority</label>
-                        <select class="form-control" name="priority">
-                           <option>High</option>
-                           <option>Low</option>
-                           <option>Medium</option>
+                        <select class="form-control" name="priority" required>
+                            <option value="">Select Job Priority</option>
+                           <option value="High">High</option>
+                           <option value="Low">Low</option>
+                           <option value="Medium">Medium</option>
                         </select>
                      </div>
                      <div class="form-group">
@@ -246,6 +250,8 @@
         $('#start_date').datepicker({
         format: "dd-mm-yyyy",
       });
+
+
 
 
 
