@@ -26,7 +26,16 @@
 
 
      <div class="dropdown col">
-       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <select class="btn btn-secondary dropdown-toggle px-2" id="dropdownMenuButton">
+
+         <option value="Pending">Pending</option>
+         <option value="Callback">Callback</option>
+         <option value="Won">Won</option>
+         <option value="Lost">Lost</option>
+         <option value="Complete">Complete</option>
+
+      </select>
+       {{-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          Status
        </button>
        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -35,7 +44,7 @@
          <a class="dropdown-item" href="{{route('enquiries.status','Won')}}">Won</a>
          <a class="dropdown-item" href="{{route('enquiries.status','Lost')}}">Lost</a>
          <a class="dropdown-item" href="{{route('enquiries.status','Complete')}}">Complete</a>
-       </div>
+       </div> --}}
      </div>
     </div>
     <!-- Main content -->
@@ -317,10 +326,7 @@
                                  return "Status";
                               }
 
-                              if(columnIdx==7)
-                              {
-                                 return "Action";
-                              }
+
 
 
                             }

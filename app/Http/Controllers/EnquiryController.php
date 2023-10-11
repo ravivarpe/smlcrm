@@ -129,7 +129,7 @@ class EnquiryController extends Controller
         $data=$request->except('_token');
         EnquiryNote::create($data);
 
-        return redirect('view-enquiry/'.$data['enquiry_id'])->with('success','Note added successfully@');
+        return redirect('view-enquiry/'.$data['enquiry_id'])->with('success','Note added successfully');
 
     }
 
@@ -138,6 +138,15 @@ class EnquiryController extends Controller
         EnquiryNote::where('id',$id)->delete();
 
         return redirect('enquiries')->with('success','Enquiry added successfully!');
+    }
+
+    public function addTasKEnq(Request $request)
+    {
+        $data=$request->except('_token');
+        $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
+        $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
+        $task=Task::create($data);
+        return redirect('view-enquiry/'.$data['contact_id'])->with('success','Note added successfully');
     }
 
 }

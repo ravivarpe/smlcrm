@@ -50,6 +50,9 @@
                             <button class="btn btn-sm" data-toggle="dropdown"><i class="fa fa-bars"></i> </button>
                             <ul class="dropdown-menu exp-drop" role="menu">
 
+                                <li>
+                                    <a href="#"  data-toggle="modal" data-target="#sendEmail"><i class="fa fa-envolop"></i> Send Email</a>
+                                 </li>
                                <li class="dropdown-divider"></li>
                                <li>
                                   <a href="{{route('enquiries.addcontact',$enquiry->id)}}" > Add to Contact</a>
@@ -101,7 +104,7 @@
                         <li><a href="#tab3" data-toggle="tab"><i class="fa fa-info-circle"></i></a></li>
                         <span>
 
-                        {{-- <li><a href="#tab11" data-toggle="tab">Task </a></li> --}}
+                        <li><a href="#tab11" data-toggle="tab">Task </a></li>
                         </span>
                         </ul>
                      </div>
@@ -249,7 +252,7 @@
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
-            <form action="{{route('task.add')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('enquiries.addTask')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="contact_id" value="{{$enquiry->id}}"/>
                 <input type="hidden" name="en_contact" value="Enquiry"/>
@@ -321,7 +324,69 @@
     <!-- /.modal-dialog -->
 
              <!-- /.modal-dialog -->
-          </div>
+    </div>
+
+
+    <div class="modal fade" id="sendEmail" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+           <div class="modal-content">
+              <div class="modal-header modal-header-primary">
+                 <h3><i class="fa fa-plus m-r-5"></i> Send Email</h3>
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              </div>
+              <div class="modal-body">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="contact_id" value="{{$enquiry->id}}"/>
+                    <input type="hidden" name="en_contact" value="Enquiry"/>
+                 <div class="row">
+                    <div class="col-md-12">
+
+                          <div class="row">
+                                <!-- Text input-->
+                                <div class="col-md-12 form-group">
+                                   <label class="control-label">To Email</label>
+                                   <input type="text" placeholder="Email" name="task_name"class="form-control">
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Subject</label>
+                                    <input type="text" placeholder="Subject" name="task_name"class="form-control">
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                   <label class="control-label">Email Body</label>
+                                   <textarea class="form-control" rows="3" placeholder="description"  name="discription" ></textarea>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label">Attachment</label>
+                                    <input type="file" placeholder="Subject" name="task_name"class="form-control">
+                                </div>
+
+
+                                <div class="col-md-12 form-group user-form-group">
+                                   <div class="float-right">
+                                      <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                      <button type="submit" class="btn btn-add btn-sm">Send Email</button>
+                                   </div>
+                                </div>
+                          </div>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+              <div class="modal-footer">
+                 <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+           <!-- /.modal-content -->
+        </div>
+
+    </div>
+
+    <!-- /.modal-dialog -->
+
+
     </section>
     <!-- /.content -->
  </div>
