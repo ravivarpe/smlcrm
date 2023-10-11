@@ -68,5 +68,5 @@
 <script src="{{url('assets/dist/js/dashboard.js')}}" ></script>
 <!-- End Theme label Script
  =====================================================================-->
-
-
+ <script src="{{url('assets/dist/js/jQuery.print.js')}}" ></script>
+<!-- Print Jquery-->

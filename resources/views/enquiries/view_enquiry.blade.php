@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="btn-group">
-                               <button type="button" class="btn btn-default" onclick="myFunction()"><span class="fa fa-print"></span></button>
+                               <button type="button" class="btn btn-default printbtn" ><span class="fa fa-print"></span></button>
                             </div>
 
                             <div class="btn-group d-flex" role="group">
@@ -68,15 +68,16 @@
                       </div>
                    </div>
                 </div>
-                <div class="mailbox-body">
-                   <div class="row m-0">
+                <div class="mailbox-body" >
+                   <div class="row m-0" id="printablearea">
 
                       <div class="col-xs-12 col-sm-12 col-md-12 p-0 inbox-mail">
                          <div class="inbox-customer p-20 border-btm">
                            <!-- <img src="assets/dist/img/avatar5.png" class="border-green " alt=""> -->
                             <div class="inbox-customer-text">
-                               <div class="customer-name"><strong>Customer Name :</strong> <span>{{$enquiry->name}}</span></div>
-                               <div class="customer-name"><strong>Enquiry Description :</strong> <small>{{$enquiry->note}}</small></div>
+                                <div class="customer-name">Ref no. : <span>{{$enquiry->id}}</span></div>
+                                <div class="customer-name"><strong>Customer Name :</strong> <span>{{$enquiry->name}}</span></div>
+                               <div class="customer-name"><strong>Enquiry Description :</strong> <small>{{$enquiry->enquiry_form}}</small></div>
                             </div>
 
                          </div>
@@ -100,7 +101,7 @@
                         <li><a href="#tab3" data-toggle="tab"><i class="fa fa-info-circle"></i></a></li>
                         <span>
 
-                        <li><a href="#tab11" data-toggle="tab">Task </a></li>
+                        {{-- <li><a href="#tab11" data-toggle="tab">Task </a></li> --}}
                         </span>
                         </ul>
                      </div>
@@ -345,6 +346,13 @@
         $('#customer2').modal('show');
 
      });
+
+
+     $('.printbtn').click(function(){
+        $('#printablearea').print();
+     });
+
+
 
     });
  </script>

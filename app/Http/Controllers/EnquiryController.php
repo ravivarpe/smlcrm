@@ -27,7 +27,7 @@ class EnquiryController extends Controller
     public function index()
     {
         $companies=Company::all();
-        $enquiries=Enquiry::with(['company'])->where('status','!=','Complete')->orderBy('company_id')->get();
+        $enquiries=Enquiry::with(['company'])->where('status','Pending')->orderBy('company_id')->get();
         $teams=Team::all();
         $jobcategories=JobCategories::all();
 
@@ -108,7 +108,8 @@ class EnquiryController extends Controller
 
     public function enquiryDelete($id)
     {
-        Enquiry::where('id',$id)->update(['isDeleted'=>0]);
+       // Enquiry::where('id',$id)->update(['isDeleted'=>0]);
+        Enquiry::where('id',$id)->delete();
         return redirect('enquiries')->with('success','Enquiry added successfully!');
     }
 
