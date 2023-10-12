@@ -149,4 +149,25 @@ class EnquiryController extends Controller
         return redirect('view-enquiry/'.$data['contact_id'])->with('success','Note added successfully');
     }
 
+    public function sendEmail(Request $request)
+    {
+        $request->validate([
+            'subject' =>'required',
+            'email' =>'required|email',
+            'discription' =>'required'
+
+            ]);
+        $data=$request->except('_token');
+
+
+
+        Mail::send('emails.enquiryemail', ["data"=>$data], function($message) use($data){
+            $message->to($data['email']);
+            $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $message->subject(ucfirst($data['subject']));
+        });
+        return redirect('view-enquiry/'.$data['contact_id'])->with('success','Note added successfully');
+
+    }
+
 }

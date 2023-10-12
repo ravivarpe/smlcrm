@@ -335,10 +335,9 @@
                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               </div>
               <div class="modal-body">
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="{{route('enquiries.sendEmail')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="contact_id" value="{{$enquiry->id}}"/>
-                    <input type="hidden" name="en_contact" value="Enquiry"/>
                  <div class="row">
                     <div class="col-md-12">
 
@@ -346,12 +345,12 @@
                                 <!-- Text input-->
                                 <div class="col-md-12 form-group">
                                    <label class="control-label">To Email</label>
-                                   <input type="text" placeholder="Email" name="task_name"class="form-control">
+                                   <input type="text" placeholder="Email" name="email" class="form-control" value="{{$enquiry->email}}">
                                 </div>
 
                                 <div class="col-md-12 form-group">
                                     <label class="control-label">Subject</label>
-                                    <input type="text" placeholder="Subject" name="task_name"class="form-control">
+                                    <input type="text" placeholder="Subject" name="subject" class="form-control">
                                 </div>
 
                                 <div class="col-md-12 form-group">
@@ -360,7 +359,7 @@
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="control-label">Attachment</label>
-                                    <input type="file" placeholder="Subject" name="task_name"class="form-control">
+                                    <input type="file" placeholder="Subject" name="emailfiles[]"class="form-control" multiple>
                                 </div>
 
 

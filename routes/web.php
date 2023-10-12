@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('delete-enquiry-note/{id}',[EnquiryController::class,'deleteNote'])->name('enquiries.deleNote');
     Route::get('status-enquiry/{status}',[EnquiryController::class,'statusWiseEnquiry'])->name('enquiries.status');
     Route::post('add-enquiry-task',[EnquiryController::class,'addTasKEnq'])->name('enquiries.addTask');
+    Route::post('send-enquiry-email',[EnquiryController::class,'sendEmail'])->name('enquiries.sendEmail');
+
     //contact
     Route::get('contacts',[ContactController::class,'index'])->name('contact.list');
     Route::get('create-contact',[ContactController::class,'addContact'])->name('contact.add');
