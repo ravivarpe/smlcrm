@@ -171,6 +171,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('edit-catmaterial/{id}',[SettingController::class,'editMaterialSubmit'])->name('catmaterial.edit');
     Route::post('delete-catmaterial', [SettingController::class, 'deleteMaterial'])->name('catmaterial.delete');
 
+       //materialcat
+    Route::post('create-material-sub-cat',[SettingController::class,'addMaterialSubCatSubmit'])->name('materialSubCat.add');
+    Route::get('edit-material-sub-cat/{id}', [SettingController::class, 'editMaterialSubCat'])->name('materialSubCat.edit');
+    Route::post('edit-material-sub-cat/{id}',[SettingController::class,'editMaterialSubCatSubmit'])->name('materialSubCat.edit');
+    Route::post('delete-material-sub-cat', [SettingController::class, 'deleteMaterialSubCat'])->name('materialSubCat.delete');
+
     //FinanceCat
     Route::post('create-catinvoice',[SettingController::class,'addInvoiceCatSubmit'])->name('catinvoice.add');
     Route::get('edit-catinvoice/{id}', [SettingController::class, 'editInvoice'])->name('catinvoice.edit');
