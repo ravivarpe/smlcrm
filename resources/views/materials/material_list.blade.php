@@ -129,14 +129,16 @@
                                             @foreach ($materials as $material )
 
                                             <tr>
-                                               <td>{{$material->id}}</td>
+                                               <td>{{$material->id}}
+                                                <input type="hidden" value="{{$material->id}}" name="material_id" id="material_id"/>
+                                               </td>
                                                <td>{{$material->title}}</td>
                                                <td>@if($material->company!=null){{$material->company->name}}@endif</td>
                                                <td>@if($material->category!=null){{$material->category->name}}@endif</td>
                                                <td>
-                                                <button class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</button>
+                                                <button class="value-button decrease" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</button>
                                                 <input type="number" id="number" value="{{$material->quantity}}">
-                                                <button class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</button>
+                                                <button class="value-button increase" id="increase" onclick="increaseValue()" value="Increase Value">+</button>
                                                 </td>
                                                <td><span class="label-custom label label-default">{{$material->tags}}</span></td>
 
@@ -302,6 +304,45 @@
              });
      }
       });
+
+
+
+      $('.increase').on('click',function(){
+
+         var  qty =$(this).closest('tr').find('td').eq(4).children('#number').val();
+         console.log(qty);
+         var mId=$(this).closest('tr').find('td').eq(0).children('#material_id').val();
+         if(qty!=null && mId !=null)
+         {
+             $.ajax({
+                url:"{{url('update-material-qty')}}",
+                type:'POST',
+                data:{'_token':"{{csrf_token()}}",'id':mId,'qty':qty},
+                success:function(res){
+                  console.log(res);
+                }
+             });
+         }
+
+      });
+
+      $('.increase').on('click',function(){});
+
+        var  qty =$(this).closest('tr').find('td').eq(4).children('#number').val();
+         var mId=$(this).closest('tr').find('td').eq(0).children('#material_id').val();
+
+         if(qty!=null && mId !=null)
+         {
+             $.ajax({
+                url:"{{url('update-material-qty')}}",
+                type:'POST',
+                data:{'_token':"{{csrf_token()}}",'id':mId,'qty':qty},
+                success:function(res){
+                  console.log(res);
+                }
+             });
+         }
+
      });
   </script>
   @endsection

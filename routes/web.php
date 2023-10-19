@@ -80,6 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit-material/{id}',[MaterialController::class,'editMaterial'])->name('material.edit');
     Route::post('edit-material/{id}',[MaterialController::class,'editMaterialSubmit'])->name('material.edit');
     Route::get('get-sub-cat/{catId}',[MaterialController::class,'getMaterialSubCategory'])->name('material.subCat');
+    Route::post('update-material-qty',[MaterialController::class,'updateQty'])->name('material.qtyUpdate');
 
 
     //invoice

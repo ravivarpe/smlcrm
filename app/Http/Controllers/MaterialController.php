@@ -117,4 +117,10 @@ class MaterialController extends Controller
 
     }
 
+    public function updateQty(Request $request)
+    {
+        Material::where('id',$request->id)->update(['quantity'=>$request->qty]);
+        echo "success";
+    }
+
 }
