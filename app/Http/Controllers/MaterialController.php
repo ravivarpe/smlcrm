@@ -27,7 +27,7 @@ class MaterialController extends Controller
     {
         $companies=Company::all();
         $categories=MaterialCategory::all();
-        $materials=Material::with(['company','category'])->get();
+        $materials=Material::with(['company','category'])->where('material_status',1)->get();
         return view('materials.material_list',['materials'=>$materials,'companies'=>$companies,'categories'=>$categories]);
     }
 
@@ -44,7 +44,7 @@ class MaterialController extends Controller
     {
 
         $companies=Company::all();
-        $categories=Category::all();
+        $categories=MaterialCategory::all();
         $materials=Material::with(['company','category'])->where('mcategory_id',$id)->get();
         return view('materials.material_list',['materials'=>$materials,'companies'=>$companies,'categories'=>$categories]);
     }

@@ -214,8 +214,73 @@
          paging: true,
          dom: 'lBfrtip',
          buttons: [
-              'csv',
-         ],
+             {
+               extend: 'csvHtml5',
+               title: 'Materail List',
+               exportOptions: {
+                    modifier: {
+                    page: 'all'
+                    },
+                    columns: [ 0, 1, 2,3,4, 5 ],
+                    format: {
+                        body: function ( inner, rowidx, colidx, node ) {
+                            console.log(rowidx);
+                            if(rowidx===4){
+
+                                return $(inner)[2]['value'];
+
+                            }
+                            if(rowidx===5){
+
+                                    return $(inner).html();
+
+                            }else{
+                                return inner;
+                            }
+                         },
+                            header: function ( data, columnIdx ) {
+
+
+
+                              if(columnIdx==0)
+                              {
+                                 return "Ref";
+                              }
+                              if(columnIdx==1)
+                              {
+                                 return "Material Name";
+                              }
+                              if(columnIdx==2)
+                              {
+                                 return "Website";
+                              }
+
+                              if(columnIdx==3)
+                              {
+                                 return "Materail Type";
+                              }
+                              if(columnIdx==4)
+                              {
+                                 return "QTY";
+                              }
+                              if(columnIdx==5)
+                              {
+                                 return "Tags";
+                              }
+
+                            //   if(columnIdx==6)
+                            //   {
+                            //      return "Action";
+                            //   }
+
+
+
+
+                            }
+                        }
+                }
+             },
+        ],
          initComplete: function () {
          this.api()
              .columns()
