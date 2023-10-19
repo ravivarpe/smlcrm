@@ -73,13 +73,13 @@
                         <label>Non-Consumable</label>
                         <div class="col-sm-12 px-0">
                            <label class="checkbox-inline">
-                               <input type="checkbox" id="inlineCheckbox1" name="non_consumable"  value="1" @if ($material->id==1)
+                               <input type="checkbox" id="inlineCheckbox1" name="non_consumable"  value="1" @if ($material->non_consumable==1)
                                {{"checked"}}
                            @endif> Yes
                              </label>
 
                              <label class="checkbox-inline">
-                               <input type="checkbox" id="inlineCheckbox2" name="non_consumable" value="2" @if ($material->id==2)
+                               <input type="checkbox" id="inlineCheckbox2" name="non_consumable" value="2" @if ($material->non_consumable==2)
                                {{"checked"}}
                            @endif> No
                              </label></div>
@@ -91,7 +91,7 @@
                       <div class="form-group row mx-0">
                          <label>Quantity</label>
                          <div class="col-sm-12 px-0">
-                         <input class="col-sm-5" type="number" class="form-control" placeholder="Quantity" name="quantity" value="{{$material->quantity}}" required>  
+                         <input class="col-sm-5" type="number" class="form-control" placeholder="Quantity" name="quantity" value="{{$material->quantity}}" required>
                          @if ($errors->has('quantity'))
                          <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('quantity') }}</div>
                          @endif
@@ -101,7 +101,7 @@
                       <div class="form-group row mx-0">
                         <label>Minimum Quantity</label>
                         <div class="col-sm-12 px-0">
-                        <input class="col-sm-5" type="number" class="form-control" name="minimum_quntity" placeholder="Minimum Quantity" value="{{$material->minimum_quntity}}" required>  
+                        <input class="col-sm-5" type="number" class="form-control" name="minimum_quntity" placeholder="Minimum Quantity" value="{{$material->minimum_quntity}}" required>
                         @if ($errors->has('minimum_quntity'))
                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('minimum_quntity') }}</div>
                         @endif
@@ -126,13 +126,13 @@
                         <label>Purchase Vat</label>
                         <div class="col-sm-12 px-0">
                            <label class="checkbox-inline">
-                               <input type="checkbox" id="inlineCheckbox1" value="1" name="purchase_vat" @if ($material->id==1)
+                               <input type="checkbox" id="inlineCheckbox1" value="1" name="purchase_vat" @if ($material->purchase_vat==1)
                                {{"checked"}}
                            @endif> Yes
                              </label>
 
                              <label class="checkbox-inline">
-                               <input type="checkbox" id="inlineCheckbox2" value="0" name="purchase_vat" @if ($material->id==0)
+                               <input type="checkbox" id="inlineCheckbox2" value="0" name="purchase_vat" @if ($material->purchase_vat==0)
                                {{"checked"}}
                            @endif> No
                              </label></div>
@@ -155,10 +155,10 @@
                       <div class="form-check">
                          <label>Materials Status</label><br>
                          <label class="radio-inline">
-                         <input type="radio" name="material_status" value="1" @if ($material->id==1)
+                         <input type="radio" name="material_status" value="1" @if ($material->material_status==1)
                          {{"checked"}}
                      @endif> Active</label>
-                         <label class="radio-inline"><input type="radio" name="material_status" value="0" @if ($material->id==0)
+                         <label class="radio-inline"><input type="radio" name="material_status" value="0" @if ($material->material_status==0)
                             {{"checked"}}
                         @endif>Inactive</label>
 
