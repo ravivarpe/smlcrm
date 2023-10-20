@@ -121,6 +121,7 @@
                                   <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
                                      <thead class="back_table_color">
                                         <tr class="info">
+                                           <th></th>
                                            <th>Task No</th>
                                            <th>The Tasks</th>
                                            <th>Job Categories</th>
@@ -137,6 +138,7 @@
                                         @foreach ($tasks as $task )
 
                                         <tr>
+                                           <td><input type="checkbox" value="{{$task->id}}" name="taskId" id="taskId"></td>
                                            <td>{{$task->id}}</td>
                                            <td>{{$task->task_name}}</td>
                                            <td>@if($task->jobcategories!=null){{$task->jobcategories->name}}@endif</td>
@@ -395,8 +397,8 @@
                 $('#start_date').val(data.start_date);
                 $('#end_date').val(data.end_date);
                 $('#discription').text(data.discription);
-                $("job_cat_id select").val(data.job_cat_id).change();
-                $("#team_id select").val(data.team_id).change();
+                $("#job_cat_id").val(data.job_cat_id).trigger('change');
+                $("#team_id").val(data.team_id).trigger('change');
 
             });
             $('#edittsk').modal('show');
@@ -417,8 +419,74 @@
             paging: true,
             dom: 'lBfrtip',
             buttons: [
-                'csv',
-            ],
+             {
+               extend: 'csvHtml5',
+               title: 'Task List',
+               charset: 'utf-8',
+               bom: true,
+               exportOptions: {
+                    modifier: {
+                    page: 'all'
+                    },
+                    columns: [ 1, 2,3,4, 5,6,7,8 ],
+                    format: {
+                        body: function ( inner, rowidx, colidx, node ) {
+                            console.log(rowidx);
+
+                            if(rowidx===7){
+
+                                    return $(inner).html();
+
+                            }else{
+                                return inner;
+                            }
+                         },
+                            header: function ( data, columnIdx ) {
+
+
+
+                              if(columnIdx==1)
+                              {
+                                 return "Task No";
+                              }
+                              if(columnIdx==2)
+                              {
+                                 return "Task";
+                              }
+                              if(columnIdx==3)
+                              {
+                                 return "Category";
+                              }
+
+                              if(columnIdx==4)
+                              {
+                                 return "Team";
+                              }
+                              if(columnIdx==5)
+                              {
+                                 return "Start Date";
+                              }
+                              if(columnIdx==6)
+                              {
+                                 return "End Date";
+                              }
+                              if(columnIdx==7)
+                              {
+                                 return "Description";
+                              }
+
+                              if(columnIdx==8)
+                              {
+                                 return "Status";
+                              }
+
+
+
+                            }
+                        }
+                }
+             },
+        ],
         initComplete: function () {
         this.api()
             .columns()
@@ -457,6 +525,11 @@
 
       $("#addTaskForm").validate();
       $("#task_name").validate();
+
+      $("#taskId").on('click',function(){
+         var taskId=$(this).val();
+
+      });
 
     });
  </script>

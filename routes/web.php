@@ -105,6 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit-asset/{id}',[AssetController::class,'editAsset'])->name('asset.edit');
     Route::post('edit-asset/{id}',[AssetController::class,'editAssetSubmit'])->name('asset.edit');
     Route::post('delete-asset',[AssetController::class,'deleteAsset'])->name('asset.delete');
+    Route::get('company-wise-asset/{id}',[AssetController::class,'companyWiseAssets'])->name('asset.companyList');
 
 
    //Tasks

@@ -18,9 +18,17 @@ class AssetController extends Controller
         $companies=Company::all();
         return view('asset.asset_list',['assets'=>$assets, 'companies'=>$companies]);
     }
+
+    public function companyWiseAssets($companyId){
+
+        $assets=Asset::with(['company','team','category'])->where('company_id',$companyId)->get();
+        $companies=Company::all();
+        return view('asset.asset_list',['assets'=>$assets, 'companies'=>$companies]);
+     }
+
     public function addAsset()
     {
-    
+
         $companies=Company::all();
         $categories=AssetCategory::all();
         $subcategories=AssetSubcat::all();
@@ -40,12 +48,12 @@ class AssetController extends Controller
             'purchase_date'       => 'required',
             'service_required'    => 'required',
             'service_date'        => 'required',
-         
+
         ]);
 
         $data=$request->except('_token');
 
-         
+
         $data['purchase_date']=date('Y-m-d',strtotime($data['purchase_date']));
         $data['service_date']=date('Y-m-d',strtotime($data['service_date']));
 
@@ -83,14 +91,14 @@ class AssetController extends Controller
             'asset_type'   => 'required',
             'asset_name'   => 'required',
             'asset_value'  => 'required',
-            'purchase_date' => 'required',           
+            'purchase_date' => 'required',
             'service_date'  => 'required',
-         
+
         ]);
 
         $data=$request->except('_token');
 
-         
+
         $data['purchase_date']=date('Y-m-d',strtotime($data['purchase_date']));
         $data['service_date']=date('Y-m-d',strtotime($data['service_date']));
 
@@ -113,11 +121,11 @@ class AssetController extends Controller
         return redirect('asset')->with('success','Asset deleted successfully!');
     }
 
-    
 
-    
 
-   
-   
+
+
+
+
 
 }

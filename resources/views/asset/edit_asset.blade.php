@@ -24,7 +24,7 @@
              <div class="card lobicard all_btn_card" id="lobicard-custom-control1" data-sortable="true">
                  <div class="card-header all_card_btn">
                      <div class="card-title custom_title">
-                      <a class="btn btn-add" href="{{url('asset')}}"><i class="fa fa-truck"></i> Asset List </a>  
+                      <a class="btn btn-add" href="{{url('asset')}}"><i class="fa fa-truck"></i> Asset List </a>
                      </div>
                  </div>
                  <div class="card-body">
@@ -117,11 +117,11 @@
                         <div class="form-group">
                            <label>Service Required</label>
                         <div class="col-sm-12 px-0">
-                            <label class="checkbox-inline"> 
+                            <label class="checkbox-inline">
                             <input type="checkbox"
                             name="service_required" id="inlineCheckbox1" value="1" @if($asset->service_required==1){{'checked'}} @endif> Yes
                             </label>
-                             
+
                             <label class="checkbox-inline">
                             <input type="checkbox"
                             name="service_required" id="inlineCheckbox2" value="0" @if($asset->service_required==0){{'checked'}} @endif> No
@@ -140,10 +140,10 @@
                     <div class="form-group">
                         <label>Set Reminder</label>
                         <div class="col-sm-12 px-0">
-                           <label class="checkbox-inline"> 
+                           <label class="checkbox-inline">
                             <input type="checkbox" name="set_reminder" id="inlineCheckbox1" value="1" @if($asset->set_reminder==1){{'checked'}} @endif> Yes
                             </label>
-                             
+
                             <label class="checkbox-inline">
                             <input type="checkbox" name="set_reminder" id="inlineCheckbox2" value="0" @if($asset->set_reminder==0){{'checked'}} @endif> No
                             </label></div>
@@ -157,7 +157,10 @@
                         <div class="form-group">
                             <label>Picture upload</label>
                             <input type="file" name="image" accept="image/png, image/jpeg">
-                            
+                            @if ($asset->image!=null)
+                            <img src="{{url('uploads/assetimages')}}/{{$asset->image}}"  width="150" height="150"/>
+                            @endif
+
                         </div>
 
                         <div class="reset-button">

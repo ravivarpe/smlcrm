@@ -22,7 +22,7 @@
        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
          @foreach ($companies as $company)
 
-        <a class="dropdown-item" href="#">{{$company->name}}</a>
+          <a class="dropdown-item" href="{{route('asset.companyList',$company->id)}}">{{$company->name}}</a>
          @endforeach
        </div>
      </div>
@@ -42,9 +42,9 @@
                             <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
                             <div class="float-right">
                                <div class="btn-group" role="group">
-                                  <div class="buttonexport" id="buttonlist"> 
+                                  <div class="buttonexport" id="buttonlist">
                                   </div>
-                               </div> 
+                               </div>
 
                                <div class="btn-group" role="group">
                                  <div class="buttonexport" id="buttonlist">
@@ -52,7 +52,7 @@
                                     </a>
                                  </div>
                               </div>
-                 
+
                             </div>
                                <!-- Plugin content:powerpoint,txt,pdf,png,word,xl -->
                                <div class="table-responsive">
@@ -74,20 +74,20 @@
 
                                         @foreach ($assets as $asset )
                                         <tr>
-                                         
+
                                           <td>{{$asset->id}}</td>
                                           <td>{{$asset->asset_name}}</td>
                                           <td>@if($asset->company!=null){{$asset->company->name}}@endif</td>
                                           <td>@if($asset->team!=null){{$asset->team->team_name}}@endif</td>
                                           <td>{{$asset->purchase_date}}</td>
-                                         
+
                                           <td>
                                              @if($asset->set_reminder==1)
                                              {{'Yes'}}
                                              @else
                                              {{'No'}}
                                              @endif
-                                                 
+
                                             </td>
 
                                             <td>
@@ -96,23 +96,23 @@
                                              @else
                                              {{'No'}}
                                              @endif
-                                                 
+
                                             </td>
                                           <td>
-                                             @if($asset->category!=null)<span class="label-custom label label-default">
-                                             {{$asset->category->name}}</span>
+                                             @if($asset->category!=null)
+                                             <span class="label-custom label label-default">{{$asset->category->name}}</span>
                                              @endif
                                           </td>
-                                            
+
                                             <td>
                                              <a href="{{route('asset.edit',$asset->id)}}" >
                                                 <button type="button" class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></button></a>
-     
+
                                                 <a href="#" >  <button type="button" class="btn btn-danger btn-sm deletebtn" data-toggle="modal"
                                                 data-target="#deleteasset" data-id="{{$asset->id}}" ><i class="fa fa-trash-o"></i> </button></a>
                                             </td>
-  
-                                            
+
+
                                         </tr>
                                         @endforeach
                                      </tbody>
@@ -123,7 +123,7 @@
                </div>
        </div>
    <!-- Modal1 -->
-  
+
        <!-- Customer Modal2 -->
        <div class="modal fade" id="deleteasset" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
@@ -189,19 +189,31 @@ dom: 'lBfrtip',
 buttons: [
      {
        extend: 'csvHtml5',
-       title: 'Enquiry List',
+       title: 'Assets List',
        exportOptions: {
             modifier: {
             page: 'all'
             },
+            columns: [0, 1, 2,3,4, 5,6,7],
                 format: {
+                    body: function ( inner, rowidx, colidx, node ) {
+
+                            if(rowidx===7){
+                                console.log($(inner).html());
+
+                                return $(inner).html();
+
+                            }else{
+                                return inner;
+                            }
+                         },
                     header: function ( data, columnIdx ) {
 
                       console.log(data);
 
                       if(columnIdx==0)
                       {
-                         return "Ref";
+                         return "Ref No";
                       }
                       if(columnIdx==1)
                       {
@@ -235,10 +247,7 @@ buttons: [
                          return "Tag";
                       }
 
-                      if(columnIdx==8)
-                      {
-                         return "Action";
-                      }
+
 
 
                     }
