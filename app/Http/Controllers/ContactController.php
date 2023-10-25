@@ -82,7 +82,7 @@ class ContactController extends Controller
            Enquiry::where('id',$data['enquiry_id'])->update(['status'=>'Complete']);
          }
 
-         return redirect('contacts')->with('success','Contact added successfully!');
+         return redirect('view-contact/'.$contact->id)->with('success','Contact added successfully!');
     }
 
     public function editContact($id)
