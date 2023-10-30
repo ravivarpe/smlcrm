@@ -134,6 +134,10 @@ Route::group(['middleware' => 'auth'], function () {
     //calendar
     Route::get('calendar',[CalendarController::class,'index'])->name('calendar.list');
     Route::get('get-cal-event',[CalendarController::class,'getEvents'])->name('calendar.event');
+    Route::get('get-site-visit',[CalendarController::class,'siteVisit'])->name('calendar.sitevisit');
+    Route::post('add-site-visit-task',[CalendarController::class,'addSitVisitTaskSubmit'])->name('sitevisit.TaskAdd');
+    Route::get('get-site-visit-event',[CalendarController::class,'getSiteVisitEvents'])->name('sitevisit.eventCal');
+
 
     //jobs
     Route::get('jobs',[JobController::class,'index'])->name('job.list');

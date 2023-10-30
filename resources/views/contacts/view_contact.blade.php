@@ -208,7 +208,7 @@
                          <h2 class="print_only">Site Visits</h2>
                          <table>
                          <tbody><tr>
-                         <td colspan="5" class="add"><a href="site_visits?company_id=10" class="normal_button button">Add a site visit</a></td>
+                         <td colspan="5" class="add"><a href="{{url('get-site-visit')}}" class="normal_button button">Add a site visit</a></td>
                          </tr>
                          </tbody></table>
                          </div>
