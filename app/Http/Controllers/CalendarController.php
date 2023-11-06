@@ -22,7 +22,7 @@ class CalendarController extends Controller
         return view('calendar.calendar_list',['tasks'=>$tasks,'companies'=>$companies, 'calanders'=>$calanders]);
     }
 
-    public function siteVisit()
+    public function siteVisit($contactId)
     {
 
         $teams=User::all();
@@ -30,7 +30,7 @@ class CalendarController extends Controller
         $companies=Company::all();
         $calanders=CalendarCategory::all();
 
-        return view('calendar.sitevisit',['companies'=>$companies, 'calanders'=>$calanders,'teams'=>$teams,'jobcategories'=>$jobcategories]);
+        return view('calendar.sitevisit',['companies'=>$companies, 'calanders'=>$calanders,'teams'=>$teams,'jobcategories'=>$jobcategories,'contactId'=>$contactId]);
     }
 
     public function addSitVisitTaskSubmit(Request $request)

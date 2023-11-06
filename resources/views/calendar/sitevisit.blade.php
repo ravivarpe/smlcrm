@@ -76,7 +76,9 @@
           <div class="modal-body">
             <form action="#" method="post" enctype="multipart/form-data" id="addTaskForm">
                 @csrf
-             <div class="row">
+                <input type="hidden" name="contact_id" value="{{$contactId}}"/>
+
+               <div class="row">
                 <div id="tabs_container">
                     <ul id="tabs">
                     <li><a href="#tab0" data-toggle="tab" class="active">Task</a></li>
@@ -202,10 +204,11 @@
 @endsection
 @section('footer_scripts')
 <script>
-      $('#end_date1').datepicker({
+    $('#addtask').modal('show');
+      $('#end_date1').datetimepicker({
         format: "dd-mm-yyyy",
       });
-        $('#start_date1').datepicker({
+        $('#start_date1').datetimepicker({
         format: "dd-mm-yyyy",
       });
 
@@ -216,7 +219,7 @@
             data:$('#addTaskForm').serialize(),
             success:function(res){
               console.log(res);
-             // $('#addtask').model('hide');
+             // $('#addtask').modal('hide');
               location.reload();
             }
            });

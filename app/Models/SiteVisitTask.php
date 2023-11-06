@@ -11,7 +11,7 @@ class SiteVisitTask extends Model
         protected $table ='sitevisittask';
 
         protected $fillable = [
-            'id','task_name', 'start_date', 'end_date', 'discription', 'job_cat_id', 'team_id' ,'status','contact_id','priority','repeatable'];
+            'id','task_name', 'start_date', 'end_date', 'discription', 'job_cat_id', 'team_id' ,'status','contact_id','priority','repeatable','added_date_time'];
 
 
         public function team()
