@@ -16,7 +16,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\MapController;
-
+use App\Http\Controllers\SnaggingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -216,5 +216,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     //map MapController
     Route::get('maps',[MapController::class,'index'])->name('view-maps');
+
+    //snagging
+    Route::get('snagging-lists',[SnaggingController::class,'index'])->name('snagging.list');
+    Route::get('create-snagging',[SnaggingController::class,'addSnagging'])->name('snagging.add');
+    Route::post('create-snagging',[SnaggingController::class,'addSnaggingSubmit'])->name('snagging.add');
+    Route::get('delete-snagging/{id}',[SnaggingController::class,'deleteSnagging'])->name('snagging.delete');
+    Route::get('company-snagging/{id}',[SnaggingController::class,'companyWiseSnagging'])->name('snagging.company');
+
+    Route::get('edit-snagging/{id}',[SnaggingController::class,'editSnagging'])->name('snagging.edit');
+    Route::post('edit-snagging/{id}',[SnaggingController::class,'editSnaggingSubmit'])->name('snagging.edit');
 
 });

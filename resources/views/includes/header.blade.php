@@ -303,6 +303,13 @@
 
                   </ul>
                </li>
+               <li class="active">
+                <a href="{{url('snagging-lists')}}">
+                <i class="fa fa-user-circle"></i> <span>Snagging</span>
+                <span class="pull-right-container">
+                </span>
+                </a>
+             </li>
 
 
 
