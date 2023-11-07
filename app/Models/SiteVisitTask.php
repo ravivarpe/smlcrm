@@ -22,4 +22,9 @@ class SiteVisitTask extends Model
         {
             return $this->hasOne(JobCategories::class,'id','job_cat_id');
         }
+
+        public function contact()
+        {
+         return $this->hasOne(Contact::class,'id','contact_id');
+        }
 }

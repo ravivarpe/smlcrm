@@ -203,13 +203,15 @@
 
 @endsection
 @section('footer_scripts')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
 <script>
     $('#addtask').modal('show');
       $('#end_date1').datetimepicker({
-        format: "dd-mm-yyyy",
+        format: "d-m-Y H:i",
       });
         $('#start_date1').datetimepicker({
-        format: "dd-mm-yyyy",
+        format: "d-m-Y H:i",
       });
 
       $('.btn-add').click(function(){

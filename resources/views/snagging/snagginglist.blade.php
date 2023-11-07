@@ -271,7 +271,49 @@
         paging: true,
         dom: 'lBfrtip',
         buttons: [
-             'csv',
+             {
+               extend: 'csvHtml5',
+               title: 'Snaging List',
+               exportOptions: {
+                    modifier: {
+                    page: 'all'
+                    },
+                    columns: [ 0, 1, 2,3,4, 5 ],
+                        format: {
+                            header: function ( data, columnIdx ) {
+
+                              console.log(data);
+
+                              if(columnIdx==0)
+                              {
+                                 return "Job Ref";
+                              }
+                              if(columnIdx==1)
+                              {
+                                 return "Problem Type";
+                              }
+                              if(columnIdx==2)
+                              {
+                                 return "Customer Name";
+                              }
+
+                              if(columnIdx==3)
+                              {
+                                 return "Company";
+                              }
+                              if(columnIdx==4)
+                              {
+                                 return "Assign Team";
+                              }
+                              if(columnIdx==5)
+                              {
+                                 return "Problem Date";
+                              }
+
+                            }
+                        }
+                }
+             },
         ],
         initComplete: function () {
         this.api()

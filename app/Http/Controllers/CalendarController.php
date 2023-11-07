@@ -36,8 +36,10 @@ class CalendarController extends Controller
     public function addSitVisitTaskSubmit(Request $request)
     {
         $data=$request->except('_token');
-        $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
-        $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
+
+        $data['start_date']=date('Y-m-d H:i:s',strtotime($data['start_date']));
+        $data['end_date']=date('Y-m-d H:i:s',strtotime($data['end_date']));
+
         $task=SiteVisitTask::create($data);
         echo 'success';
         //return redirect('get-site-visit')->with('success','Task added successfully!');
@@ -48,11 +50,11 @@ class CalendarController extends Controller
        $taskArray=[];
        $start_date=date('Y-m-01');
        $end_date=date('Y-m-t');
-       $tasks=SiteVisitTask::with(['team','jobcategories'])->whereBetween('start_date',[$start_date,$end_date])->get();
+       $tasks=SiteVisitTask::with(['team','jobcategories','contact'=>function($q){$q->with(['address']);}])->whereBetween('start_date',[$start_date,$end_date])->get();
         foreach($tasks as $task)
         {
             $taskArray[]=array(
-                "title"=> $task->jobcategories->name .' '. $task->team->staff_name. ": ".$task->task_name,
+                "title"=> $task->jobcategories->name .' '. $task->team->staff_name. ": ".$task->task_name.'(Re:<a href="'.url('view-contact/'.$task->contact_id).'">'.$task->contact->name.'</a>)'.$task->contact->address->pincode."(Added ".date('d/m/Y',strtotime($task->added_date_time)). " at ".date('H:i',strtotime($task->added_date_time)).")",
                 "start"=> $task->start_date,
                 "color"=> $task->team->colour_code
             );
