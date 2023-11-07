@@ -277,7 +277,11 @@
                    $(this).remove();
                }
            },
-           events:"{{url('get-site-visit-event')}}"
+           events:"{{url('get-site-visit-event')}}",
+           eventRender: function( event, element, view ) {
+ 	        var title = element.find( '.fc-title' );
+	        title.html( title.html() );
+           }
         //    events: [
         //        {
         //            title: 'Business Lunch',

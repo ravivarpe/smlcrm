@@ -56,7 +56,9 @@ class CalendarController extends Controller
             $taskArray[]=array(
                 "title"=> $task->jobcategories->name .' '. $task->team->staff_name. ": ".$task->task_name.'(Re:<a href="'.url('view-contact/'.$task->contact_id).'">'.$task->contact->name.'</a>)'.$task->contact->address->pincode."(Added ".date('d/m/Y',strtotime($task->added_date_time)). " at ".date('H:i',strtotime($task->added_date_time)).")",
                 "start"=> $task->start_date,
-                "color"=> $task->team->colour_code
+                "backgroundColor"=> $task->team->colour_code,
+                "description"=>$task->jobcategories->name .' '. $task->team->staff_name. ": ".$task->task_name.'(Re:<a href="'.url('view-contact/'.$task->contact_id).'">'.$task->contact->name.'</a>)'.$task->contact->address->pincode."(Added ".date('d/m/Y',strtotime($task->added_date_time)). " at ".date('H:i',strtotime($task->added_date_time)).")",
+                'eventContent'=>['html'=>$task->jobcategories->name .' '. $task->team->staff_name. ": ".$task->task_name.'(Re:<a href="'.url('view-contact/'.$task->contact_id).'">'.$task->contact->name.'</a>)'.$task->contact->address->pincode."(Added ".date('d/m/Y',strtotime($task->added_date_time)). " at ".date('H:i',strtotime($task->added_date_time)).")"]
             );
 
         }
