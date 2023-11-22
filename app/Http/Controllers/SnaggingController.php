@@ -31,18 +31,15 @@ class SnaggingController extends Controller
     {
         $companies=Company::all();
 
-        $snaggings=Snagging::with(['company','contact','team'])->get();
+        $snaggings=Snagging::with(['company','contact','team'])->orderBy('complete_date')->get();
         return view('snagging.snagginglist',['snaggings'=>$snaggings,'companies'=>$companies]);
     }
 
     public function companyWiseSnagging($id)
     {
-
         $companies=Company::all();
-
         $snaggings=Snagging::with(['company','contact','team'])->where('company_id',$id)->get();
         return view('snagging.snagginglist',['snaggings'=>$snaggings,'companies'=>$companies]);
-
     }
 
     public function addSnagging()

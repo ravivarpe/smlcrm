@@ -43,16 +43,14 @@
           <div class="col-sm-12 col-lg-12 col-md-12">
              <div class="card">
                 <div class="card-body">
-                   <div class="cal_selects toggle_area" style="display: block;">
-                      <select class="formStyle advancedStyle" id="cat">
-                      <option value="all">Filter Category..</option>
-                      <option value="all">Show All</option>
-                      <option value="Bank Holidays">Bank Holidays</option><option value="Call">Call</option><option value="Email">Email</option><option value="Follow Up">Follow Up</option><option value="Install">Install</option><option value="Job Pack Visit">Job Pack Visit</option><option value="Meeting">Meeting</option><option value="Quote Visit">Quote Visit</option> </select>
-                      <select class="formStyle advancedStyle" id="assigned">
-                      <option value="">Filter Assigned To..</option>
-                      <option value="all">Everyone</option>
-                      <option value="97">Admin</option><option value="72">Administrator</option><option value="62" selected="">Andrew Firth</option><option value="84">Arron T2</option><option value="89">Ash</option><option value="91">BAD TEAM 1 Tom</option><option value="101">BAD TEAM 2 Declan</option><option value="75">CARL T3</option><option value="81">Chris Hemingway</option><option value="98">Chris Stott</option><option value="67">Craige Hallam</option><option value="100">Go Media</option><option value="78">GRAB (SIMON)</option><option value="96">Grab 2 (Dave)</option><option value="64">Hayden Preshaw</option><option value="90">John Hurst</option><option value="99">Mark Oldroyd</option><option value="95">Matty T6</option><option value="79">Powerclean</option><option value="80">RESIN TEAM T1</option><option value="76">SAM T4</option><option value="77">SCOTT T5</option> </select>
-                      </div>
+                   <div class="cal_selects toggle_area" style="overflow-x: scroll;">
+                         @foreach ($teams as $user )
+                               <a class="btn btn-add btn-show" href="#" data-id={{$user->id}}>  {{$user->staff_name}}
+                               </a>
+
+
+                         @endforeach
+                   </div>
                    <!-- calender -->
                    <br/>
                    <br/>
@@ -182,7 +180,7 @@
                 <div class="col-md-12 form-group user-form-group">
                     <div class="float-right">
                        <button type="button" class="btn btn-danger btn-sm">Cancel</button>
-                       <button type="button" class="btn btn-add btn-sm">Save</button>
+                       <button type="button" class="btn btn-add btn-sm" id="addTaskBtn">Save</button>
                     </div>
                  </div>
                </form>
@@ -206,6 +204,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/jquery.datetimepicker.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
 <script>
+    var userId=0;
+    var defaultEvents=[];
     $('#addtask').modal('show');
       $('#end_date1').datetimepicker({
         format: "d-m-Y H:i",
@@ -214,7 +214,7 @@
         format: "d-m-Y H:i",
       });
 
-      $('.btn-add').click(function(){
+      $('#addTaskBtn').click(function(){
            $.ajax({
             url:"{{route('sitevisit.TaskAdd')}}",
             type:'POST',
@@ -225,6 +225,42 @@
               location.reload();
             }
            });
+      });
+
+      $('.btn-show').click(function(event){
+        event.preventDefault();
+         var uid=$(this).attr('data-id');
+         userId=uid;
+         var events = {
+             url: "{{url('get-site-visit-event')}}/"+userId,
+             type: 'GET'
+        }
+
+        // var eventSources = $('#calendar').getEventSources();
+        // var len = eventSources.length;
+        // for (var i = 0; i < len; i++) {
+        //     eventSources[i].remove();
+        // }
+
+
+        $('#calendar').fullCalendar('removeEvents');
+       // $('#calendar').fullCalendar('removeEventSource',events);
+        $('#calendar').fullCalendar('addEventSource', events);
+
+        //$('#calendar').fullCalendar('refetchEvents');
+      });
+
+
+      $(window).load(function(event){
+
+        defaultEvents = {
+             url: "{{url('get-site-visit-event')}}/"+userId,
+             type: 'GET'
+        }
+
+       // $('#calendar').fullCalendar('removeEventSource', events);
+        $('#calendar').fullCalendar('addEventSource', defaultEvents);
+        $('#calendar').fullCalendar('refetchEvents');
       });
 
     function calndr() {
@@ -250,6 +286,7 @@
 
        /* initialize the calendar
         -----------------------------------------------------------------*/
+
         var calender = $('#calendar');
        $(calender).fullCalendar({
            header: {
@@ -277,11 +314,11 @@
                    $(this).remove();
                }
            },
-           events:"{{url('get-site-visit-event')}}",
-           eventRender: function( event, element, view ) {
- 	        var title = element.find( '.fc-title' );
-	        title.html( title.html() );
-           }
+        //    events:"{{url('get-site-visit-event')}}/"+userId,
+        //    eventRender: function( event, element, view ) {
+ 	    //     var title = element.find( '.fc-title' );
+	    //     title.html( title.html() );
+        //    }
         //    events: [
         //        {
         //            title: 'Business Lunch',

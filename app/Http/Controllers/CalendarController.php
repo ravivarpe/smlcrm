@@ -45,13 +45,18 @@ class CalendarController extends Controller
         //return redirect('get-site-visit')->with('success','Task added successfully!');
     }
 
-    public function getSiteVisitEvents()
+    public function getSiteVisitEvents($userid)
     {
        $taskArray=[];
        $start_date=date('Y-m-01');
        $end_date=date('Y-m-t');
+       if($userid>0){
+       $tasks=SiteVisitTask::with(['team','jobcategories','contact'=>function($q){$q->with(['address']);}])->whereBetween('start_date',[$start_date,$end_date])->where('team_id',$userid)->get();
+       }else{
        $tasks=SiteVisitTask::with(['team','jobcategories','contact'=>function($q){$q->with(['address']);}])->whereBetween('start_date',[$start_date,$end_date])->get();
-        foreach($tasks as $task)
+       }
+
+       foreach($tasks as $task)
         {
             $taskArray[]=array(
                 "title"=> $task->jobcategories->name .' '. $task->team->staff_name. ": ".$task->task_name.'(Re:<a href="'.url('view-contact/'.$task->contact_id).'">'.$task->contact->name.'</a>)'.$task->contact->address->pincode."(Added ".date('d/m/Y',strtotime($task->added_date_time)). " at ".date('H:i',strtotime($task->added_date_time)).")",
