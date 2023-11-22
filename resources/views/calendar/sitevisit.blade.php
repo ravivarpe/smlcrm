@@ -207,6 +207,8 @@
     var userId=0;
     var defaultEvents=[];
     $('#addtask').modal('show');
+    $('#addtask').draggable();
+
       $('#end_date1').datetimepicker({
         format: "d-m-Y H:i",
       });
@@ -304,6 +306,7 @@
            select:function(res){
             console.log(res.startStr);
             $('#addtask').modal('show');
+            $('#addtask').draggable();
            },
 
 
@@ -315,10 +318,14 @@
                }
            },
         //    events:"{{url('get-site-visit-event')}}/"+userId,
-        //    eventRender: function( event, element, view ) {
- 	    //     var title = element.find( '.fc-title' );
-	    //     title.html( title.html() );
-        //    }
+           eventRender: function( event, element, view ) {
+           // console.log(event);
+           // console.log(element);
+
+ 	        var title = element.find('.fc-content' ).find('.fc-title');
+	        console.log(title.html());
+            title.html(event.title);
+           }
         //    events: [
         //        {
         //            title: 'Business Lunch',
