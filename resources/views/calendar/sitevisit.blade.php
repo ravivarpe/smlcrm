@@ -43,9 +43,9 @@
           <div class="col-sm-12 col-lg-12 col-md-12">
              <div class="card">
                 <div class="card-body">
-                   <div class="cal_selects toggle_area" style="overflow-x: scroll;">
+                   <div class="cal_selects toggle_area" style="overflow-x: scroll;padding:5px;">
                          @foreach ($teams as $user )
-                               <a class="btn btn-add btn-show" href="#" data-id={{$user->id}}>  {{$user->staff_name}}
+                               <a class="btn btn-show" style="background-color: {{$user->color_code}};color:#fbfbfb;" href="#" data-id={{$user->id}}>  {{$user->staff_name}}
                                </a>
 
 
@@ -54,7 +54,7 @@
                    <!-- calender -->
                    <br/>
                    <br/>
-                   <br/>
+                   <br/><br/>
                    <div id='calendar'></div>
                 </div>
              </div>

@@ -341,7 +341,9 @@
                     $.ajax({
                     url:"{{url('search-material')}}",
                     type: 'get',
-
+                    data: {
+                        searchText: request.term
+                    },
                     success: function( data ) {
                         console.log(data);
                         response(data);

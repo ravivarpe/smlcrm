@@ -87,7 +87,7 @@ class InvoiceController extends Controller
 
     public function getMaterial(Request $request)
     {
-        $materials=Material::select('id','title')->where('title', 'LIKE', "%{$request->term}%")->get();
+        $materials=Material::select('id','title')->where('title', 'LIKE', "%{$request->searchText}%")->get();
         foreach($materials as $material ){
          $materialArray[] = array(
            "label" => $material->title,
