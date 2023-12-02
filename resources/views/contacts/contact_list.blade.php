@@ -104,7 +104,15 @@
                                      <a class="btn btn-add" href="{{url('create-contact')}}"> <i class="fa fa-plus"></i> Add New Contact
                                      </a>
                                   </div>
+
+
                                </div>
+                               <div class="btn-group" role="group">
+                                  <div class="buttonexport" id="buttonlist">
+                                    <a class="btn btn-add" href="#" data-toggle="modal" data-target="#customer2"> <i class="fa fa-upload"></i> Import CSV
+                                    </a>
+                                   </div>
+                                </div>
                                {{-- <div class="btn-group" role="menu">
                                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     30
@@ -228,19 +236,21 @@
           <div class="modal-dialog">
              <div class="modal-content">
                 <div class="modal-header modal-header-primary">
-                   <h3><i class="fa fa-user m-r-5"></i> Delete Customer</h3>
+                   <h3><i class="fa fa-user m-r-5"></i>Import CSV File</h3>
                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
                    <div class="row">
                       <div class="col-md-12">
-                         <form class="form-horizontal">
-                               <div class="row">
+                         <form class="form-horizontal" action="{{ route('contact.csvImport') }}" method="POST" enctype="multipart/form-data">
+                             @csrf
+                            <div class="row">
                                      <div class="col-md-12 form-group user-form-group">
-                                        <label class="control-label">Delete Customer</label>
+                                        <label class="control-label">Choose File</label>
+                                        <input type="file" name="file" accept=".csv" required>
                                         <div class="float-right">
                                            <button type="button" class="btn btn-danger btn-sm">NO</button>
-                                           <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                           <button type="submit" class="btn btn-add btn-sm">Upload</button>
                                         </div>
                                      </div>
                                </div>

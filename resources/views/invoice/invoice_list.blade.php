@@ -145,7 +145,7 @@
                                            <td><span class="label-success label label-default">Paid</span></td>
                                            <td>
                                               <button type="button" class="btn btn-add btn-sm" data-toggle="modal" data-target="#customer1"><i class="fa fa-pencil"></i></button>
-                                              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#customer2"><i class="fa fa-trash-o"></i> </button>
+                                              <a href="{{route('invoice.delete',$invoice->id)}}" >  <button type="button" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i> </button></a>
                                            </td>
                                         </tr>
 

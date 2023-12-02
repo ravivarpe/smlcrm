@@ -67,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('view-contact/{id}',[ContactController::class,'viewContact'])->name('contact.view');
     Route::post('create-contact-note',[ContactController::class,'addContactNote'])->name('contact.addNote');
     Route::get('delete-contact-note/{id}',[ContactController::class,'deleteNote'])->name('contact.delNote');
+    Route::post('import-contact-csv',[ContactController::class,'uploadCsv'])->name('contact.csvImport');
 
 
 

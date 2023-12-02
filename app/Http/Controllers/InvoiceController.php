@@ -30,6 +30,18 @@ class InvoiceController extends Controller
     public function addInvoiceSubmit(Request $request)
     {
          $data=$request->except('_token');
+
+         if($data['end_date']!=null && $data['start_date']!=null)
+         {
+            $data['start_date']=date('Y-m-d H:i:s',strtotime($data['start_date']));
+            $data['end_date']=date('Y-m-d H:i:s',strtotime($data['end_date']));
+         }
+
+         if($data['delivery_date']!=null)
+         {
+            $data['delivery_date']=date('Y-m-d H:i:s',strtotime($data['delivery_date']));
+         }
+
          $invoice=Invoice::create($data);
 
          $quantity=$data['quantity'];
@@ -63,7 +75,62 @@ class InvoiceController extends Controller
 
     public function editInvoice($id)
     {
-        return view('invoice.edit_invoice');
+
+        $companies=Company::all();
+        $invoiceTypes=InvoiceType::all();
+
+        $invoice = Invoice::with(['contact'])->where('id',$id)->first();
+        $invoiceDetails=InvoiceDetail::with(['material'])->where('invoice_id',$id)->get();
+
+        return view('invoice.edit_invoice',['companies'=>$companies,'invoiceTypes'=>$invoiceTypes,'invoice'=>$invoice,'invoiceDetails'=>$invoiceDetails]);
+    }
+
+    public function editInvoiceSubmit(Request $request,$id)
+    {
+         $data=$request->except('_token');
+
+         if($data['end_date']!=null && $data['start_date']!=null)
+         {
+            $data['start_date']=date('Y-m-d H:i:s',strtotime($data['start_date']));
+            $data['end_date']=date('Y-m-d H:i:s',strtotime($data['end_date']));
+         }
+
+         if($data['delivery_date']!=null)
+         {
+            $data['delivery_date']=date('Y-m-d H:i:s',strtotime($data['delivery_date']));
+         }
+
+
+
+         $quantity=$data['quantity'];
+         $price=$data['price'];
+         $priceUnit=$data['priceunit'];
+         $duration=$data['duration'];
+         $durationUnit=$data['durationunit'];
+         $materialIds=$data['materialId'];
+         $totals=$data['rowTotal'];
+
+         for($i=0;$i< count($materialIds);$i++){
+            InvoiceDetail::create(['invoice_id'=>$id,'quantity'=>$quantity[$i],'material_id'=>$materialIds[$i],'price'=>$price[$i],'price_unit'=>$priceUnit[$i],'period'=>$duration[$i],'period_unit'=>$durationUnit[$i],"total"=>$totals[$i]]);
+         }
+
+         $contactId=$data['contact_id'];
+
+         $contact=Address::where('contact_id',$contactId)->where('address_type',"Home")->first();
+         if($contact==null)
+         {
+            Address::create(['contact_id'=>$contactId, 'line1'=>$data['line1'], 'line2'=>$data['line2'], 'line3'=>$data['line3'], 'country'=>$data['country'], 'state'=>$data['state'], 'city'=>$data['city'], 'pincode'=>$data['zip'],'address_type'=>'Home']);
+         }
+
+         $contact=Address::where('contact_id',$contactId)->where('address_type',"Delivery")->first();
+         if($contact==null)
+         {
+            Address::create(['contact_id'=>$contactId, 'line1'=>$data['delivery_addr_line1'], 'line2'=>$data['delivery_addr_line2'], 'line3'=>$data['delivery_addr_line3'], 'country'=>$data['delivery_addr_country'], 'state'=>$data['delivery_addr_state'], 'city'=>$data['delivery_addr_city'], 'pincode'=>$data['delivery_addr_zip'],'address_type'=>'Delivery']);
+         }
+
+         $invoice=Invoice::where('id',$id)->update($data);
+
+         return redirect('invoice')->with('success','Invoice updated successfully!');
     }
 
     public function deleteInvoice($id)

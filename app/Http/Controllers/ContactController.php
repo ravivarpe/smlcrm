@@ -135,6 +135,37 @@ class ContactController extends Controller
         return redirect('contacts')->with('success','Contacts added successfully!');
     }
 
+    public function uploadCsv(Request $request)
+    {
+        $file = $request->file('file');
+        $fileContents = file($file->getPathname());
+
+        foreach ($fileContents as $key=>$line) {
+            if($key!=0){
+            $data = str_getcsv($line);
+
+            //$data['dob']=date('Y-m-d',strtotime($request->dob));
+            $subCatId=0;
+            $selectSubCat=SubCategory::where('sub_category_name',$data[7])->first();
+            if($selectSubCat==null)
+            {
+               $subCategory= SubCategory::create(['category_id'=>2,'sub_category_name'=>$data[7]]);
+               $subCatId=$subCategory->id;
+            } else{
+                $subCatId=$selectSubCat->id;
+            }
+            $contact=Contact::create([
+                'company_id'=>1, 'category_id'=>2, 'sub_category_id'=>$subCatId, 'contact_number'=>$data[2],  'email1'=>$data[3],  'website'=>$data[6],'added_date'=>date('Y-m-d'),'name'=>$data[0]
+            ]);
+            Address::create(['contact_id'=>$contact->id, 'line1'=>$data[4], 'line2'=>"", 'line3'=>"", 'country'=>"United Kingdom", 'state'=>"", 'city'=>"", 'pincode'=>$data[5],'address_type'=>"Home"]);
+          }
+
+        }
+
+        return redirect('contacts')->with('success','Contact edited successfully!');
+
+    }
+
 
     public function getAddressData($postcode)
     {

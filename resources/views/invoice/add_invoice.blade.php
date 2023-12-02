@@ -42,7 +42,7 @@
                       </div>
                       <div class="form-group col-sm-5">
                          <label>Type</label>
-                         <select class="form-control" name="type_id">
+                         <select class="form-control" name="type_id" id="invoce_type">
                             @foreach ($invoiceTypes as $type)
                             <option value="{{$type->id}}">{{$type->type_name}}</option>
                             @endforeach
@@ -112,7 +112,7 @@
                            <input type="text" name="delivery_addr_city" placeholder="City" value="" id="delivery_addr_city">
                            <input type="text" name="delivery_addr_state" placeholder="County/State" value="" id="delivery_addr_state">
                            <input type="text" name="delivery_addr_zip" placeholder="Postcode/Zip" value="" id="delivery_addr_zip">
-                           <a href="#" id="postcode_lookup">Find address</a>
+                           <a href="#" id="postcode_lookup_delivery">Find address</a>
                            </div>
 
                      </div>
@@ -188,38 +188,73 @@
                          <label>Terms & Condition</label>
                          <textarea class="form-control" rows="3" placeholder="description" name="terms_&_conditions" ></textarea>
                       </div>
+
+                      <div class="form-group row mx-0" id="delivery_date_div">
+                        <label>Delivery Date</label>
+                        <div class="col-sm-12 px-0">
+                        <input class="col-sm-5" type="text" class="form-control" placeholder="Delivery Date" name="delivery_date"  id="delivery_date" ></div>
+                     </div>
+
+                     <div class="form-group" id="delivery_instruction_div">
+                        <label>Delivery Instructions</label>
+                        <textarea class="form-control" rows="3" placeholder="Delivery Instructions" name="delivery_instruction" id="delivery_instruction"></textarea>
+                     </div>
+
+                      <div class="form-group row mx-0" id="start_date_div">
+                        <label>Job Start Date</label>
+                        <div class="col-sm-12 px-0">
+                        <input class="col-sm-5" type="text" class="form-control" placeholder="Job Start Date" name="start_date"  id="start_date" ></div>
+                     </div>
+
+                     <div class="form-group row mx-0" id="end_date_div">
+                        <label>Job End Date</label>
+                        <div class="col-sm-12 px-0">
+                        <input class="col-sm-5" type="text" class="form-control" placeholder="Job End Date" name="end_date"  id="end_date" ></div>
+                     </div>
+
+                     <div class="form-group" id="job_description_div">
+                        <label>Job Description</label>
+                        <textarea class="form-control" rows="3" placeholder="Job Description" name="job_description" id="job_description"></textarea>
+                     </div>
+
+                     <div class="form-group" id="job_details_div">
+                        <label>Job Details</label>
+                        <textarea class="form-control" rows="3" placeholder="Job Details" name="job_details" id="job_details"></textarea>
+                     </div>
+
+
                       <div class="form-group row mx-0">
                          <label>Discount</label>
                          <div class="col-sm-12 px-0">
-                         <input class="col-sm-5" type="number" class="form-control" placeholder="Discount" name="discount" required></div>
+                         <input class="col-sm-5" type="number" class="form-control" placeholder="Discount" name="discount"  id="discount" value="0" min="0" max="9999"></div>
                       </div>
 
                      <div class="form-group" name="total_price">
                         <label>Total Price</label>
-                        <td>
+                        <div class="col-sm-12 px-0">
                             <select name="price_unit">
                             <option value="EUR">Euro</option>
                             <option value="GBP" selected="">British Pound</option>
                             <option value="USD">United States Dollar</option>
                             </select>
                             <input type="text" name="total_price" class="small1" placeholder="Price"  id="total_price">
-                            </td>
+                        </div>
                      </div>
 
 
                       <div class="form-group">
                         <label>Vat %</label>
-                        <input type="nuber" class="form-control" placeholder="VAT %" name="vat">
+                        <input type="number" class=" col-sm-5 form-control" placeholder="VAT %" min="0" max="50" value="0" name="vat" id="vat">
                      </div>
                      <div class="form-group row mx-0">
                         <label>Vat</label>
                         <div class="col-sm-12 px-0">
                            <label class="checkbox-inline">
-                               <input type="checkbox" id="inlineCheckbox1" value="1" name="vat"> Yes
+                               <input type="radio" id="inlineCheckbox1" value="1" name="show_vat"> Yes
                              </label>
 
                              <label class="checkbox-inline">
-                               <input type="checkbox" id="inlineCheckbox2" value="0" name="vat"> No
+                               <input type="radio" id="inlineCheckbox2" value="0" name="show_vat"> No
                              </label></div>
                      </div>
 
@@ -244,7 +279,9 @@
 <script>
    $(document).ready(function(){
     var cid;
-
+    var vatAdded=false;
+    var grandTotal=0;
+    var vatAmt=0;
     $("#company_id").change(function(){
         cid= $("#company_id").val();
     });
@@ -393,13 +430,217 @@
         });
 
         $('#total_price').focus(function(){
-            var grandTotal=0;
+
             $(".product_list tbody tr").each(function(){
                 grandTotal+= parseFloat($(this).find('td:eq(7)').find('input').val());
-
-
             });
-            $(this).val(grandTotal);
+
+            var discount=$('#discount').val();
+
+            var finalTotal=grandTotal-discount;
+
+            $(this).val(finalTotal);
+        });
+
+        $("input[name='show_vat']").click(function(){
+            var v=$(this).val();
+             if(v==1)
+             {
+                if(vatAdded==false)
+                {
+                    var totalValue=$('#total_price').val();
+                    var vat=$('#vat').val();
+                    if(vat>0)
+                    {
+                        vatAmt=totalValue * (vat/100);
+                        var fintalTotal=parseFloat(totalValue)+parseFloat(vatAmt);
+                        $('#total_price').val(fintalTotal);
+                    }
+                    vatAdded=true;
+                }
+
+
+             }
+
+             if(v==0)
+             {
+                if(vatAdded==true)
+                {
+                    var totalValue=$('#total_price').val();
+                    var vat=$('#vat').val();
+                    if(vat>0)
+                    {
+                        //var tempTotal=totalValue * (vat/100);
+                        var fintalTotal=parseFloat(totalValue)-parseFloat(vatAmt);
+                        $('#total_price').val(fintalTotal);
+                    }
+                    vatAdded=false;
+                }
+
+
+             }
+        });
+
+
+        $('#postcode_lookup').click(function(event){
+            event.preventDefault();
+             var postcode=$('#zip').val();
+             if(postcode!=null && postcode!='undefined' && postcode!='')
+             {
+                $.ajax({
+                    url:"{{url('get-address')}}/"+postcode,
+                    type: 'get',
+
+                    success: function( data ) {
+                        console.log(data);
+                        var  addr=data.split('<~>');
+                        $('#line2').val(addr[0]);
+                        $('#city').val(addr[1]);
+                        $('#state').val(addr[2]);
+
+                    }
+                });
+             }
+        });
+
+        $('#postcode_lookup_delivery').click(function(event){
+            event.preventDefault();
+             var postcode=$('#delivery_addr_zip').val();
+             if(postcode!=null && postcode!='undefined' && postcode!='')
+             {
+                $.ajax({
+                    url:"{{url('get-address')}}/"+postcode,
+                    type: 'get',
+
+                    success: function( data ) {
+                        console.log(data);
+                        var  addr=data.split('<~>');
+                        $('#delivery_addr_line2').val(addr[0]);
+                        $('#delivery_addr_city').val(addr[1]);
+                        $('#delivery_addr_state').val(addr[2]);
+
+                    }
+                });
+             }
+        });
+
+        $('#invoce_type').change(function(){
+            var stype=$(this).children("option").filter(":selected").text();
+            if(stype=='Invoice'){
+                $('#delivery_instruction_div').hide();
+                 $('#delivery_date_div').hide();
+                 $('#start_date_div').hide();
+                 $('#end_date_div').hide();
+                 $('#job_description_div').hide();
+                 $('#job_details_div').hide();
+            }
+            if(stype=='Estimate'){
+                $('#delivery_instruction_div').hide();
+                 $('#delivery_date_div').hide();
+                 $('#start_date_div').hide();
+                 $('#end_date_div').hide();
+                 $('#job_description_div').hide();
+                 $('#job_details_div').hide();
+            }
+
+            if(stype=='Quote')
+            {
+                 $('#delivery_instruction_div').hide();
+                 $('#delivery_date_div').hide();
+                 $('#start_date_div').hide();
+                 $('#end_date_div').hide();
+                 $('#job_description_div').show();
+                 $('#job_details_div').show();
+            }
+
+            if(stype=='Purchase')
+            {
+                 $('#delivery_instruction_div').show();
+                 $('#delivery_date_div').show();
+                 $('#start_date_div').hide();
+                 $('#end_date_div').hide();
+                 $('#job_description_div').hide();
+                 $('#job_details_div').hide();
+            }
+
+            if(stype=='Job Pack')
+            {
+                 $('#delivery_instruction_div').hide();
+                 $('#delivery_date_div').hide();
+                 $('#start_date_div').show();
+                 $('#end_date_div').show();
+                 $('#job_description_div').show();
+                 $('#job_details_div').show();
+            }
+
+        });
+
+
+        $(window).load(function(event){
+            var stype=$('#invoce_type').children("option").filter(":selected").text();
+                 $('#delivery_instruction_div').hide();
+                 $('#delivery_date_div').hide();
+                 $('#start_date_div').hide();
+                 $('#end_date_div').hide();
+                 $('#job_description_div').hide();
+                 $('#job_details_div').hide();
+
+            if(stype=='Invoice'){
+                $('#delivery_instruction_div').hide();
+                 $('#delivery_date_div').hide();
+                 $('#start_date_div').hide();
+                 $('#end_date_div').hide();
+                 $('#job_description_div').hide();
+                 $('#job_details_div').hide();
+            }
+            if(stype=='Estimate'){
+                $('#delivery_instruction_div').hide();
+                 $('#delivery_date_div').hide();
+                 $('#start_date_div').hide();
+                 $('#end_date_div').hide();
+                 $('#job_description_div').hide();
+                 $('#job_details_div').hide();
+            }
+
+            if(stype=='Quote')
+            {
+                 $('#delivery_instruction_div').hide();
+                 $('#delivery_date_div').hide();
+                 $('#start_date_div').hide();
+                 $('#end_date_div').hide();
+                 $('#job_description_div').show();
+                 $('#job_details_div').show();
+            }
+
+            if(stype=='Purchase')
+            {
+                 $('#delivery_instruction_div').show();
+                 $('#delivery_date_div').show();
+                 $('#start_date_div').hide();
+                 $('#end_date_div').hide();
+                 $('#job_description_div').hide();
+                 $('#job_details_div').hide();
+            }
+
+            if(stype=='Job Pack')
+            {
+                 $('#delivery_instruction_div').hide();
+                 $('#delivery_date_div').hide();
+                 $('#start_date_div').show();
+                 $('#end_date_div').show();
+                 $('#job_description_div').show();
+                 $('#job_details_div').show();
+            }
+        });
+
+        $('#start_date').datepicker({
+            format: "dd-mm-yyyy",
+        });
+        $('#end_date').datepicker({
+            format: "dd-mm-yyyy",
+        });
+        $('#delivery_date').datepicker({
+            format: "dd-mm-yyyy",
         });
 
    });
