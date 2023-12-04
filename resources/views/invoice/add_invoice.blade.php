@@ -61,8 +61,8 @@
                       </div>
                        <div class="form-group">
                         <label>Customer Name</label>
-                        <input type="text" class="form-control" placeholder="Enter Customer Name" name="contact_name" id="contact_name" required>
-                        <input type="hidden" name="contact_id" id="contact_id" value=""/>
+                        <input type="text" class="form-control" placeholder="Enter Customer Name" name="contact_name" @if($defContact!=null) value="{{$defContact->name}}" @endif id="contact_name" required>
+                        <input type="hidden" name="contact_id" id="contact_id" @if($defContact!=null) value="{{$defContact->id}}" @else value="" @endif  />
                      </div>
                      <div class="form-group row mx-0">
                         <label>Phone/Mobile</label>

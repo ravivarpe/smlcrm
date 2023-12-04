@@ -87,8 +87,8 @@ Route::group(['middleware' => 'auth'], function () {
     //invoice
     Route::get('invoice',[InvoiceController::class,'index'])->name('invoice.list');
     Route::get('view-jobdetails/{id}',[InvoiceController::class,'viewJobPack'])->name('jobdetails.list');
-    Route::get('create-invoice',[InvoiceController::class,'addInvoice'])->name('invoice.add');
-    Route::post('create-invoice',[InvoiceController::class,'addInvoiceSubmit'])->name('invoice.add');
+    Route::get('create-invoice/{contactId?}',[InvoiceController::class,'addInvoice'])->name('invoice.add');
+    Route::post('create-invoice/{contactId?}',[InvoiceController::class,'addInvoiceSubmit'])->name('invoice.add');
     Route::get('edit-invoice/{id}',[InvoiceController::class,'editInvoice'])->name('invoice.edit');
     Route::post('edit-invoice/{id}',[InvoiceController::class,'editInvoiceSubmit'])->name('invoice.edit');
     Route::get('delete-invoice/{id}',[InvoiceController::class,'deleteInvoice'])->name('invoice.delete');

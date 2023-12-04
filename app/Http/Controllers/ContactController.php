@@ -25,6 +25,7 @@ use App\Models\ReferralType;
 use App\Models\Task;
 use App\Models\Job;
 use App\Models\Invoice;
+use App\Models\InvoiceType;
 
 
 class ContactController extends Controller
@@ -195,11 +196,11 @@ class ContactController extends Controller
 
         $jobs=Job::with('category')->where('contact_id',$id)->get();
 
+         $invoiceTypes=InvoiceType::get();
 
+         $quotes=Invoice::with(['invoicetype'])->where('contact_id',$id)->get();
 
-        $quotes=Invoice::with(['invoicetype'])->where('contact_id',$id)->get();
-
-        return view('contacts.view_contact',['teams'=>$teams,'jobcategories'=>$jobcategories,'contact'=>$contact,'notesdata'=>$notesdata,'contasks'=>$contasks,'jobs'=>$jobs,'quotes'=>$quotes]);
+        return view('contacts.view_contact',['teams'=>$teams,'jobcategories'=>$jobcategories,'contact'=>$contact,'notesdata'=>$notesdata,'contasks'=>$contasks,'jobs'=>$jobs,'quotes'=>$quotes,'invoiceTypes'=>$invoiceTypes]);
     }
 
 

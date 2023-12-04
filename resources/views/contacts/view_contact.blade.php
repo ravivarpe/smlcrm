@@ -134,15 +134,17 @@
                          <li><a href="#tab4" data-toggle="tab">People (3)</a></li>
                          <li><a href="#tab5" data-toggle="tab">Jobs ({{count($jobs)}})</a></li>
                          <li><a href="#tab7" data-toggle="tab">Materials </a></li>
-                         <li><a href="#tab8" data-toggle="tab">Quotes (47)</a></li>
-                         <li><a href="#tab9" data-toggle="tab">Invoices (1) <span class="fin_cat not_paid not_tab">Not Paid</span></a></li>
-                         <li><a href="#tab10" data-toggle="tab">Purchases (4)</a></li>
-                         <li><a href="#tab11" data-toggle="tab">Pricing </a></li>
+                         @foreach ($invoiceTypes as $key=>$invoiceType )
+                          <li><a href="#tab{{$key+8}}" data-toggle="tab" data-id="{{$invoiceType->id}}}">{{$invoiceType->type_name}}</a></li>
+
+                         @endforeach
+
+
                          </span>
 
-                         <span>
+                          <span>
 
-                            <li><a href="#tab12" data-toggle="tab">Task </a></li>
+                            <li><a href="#tab13" data-toggle="tab">Task </a></li>
                             </span>
                          </ul>
                       </div>
@@ -236,17 +238,23 @@
                          <td colspan="2" class="add">
                          <a class="normal_button button" href="change_product?company_id=10">Add a material</a></td>
                          </tr>
-                         </tbody></table>	</div>
-                         <div id="tab8" class="tab_content" ><table class="col_cont_large">
+                         </tbody></table>
+                         </div>
+                         @foreach ($invoiceTypes as $key=>$invoiceType )
+                         @php
+                         $invoices=\App\Helper\CustomerManager::invoicesByType($invoiceType->id,$contact->id);
+                         @endphp
+
+                         <div id="tab{{$key+8}}" class="tab_content" ><table class="col_cont_large">
                          <tbody><tr>
                          <td colspan="10" class="add">
-                         <a href="change_finance?company_id=10&amp;type=quote" class="normal_button button">Create quote</a></td>
+                         <a href="{{url('create-invoice')}}/{{$contact->id}}" class="normal_button button">Create {{$invoiceType->type_name}}</a></td>
                          </tr>
-                         @foreach ($quotes as $quote)
+                         @foreach ($invoices as $quote)
 
 
-                         <tr><td>5</td>
-                         <td class="no_mob">Quote </td>
+                         <tr><td>{{$quote->id}}</td>
+                         <td class="no_mob">{{$invoiceType->type_name}} </td>
                          <td class="no_mob" style="max-width:200px;">{{$quote->contact->name}},{{$quote->price_unit}} ,{{$quote->total_price}}</td>
                          <td>{{$quote->price_unit}} {{$quote->total_price}}</td>
                          <td>{{$quote->total_price}}</td>
@@ -256,63 +264,20 @@
                          <a href="#" target="_blank"><i class="fa fa-eye"></i></a> |
                          <a href="change_finance?id=8"><i class="fa fa-pencil-square-o"></i></a> |
                          <a href="{{url('view-jobdetails')}}/{{$quote->id}}">Create Job Pack</a> |
-                         <a href="change_finance?from_id=8">Create Invoice</a> |
+                         <a href="{{url('create-invoice')}}/{{$contact->id}}">Create Invoice</a> |
                          <a href="change_finance?copy_id=8"><i class="fa fa-copy"></i></a> |
-                         <a href="#" class="delete_quick" id="8" type="finances"><i class="fa fa-trash-o"></i></a>
+                         <a href="{{route('invoice.delete',$quote->id)}}" class="delete_quick" id="8" type="finances"><i class="fa fa-trash-o"></i></a>
                          </td>
                          </tr>
                          @endforeach
-                         </tbody></table></div>
-                         <div id="tab9" class="tab_content"><table class="col_cont_large">
-                         <tbody><tr>
-                         <td colspan="10" class="add">
-                         <a href="change_finance?company_id=10&amp;type=invoice" class="normal_button button">Create invoice</a></td>
-                         </tr>
-                         <tr><td>1</td>
-                         <td class="no_mob">Invoice </td>
-                         <td class="no_mob" style="max-width:200px;"><span></span></td>
-                         <td>GBP 8,900.00</td>
-                         <td>27/10/2014</td>
-                         <td><span class="inv_cat a_paid paid_85 paid" id="85">Paid</span> <span class="inv_cat a_not_paid not_85 " id="85">Not Paid</span></td>
-                         <td></td>
-                         <td>
-                         <a href="#" class="send_email" type="company" id="10" finance_id="85">Send</a> |
-                         <a href="/pdf/pdfs/The Yorkshire Resin Company Ltd Invoice (1-2eb).pdf" target="_blank"><i class="fa fa-eye"></i></a> |
-                         <a href="change_finance?id=85"><i class="fa fa-pencil-square-o"></i></a> |
-                         <a href="change_finance?copy_id=85"><i class="fa fa-copy"></i></a> |
-                         <a href="#" class="delete_quick" id="85" type="finances"><i class="fa fa-trash-o"></i></a>
-                         </td>
-                         </tr>
-                         </tbody></table></div>
-                         <div id="tab10" class="tab_content" ><table class="col_cont_large">
-                         <tbody><tr>
-                         <td colspan="10" class="add">
-                         <a href="change_finance?company_id=10&amp;type=purchase" class="normal_button button">Create purchase</a></td>
-                         </tr>
-                         <tr><td>2038</td>
-                         <td class="no_mob">Purchase (Johnathan )</td>
-                         <td class="no_mob" style="max-width:200px;"><span></span></td>
-                         <td>GBP </td>
-                         <td>13/08/2021</td>
-                         <td>17743</td>
-                         <td>
-                         <a href="#" class="send_email" type="company" id="10" finance_id="17743">Send</a> |
-                         <a href="/pdf/pdfs/The Yorkshire Resin Company Ltd Purchase (2038-898).pdf" target="_blank"><i class="fa fa-eye"></i></a> |
-                         <a href="change_finance?id=17743"><i class="fa fa-pencil-square-o"></i></a> |
-                         <a href="change_finance?copy_id=17743"><i class="fa fa-copy"></i></a> |
-                         <a href="#" class="delete_quick" id="17743" type="finances"><i class="fa fa-trash-o"></i></a>
-                         </td>
-                         </tr>
-                         </tbody></table></div>
-                         <div id="tab11" class="tab_content print_show">
-                         <h2 class="print_only">Pricing</h2>
-                         <table class="col_cont_large">
-                         <tbody><tr>
-                         <td colspan="4" class="add"><a href="#" class="normal_button button change_pricing" type="contact_id" id="10">Add value</a></td>
-                         </tr>
-                         </tbody></table>	</div>
+                         </tbody></table>
+                        </div>
 
-                         <div id="tab12" class="tab_content" ><table class="col_cont_large">
+                        @endforeach
+
+
+
+                         <div id="tab13" class="tab_content" ><table class="col_cont_large">
                             <tbody>
                                 {{-- <tr>
                             <td colspan="10" class="add">
