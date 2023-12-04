@@ -97,7 +97,7 @@
                            @foreach ($referraltypes as $referraltype)
                              <option value="{{$referraltype->id}}">{{$referraltype->name}}</option>
                            @endforeach
-                         
+
                         </select>
                      </div>
 

@@ -41,7 +41,7 @@
                       </div>
 
                       <div class="col-md-6 form-group">
-                        <label class="control-label">Staff Category</label>
+                        <label class="control-label">User Permission</label>
                         <select class="form-control" name="role_id" required>
 
                            @foreach ($roles as $role)
@@ -58,7 +58,7 @@
                          </select>
                       </div> --}}
                       <div class="form-group col-sm-5">
-                        <label>Sub Contractor</label>
+                        <label>Staff Category</label>
                         <select class="form-control" name="sub_category_id">
                             @foreach ($subcategories as $sub_cat)
                              <option value="{{$sub_cat->id}}">{{$sub_cat->sub_category_name}}</option>
@@ -66,6 +66,20 @@
                          </select>
                        </div>
                       </div>
+                      <div class="form-group">
+                        <label>Rate of Pay</label>
+                        <input type="text" class="form-control" name="rate_of_pay" placeholder="Enter Rate of Pay" required>
+                        @if ($errors->has('rate_of_pay'))
+                       <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('rate_of_pay') }}</div>
+                       @endif
+                     </div>
+                     <div class="form-group">
+                        <label>Frequency of Pay</label>
+                        <input type="text" class="form-control" name="freq_of_pay" placeholder="Enter Frequency Of Pay" required>
+                        @if ($errors->has('freq_of_pay'))
+                       <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('freq_of_pay') }}</div>
+                       @endif
+                     </div>
                       <div class="form-group">
                          <label>Staff Name</label>
                          <input type="text" class="form-control" name="staff_name" placeholder="Enter Staff Name" required>
@@ -130,7 +144,7 @@
                            @if ($errors->has('pincode'))
                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('pincode') }}</div>
                         @endif
-                           {{-- <a href="#" id="postcode_lookup">Find address</a> --}}
+                        <a href="#" id="postcode_lookup">Find address</a>
                            </div>
 
                      </div>
@@ -253,7 +267,8 @@
 @section('footer_scripts')
  <script>
     $(document).ready(function(){
-        $('#postcode_lookup').click(function(){
+        $('#postcode_lookup').click(function(event){
+            event.preventDefault();
              var postcode=$('#zip').val();
              if(postcode!=null && postcode!='undefined' && postcode!='')
              {

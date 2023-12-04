@@ -22,7 +22,7 @@ class User extends Authenticatable
     protected $table = 'staffs';
     public $timestamps = false;
     protected $fillable = [
-        'id', 'role_id', 'staff_name', 'email', 'password', 'phone', 'llandline', 'other_contact', 'emergency_contact', 'licence_id', 'expiration_date', 'inshurance_type', 'urt', 'ni', 'contract_start_date', 'contract_end_date', 'profile_image','team_id','status','added_date','is_staff','color_code','company_id'
+        'id', 'role_id', 'staff_name', 'email', 'password', 'phone', 'llandline', 'other_contact', 'emergency_contact', 'licence_id', 'expiration_date', 'inshurance_type', 'urt', 'ni', 'contract_start_date', 'contract_end_date', 'profile_image','team_id','status','added_date','is_staff','color_code','company_id','rate_of_pay','freq_of_pay'
     ];
 
     /**
