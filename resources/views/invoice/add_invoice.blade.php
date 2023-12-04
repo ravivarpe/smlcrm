@@ -44,7 +44,9 @@
                          <label>Type</label>
                          <select class="form-control" name="type_id" id="invoce_type">
                             @foreach ($invoiceTypes as $type)
-                            <option value="{{$type->id}}">{{$type->type_name}}</option>
+                            <option value="{{$type->id}}" @if ($type->id==$typeId)
+                                {{'selected'}}
+                            @endif>{{$type->type_name}}</option>
                             @endforeach
 
                          </select>
@@ -356,9 +358,9 @@
                         $('#state').val(contactdata.state);
                         $('#country').val(contactdata.country);
                         $('#zip').val(contactdata.pincode);
-                        $('#phone').val(contactdata.contact_number);
+                        $('#phone').val(contactdata.contact_number.replace(" ", ""));
                         $('#mobile').val(contactdata.mobile);
-                        $('#email').val(contactdata.email1);
+                        $('#email1').val(contactdata.email1);
                         $('#email2').val(contactdata.email2);
 
                     }
@@ -577,6 +579,34 @@
 
 
         $(window).load(function(event){
+            var defContact=@json($defContact);
+            console.log(defContact);
+            if(defContact!=null)
+            {
+                $.ajax({
+                    url:"{{url('get-contact-details')}}/"+defContact.id,
+                    type: 'get',
+                    success: function( data ) {
+                        console.log(data.contact_number);
+                        var contactdata=data;
+                        $('#line1').val(contactdata.line1);
+                        $('#line2').val(contactdata.line2);
+                        $('#line3').val(contactdata.line3);
+                        $('#city').val(contactdata.city);
+                        $('#state').val(contactdata.state);
+                        $('#country').val(contactdata.country);
+                        $('#zip').val(contactdata.pincode);
+                        $('#phone').val(data.contact_number.replace(" ", ""));
+                        $('#mobile').val(contactdata.mobile);
+                        $('#email1').val(contactdata.email1);
+                        $('#email2').val(contactdata.email2);
+
+                    }
+                  });
+
+            }
+
+
             var stype=$('#invoce_type').children("option").filter(":selected").text();
                  $('#delivery_instruction_div').hide();
                  $('#delivery_date_div').hide();

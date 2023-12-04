@@ -248,7 +248,7 @@
                          <div id="tab{{$key+8}}" class="tab_content" ><table class="col_cont_large">
                          <tbody><tr>
                          <td colspan="10" class="add">
-                         <a href="{{url('create-invoice')}}/{{$contact->id}}" class="normal_button button">Create {{$invoiceType->type_name}}</a></td>
+                         <a href="{{url('create-invoice')}}/{{$contact->id}}/{{$invoiceType->id}}" class="normal_button button">Create {{$invoiceType->type_name}}</a></td>
                          </tr>
                          @foreach ($invoices as $quote)
 

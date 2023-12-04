@@ -20,15 +20,17 @@ class InvoiceController extends Controller
         $invoices=Invoice::with(['contact'])->get();
         return view('invoice.invoice_list',['invoices'=>$invoices]);
     }
-    public function addInvoice($contactId=null)
+    public function addInvoice($contactId=null,$typeId=null)
     {
+        $contact=null;
         $companies=Company::all();
         $invoiceTypes=InvoiceType::all();
+
         if($contactId!=null)
         {
             $contact=Contact::where('id',$contactId)->first();
         }
-        return view('invoice.add_invoice',['companies'=>$companies,'invoiceTypes'=>$invoiceTypes,'defContact'=>$contact]);
+        return view('invoice.add_invoice',['companies'=>$companies,'invoiceTypes'=>$invoiceTypes,'defContact'=>$contact,'typeId'=>$typeId]);
     }
 
     public function addInvoiceSubmit(Request $request)
