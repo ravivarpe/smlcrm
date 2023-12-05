@@ -97,6 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('search-jobs',[InvoiceController::class,'getJob'])->name('invoice.job');
     Route::get('get-contact-details/{id}',[InvoiceController::class,'getContactDetails'])->name('getContactDetails');
     Route::get('get-material-details/{id}',[InvoiceController::class,'getMaterialDetails'])->name('getMaterialDetails');
+    Route::get('view-invoice-pdf/{id?}',[InvoiceController::class,'viewInvoicePdf'])->name('view.invoicePdf');
 
 
     //asset

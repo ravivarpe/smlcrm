@@ -81,7 +81,7 @@
 
  <script>
         let marker;
-        let markerArray=[]
+        let markerArray=@json($locData);
 
         let infoWindow
 
@@ -97,11 +97,11 @@
                         mapTypeIds: ["roadmap", "satellite"]}
             });
 
-            // for (let index = 0; index < varray['detail_data'].length; index++) {
-            //     var element = varray['detail_data'][index];
-            //     createMarker(element);
-            //     console.log(index);
-            // }
+            for (let index = 0; index < markerArray.length; index++) {
+                var element = markerArray[index];
+                createMarker(element);
+                console.log(index);
+            }
 
         };
 
@@ -115,15 +115,15 @@
 
                 let  marker = new google.maps.Marker({
                     map: map,
-                    icon: icon,
-                    position:{ lat:parseFloat(place.latitude), lng: parseFloat(place.longitude) }
+                    //icon: icon,
+                    position:{ lat:parseFloat(place.lat), lng: parseFloat(place.long) }
                 })
 
                 infoWindow = new google.maps.InfoWindow()
 
                 google.maps.event.addListener(marker, "click", () =>
                 {
-                    infoWindow.setContent("Vehicle NO: "+place.vehicle_no+"<br/>\n Location: "+place.location + "\n<br/> Date Time"+place.date_time)
+                    infoWindow.setContent(place.name)
                     infoWindow.open(map, marker)
 
                 })

@@ -261,8 +261,8 @@
                          <td></td>
                          <td>
                          <a href="#" class="send_email" type="company" id="10" finance_id="8">Send</a> |
-                         <a href="#" target="_blank"><i class="fa fa-eye"></i></a> |
-                         <a href="change_finance?id=8"><i class="fa fa-pencil-square-o"></i></a> |
+                         <a href="{{url('view-invoice-pdf')}}/{{$quote->id}}" target="_blank"><i class="fa fa-eye"></i></a> |
+                         <a href="#"><i class="fa fa-pencil-square-o"></i></a> |
                          <a href="{{url('view-jobdetails')}}/{{$quote->id}}">Create Job Pack</a> |
                          <a href="{{url('create-invoice')}}/{{$contact->id}}">Create Invoice</a> |
                          <a href="change_finance?copy_id=8"><i class="fa fa-copy"></i></a> |

@@ -12,6 +12,8 @@ use App\Models\InvoiceType;
 use App\Models\Material;
 use App\Models\Job;
 use App\Models\JobImage;
+use PDF;
+
 
 class InvoiceController extends Controller
 {
@@ -76,7 +78,7 @@ class InvoiceController extends Controller
             Address::create(['contact_id'=>$contactId, 'line1'=>$data['delivery_addr_line1'], 'line2'=>$data['delivery_addr_line2'], 'line3'=>$data['delivery_addr_line3'], 'country'=>$data['delivery_addr_country'], 'state'=>$data['delivery_addr_state'], 'city'=>$data['delivery_addr_city'], 'pincode'=>$data['delivery_addr_zip'],'address_type'=>'Delivery']);
          }
 
-         return redirect('invoice')->with('success','Invoice added successfully!');
+         return redirect('view-invoice-pdf/'.$invoice->id)->with('success','Invoice added successfully!');
     }
 
     public function editInvoice($id)
@@ -143,6 +145,26 @@ class InvoiceController extends Controller
     {
         Invoice::where('id',$id)->delete();
         return redirect('invoice')->with('success','Invoice deleted successfully!');
+    }
+
+    public function viewInvoicePdf($id=1)
+    {
+
+        $invoice=Invoice::with('invoicetype')->where('id',$id)->first()->toArray();
+        $invoiceDetails=InvoiceDetail::with('material')->where('invoice_id',$id)->get()->toArray();
+
+        $contact=Contact::where('id',$invoice['contact_id'])->first()->toArray();
+        $homeAddr=Address::where('contact_id',$invoice['contact_id'])->where('address_type',"Home")->first()->toArray();
+        $deliveryAddr=Address::where('contact_id',$invoice['contact_id'])->where('address_type',"Delivery")->first()->toArray();
+
+      //  $jobDetails=Job::where('id',$invoice->job_id)->first();
+      //  $jobImages=JobImage::where('job_id',$invoice->job_id)->get();
+
+
+     $pdf = PDF::loadView('invoice.viewinvoicepdf', compact('invoice', 'invoiceDetails','contact','homeAddr','deliveryAddr'));
+      return $pdf->download('invoice.pdf');
+//    return view('invoice.viewinvoicepdf',['invoice'=>$invoice,'invoiceDetails'=>$invoiceDetails,'contact'=>$contact,'homeAddr'=>$homeAddr,'deliveryAddr'=>$deliveryAddr]);
+
     }
 
     public function getContact(Request $request)
