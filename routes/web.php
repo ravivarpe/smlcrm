@@ -139,7 +139,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('get-site-visit/{contact_id}',[CalendarController::class,'siteVisit'])->name('calendar.sitevisit');
     Route::post('add-site-visit-task',[CalendarController::class,'addSitVisitTaskSubmit'])->name('sitevisit.TaskAdd');
     Route::get('get-site-visit-event/{userid?}',[CalendarController::class,'getSiteVisitEvents'])->name('sitevisit.eventCal');
-
+    Route::get('get-planning-cal/{contact_id?}',[CalendarController::class,'planningCalendar'])->name('calendar.planning');
 
     //jobs
     Route::get('jobs',[JobController::class,'index'])->name('job.list');

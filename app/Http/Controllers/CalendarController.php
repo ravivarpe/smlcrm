@@ -33,6 +33,17 @@ class CalendarController extends Controller
         return view('calendar.sitevisit',['companies'=>$companies, 'calanders'=>$calanders,'teams'=>$teams,'jobcategories'=>$jobcategories,'contactId'=>$contactId]);
     }
 
+    public function planningCalendar($contactId=null)
+    {
+
+        $teams=Team::all();
+        $jobcategories=JobCategories::all();
+        $companies=Company::all();
+        $calanders=CalendarCategory::all();
+
+        return view('calendar.planning_cal',['companies'=>$companies, 'calanders'=>$calanders,'teams'=>$teams,'jobcategories'=>$jobcategories,'contactId'=>$contactId]);
+    }
+
     public function addSitVisitTaskSubmit(Request $request)
     {
         $data=$request->except('_token');

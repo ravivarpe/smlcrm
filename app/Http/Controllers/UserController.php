@@ -40,7 +40,7 @@ class UserController extends Controller
             'phone' =>'required |numeric',
             'licence_id' =>'required',
             'color_code' =>'required',
-            'team_id' =>'required',
+
             'added_date'=>'required',
             'color_code'=>'required',
             'line1'=>'required',
@@ -54,6 +54,7 @@ class UserController extends Controller
         $data['contract_start_date']=date('Y-m-d',strtotime($data['contract_start_date']));
         $data['contract_end_date']=date('Y-m-d',strtotime($data['contract_end_date']));
         $data['added_date']=date('Y-m-d',strtotime($data['added_date']));
+        $data['dob']=date('Y-m-d',strtotime($data['dob']));
         $user=User::create($data);
         if($request->hasFile('profile_image')){
 
@@ -93,7 +94,7 @@ class UserController extends Controller
             'phone' =>'required |numeric',
             'licence_id' =>'required',
             'color_code' =>'required',
-            'team_id' =>'required',
+
             'added_date'=>'required',
             'color_code'=>'required',
             'line1'=>'required',
@@ -103,13 +104,16 @@ class UserController extends Controller
 
         $data=$request->except('_token');
         unset($data['confirm_pass']);
-        $data['password'] = Hash::make($request->password);
+        if($data['password']!=null)
+        {
+            $data['password'] = Hash::make($request->password);
+        }
 
         $data['expiration_date']=date('Y-m-d',strtotime($data['expiration_date']));
         $data['contract_start_date']=date('Y-m-d',strtotime($data['contract_start_date']));
         $data['contract_end_date']=date('Y-m-d',strtotime($data['contract_end_date']));
         $data['added_date']=date('Y-m-d',strtotime($data['added_date']));
-
+        $data['dob']=date('Y-m-d',strtotime($data['dob']));
 
         $addr=StaffAddress::where('staff_id',$id)->first();
         if($addr!=null)

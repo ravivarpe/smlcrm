@@ -26,9 +26,16 @@
                      </div>
                  </div>
                  <div class="card-body">
-                <form action="{{route('user.edit',$user->id)}}" method="post">
+                <form action="{{route('user.edit',$user->id)}}" method="post"  enctype="multipart/form-data">
                     @csrf
                    <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Staff Name</label>
+                        <input type="text" class="form-control" name="staff_name" placeholder="Enter Staff Name" value="{{$user->staff_name}}" required>
+                        @if ($errors->has('staff_name'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('staff_name') }}</div>
+                        @endif
+                     </div>
                       <div class="row">
                       <div class="form-group col-sm-5">
                          <label>Company Name</label>
@@ -81,19 +88,26 @@
                      </div>
                      <div class="form-group">
                         <label>Frequency of Pay</label>
-                        <input type="text" class="form-control" name="freq_of_pay" placeholder="Enter Frequency Of Pay" value="{{$user->freq_of_pay}}" required>
+                        <select class="form-control" name="freq_of_pay"  required>
+                            <option value="Per Day" @if ($user->freq_of_pay=='Per Day')
+                                {{'selected'}}
+                            @endif>Per Day</option>
+                            <option value="Per Week" @if ($user->freq_of_pay=='Per Week')
+                                {{'selected'}}
+                            @endif>Per Week</option>
+                            <option value="Per Month" @if ($user->freq_of_pay=='Per Month')
+                                {{'selected'}}
+                            @endif>Per Month</option>
+                            <option value="Per Anum" @if ($user->freq_of_pay=='Per Anum')
+                                {{'selected'}}
+                            @endif>Per Anum</option>
+                        </select>
                         @if ($errors->has('freq_of_pay'))
                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('freq_of_pay') }}</div>
                        @endif
                      </div>
 
-                      <div class="form-group">
-                         <label>Staff Name</label>
-                         <input type="text" class="form-control" name="staff_name" placeholder="Enter Staff Name" value="{{$user->staff_name}}" required>
-                         @if ($errors->has('staff_name'))
-                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('staff_name') }}</div>
-                         @endif
-                      </div>
+
                       <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" placeholder="Email" name="email"  value="{{$user->email}}" required>
@@ -119,16 +133,16 @@
                         <input class="col-sm-5"  type="number" class="form-control" placeholder="Enter Landline" name="llandline" value="{{$user->llandline}}"></div>
                      </div>
                      <div class="form-group row mx-0">
-                        <label>Other Contact </label>
+                        <label>Emergency Contact Name </label>
                         <div class="col-sm-12 px-0">
 
-                        <input class="col-sm-5"  type="number" class="form-control" placeholder="Enter Landline" name="other_contact" value="{{$user->other_contact}}"></div>
+                        <input class="col-sm-5"  type="number" class="form-control" placeholder="Emergency Contact Name" name="other_contact" value="{{$user->other_contact}}"></div>
                      </div>
                      <div class="form-group row mx-0">
-                        <label>Emergency Contact </label>
+                        <label>Emergency Contact Number </label>
                         <div class="col-sm-12 px-0">
 
-                        <input class="col-sm-5"  type="number" class="form-control" placeholder="Enter Emergency Contact" name="emergency_contact" value="{{$user->emergency_contact}}"></div>
+                        <input class="col-sm-5"  type="number" class="form-control" placeholder="Emergency Contact Number" name="emergency_contact" value="{{$user->emergency_contact}}"></div>
                      </div>
 
                      <div class="form-group">
@@ -185,12 +199,12 @@
                      </div>
 
                      <div class="form-group">
-                        <label>Insurance Type</label>
-                        <input type="text" class="form-control" placeholder="Insurance Type" name="inshurance_type" value="{{$user->inshurance_type}}">
+                        <label>DOB</label>
+                        <input type="text" class="form-control" placeholder="DOB" name="dob" value="{{$user->dob}}" id="dob">
                      </div>
                      <div class="form-group">
                         <label>UTR</label>
-                        <input type="text" class="form-control" placeholder="URT " name="urt" value="{{$user->urt}}">
+                        <input type="text" class="form-control" placeholder="UTR " name="urt" value="{{$user->urt}}">
                      </div>
 
                      <div class="form-group">
@@ -210,7 +224,7 @@
 
 
                      <div class="form-check">
-                        <label>Is Staff</label><br>
+                        <label>Details Complete</label><br>
                         <label class="radio-inline">
                         <input type="checkbox" name="is_staff" value="1" checked="checked"> Yes</label>
                         {{-- <label class="radio-inline"><input type="radio" name="email_subscription" value="0" > No</label> --}}
@@ -229,8 +243,8 @@
                      <div class="row">
                         <div class="col-md-6 form-group">
                             <label class="control-label">Teams</label>
-                            <select class="form-control" name="team_id" required>
-
+                            <select class="form-control" name="team_id">
+                                <option value="">NO TEAM</option>
                                @foreach ($teams as $team)
                                  <option value="{{$team->id}}"  @if ($user->team_id==$team->id)
                                     {{'selected'}}
@@ -254,6 +268,11 @@
                         <input type="radio" name="status" value="1" checked="checked"> Active</label>
                         <label class="radio-inline"><input type="radio" name="status" value="0" > InActive</label>
 
+                     </div>
+
+                     <div class="form-group" id="job_description_div">
+                        <label>Note</label>
+                        <textarea class="form-control" rows="3" placeholder="Note" name="note" id="note">{{$user->note}}</textarea>
                      </div>
 
                      <div class="form-group">
@@ -320,6 +339,10 @@
            format: "dd-mm-yyyy",
         })
         $('#added_date').datepicker({
+           format: "dd-mm-yyyy",
+        })
+
+        $('#dob').datepicker({
            format: "dd-mm-yyyy",
         })
 

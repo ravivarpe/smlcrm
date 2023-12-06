@@ -41,7 +41,7 @@ class MapController extends Controller
             if(count($data['results'])>0){
                 $addrArray=$data['results'][0]['geometry']['location'];
 
-                $contactData=['id',$contact->id,'name'=>$contact->name,'addr'=>$address,'lat'=>$addrArray['lat'],'long'=>$addrArray['lng']];
+                $contactData=['id'=>$contact->id,'name'=>$contact->name,'addr'=>$address,'lat'=>$addrArray['lat'],'long'=>$addrArray['lng']];
                  array_push($locData,$contactData);
             }
 

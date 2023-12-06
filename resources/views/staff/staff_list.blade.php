@@ -54,6 +54,7 @@
                                            <th>Photo</th>
                                            <th>User Name</th>
                                            <th>Type</th>
+                                           <th>Team</th>
                                            <th>status</th>
                                            <th>Action</th>
                                         </tr>
@@ -65,7 +66,7 @@
                                         <tr>
                                            <td>
                                                @if ($user->profile_image!=null)
-                                                <img src="{{URL::asset('/uploads/profiles/'.$user->profile_image)}}" class="img-circle" alt="User Image" width="50" height="50">
+                                                <img src="{{URL::asset('/public/uploads/profiles/'.$user->profile_image)}}" class="img-circle" alt="User Image" width="50" height="50">
 
                                                @else
                                                  <img src="assets/dist/img/m1.png" class="img-circle" alt="User Image" width="50" height="50">
@@ -74,11 +75,21 @@
 
 
                                            </td>
+
                                            <td>{{$user->staff_name}}</td>
                                            <td><span class="label-custom label label-default" > @if ($user->role!=null) {{
                                             $user->role->role_name
                                            }} @endif</span>
                                            </td>
+                                           <td>
+                                            @if (@$user->team!=null)
+                                            <a class="label-custom label label-default" style="background-color: {{$user->team->colour_code}};color:#fbfbfb;" href="#">  {{$user->team->team_name}}
+                                            </a>
+                                            @else
+                                            {{'NA'}}
+
+                                            @endif
+                                       </td>
                                            <td>
                                             @if ($user->status==1)
                                             <span class="label-custom label label-default">Active</span>
