@@ -8,20 +8,21 @@ use App\Models\Company;
 use App\Models\AssetCategory;
 use App\Models\AssetSubcat;
 use App\Models\Team;
+use App\Models\User;
 
 
 class AssetController extends Controller
 {
     public function index()
     {
-        $assets=Asset::with(['company','team','category'])->get();
+        $assets=Asset::with(['company','team','category','supplier','staff'])->get();
         $companies=Company::all();
         return view('asset.asset_list',['assets'=>$assets, 'companies'=>$companies]);
     }
 
     public function companyWiseAssets($companyId){
 
-        $assets=Asset::with(['company','team','category'])->where('company_id',$companyId)->get();
+        $assets=Asset::with(['company','team','category','supplier','staff'])->where('company_id',$companyId)->get();
         $companies=Company::all();
         return view('asset.asset_list',['assets'=>$assets, 'companies'=>$companies]);
      }
@@ -40,7 +41,7 @@ class AssetController extends Controller
     {
         $request->validate([
             'category_id'         => 'required',
-            'subcat_id'           => 'required',
+
             'company_id'          => 'required',
             'asset_type'          => 'required',
             'asset_name'          => 'required',
@@ -56,6 +57,7 @@ class AssetController extends Controller
 
         $data['purchase_date']=date('Y-m-d',strtotime($data['purchase_date']));
         $data['service_date']=date('Y-m-d',strtotime($data['service_date']));
+        $data['mot_date']=date('Y-m-d',strtotime($data['mot_date']));
 
          $assets=Asset::create($data);
          $image="";
@@ -77,7 +79,7 @@ class AssetController extends Controller
         $subcategories=AssetSubcat::all();
         $teams=Team::all();
 
-        $asset=Asset::with(['company','team','category'])->where('id',$id)->first();
+        $asset=Asset::with(['company','team','category','supplier','staff'])->where('id',$id)->first();
 
         return view('asset.edit_asset',['companies'=>$companies,'categories'=>$categories, 'subcategories'=>$subcategories,'teams'=>$teams,'asset'=>$asset]);
     }
@@ -86,7 +88,7 @@ class AssetController extends Controller
     {
         $request->validate([
             'category_id' => 'required',
-            'subcat_id'   => 'required',
+
             'company_id'   => 'required',
             'asset_type'   => 'required',
             'asset_name'   => 'required',
@@ -101,7 +103,7 @@ class AssetController extends Controller
 
         $data['purchase_date']=date('Y-m-d',strtotime($data['purchase_date']));
         $data['service_date']=date('Y-m-d',strtotime($data['service_date']));
-
+        $data['mot_date']=date('Y-m-d',strtotime($data['mot_date']));
          $assets=Asset::where('id',$id)->update($data);
          $image="";
             if($request->hasFile('image')){
@@ -119,6 +121,20 @@ class AssetController extends Controller
     {
         Asset::where('id',$request->id)->delete();
         return redirect('asset')->with('success','Asset deleted successfully!');
+    }
+
+
+    public function getStaff(Request $request)
+    {
+       $users=User::select('id','staff_name')->where('staff_name', 'LIKE', "%{$request->term}%")->get();
+       foreach($users as $user ){
+        $usersArray[] = array(
+          "label" => $user->staff_name,
+          "value" => $user->id
+        );
+      }
+       return response()->json($usersArray);
+
     }
 
 

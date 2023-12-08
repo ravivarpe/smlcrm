@@ -22,7 +22,7 @@
              <div class="card lobicard all_btn_card" id="lobicard-custom-control1" data-sortable="true">
                  <div class="card-header all_card_btn">
                      <div class="card-title custom_title">
-                      <a class="btn btn-add" href="{{url('asset')}}"><i class="fa fa-truck"></i> Asset List </a>  
+                      <a class="btn btn-add" href="{{url('asset')}}"><i class="fa fa-truck"></i> Asset List </a>
                      </div>
                  </div>
                  <div class="card-body">
@@ -44,7 +44,7 @@
                         </div>
 
                        <div class="form-group col-sm-4">
-                            <label>Categories</label>
+                            <label>Asset Types</label>
                             <select class="form-control" name="category_id">
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -56,20 +56,17 @@
                         </div>
 
                         <div class="form-group col-sm-4">
-                            <label>Sub Categories</label>
-                            <select class="form-control" name="subcat_id">
-                                @foreach ($subcategories as $sub_cat)
-                                <option value="{{$sub_cat->id}}">{{$sub_cat->name}}</option>
-                                @endforeach
-                            </select>
-                            @if ($errors->has('subcat_id'))
-                            <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('subcat_id') }}</div>
+                            <label>Reg/Vin</label>
+                            <input type="text" class="form-control" name="regvin" placeholder="Reg/Vin"/>
+
+                            @if ($errors->has('regvin'))
+                            <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('regvin') }}</div>
                             @endif
                         </div>
                         </div>
 
                         <div class="form-group">
-                            <label>Asset Type</label>
+                            <label>Asset Make & Model</label>
                             <input type="text" class="form-control"
                             name="asset_type" placeholder="Asset Type" required>
                             @if ($errors->has('asset_type'))
@@ -78,13 +75,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Asset Name</label>
+                            <label>Asset Supplier</label>
                             <input type="text" class="form-control"
-                            name="asset_name" placeholder="Asset Name" required>
+                            name="asset_name" placeholder="Asset Name" id="contact_name" required>
                             @if ($errors->has('asset_nmae'))
                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('asset_name') }}</div>
                         @endif
-                        </div>
+
+                        <input type="hidden" name="contact_id" id="contact_id"/>
+
+                      </div>
 
                         <div class="form-group">
                         <label>Asset value</label>
@@ -109,55 +109,100 @@
                                 @foreach($teams as $team)
                                   <option value="{{$team->id}}">{{$team->team_name}}</option>
                             @endforeach
-                            
+
                         </select>
                         </div>
 
-                        <div class="form-group">
-                           <label>Service Required</label>
-                        <div class="col-sm-12 px-0">
-                            <label class="checkbox-inline"> 
-                            <input type="checkbox"
-                            name="service_required" id="inlineCheckbox1" value="1"> Yes
-                            </label>
-                             
-                            <label class="checkbox-inline">
-                            <input type="checkbox"
-                            name="service_required" id="inlineCheckbox2" value="0"> No
-                            </label>
-                        </div>
+                        <div class="row">
+
+                            <div class="form-group col-sm-6">
+                                <label>Inspection Service Required</label>
+                             <div class="col-sm-12 px-0">
+                                 <label class="checkbox-inline">
+                                 <input type="checkbox"
+                                 name="service_required" id="inlineCheckbox1" value="1"> Yes
+                                 </label>
+
+                                 <label class="checkbox-inline">
+                                 <input type="checkbox"
+                                 name="service_required" id="inlineCheckbox2" value="0"> No
+                                 </label>
+                             </div>
+                             </div>
+
+                             <div class="form-group col-sm-6">
+                                <label>MOT Required</label>
+                             <div class="col-sm-12 px-0">
+                                 <label class="checkbox-inline">
+                                 <input type="checkbox"
+                                 name="mot" id="inlineCheckbox1" value="1"> Yes
+                                 </label>
+
+                                 <label class="checkbox-inline">
+                                 <input type="checkbox"
+                                 name="mot" id="inlineCheckbox2" value="0"> No
+                                 </label>
+                             </div>
+                             </div>
+
                         </div>
 
-                        <div class="form-group">
+                        <div class="row">
+
+                        <div class="form-group col-sm-6">
                             <label>Service Date</label>
                             <input id='service_date' type="text" class="form-control" name="service_date" placeholder="Service Date..." required>
                             @if ($errors->has('service_date'))
                             <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('service_date') }}</div>
                             @endif
-                            
+
                         </div>
+
+                        <div class="form-group col-sm-6">
+                            <label>MOT Date</label>
+                            <input id='mot_date' type="text" class="form-control" name="mot_date" placeholder="Mot Date..." required>
+                            @if ($errors->has('mot_date'))
+                            <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('mot_date') }}</div>
+                            @endif
+
+                        </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Assing Staff</label>
+                            <input type="text" class="form-control"
+                            name="staff_name" placeholder="Staff Name" id="staff_name" required>
+                            @if ($errors->has('staff_name'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('staff_name') }}</div>
+                        @endif
+
+                        <input type="hidden" name="staff_id" id="staff_id"/>
+
+                      </div>
+
 
                     <div class="form-group">
                         <label>Set Reminder</label>
                         <div class="col-sm-12 px-0">
-                           <label class="checkbox-inline"> 
+                           <label class="checkbox-inline">
                             <input type="checkbox" name="set_reminder" id="inlineCheckbox1" value="1"> Yes
                             </label>
-                             
+
                             <label class="checkbox-inline">
                             <input type="checkbox" name="set_reminder" id="inlineCheckbox2" value="0"> No
                             </label></div>
                      </div>
 
                         <div class="form-group">
-                            <label>Additional Details</label>
+                            <label>Additional Notes and Details</label>
                             <textarea class="form-control" name="additional_details" rows="3" placeholder="description" ></textarea>
                         </div>
 
                         <div class="form-group">
                             <label>Picture upload</label>
                             <input type="file" name="image" accept="image/png, image/jpeg">
-                            
+
                         </div>
 
                         <div class="reset-button">
@@ -186,7 +231,79 @@ $(document).ready(function(){
         $('#service_date').datepicker({
         format: "dd-mm-yyyy",
       });
-  });
+
+      $('#mot_date').datepicker({
+        format: "dd-mm-yyyy",
+      });
+
+      $('#contact_name').on('keyup',function(){
+
+$("#contact_name" ).autocomplete({
+   source: function( request, response ) {
+
+         $.ajax({
+         url:"{{url('search-contact')}}",
+         type: 'get',
+
+         success: function( data ) {
+             console.log(data);
+             response(data);
+             console.log(response);
+         }
+     });
+     },
+      focus: function(event, ui) {
+          $("contact_name").val(ui.item.label);
+          $('#contact_id').val(ui.item.value);
+          return false;
+       },
+     select: function (event, ui) {
+      event.preventDefault();
+      $('#contact_name').val(ui.item.label); // display the selected text
+      $('#contact_id').val(ui.item.value); // save selected id to input
+
+
+      return false;
+     }
+});
+
+});
+
+$("#staff_name" ).autocomplete({
+   source: function( request, response ) {
+
+         $.ajax({
+         url:"{{url('search-staff')}}",
+         type: 'get',
+
+         success: function( data ) {
+             console.log(data);
+             response(data);
+             console.log(response);
+         }
+     });
+     },
+      focus: function(event, ui) {
+          $("staff_name").val(ui.item.label);
+          $('#staff_id').val(ui.item.value);
+          return false;
+       },
+     select: function (event, ui) {
+      event.preventDefault();
+      $('#staff_name').val(ui.item.label); // display the selected text
+      $('#staff_id').val(ui.item.value); // save selected id to input
+
+
+      return false;
+     }
+    });
+
+
+
+
+
+
+});
 
 </script>
 @endsection

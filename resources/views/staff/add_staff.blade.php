@@ -37,7 +37,7 @@
                        @endif
                      </div>
                       <div class="row">
-                      <div class="form-group col-sm-5">
+                      <div class="form-group col-sm-3">
                          <label>Company Name</label>
                          <select class="form-control" name="company_id" required>
                            @foreach ($companies as $company)
@@ -47,7 +47,7 @@
                          </select>
                       </div>
 
-                      <div class="col-md-6 form-group">
+                      <div class="col-md-3 form-group">
                         <label class="control-label">User Permission</label>
                         <select class="form-control" name="role_id" required>
 
@@ -64,7 +64,7 @@
                            @endforeach
                          </select>
                       </div> --}}
-                      <div class="form-group col-sm-5">
+                      <div class="form-group col-sm-3">
                         <label>Staff Category</label>
                         <select class="form-control" name="sub_category_id">
                             @foreach ($subcategories as $sub_cat)
@@ -121,7 +121,7 @@
                         <label>Emergency Contact Name </label>
                         <div class="col-sm-12 px-0">
 
-                        <input class="col-sm-5"  type="number" class="form-control" placeholder="Emergency Contact Name" name="other_contact"></div>
+                        <input class="col-sm-5"  type="text" class="form-control" placeholder="Emergency Contact Name" name="other_contact"></div>
                      </div>
                      <div class="form-group row mx-0">
                         <label>Emergency Contact Number </label>

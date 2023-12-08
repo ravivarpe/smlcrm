@@ -53,6 +53,7 @@
                                         <tr class="info">
                                            <th>Photo</th>
                                            <th>User Name</th>
+                                           <th>Completed</th>
                                            <th>Type</th>
                                            <th>Team</th>
                                            <th>status</th>
@@ -77,6 +78,13 @@
                                            </td>
 
                                            <td>{{$user->staff_name}}</td>
+                                           <td>
+                                                @if ($user->is_staff==1)
+                                                <span class="label-custom label label-default" > {{"Yes"}}</span>
+                                                @else
+                                                <span class="label-custom label label-default" > {{"No"}}</span>
+                                                @endif
+                                           </td>
                                            <td><span class="label-custom label label-default" > @if ($user->role!=null) {{
                                             $user->role->role_name
                                            }} @endif</span>

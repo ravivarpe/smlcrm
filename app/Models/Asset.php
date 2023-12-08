@@ -14,10 +14,9 @@ class Asset extends Model
     protected $fillable = [
         'id',
         'category_id',
-        'subcat_id',
         'team_id',
-        'asset_type',  
-        'asset_name',      
+        'asset_type',
+        'asset_name',
         'asset_value',
         'purchase_date',
         'service_required',
@@ -26,7 +25,9 @@ class Asset extends Model
         'additional_details',
         'image',
         'status',
-        'company_id'
+        'company_id',
+        'staff_id',
+        'regvin','mot','mot_date','contact_id'
     ];
 
     public function company()
@@ -42,6 +43,16 @@ class Asset extends Model
     public function category()
     {
         return $this->hasOne(AssetCategory::class,'id','category_id');
+    }
+
+    public function supplier()
+    {
+        return $this->hasOne(Contact::class,'id','contact_id');
+    }
+
+    public function staff()
+    {
+        return $this->hasOne(User::class,'id','staff_id');
     }
 
 }
