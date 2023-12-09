@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <label>Asset Make & Model</label>
                             <input type="text" class="form-control"
-                            name="asset_type" placeholder="Asset Type" value="{{$asset->asset_type}}">
+                            name="asset_type" placeholder="Asset Make & Model" value="{{$asset->asset_type}}">
                             @if ($errors->has('asset_type'))
                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('asset_type') }}</div>
                         @endif
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label>Asset Supplier</label>
                             <input type="text" class="form-control"
-                            name="asset_name" placeholder="Asset Name" value="{{$asset->asset_name}}" id="contact_name" @if ($asset->supplier!=null)
+                            name="asset_name" placeholder="Asset Supplier" value="{{$asset->asset_name}}" id="contact_name" @if ($asset->supplier!=null)
                                 value="{{$asset->supplier->name}}"
                             @endif  required>
                             @if ($errors->has('asset_nmae'))
@@ -121,12 +121,12 @@
                            <label>Service Required</label>
                         <div class="col-sm-12 px-0">
                             <label class="checkbox-inline">
-                            <input type="checkbox"
+                            <input type="radio"
                             name="service_required" id="inlineCheckbox1" value="1" @if($asset->service_required==1){{'checked'}} @endif> Yes
                             </label>
 
                             <label class="checkbox-inline">
-                            <input type="checkbox"
+                            <input type="radio"
                             name="service_required" id="inlineCheckbox2" value="0" @if($asset->service_required==0){{'checked'}} @endif> No
                             </label>
                         </div>
@@ -135,12 +135,12 @@
                             <label>MOT Required</label>
                          <div class="col-sm-12 px-0">
                              <label class="checkbox-inline">
-                             <input type="checkbox"
+                             <input type="radio"
                              name="mot" id="inlineCheckbox1" value="1" @if($asset->service_required==1){{'checked'}} @endif> Yes
                              </label>
 
                              <label class="checkbox-inline">
-                             <input type="checkbox"
+                             <input type="radio"
                              name="mot" id="inlineCheckbox2" value="0" @if($asset->service_required==0){{'checked'}} @endif> No
                              </label>
                          </div>
@@ -173,9 +173,9 @@
 
 
                         <div class="form-group">
-                            <label>Assing Staff</label>
+                            <label>Person Assigned</label>
                             <input type="text" class="form-control"
-                            name="staff_name" placeholder="Staff Name" id="staff_name"  @if ($asset->staff!=null)
+                            name="staff_name" placeholder="Person Assigned" id="staff_name"  @if ($asset->staff!=null)
                             value="{{$asset->staff->staff_name}}"
                         @endif  required>
                             @if ($errors->has('staff_name'))
@@ -192,11 +192,11 @@
                         <label>Set Reminder</label>
                         <div class="col-sm-12 px-0">
                            <label class="checkbox-inline">
-                            <input type="checkbox" name="set_reminder" id="inlineCheckbox1" value="1" @if($asset->set_reminder==1){{'checked'}} @endif> Yes
+                            <input type="radio" name="set_reminder" id="inlineCheckbox1" value="1" @if($asset->set_reminder==1){{'checked'}} @endif> Yes
                             </label>
 
                             <label class="checkbox-inline">
-                            <input type="checkbox" name="set_reminder" id="inlineCheckbox2" value="0" @if($asset->set_reminder==0){{'checked'}} @endif> No
+                            <input type="radio" name="set_reminder" id="inlineCheckbox2" value="0" @if($asset->set_reminder==0){{'checked'}} @endif> No
                             </label></div>
                      </div>
 

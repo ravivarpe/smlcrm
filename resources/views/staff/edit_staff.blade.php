@@ -226,9 +226,9 @@
                      <div class="form-check">
                         <label>Details Complete</label><br>
                         <label class="radio-inline">
-                        <input type="checkbox" name="is_staff" value="1"   @if($user->is_staff==1){{'checked'}} @endif> Yes</label>
+                        <input type="radio" name="is_staff" value="1"   @if($user->is_staff==1){{'checked'}} @endif> Yes</label>
                         {{-- <label class="radio-inline"><input type="radio" name="email_subscription" value="0" > No</label> --}}
-                        <label class="radio-inline"><input type="radio" name="is_staff" value="0"  @if($user->is_staff==0){{'checked'}} @endif> InActive</label>
+                        <label class="radio-inline"><input type="radio" name="is_staff" value="0"  @if($user->is_staff==0){{'checked'}} @endif> No</label>
                      </div>
 
                      <div class="form-group">

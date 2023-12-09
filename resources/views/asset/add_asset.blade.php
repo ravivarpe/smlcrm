@@ -68,7 +68,7 @@
                         <div class="form-group">
                             <label>Asset Make & Model</label>
                             <input type="text" class="form-control"
-                            name="asset_type" placeholder="Asset Type" required>
+                            name="asset_type" placeholder="Asset Make & Model" required>
                             @if ($errors->has('asset_type'))
                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('asset_type') }}</div>
                         @endif
@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <label>Asset Supplier</label>
                             <input type="text" class="form-control"
-                            name="asset_name" placeholder="Asset Name" id="contact_name" required>
+                            name="asset_name" placeholder="Asset Supplier" id="contact_name" required>
                             @if ($errors->has('asset_nmae'))
                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('asset_name') }}</div>
                         @endif
@@ -119,12 +119,12 @@
                                 <label>Inspection Service Required</label>
                              <div class="col-sm-12 px-0">
                                  <label class="checkbox-inline">
-                                 <input type="checkbox"
+                                 <input type="radio"
                                  name="service_required" id="inlineCheckbox1" value="1"> Yes
                                  </label>
 
                                  <label class="checkbox-inline">
-                                 <input type="checkbox"
+                                 <input type="radio"
                                  name="service_required" id="inlineCheckbox2" value="0"> No
                                  </label>
                              </div>
@@ -134,12 +134,12 @@
                                 <label>MOT Required</label>
                              <div class="col-sm-12 px-0">
                                  <label class="checkbox-inline">
-                                 <input type="checkbox"
+                                 <input type="radio"
                                  name="mot" id="inlineCheckbox1" value="1"> Yes
                                  </label>
 
                                  <label class="checkbox-inline">
-                                 <input type="checkbox"
+                                 <input type="radio"
                                  name="mot" id="inlineCheckbox2" value="0"> No
                                  </label>
                              </div>
@@ -170,9 +170,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Assing Staff</label>
+                            <label>Person Assigned</label>
                             <input type="text" class="form-control"
-                            name="staff_name" placeholder="Staff Name" id="staff_name" required>
+                            name="staff_name" placeholder="Person Assigned" id="staff_name" required>
                             @if ($errors->has('staff_name'))
                         <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('staff_name') }}</div>
                         @endif
@@ -186,11 +186,11 @@
                         <label>Set Reminder</label>
                         <div class="col-sm-12 px-0">
                            <label class="checkbox-inline">
-                            <input type="checkbox" name="set_reminder" id="inlineCheckbox1" value="1"> Yes
+                            <input type="radio" name="set_reminder" id="inlineCheckbox1" value="1"> Yes
                             </label>
 
                             <label class="checkbox-inline">
-                            <input type="checkbox" name="set_reminder" id="inlineCheckbox2" value="0"> No
+                            <input type="radio" name="set_reminder" id="inlineCheckbox2" value="0"> No
                             </label></div>
                      </div>
 
