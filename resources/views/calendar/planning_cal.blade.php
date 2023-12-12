@@ -206,7 +206,7 @@
 <script>
     var userId=0;
     var defaultEvents=[];
-    $('#addtask').modal('show');
+   // $('#addtask').modal('show');
     $('#addtask').draggable();
 
       $('#end_date1').datetimepicker({

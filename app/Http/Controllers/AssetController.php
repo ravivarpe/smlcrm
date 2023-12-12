@@ -15,14 +15,14 @@ class AssetController extends Controller
 {
     public function index()
     {
-        $assets=Asset::with(['company','team','category','supplier','staff'])->get();
+        $assets=Asset::with(['company','team','category','supplier','staff','assingstaff','motstaff'])->get();
         $companies=Company::all();
         return view('asset.asset_list',['assets'=>$assets, 'companies'=>$companies]);
     }
 
     public function companyWiseAssets($companyId){
 
-        $assets=Asset::with(['company','team','category','supplier','staff'])->where('company_id',$companyId)->get();
+        $assets=Asset::with(['company','team','category','supplier','staff','assingstaff','motstaff'])->where('company_id',$companyId)->get();
         $companies=Company::all();
         return view('asset.asset_list',['assets'=>$assets, 'companies'=>$companies]);
      }
@@ -79,7 +79,7 @@ class AssetController extends Controller
         $subcategories=AssetSubcat::all();
         $teams=Team::all();
 
-        $asset=Asset::with(['company','team','category','supplier','staff'])->where('id',$id)->first();
+        $asset=Asset::with(['company','team','category','supplier','staff','assingstaff','motstaff'])->where('id',$id)->first();
 
         return view('asset.edit_asset',['companies'=>$companies,'categories'=>$categories, 'subcategories'=>$subcategories,'teams'=>$teams,'asset'=>$asset]);
     }

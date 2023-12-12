@@ -107,7 +107,9 @@
                         @endif
                         </div>
 
-                        <div class="form-group">
+                        <div class="row">
+
+                        <div class="form-group col-sm-6">
                             <label class="control-label">Assigned Team</label>
                             <select class="form-control" name="team_id">
                             @foreach($teams as $team)
@@ -115,6 +117,23 @@
                             @endforeach
                         </select>
                         </div>
+
+                        <div class="form-group col-sm-6">
+                            <label>Assign Individual</label>
+                            <input type="text" class="form-control"
+                            name="assign_ind_staff_name" placeholder="Assign Individual" id="assign_ind_staff_name" @if ($asset->assingstaff!=null)
+                            value="{{$asset->assingstaff->staff_name}}"
+                        @endif required>
+                            @if ($errors->has('assign_ind_staff_name'))
+                        <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('assign_ind_staff_name') }}</div>
+                        @endif
+
+                        <input type="hidden" name="assign_ind_staff_id" id="assign_ind_staff_id" @if ($asset->assingstaff!=null)
+                        value="{{$asset->assingstaff->id}}"
+                    @endif/>
+
+                      </div>
+                    </div>
 
                         <div class="row">
                         <div class="form-group col-sm-6">
@@ -171,8 +190,8 @@
 
                         </div>
 
-
-                        <div class="form-group">
+                        <div class="row">
+                        <div class="form-group col-sm-6">
                             <label>Person Assigned</label>
                             <input type="text" class="form-control"
                             name="staff_name" placeholder="Person Assigned" id="staff_name"  @if ($asset->staff!=null)
@@ -187,6 +206,23 @@
                     @endif/>
 
                       </div>
+
+                      <div class="form-group col-sm-6">
+                        <label>Person Responsible MOT</label>
+                        <input type="text" class="form-control"
+                        name="assign_mot_staff_name" placeholder="Person Responsible MOT" id="assign_mot_staff_name" @if ($asset->motstaff!=null)
+                        value="{{$asset->motstaff->staff_name}}"
+                    @endif required>
+                        @if ($errors->has('assign_mot_staff_name'))
+                      <div class="form-control-feedback has-danger" style="color:red;">{{ $errors->first('assign_mot_staff_name') }}</div>
+                       @endif
+
+                        <input type="hidden" name="assign_mot_staff_id" id="assign_mot_staff_id" @if ($asset->motstaff!=null)
+                        value="{{$asset->motstaff->id}}"
+                    @endif/>
+
+                      </div>
+                    </div>
 
                     <div class="form-group">
                         <label>Set Reminder</label>
@@ -209,7 +245,7 @@
                             <label>Picture upload</label>
                             <input type="file" name="image" accept="image/png, image/jpeg">
                             @if ($asset->image!=null)
-                            <img src="{{url('uploads/assetimages')}}/{{$asset->image}}"  width="150" height="150"/>
+                            <img src="{{url('/public/uploads/assetimages')}}/{{$asset->image}}"  width="150" height="150"/>
                             @endif
 
                         </div>
@@ -307,6 +343,64 @@ $("#staff_name" ).autocomplete({
      }
     });
 
+    $("#assign_ind_staff_name" ).autocomplete({
+   source: function( request, response ) {
+
+         $.ajax({
+         url:"{{url('search-staff')}}",
+         type: 'get',
+
+         success: function( data ) {
+             console.log(data);
+             response(data);
+             console.log(response);
+         }
+     });
+     },
+      focus: function(event, ui) {
+          $("assign_ind_staff_name").val(ui.item.label);
+          $('#assign_ind_staff_id').val(ui.item.value);
+          return false;
+       },
+     select: function (event, ui) {
+      event.preventDefault();
+      $('#assign_ind_staff_name').val(ui.item.label); // display the selected text
+      $('#assign_ind_staff_id').val(ui.item.value); // save selected id to input
+
+
+      return false;
+     }
+    });
+
+
+$("#assign_mot_staff_name" ).autocomplete({
+   source: function( request, response ) {
+
+         $.ajax({
+         url:"{{url('search-staff')}}",
+         type: 'get',
+
+         success: function( data ) {
+             console.log(data);
+             response(data);
+             console.log(response);
+         }
+     });
+     },
+      focus: function(event, ui) {
+          $("assign_mot_staff_name").val(ui.item.label);
+          $('#assign_mot_staff_id').val(ui.item.value);
+          return false;
+       },
+     select: function (event, ui) {
+      event.preventDefault();
+      $('#assign_mot_staff_name').val(ui.item.label); // display the selected text
+      $('#assign_mot_staff_id').val(ui.item.value); // save selected id to input
+
+
+      return false;
+     }
+    });
 
 
 
