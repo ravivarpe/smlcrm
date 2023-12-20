@@ -29,7 +29,7 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             @foreach ($calanders as $calander)
-            <a class="dropdown-item" href="#">{{$calander->name}}</a>
+            <a class="dropdown-item" href="{{url('get-planning-cal')}}">{{$calander->name}}</a>
            @endforeach
           </div>
         </div>
@@ -234,7 +234,7 @@
          var uid=$(this).attr('data-id');
          userId=uid;
          var events = {
-             url: "{{url('get-site-visit-event')}}/"+userId,
+             url: "{{url('get-planning-events')}}/"+userId,
              type: 'GET'
         }
 
@@ -256,7 +256,7 @@
       $(window).load(function(event){
 
         defaultEvents = {
-             url: "{{url('get-site-visit-event')}}/"+userId,
+             url: "{{url('get-planning-events')}}/"+userId,
              type: 'GET'
         }
 
@@ -305,8 +305,8 @@
            droppable: true, // this allows things to be dropped onto the calendar
            select:function(res){
             console.log(res.startStr);
-            $('#addtask').modal('show');
-            $('#addtask').draggable();
+            //$('#addtask').modal('show');
+          //  $('#addtask').draggable();
            },
 
 

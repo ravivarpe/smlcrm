@@ -8,8 +8,12 @@ use App\Models\Task;
 use App\Models\JobCategories;
 use App\Models\Team;
 use App\Models\Company;
+use App\Models\Job;
 use App\Models\SiteVisitTask;
 use App\Models\User;
+use App\Models\PlanningTask;
+use App\Models\Asset;
+use App\Models\Snagging;
 
 class CalendarController extends Controller
 {
@@ -37,10 +41,10 @@ class CalendarController extends Controller
     {
 
         $teams=Team::all();
-        $jobcategories=JobCategories::all();
+
         $companies=Company::all();
         $calanders=CalendarCategory::all();
-
+        $jobcategories=JobCategories::all();
         return view('calendar.planning_cal',['companies'=>$companies, 'calanders'=>$calanders,'teams'=>$teams,'jobcategories'=>$jobcategories,'contactId'=>$contactId]);
     }
 
@@ -100,5 +104,51 @@ class CalendarController extends Controller
         }
         return response()->json($taskArray);
     }
+
+
+    public function getPlanningEvents($teamId)
+    {
+       $taskArray=[];
+       $start_date=date('Y-m-01');
+       $end_date=date('Y-m-t');
+       if($teamId>0){
+       $tasks=PlanningTask::with(['team'])->whereBetween('start_date',[$start_date,$end_date])->where('team_id',$teamId)->get();
+       }else{
+       $tasks=PlanningTask::with(['team'])->whereBetween('start_date',[$start_date,$end_date])->get();
+       }
+
+       foreach($tasks as $task)
+        {
+            $taskType=$task->task_type;
+            $record="";
+
+            if($taskType="Job")
+            {
+               // $record=Job::where('id',$task->ref_id)->first();
+
+            }else if($taskType="Asset")
+            {
+               // $record=Asset::where('id',$task->ref_id)->first();
+
+            }else if($taskType="Snagging")
+            {
+               // $record=Snagging::where('id',$task->ref_id)->first();
+
+            }
+
+            $taskArray[]=array(
+                "title"=> $task->team->team_name .": ".$task->task_name.'<input type="checkbox" name="taskstatus" class="taststatus" />'."(Added ".date('d/m/Y',strtotime($task->added_date)). " at ".date('H:i',strtotime($task->added_date)).")",
+                "start"=> $task->start_date,
+                "end"=> $task->end_date,
+                "backgroundColor"=> $task->team->color_code.'!important',
+                "color"=> $task->team->color_code,
+                "textEscape"=> false,
+
+            );
+
+        }
+        return response()->json($taskArray);
+    }
+
 
 }

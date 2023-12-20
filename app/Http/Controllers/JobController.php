@@ -10,6 +10,7 @@ use App\Models\Company;
 use App\Models\Contact;
 use App\Models\User;
 use App\Models\JobImage;
+use App\Models\PlanningTask;
 
 class JobController extends Controller
 {
@@ -68,6 +69,11 @@ class JobController extends Controller
             }
         }
 
+         if($data['plan_calendar']==1)
+         {
+            PlanningTask::create(['task_name'=>$data['job_title'], 'start_date'=>$data['start_date'], 'end_date'=>$data['end_date'], 'team_id'=>$data['team_id'] ,'ref_id'=>$job->id,'task_type'=>"Job"]);
+         }
+
 
         return redirect('jobs')->with('success','Job added successfully!');
     }
@@ -105,6 +111,11 @@ class JobController extends Controller
         $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
 
         Job::where('id',$id)->update($data);
+
+        if($data['plan_calendar']==1)
+         {
+            PlanningTask::create(['task_name'=>$data['job_title'], 'start_date'=>$data['start_date'], 'end_date'=>$data['end_date'], 'team_id'=>$data['team_id'] ,'ref_id'=>$id,'task_type'=>"Job"]);
+         }
 
         return redirect('jobs')->with('success','Job added successfully!');
 

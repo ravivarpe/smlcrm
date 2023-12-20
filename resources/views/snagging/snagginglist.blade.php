@@ -127,8 +127,8 @@
                                         <tr>
                                            <td>{{$snagging->id}}</td>
                                            <td>{{$snagging->title}}</td>
-                                           <td>{{$snagging->contact->name}}</td>
-                                           <td>{{$snagging->company->name}}</td>
+                                           <td>@if($snagging->contact!=null){{$snagging->contact->name}}@endif</td>
+                                           <td>@if($snagging->company!=null){{$snagging->company->name}}@endif</td>
                                            <td>@if($snagging->team!=null){{$snagging->team->team_name}}@endif</td>
                                            <td>@if($snagging->report_datetime!=null){{date('d/m/Y',strtotime($snagging->report_datetime))}}@endif</td>
                                            <td>

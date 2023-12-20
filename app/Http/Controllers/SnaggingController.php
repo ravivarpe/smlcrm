@@ -22,6 +22,7 @@ use App\Models\Enquiry;
 use App\Models\Team;
 use App\Models\SnaggingImage;
 use App\Models\ReferralType;
+use App\Models\PlanningTask;
 
 
 
@@ -63,6 +64,12 @@ class SnaggingController extends Controller
 
          $snagging=Snagging::create($data);
 
+         if($data['add_to_cal']==1)
+         {
+            PlanningTask::create(['task_name'=>$data['title'], 'start_date'=>$data['report_datetime'], 'end_date'=>$data['complete_date'], 'team_id'=>$data['team_id'] ,'ref_id'=>$snagging->id,'task_type'=>"Snagging"]);
+         }
+
+
          return redirect('snagging-lists')->with('success','Snagging added successfully!');
     }
 
@@ -95,7 +102,10 @@ class SnaggingController extends Controller
          $data['complete_date']=date('Y-m-d',strtotime($request->complete_date));
          $snagging=Snagging::where('id',$id)->update($data);
 
-
+         if($data['add_to_cal']==1)
+         {
+            PlanningTask::create(['task_name'=>$data['title'], 'start_date'=>$data['report_datetime'], 'end_date'=>$data['complete_date'], 'team_id'=>$data['team_id'] ,'ref_id'=>$id,'task_type'=>"Snagging"]);
+         }
 
          return redirect('snagging-lists')->with('success','Snagging edited successfully!');
     }
