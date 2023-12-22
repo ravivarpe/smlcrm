@@ -18,7 +18,7 @@ class JobController extends Controller
     {
        $jobcategories=JobCategories::all();
        $companies=Company::all();
-       $jobs=Job::with(['company','category','team','contact','staff'])->get();
+       $jobs=Job::with(['company','category','team','contact','staff'])->where('status','Won')->get();
        return view('jobs.job_list',['jobs'=>$jobs,'jobcategories'=>$jobcategories,'companies'=>$companies]);
     }
 
@@ -26,7 +26,15 @@ class JobController extends Controller
     {
        $jobcategories=JobCategories::all();
        $companies=Company::all();
-       $jobs=Job::with(['company','category','team','contact','staff'])->where('job_cat_id',$id)->get();
+       $jobs=Job::with(['company','category','team','contact','staff'])->where('job_cat_id',$id)->where('status','Won')->get();
+       return view('jobs.job_list',['jobs'=>$jobs,'jobcategories'=>$jobcategories,'companies'=>$companies]);
+    }
+
+    public function statusWiseJob($status)
+    {
+       $jobcategories=JobCategories::all();
+       $companies=Company::all();
+       $jobs=Job::with(['company','category','team','contact','staff'])->where('status',$status)->get();
        return view('jobs.job_list',['jobs'=>$jobs,'jobcategories'=>$jobcategories,'companies'=>$companies]);
     }
 
@@ -125,6 +133,15 @@ class JobController extends Controller
     {
         Job::where('id',$id)->delete();
         return redirect('jobs')->with('success','Job deleted successfully!');
+    }
+
+    public function jobDetails($jobId)
+    {
+        $job=Job::with(['company','category','team','contact','staff'])->first();
+        $teams=Team::all();
+        $jobcategories=JobCategories::all();
+        $companies=Company::all();
+        return view('jobs.view_job',['job'=>$job,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies]);
     }
 
 }

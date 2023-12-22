@@ -175,10 +175,19 @@
                     <div class="form-group">
                         <label>Who can see this?</label>
                         <select class="form-control" name="who_see">
-                           <option value="High">High</option>
-                           <option value="Low">Low</option>
-                           <option value="Medium">Medium</option>
-                        </select>
+                            <option value="Everyone" @if ($job->who_see=='Everyone')
+                                {{'selected'}}
+                            @endif>Everyone</option>
+                            <option value="Accountant Only" @if ($job->who_see=='Accountant Only')
+                                {{'selected'}}
+                            @endif>Accountant Only</option>
+                            <option value="Management Only" @if ($job->who_see=='Management Only')
+                                {{'selected'}}
+                            @endif>Management Only</option>
+                            <option value="Sales Only" @if ($job->who_see=='Sales Only')
+                                {{'selected'}}
+                            @endif>Sales Only</option>
+                         </select>
                      </div>
                      <div class="form-check">
                         <label>Job Status</label><br>

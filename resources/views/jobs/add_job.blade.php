@@ -166,9 +166,10 @@
                     <div class="form-group">
                         <label>Who can see this?</label>
                         <select class="form-control" name="who_see">
-                           <option>High</option>
-                           <option>Low</option>
-                           <option>Medium</option>
+                           <option value="Everyone">Everyone</option>
+                           <option value="Accountant Only">Accountant Only</option>
+                           <option value="Management Only">Management Only</option>
+                           <option value="Sales Only">Sales Only</option>
                         </select>
                      </div>
                      <div class="form-check">

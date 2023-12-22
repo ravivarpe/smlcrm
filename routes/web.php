@@ -151,6 +151,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('delete-job/{id}',[JobController::class,'deleteJob'])->name('job.delete');
     Route::get('company-wise-job/{id}',[JobController::class,'companyWiseJob'])->name('job.company');
     Route::get('category-wise-job/{id}',[JobController::class,'categoryWiseJob'])->name('job.category');
+    Route::get('view-job-details/{id}',[JobController::class,'jobDetails'])->name('job.view');
+    Route::get('status-wise-job/{status}',[JobController::class,'statusWiseJob'])->name('job.statuswise');
 
     //setting
     Route::get('general-settings',[SettingController::class,'index'])->name('general.settings');

@@ -36,7 +36,20 @@
         <a class="dropdown-item" href="{{url('category-wise-job')}}/{{$cat->id}}">{{$cat->name}}</a>
         @endforeach
        </div>
+
      </div>
+     <div class="dropdown col">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Job Status
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+         <a class="dropdown-item" href="{{url('status-wise-job')}}/Won">Won</a>
+         <a class="dropdown-item" href="{{url('status-wise-job')}}/Pending">Pending</a>
+         <a class="dropdown-item" href="{{url('status-wise-job')}}/Lost">Lost</a>
+         <a class="dropdown-item" href="{{url('status-wise-job')}}/Complete">Complete</a>
+        </div>
+
+      </div>
     </div>
     <!-- Main content -->
     <section class="content">
@@ -138,6 +151,7 @@
                                            <td>@if($job->company!=null){{$job->company->name}} @endif</td>
                                            <td><span class="label-custom label label-default">Active</span></td>
                                            <td>
+                                            <a href="{{route('job.view',$job->id)}}" class="btn btn-add btn-sm"><i class="fa fa-eye"></i></a>
                                               <a href="{{route('job.edit',$job->id)}}" class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></a>
                                               <a href="{{route('job.delete',$job->id)}}" class="btn btn-danger btn-sm" ><i class="fa fa-trash-o"></i> </a>
                                            </td>
