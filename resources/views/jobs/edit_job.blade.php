@@ -192,11 +192,40 @@
                      <div class="form-check">
                         <label>Job Status</label><br>
                         <label class="radio-inline">
-                        <input type="radio" name="status" value="Won" checked="checked"> Won</label>
-                        <label class="radio-inline"><input type="radio" name="status" value="Lost"> Lost</label>
-                        <label class="radio-inline"><input type="radio" name="status" value="Complete"> Complete</label>
-                        <label class="radio-inline"><input type="radio" name="status" value="Pending"> Pending</label>
+                        <input type="radio" name="status" value="Won" @if ($job->status=='Won')
+                            {{"checked"}}
+                        @endif>Won</label>
+                        <label class="radio-inline"><input type="radio" name="status" value="Lost" @if ($job->status=='Lost')
+                            {{"checked"}}
+                        @endif> Lost</label>
+                        <label class="radio-inline"><input type="radio" name="status" value="Complete" @if ($job->status=='Complete')
+                            {{"checked"}}
+                        @endif> Complete</label>
+                        <label class="radio-inline"><input type="radio" name="status" value="Pending" @if ($job->status=='Pending')
+                            {{"checked"}}
+                        @endif> Pending</label>
                      </div>
+
+                     <div class="form-check">
+                        <label>Job Status2</label><br>
+                        <label class="radio-inline">
+                        <input type="radio" name="status_two" value="Quoted" @if ($job->status_two=='Quoted')
+                            {{"checked"}}
+                        @endif>Quoted</label>
+                        <label class="radio-inline"><input type="radio" name="status_two" value="Ground Works" @if ($job->status_two=='Ground Works')
+                            {{"checked"}}
+                        @endif> Ground Works</label>
+                        <label class="radio-inline"><input type="radio" name="status_two" value="Powerclean" @if ($job->status_two=='Powerclean')
+                            {{"checked"}}
+                        @endif> Powerclean</label>
+                        <label class="radio-inline"><input type="radio" name="status" value="Resin Work" @if ($job->status_two=='Resin Work')
+                            {{"checked"}}
+                        @endif> Resin Work</label>
+                        <label class="radio-inline"><input type="radio" name="status" value="Invoiced" @if ($job->status_two=='Invoiced')
+                            {{"checked"}}
+                        @endif>Invoiced</label>
+                     </div>
+
 
                      <div class="form-group">
                         <label>Job Picture upload</label>

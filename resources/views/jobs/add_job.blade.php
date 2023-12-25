@@ -181,6 +181,16 @@
                         <label class="radio-inline"><input type="radio" name="status" value="Pending"> Pending</label>
                      </div>
 
+                     <div class="form-check">
+                        <label>Job Status2</label><br>
+                        <label class="radio-inline">
+                        <input type="radio" name="status_two" value="Quoted" checked="checked">Quoted</label>
+                        <label class="radio-inline"><input type="radio" name="status_two" value="Ground Works" > Ground Works</label>
+                        <label class="radio-inline"><input type="radio" name="status_two" value="Powerclean"> Powerclean</label>
+                        <label class="radio-inline"><input type="radio" name="status" value="Resin Work" > Resin Work</label>
+                        <label class="radio-inline"><input type="radio" name="status" value="Invoiced">Invoiced</label>
+                     </div>
+
                      <div class="form-group">
                         <label>Job Picture upload</label>
                         <input type="file" name="photos[]" multiple>

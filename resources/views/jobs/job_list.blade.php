@@ -129,9 +129,10 @@
                                            <th>End Date</th>
                                            <th>Customer Name</th>
                                            <th>Email</th>
-                                           {{-- <th><input type="search" id="form1" class="form-control" placeholder="Post Code" /></th> --}}
+
                                            <th>Company</th>
                                            <th>Status</th>
+                                           <th>Status2</th>
                                            <th>Action</th>
                                         </tr>
                                      </thead>
@@ -149,7 +150,8 @@
                                            <td>@if($job->contact!=null){{$job->contact->email1}} @endif</td>
                                            {{-- <td>1WS 2ED</td> --}}
                                            <td>@if($job->company!=null){{$job->company->name}} @endif</td>
-                                           <td><span class="label-custom label label-default">Active</span></td>
+                                           <td><span class="label-custom label label-default">{{$job->status}}</span></td>
+                                           <td><span class="label-custom label label-default">{{$job->status_two}}</span></td>
                                            <td>
                                             <a href="{{route('job.view',$job->id)}}" class="btn btn-add btn-sm"><i class="fa fa-eye"></i></a>
                                               <a href="{{route('job.edit',$job->id)}}" class="btn btn-add btn-sm"><i class="fa fa-pencil"></i></a>

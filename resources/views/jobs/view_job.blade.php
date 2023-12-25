@@ -123,6 +123,7 @@
                         <li><a href="#tab1" data-toggle="tab"> <i class="fa fa-paperclip"></i> 0</a></li>
                         <li><a href="#tab3" data-toggle="tab"><i class="fa fa-info-circle"></i></a></li>
                         <span>
+                        <li><a href="#tab_snagging" data-toggle="tab">Snagging</a></li>
                         <li><a href="#tab_site_visits" data-toggle="tab">Site Visits (1)</a></li>
 
 
@@ -207,6 +208,14 @@
                         </tr>
                         </tbody></table>
                         </div>
+                        <div id="tab_snagging" class="tab_content print_show" >
+                           <h2 class="print_only">Snagging</h2>
+                           <table>
+                           <tbody><tr>
+                           <td colspan="5" class="add"><a href="{{url('create-snagging')}}" class="normal_button button">Add a Snagging</a></td>
+                           </tr>
+                           </tbody></table>
+                           </div>
                         <div id="tab5" class="tab_content print_show" >
                         <h2 class="print_only">Jobs</h2>
                         <table class="col_cont_large">
