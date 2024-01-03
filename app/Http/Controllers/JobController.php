@@ -7,10 +7,13 @@ use App\Models\Job;
 use App\Models\JobCategories;
 use App\Models\Team;
 use App\Models\Company;
-use App\Models\Contact;
+use App\Models\Snagging;
 use App\Models\User;
 use App\Models\JobImage;
 use App\Models\PlanningTask;
+use App\Models\InvoiceType;
+use App\Models\Invoice;
+use App\Models\CallLog;
 
 class JobController extends Controller
 {
@@ -137,11 +140,30 @@ class JobController extends Controller
 
     public function jobDetails($jobId)
     {
-        $job=Job::with(['company','category','team','contact','staff'])->first();
+        $job=Job::with(['company','category','team','contact','staff'])->where('id',$jobId)->first();
         $teams=Team::all();
         $jobcategories=JobCategories::all();
         $companies=Company::all();
-        return view('jobs.view_job',['job'=>$job,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies]);
+        $invoiceTypes=InvoiceType::get();
+
+        $quotes=Invoice::with(['invoicetype'])->where('contact_id',$job->contact_id)->get();
+
+        $snaggings=Snagging::with(['company','contact','team'])->where('contact_id',$job->contact_id)->get();
+
+        $callLogs=CallLog::with(['staff','job'])->where('job_id',$jobId)->get();
+        return view('jobs.view_job',['job'=>$job,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies,'snaggings'=>$snaggings,'invoiceTypes'=>$invoiceTypes,'quotes'=>$quotes,'callLogs'=>$callLogs]);
+    }
+
+    public function changeJobStage(Request $request,$id)
+    {
+        Job::where('id',$id)->update(['status_two'=>$request->status_two]);
+        return redirect('view-job-details/'.$id)->with('success','Job deleted successfully!');
+    }
+
+    public function addCallLog(Request $request,$id)
+    {
+        CallLog::create(['job_id'=>$id,'staff_id'=>$request->staff_id,'calllogs'=>$request->calllogs]);
+        return redirect('view-job-details/'.$id)->with('success','Job deleted successfully!');
     }
 
 }

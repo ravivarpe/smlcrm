@@ -34,27 +34,42 @@
                            <div class="inbox-customer-text ">
                               <div class="ava2tar-name text-black"></div>
                               <div class="ava2tar-name text-black"></div>
+                              <div class="details-ref text-black">Job Stage : <span class="bg-custom badge"><small>{{$job->status_two}}</small></span></div>
+
                               <div class="details-ref text-black">Ref no. : <span>{{$job->id}}</span></div>
                               <div class="details-ref text-black">Status : <span class="bg-custom badge"><small>{{$job->status}}</small></span></div>
+
                            </div>
                         </div>
                      </div>
                      <div class="col-md-8">
                         <div class="inbox-toolbar btn-toolbar">
                            <div class="detailsalign">
+                            <div class="btn-group d-flex" role="group">
+                                <div class="buttonexport">
+                                   <a href="#" class="btn btn-add" data-toggle="modal" data-target="#jobStageModel"><i class="fa fa-plus"></i> Chnage Stage</a>
+                                </div>
+                            </div>
+                            <div class="btn-group d-flex" role="group">
+                                <div class="buttonexport">
+                                   <a href="#" class="btn btn-add" data-toggle="modal" data-target="#callLogModel"><i class="fa fa-phone"></i> Add Call Log</a>
+                                </div>
+                            </div>
+                            {{-- <div class="btn-group d-flex" role="group">
+                                <div class="buttonexport">
+                                   <a href="#" class="btn btn-add" data-toggle="modal" data-target="#addtask"><i class="fa fa-plus"></i> Add Tasks</a>
+                                </div>
+                            </div> --}}
+
                            <div class="btn-group">
-                              <a href="elist.html" class="btn btn-default"><span class="fa fa-long-arrow-left"></span></a>
+                              <a href="{{url('jobs')}}" class="btn btn-default"><span class="fa fa-long-arrow-left"></span></a>
                            </div>
 
                            <div class="btn-group">
                               <button type="button" class="btn btn-default" onclick="myFunction()"><span class="fa fa-print"></span></button>
                            </div>
 
-                           {{-- <div class="btn-group d-flex" role="group">
-                              <div class="buttonexport">
-                                 <a href="#" class="btn btn-add" data-toggle="modal" data-target="#addtask"><i class="fa fa-plus"></i> Add Tasks</a>
-                              </div>
-                           </div> --}}
+
                            <div class="btn-group" role="group">
                            <button class="btn btn-sm" data-toggle="dropdown"><i class="fa fa-cog"></i> </button>
                            <ul class="dropdown-menu exp-drop" role="menu">
@@ -64,7 +79,7 @@
                               <li class="dropdown-divider"></li>
 
 
-                              <li class="dropdown-divider"></li>
+
 
                               <li>
                                  <a  href="{{route('job.delete',$job->id)}}">Delete Job</a>
@@ -101,11 +116,32 @@
                               <div class="customer-name col-md-12"><span class="det_cust col-md-3 col-sm-3"><strong>Responsible</strong> </span><span class="col-md-9 text-right">{{$job->staff->responsible}}</span></div>
                               <div class="customer-name col-md-12"><span class="det_cust col-md-3 col-sm-3"><strong>Team</strong> </span><span class="col-md-9 text-right">{{$job->team->team_name}}</span></div>
                               <div class="customer-name col-md-12"><span class="det_cust col-md-3 col-sm-3"><strong>Job Description </strong> </span><span class="col-md-9 text-right">{{$job->jobdescription}}</span></div>
-
-                              <h4>Contact</h4>
+                              <div class="customer-name col-md-12"><span class="det_cust col-md-3 col-sm-3"><strong>Job Status </strong> </span><span class="col-md-9 text-right">{{$job->status}}</span></div>
+                              <h5>Contact</h5>
                               <div class="customer-name col-md-12"><span class="det_cust col-md-3 col-sm-3"><strong>Name</strong> </span><span class="col-md-9 text-right">{{$job->contact->name}}</span></div>
                               <div class="customer-name col-md-12"><span class="det_cust col-md-3 col-sm-3"><strong>Phone</strong> </span><span class="col-md-9 text-right">{{$job->contact->contact_number}}</span></div>
                               <div class="customer-name col-md-12"><span class="det_cust col-md-3 col-sm-3"><strong>Email</strong> </span><span class="col-md-9 text-right">{{$job->contact->email1}}</span></div>
+
+                              <br/><br/>
+                              <h5>Lagest Call</h5>
+
+                              <div>
+                                   <table>
+                                       @foreach ($callLogs as $callLog)
+                                        <tr>
+                                            <td>
+                                                <span >{{date('d/m/Y H:i:s',strtotime($callLog->added_date))}}</span>&nbsp;&nbsp;&nbsp;
+                                                <span>@if ($callLog->staff!=null)
+                                                    {{$callLog->staff->staff_name}}
+                                                @endif</span>&nbsp;&nbsp;&nbsp;
+                                                <span >{{$callLog->calllogs}}</span>
+                                            </td>
+                                        </tr>
+                                       @endforeach
+
+                                   </table>
+                              </div>
+
                            </div>
                      </div>
                   </div>
@@ -128,10 +164,10 @@
 
 
                         <li><a href="#tab7" data-toggle="tab">Materials </a></li>
-                        {{-- @foreach ($invoiceTypes as $key=>$invoiceType )
+                        @foreach ($invoiceTypes as $key=>$invoiceType )
                          <li><a href="#tab{{$key+8}}" data-toggle="tab" data-id="{{$invoiceType->id}}}">{{$invoiceType->type_name}}</a></li>
 
-                        @endforeach --}}
+                        @endforeach
 
 
                         </span>
@@ -210,10 +246,28 @@
                         </div>
                         <div id="tab_snagging" class="tab_content print_show" >
                            <h2 class="print_only">Snagging</h2>
-                           <table>
+                            <table>
                            <tbody><tr>
                            <td colspan="5" class="add"><a href="{{url('create-snagging')}}" class="normal_button button">Add a Snagging</a></td>
                            </tr>
+                           @foreach ($snaggings as $snagging)
+
+
+                            <td class="no_mob" style="max-width:200px;">{{$snagging->title}}</td>
+                            <td class="no_mob">@if($snagging->contact!=null){{$snagging->contact->name}}@endif</td>
+                            <td class="no_mob">@if($snagging->company!=null){{$snagging->company->name}}@endif</td>
+                            <td class="no_mob">@if($snagging->team!=null){{$snagging->team->team_name}}@endif</td>
+                            <td class="no_mob">@if($snagging->report_datetime!=null){{date('d/m/Y',strtotime($snagging->report_datetime))}}@endif</td>
+
+                           <td>
+                           <a href="#" class="send_email" type="company" id="10" finance_id="8">Send</a> |
+
+                           <a href="{{route('snagging.edit',$snagging->id)}}"><i class="fa fa-pencil-square-o"></i></a> |
+
+                           <a href="{{route('snagging.delete',$snagging->id)}}" class="delete_quick" id="8" type="finances"><i class="fa fa-trash-o"></i></a>
+                           </td>
+                           </tr>
+                           @endforeach
                            </tbody></table>
                            </div>
                         <div id="tab5" class="tab_content print_show" >
@@ -242,7 +296,7 @@
                         </tr>
                         </tbody></table>
                         </div>
-                        {{-- @foreach ($invoiceTypes as $key=>$invoiceType )
+                        @foreach ($invoiceTypes as $key=>$invoiceType )
                         @php
                         $invoices=\App\Helper\CustomerManager::invoicesByType($invoiceType->id,$job->id);
                         @endphp
@@ -275,7 +329,7 @@
                         </tbody></table>
                        </div>
 
-                       @endforeach --}}
+                       @endforeach
 
 
 
@@ -321,6 +375,102 @@
       </div>
 
 
+      <!-- Model to change Job state -->
+      <!-- Customer Modal2 -->
+      <div class="modal fade" id="jobStageModel" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+           <div class="modal-content">
+              <div class="modal-header modal-header-primary">
+                 <h3><i class="fa fa-user m-r-5"></i> Change Job Stage</h3>
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              </div>
+              <div class="modal-body">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <form class="form-horizontal" method="post" action="{{route('job.stage',$job->id)}}">
+                          @csrf
+
+                             <div class="row">
+                                   <div class="col-md-12 form-group user-form-group">
+                                    <div class="form-check">
+                                        <label>Job Stages</label><br>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="status_two" value="Quoted" checked="checked"> Quoted</label>
+                                        <label class="radio-inline"><input type="radio" name="status_two" value="Ground Works" > Ground Works</label>
+                                        <label class="radio-inline"><input type="radio" name="status_two" value="Powerclean"> Powerclean</label>
+                                        <label class="radio-inline"><input type="radio" name="status" value="Resin Work" > Resin Work</label>
+                                        <label class="radio-inline"><input type="radio" name="status" value="Invoiced"> Invoiced</label>
+                                     </div>
+                                      <div class="float-right">
+                                         <button type="button" class="btn btn-danger btn-sm">NO</button>
+                                         <button type="submit" class="btn btn-add btn-sm">YES</button>
+                                      </div>
+                                   </div>
+                             </div>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+              <div class="modal-footer">
+                 <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+           <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+     </div>
+     <!-- /.modal -->
+
+     <!-- /. Model to add Call Log -->
+     <!-- Customer Modal2 -->
+     <div class="modal fade" id="callLogModel" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+           <div class="modal-content">
+              <div class="modal-header modal-header-primary">
+                 <h3><i class="fa fa-user m-r-5"></i> Add Call Log</h3>
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              </div>
+              <div class="modal-body">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <form class="form-horizontal" method="post" action="{{route('job.callLog',$job->id)}}">
+                          @csrf
+                          <input type="hidden" name="staff_id" id="staff_id" value="{{auth()->user()->id}}"/>
+                             <div class="row">
+                                   <div class="col-md-12 form-group user-form-group">
+
+                                    <div class="col-md-12 form-group">
+                                        <label class="control-label">User Name</label>
+                                        <input type="text" placeholder="user Name" name="staff_name"class="form-control" value="{{auth()->user()->staff_name}}">
+                                    </div>
+
+                                    <div class="col-md-12 form-group">
+                                        <label class="control-label">Call Log Details</label>
+                                        <textarea class="form-control" rows="3" placeholder="Call Logs"  name="calllogs" ></textarea>
+                                    </div>
+
+
+                                      <div class="float-right">
+                                         <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                                         <button type="submit" class="btn btn-add btn-sm">Save</button>
+                                      </div>
+                                   </div>
+                             </div>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+              <div class="modal-footer">
+                 <button type="button" class="btn btn-danger float-left" data-dismiss="modal">Close</button>
+              </div>
+           </div>
+           <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+     </div>
+     <!-- /.modal -->
+
+
        <!-- Customer Modal2 -->
        <div class="modal fade" id="customer2" tabindex="-1" role="dialog" aria-hidden="true">
            <div class="modal-dialog">
@@ -361,8 +511,8 @@
 
 
           <!-- Modal1 -->
-  <div class="modal fade" id="addtask" tabindex="-1" role="dialog">
-   <div class="modal-dialog">
+    <div class="modal fade" id="addtask" tabindex="-1" role="dialog">
+     <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header modal-header-primary">
             <h3><i class="fa fa-plus m-r-5"></i> Add New Task</h3>
@@ -437,8 +587,8 @@
          </div>
       </div>
       <!-- /.modal-content -->
-   </div>
-   <!-- /.modal-dialog -->
+     </div>
+     <!-- /.modal-dialog -->
          </div>
    </section>
    <!-- /.content -->

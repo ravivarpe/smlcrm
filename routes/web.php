@@ -154,6 +154,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('view-job-details/{id}',[JobController::class,'jobDetails'])->name('job.view');
     Route::get('status-wise-job/{status}',[JobController::class,'statusWiseJob'])->name('job.statuswise');
 
+    Route::post('change-job-stage/{id}',[JobController::class,'changeJobStage'])->name('job.stage');
+    Route::post('add-call-log/{id}',[JobController::class,'addCallLog'])->name('job.callLog');
+
     //setting
     Route::get('general-settings',[SettingController::class,'index'])->name('general.settings');
 
