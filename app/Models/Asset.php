@@ -27,7 +27,7 @@ class Asset extends Model
         'status',
         'company_id',
         'staff_id',
-        'regvin','mot','mot_date','contact_id','assign_ind_staff_id','assign_mot_staff_id'
+        'regvin','mot','mot_date','contact_id'
     ];
 
     public function company()
@@ -53,16 +53,6 @@ class Asset extends Model
     public function staff()
     {
         return $this->hasOne(User::class,'id','staff_id');
-    }
-
-    public function assingstaff()
-    {
-        return $this->hasOne(User::class,'id','assign_ind_staff_id');
-    }
-
-    public function motstaff()
-    {
-        return $this->hasOne(User::class,'id','assign_mot_staff_id');
     }
 
 }

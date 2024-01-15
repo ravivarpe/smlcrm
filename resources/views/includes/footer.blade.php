@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2023-2024 <a href="smlsolutions.co.uk/" target="_blank">SMLSOLUTIONS</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2023-2024 <a href="/smlsolutions.co.uk" target="_blank">SMLSOLUTIONS</a>.</strong> All rights reserved.
  </footer>
 </div>
 <!-- /.wrapper -->

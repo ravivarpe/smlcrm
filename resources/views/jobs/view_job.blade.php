@@ -154,34 +154,34 @@
                <div class="mailbox-body">
                   <div class="row m-0 p-20" id="tabs_wrapper">
                      <div id="tabs_container">
-                        <ul id="tabs">
-                        <li><a href="#tab0" data-toggle="tab" class="active"><i class="fa fa-pencil-square-o"></i></a></li>
-                        <li><a href="#tab1" data-toggle="tab"> <i class="fa fa-paperclip"></i> 0</a></li>
-                        <li><a href="#tab3" data-toggle="tab"><i class="fa fa-info-circle"></i></a></li>
-                        <span>
-                        <li><a href="#tab_snagging" data-toggle="tab">Snagging</a></li>
-                        <li><a href="#tab_site_visits" data-toggle="tab">Site Visits (1)</a></li>
+                          <ul id="tabs" class="nav nav-tabs text-left d-inline-block" role="tablist">
+                        <li><a href="#tab0" data-toggle="tab" class="active" aria-selected="true" role="tab"><i class="fa fa-pencil-square-o"></i></a></li>
+                        <li><a href="#tab1" data-toggle="tab" aria-selected="false" role="tab"> <i class="fa fa-paperclip"></i> 0</a></li>
+                        <li><a href="#tab3" data-toggle="tab" aria-selected="false" role="tab"><i class="fa fa-info-circle"></i></a></li>
+                       </ul> 
+                   <ul id="tabs" class="nav nav-tabs text-right float-right " role="tablist">
+                        <li><a href="#tab_snagging" data-toggle="tab" aria-selected="false" role="tab">Snagging</a></li>
+                        <li><a href="#tab_site_visits" data-toggle="tab" aria-selected="false" role="tab">Site Visits (1)</a></li>
 
 
-                        <li><a href="#tab7" data-toggle="tab">Materials </a></li>
+                        <li><a href="#tab7" data-toggle="tab" aria-selected="false" role="tab">Materials </a></li>
                         @foreach ($invoiceTypes as $key=>$invoiceType )
-                         <li><a href="#tab{{$key+8}}" data-toggle="tab" data-id="{{$invoiceType->id}}}">{{$invoiceType->type_name}}</a></li>
+                         <li><a href="#tab{{$key+8}}" data-toggle="tab" aria-selected="false" role="tab" data-id="{{$invoiceType->id}}}">{{$invoiceType->type_name}}</a></li>
 
                         @endforeach
 
 
-                        </span>
+                 
 
-                         <span>
 
-                           <li><a href="#tab13" data-toggle="tab">Task </a></li>
+                           <li><a href="#tab13" data-toggle="tab" aria-selected="false" role="tab">Task </a></li>
                            </span>
                         </ul>
                      </div>
 
 
                      <div id="tabs_content_container" class="tab-content  clearfix">
-                        <div id="tab0" class="tab_content active" >
+                        <div id="tab0" class="tab_content show" >
                            <form action="{{route('contact.addNote')}}" method="post">
                                @csrf
                                   <input type="hidden" name="contact_id" value="{{$job->id}}"/>

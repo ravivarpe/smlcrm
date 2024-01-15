@@ -5253,6 +5253,7 @@ td {
     padding: 9px 5px 10px 8px;
     white-space: nowrap;
     width: 1%;
+    
 }
 .info1{
     background:#E8F1F3;
@@ -6167,10 +6168,11 @@ label {
 .customer-name.col-md-12 {
     color: #000;
 }
+/**
   .cal_selects.toggle_area {
     position: absolute;
     left: 15%;
-}
+} **/
 .inbox-avatar img {
     padding: 2px;
     border-radius: 100px;
@@ -6189,27 +6191,26 @@ label {
     list-style: none;
     padding: 5px 0 7px;
     margin-top: 0px;
-    height: 15px;
 }
   #tabs li:first-of-type {
     margin-left: 0;
   }
-  #tabs li {
-    display: inline;
-    margin-left: 2px;
-    float: left;
-    padding: 6px 6px 4px;
-    text-decoration: none;
-    border: 1px solid #ccc;
-    border-bottom: none;
-    outline: 0;
-    border-radius: 0;
-    color: #333;
-    font-size: 11px;
-    line-height: 11px;
-    cursor: pointer;
-    background: #f1e6d3;
+#tabs li {
+  display: inline;
+  margin-left: 2px;
+  float: left;
+  padding: 0px 6px 2px;
+  text-decoration: none;
+  border-bottom: none;
+  outline: 0;
+  border-radius: 0;
+  color: #333;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+  background: #e8dac3;
 }
+
 #tabs li.active {
     background-color: #fff;
     padding: 6px 6px 5px;
@@ -6223,7 +6224,6 @@ label {
   #tabs_content_container {
     overflow-x: hidden;
     border-top: none;
-    padding: 0 10px 0 0;
     width: auto;
     height: 190px;
     left: 14px;
@@ -6352,7 +6352,132 @@ label {
   }
   
   #tabs_container {
-    border-bottom: 1px solid #ccc;
+
     position: relative;
-    top: -17px;
+    top: -13px;
   }
+  
+ .only-right-button {
+  position: absolute;
+  right: 10px;
+  top: 10%;
+}
+
+
+.dataTables_filter {
+ display:none;
+}
+.dataTables_paginate {
+  text-align: right;
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
+  font-size: 1rem;
+}
+.btn.btn-default.buttons-csv.buttons-html5{
+  font-size: 10px;
+  position: relative;
+  left: 30px;
+}
+.dataTables_wrapper .dataTables_length select {
+  font-size: 10px !important;
+  width: 50px !important;
+  height: 27px;
+  border-radius: 0px;
+  margin: 0px 5px 0px 5px;
+}
+
+thead th input {
+  width: -moz-calc(100% - 19px);
+  width: calc(100% - 19px);
+  width: -webkit-calc(100% - 19px);
+  float: left;
+  border: #9b7e4a;
+  padding: 1px;
+  font-size: 10px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+ background: #9b7e4a;
+font-weight: 600;
+}
+thead th input::placeholder, thead th input::-webkit-input-placeholder, thead th input::placeholder {
+  color: #fff !important;
+  opacity: 9999;
+}
+table.table-bordered.dataTable th {
+  background: #9b7e4a;
+  border: #9b7e4a;
+}
+.item td.sml1 {
+  width: 3% !important;
+}
+.item td {
+  padding: 1px !important;
+  width: 19% !important;
+}
+.item td textarea {
+  height: 29px;
+  font-style: italic;
+}
+.item td.sml {
+  width: 5% !important;
+}
+.item td input, .item td select, .item td textarea {
+  width: 100% !important;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+
+  .fc-basic-view .fc-body .fc-row {
+  min-height: 5em;
+  height: 100% !important;
+}
+.fc-day-grid-event .fc-content {
+  font-size: 12px;
+  color: #fff;
+}
+.fc-day-grid-event .fc-time {
+  color: #000;
+}
+
+.fc-day-grid-event .fc-content {
+width: 100%;
+  height: 100%;
+  white-space: normal;
+}
+.cal_selects {
+    white-space: nowrap;
+    display: flex;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #888 #eee; /* For Firefox */
+    text-shadow: 1px 1px 2px #000;
+}
+
+.cal_selects::-webkit-scrollbar {
+     -webkit-appearance: none;
+        width: 5px;
+}
+.cal_selects::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.cal_selects a {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.cal_selects a.btn-show {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px;
+  margin-bottom: 3px;
+}
+

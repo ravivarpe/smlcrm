@@ -128,7 +128,7 @@
                    <div class="row m-0 p-20" >
                     
                          <ul id="tabs" class="nav nav-tabs text-left d-inline-block" role="tablist">
-                           <li><a href="#tab0" data-toggle="tab" class="active" aria-selected="true" role="tab"><i class="fa fa-pencil-square-o"></i></a></li>
+                         <li><a href="#tab0" data-toggle="tab" class="" aria-selected="true" role="tab"><i class="fa fa-pencil-square-o"></i></a></li>
                          <li><a href="#tab1" data-toggle="tab" aria-selected="false" role="tab"> <i class="fa fa-paperclip"></i> 0</a></li>
                          <li><a href="#tab3" data-toggle="tab" aria-selected="false" role="tab"><i class="fa fa-info-circle"></i></a></li>
                        </ul> 

@@ -123,10 +123,7 @@
 
                 google.maps.event.addListener(marker, "click", () =>
                 {
-                    var contentString =
-                '<div id="content" style="width:200px; background-color:white;padding:5px;"><a href="{{url("view-contact")}}/'+place.id+'" style="color:blue;font-size:20px;font-weight:400;">' + place.name +'(Ref:'+place.id+')</a> <br/><p>'+place.addr+'</p> <br/><br/><br/></div>';
-
-                    infoWindow.setContent(contentString)
+                    infoWindow.setContent(place.name)
                     infoWindow.open(map, marker)
 
                 })

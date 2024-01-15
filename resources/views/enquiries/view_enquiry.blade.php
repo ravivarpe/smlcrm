@@ -80,7 +80,7 @@
                             <div class="inbox-customer-text">
                                 <div class="customer-name">Ref no. : <span>{{$enquiry->id}}</span></div>
                                 <div class="customer-name"><strong>Customer Name :</strong> <span>{{$enquiry->name}}</span></div>
-                               <div class="customer-name"><strong>Enquiry Description :</strong> <small>{{$enquiry->enquiry_form}}</small></div>
+                               <div class="customer-name"><strong>Enquiry From :</strong> <small>{{$enquiry->enquiry_form}}</small></div>
                             </div>
 
                          </div>

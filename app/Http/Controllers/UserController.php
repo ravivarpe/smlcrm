@@ -104,10 +104,7 @@ class UserController extends Controller
 
         $data=$request->except('_token');
         unset($data['confirm_pass']);
-        if($data['password']!=null)
-        {
-            $data['password'] = Hash::make($request->password);
-        }
+        $data['password'] = Hash::make($request->password);
 
         $data['expiration_date']=date('Y-m-d',strtotime($data['expiration_date']));
         $data['contract_start_date']=date('Y-m-d',strtotime($data['contract_start_date']));
