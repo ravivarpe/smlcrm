@@ -110,182 +110,6 @@
 
                             <br>
                             <div class="row">
-                              <input class="form-control" type="text" placeholder="on-Site Survey" readonly style="margin-right:10px; margin-left:15px;">
-                            </div>
-
-                            <div class="row">
-                            <div class="col-sm-12 col-md-4">
-                            <table class="table table-hover">
-                              <thead>
-                                 <tr>
-                                    <th>Undergroun Hazard</th>
-                                    <th>LR</th>
-                                    <th>HR</th>
-                                    <th>NA</th>
-
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr class="info1">
-                                    <td>A gas main meter</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td><input type="checkbox"></td>
-
-                                 </tr>
-                                 <tr>
-                                    <td>Build a Drive</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td><input type="checkbox"></td>
-
-                                 </tr>
-                                 <tr>
-                                    <td>Power Clean</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td><input type="checkbox"></td>
-
-                                 </tr>
-                                </tbody>
-                            </table>
-                          </div>
-
-                          <div class="col-sm-12 col-md-4">
-                            <table class="table table-hover">
-                              <thead>
-                                 <tr>
-                                  <th>Overhead Hazard</th>
-                                  <th>LR</th>
-                                  <th>HR</th>
-                                  <th>NA</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr class="info1">
-                                    <td>The Yorkshire Resin Company</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td><input type="checkbox"></td>
-
-                                 </tr>
-                                 <tr>
-                                    <td>Build a Drive</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td><input type="checkbox"></td>
-
-                                 </tr>
-                                 <tr>
-                                    <td>Power Clean</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td><input type="checkbox"></td>
-
-                                 </tr>
-                                </tbody>
-                            </table>
-                          </div>
-
-                          <div class="col-sm-12 col-md-4">
-                            <table class="table table-hover">
-                              <thead>
-                                 <tr>
-                                  <th>Hazard To Others</th>
-                                  <th>LR</th>
-                                  <th>HR</th>
-                                  <th>NA</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                  <tr class="info1">
-                                    <td>The Yorkshire Resin Company</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td><input type="checkbox"></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Build a Drive</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td><input type="checkbox"></td>
-                                  </tr>
-
-                                  <tr>
-                                    <td>Build a Drive</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td><input type="checkbox"></td>
-                                  </tr>
-                                </tbody>
-                            </table>
-                          </div>
-                          </div>
-
-                          <div class="row">
-                            <input class="form-control" type="text" placeholder="on-Site Survey" aria-label="Job Declaration" readonly style="margin-right:10px; margin-left:15px;">
-                          </div>
-
-                            <table class="table table-hover">
-                              <thead>
-                                <tr>
-                                  <th>Undergroun Hazard</th>
-                                  <th>Yes</th>
-                                  <th>No</th>
-
-
-                               </tr>
-                              </thead>
-                              <tbody>
-                                 <tr class="info1">
-                                    <td>The Yorkshire Resin Company</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td>...........</td>
-                                    <td>Includede Video</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                 </tr>
-                                 <tr>
-                                    <td>Build a Drive</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td>...........</td>
-                                    <td>Includede Video</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                 </tr>
-                                 <tr>
-                                    <td>Power Clean</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                    <td>...........</td>
-                                    <td>Includede Video</td>
-                                    <td><input type="checkbox"></td>
-                                    <td><input type="checkbox" ></td>
-                                 </tr>
-                                </tbody>
-                            </table>
-
-
-                            <br>
-                            <div class="card">
-                            <div class="col-xs-12 col-sm-12 col-md-10 p-0 ">
-                                <div class="inbox-customer p-10 border-btm">
-                                </div>
-
-                                  <div class="col-md-12 details-cust"><strong>Terms and Condition : </strong></div>
-                                <ul class="list-inline pull-right">
-                                  <div class="row">
-                                      <li><button type="button" class="btn-btn accept" style="background-color: green" >Accept</button></li>
-                                      <li><button type="button" class="btn-btn decline" style="background-color: red">Decline</button></li>
-                                    </div>
-                                </ul>
-
-                             </div>
-                            </div>
-
-                            <div class="row">
                                 @foreach ($jobImages as  $jobImage)
 
 
@@ -301,7 +125,259 @@
                           <br><br>
 
                             <div class="row">
-                              <input class="form-control" type="text" placeholder="Job Declaration" aria-label="Job Declaration" readonly style="margin-right:10px; margin-left:15px;">
+                                <h4 style=" margin-left:15px;">On Site Survey</h4>
+                            </div>
+
+                            <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                            <table class="table table-hover">
+                              <thead>
+                                 <tr>
+                                    <th>Underground Hazard</th>
+                                    <th>LR</th>
+                                    <th>HR</th>
+                                    <th>NA</th>
+                                    <th>Description</th>
+                                    <th>Video</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr class="info1">
+                                    <td>A Gas Mains / Meter</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Electric Cable</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Water Mains</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Data /BT Cables</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Others</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                </tbody>
+                            </table>
+                          </div>
+
+                          <div class="col-sm-12 col-md-6">
+                            <table class="table table-hover">
+                              <thead>
+                                 <tr>
+                                  <th>Overhead Hazard</th>
+                                  <th>LR</th>
+                                  <th>HR</th>
+                                  <th>NA</th>
+                                  <th>Description</th>
+                                  <th>Video</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+
+                                 <tr>
+                                    <td>Electric Cable</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+
+                                 <tr>
+                                    <td>Data /BT Cables</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Buildings</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Others</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                </tbody>
+                            </table>
+                          </div>
+
+                          <div class="col-sm-12 col-md-6">
+                            <table class="table table-hover">
+                              <thead>
+                                 <tr>
+                                  <th>Hazard To Others</th>
+                                  <th>LR</th>
+                                  <th>HR</th>
+                                  <th>NA</th>
+                                  <th>Description</th>
+                                  <th>Video</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                    <td>Public / Pedestrian</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+
+                                 <tr>
+                                    <td>Customers/ Visistors</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Adjoining Properties</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Others</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                </tbody>
+                            </table>
+                          </div>
+                          </div>
+
+                          <div class="row">
+                              <h4 style=" margin-left:15px;">Access & Storage</h4>
+                          </div>
+
+                            <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th>Hazard</th>
+                                  <th>Yes/Ok</th>
+                                  <th>No/Bad</th>
+                                  <th>Description</th>
+                                  <th>Video</th>
+
+                               </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="info1">
+                                    <td>Large Vehicle Access (28m)</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr class="info1">
+                                    <td>Normal Vehicle Access (3.5m)</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr class="info1">
+                                    <td>Area for Pallets /Bulk Bags</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr class="info1">
+                                    <td>Extra Space for Hardware</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr class="info1">
+                                    <td>Water Access</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr class="info1">
+                                    <td>Main Power</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr class="info1">
+                                    <td>D/C Access</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr class="info1">
+                                    <td>Tool Storage</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                 <tr class="info1">
+                                    <td>WIFI CODE</td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="checkbox" ></td>
+                                    <td><input type="text" placeholder="Description"></td>
+                                    <td><input type="checkbox"></td>
+                                 </tr>
+                                </tbody>
+                            </table>
+
+
+                            <br/>
+
+
+
+
+                            <div class="row">
+                              <h4 style=" margin-left:15px;"> Job Declaration & System of work</h4>
                             </div>
 
                             <br>
@@ -316,61 +392,82 @@
                                   <input type="Date"  class="form-control" >
                                 </div>
                               </div>
+                              <br/>
                               <table class="table table-hover">
 
                                 <tbody>
                                    <tr class="info1">
-                                    <td>Power Clean</td>
-                                    <td><input type="checkbox">Yes</td>
-                                    <td><input type="checkbox" >No</td>
+                                    <td>Job duration and method Explained</td>
+                                    <td><input type="checkbox"></td>
+
                                    </tr>
 
-                                   <tr>
-                                      <td>Build a Drive</td>
-                                      <td><input type="checkbox">Yes</td>
-                                    <td><input type="checkbox" >No</td>
+                                   <tr class="info1">
+                                    <td>Access In/Out throughout Explained</td>
+                                    <td><input type="checkbox"></td>
+
+                                   </tr>
+                                   <tr class="info1">
+                                    <td>Disclaimer Signed & Explained (if Applicable)</td>
+                                    <td><input type="checkbox"></td>
+
+                                   </tr>
+                                   <tr class="info1">
+                                    <td>All billing address and contact info checked</td>
+                                    <td><input type="checkbox"></td>
+
+                                   </tr>
+                                   <tr class="info1">
+                                    <td>After Care Package Explained</td>
+                                    <td><input type="checkbox"></td>
+
+                                   </tr>
+                                   <tr class="info1">
+                                    <td>Payment Terms Agreed</td>
+                                    <td><input type="checkbox"></td>
+
+                                   </tr>
+                                   <tr class="info1">
+                                    <td>Method of Payment</td>
+                                    <td><input type="checkbox"> Cheque</td>
+                                    <td><input type="checkbox"> POS</td>
+                                    <td><input type="checkbox"> Card</td>
+                                    <td><input type="checkbox"> Cash</td>
                                    </tr>
 
-                                   <tr>
-                                      <td>Power Clean</td>
-                                      <td><input type="checkbox">Yes</td>
-                                    <td><input type="checkbox" >No</td>
-                                   </tr>
+
                                   </tbody>
                               </table>
                             </div>
 
 
-                              <div class="col-lg-6 pinpin">
+                            <div class="col-lg-6 pinpin">
                               <table class="table table-hover">
 
                                 <tbody>
-                                   <tr class="info1">
-                                    <td>Build a Drive</td>
-                                    <td><input type="checkbox">Yes</td>
-                                    <td><input type="checkbox" >No</td>
+                                    <tr class="info1">
+                                        <td>Flexible</td>
+                                        <td><input type="checkbox"></td>
+                                        <td><input type="checkbox" ></td>
+                                        <td><input type="text" placeholder="Description"></td>
+                                       </tr>
+
+                                       <tr class="info1">
+                                        <td>Annual PC</td>
+                                        <td><input type="checkbox"></td>
+                                        <td><input type="checkbox" ></td>
+                                        <td><input type="text" placeholder="Description"></td>
+                                       </tr>
 
 
-                                   </tr>
-                                   <tr>
-                                      <td>Build a Drive</td>
-                                      <td><input type="checkbox">Yes</td>
-                                      <td><input type="checkbox" >No</td>
-                                   </tr>
-
-                                   <tr>
-                                    <td>----------------------------------------------------------------</td>
-
-                                 </tr>
-
-                                 <tr>
-                                  <td>-----------------------------------------------------------------</td>
-
-                               </tr>
-
-                                  </tbody>
+                                </tbody>
 
                               </table>
+                               <br/>
+                                <div>
+                                    <label>Notes/Special requirements</label>
+                                     <textarea class="form-control"></textarea>
+                                </div>
                             </div>
                             </div>
 
@@ -434,7 +531,8 @@
                               </form>
                               <br><br>
                               <div class="row">
-                                <input class="form-control" type="text" placeholder="Planner Section" aria-label="Planner Section" readonly style="margin-right:10px; margin-left:15px;">
+                                <h4 style=" margin-left:15px;"> Planner Section</h4>
+
                               </div>
                               <br>
 
@@ -443,7 +541,10 @@
                                   <label for="inputteam Assined" class="col-sm-2">Team Assined</label>
 
                                 <div class="col-sm-4">
-                                  <input type="Team assined" placeholder="select team"  class="form-control" >
+                                  <select class="form-control" >
+                                     <option>Team 1</option>
+                                     <option>Team 1</option>
+                                  </select>
                                 </div>
                               </div>
 
@@ -460,6 +561,8 @@
                                 </div>
                                 <div class="col-auto">
                                   <input type="Date"  class="form-control" >
+                                  <input type="checkbox" > Update PCal
+
                                 </div>
                               </div>
 

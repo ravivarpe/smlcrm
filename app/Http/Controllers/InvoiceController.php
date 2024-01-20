@@ -78,7 +78,7 @@ class InvoiceController extends Controller
             Address::create(['contact_id'=>$contactId, 'line1'=>$data['delivery_addr_line1'], 'line2'=>$data['delivery_addr_line2'], 'line3'=>$data['delivery_addr_line3'], 'country'=>$data['delivery_addr_country'], 'state'=>$data['delivery_addr_state'], 'city'=>$data['delivery_addr_city'], 'pincode'=>$data['delivery_addr_zip'],'address_type'=>'Delivery']);
          }
 
-         return redirect('view-invoice-pdf/'.$invoice->id)->with('success','Invoice added successfully!');
+         return redirect('view-contact/'.$contactId)->with('success','Invoice added successfully!');
     }
 
     public function editInvoice($id)
