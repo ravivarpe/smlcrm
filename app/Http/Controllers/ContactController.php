@@ -26,6 +26,7 @@ use App\Models\Task;
 use App\Models\Job;
 use App\Models\Invoice;
 use App\Models\InvoiceType;
+use App\Models\JobPack;
 
 
 class ContactController extends Controller
@@ -200,7 +201,8 @@ class ContactController extends Controller
 
          $quotes=Invoice::with(['invoicetype'])->where('contact_id',$id)->get();
 
-        return view('contacts.view_contact',['teams'=>$teams,'jobcategories'=>$jobcategories,'contact'=>$contact,'notesdata'=>$notesdata,'contasks'=>$contasks,'jobs'=>$jobs,'quotes'=>$quotes,'invoiceTypes'=>$invoiceTypes]);
+        $jobpacks=JobPack::with('job')->where('contact_id',$id)->get();
+        return view('contacts.view_contact',['teams'=>$teams,'jobcategories'=>$jobcategories,'contact'=>$contact,'notesdata'=>$notesdata,'contasks'=>$contasks,'jobs'=>$jobs,'quotes'=>$quotes,'invoiceTypes'=>$invoiceTypes,'jobpacks'=>$jobpacks]);
     }
 
 

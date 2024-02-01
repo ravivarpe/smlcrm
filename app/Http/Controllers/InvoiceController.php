@@ -12,6 +12,11 @@ use App\Models\InvoiceType;
 use App\Models\Material;
 use App\Models\Job;
 use App\Models\JobImage;
+use App\Models\Team;
+use App\Models\JobPackOption;
+use App\Models\JobPack;
+use App\Models\JobPackDetail;
+
 use PDF;
 
 
@@ -161,7 +166,7 @@ class InvoiceController extends Controller
       //  $jobImages=JobImage::where('job_id',$invoice->job_id)->get();
 
 
-     $pdf = PDF::loadView('invoice.viewinvoicepdf', compact('invoice', 'invoiceDetails','contact','homeAddr','deliveryAddr'));
+      $pdf = PDF::loadView('invoice.viewinvoicepdf', compact('invoice', 'invoiceDetails','contact','homeAddr','deliveryAddr'));
       return $pdf->download('invoice.pdf');
 //    return view('invoice.viewinvoicepdf',['invoice'=>$invoice,'invoiceDetails'=>$invoiceDetails,'contact'=>$contact,'homeAddr'=>$homeAddr,'deliveryAddr'=>$deliveryAddr]);
 
@@ -246,7 +251,56 @@ class InvoiceController extends Controller
         $jobDetails=Job::where('id',$invoice->job_id)->first();
         $jobImages=JobImage::where('job_id',$invoice->job_id)->get();
 
-        return view('invoice.view_job_packdetails',['invoice'=>$invoice,'invoiceDetails'=>$invoiceDetails,'contact'=>$contact,'homeAddr'=>$homeAddr,'deliveryAddr'=>$deliveryAddr,'jobDetails'=>$jobDetails,'jobImages'=>$jobImages]);
+        $teams=Team::all();
+
+        $undergroundHz=JobPackOption::where('cat_name','underground')->get();
+        $overheadHz=JobPackOption::where('cat_name','overhead')->get();
+        $otherHz=JobPackOption::where('cat_name','otherhazard')->get();
+        $accStorage=JobPackOption::where('cat_name','accstorage')->get();
+        $jobWorks=JobPackOption::where('cat_name','jobwork')->get();
+
+
+        return view('invoice.view_job_packdetails',['invoice'=>$invoice,'invoiceDetails'=>$invoiceDetails,'contact'=>$contact,'homeAddr'=>$homeAddr,'deliveryAddr'=>$deliveryAddr,'jobDetails'=>$jobDetails,'jobImages'=>$jobImages,'teams'=>$teams,'undergroundHz'=>$undergroundHz,'overheadHz'=>$overheadHz,'otherHz'=>$otherHz,'accStorage'=>$accStorage,'jobWorks'=>$jobWorks]);
+    }
+
+    public function storeJobPack(Request $request)
+    {
+
+        $data=$request->except('_token');
+
+        $jobPack=JobPack::create($data);
+
+
+
+        return redirect('view-contact/'.$request->contact_id);
+    }
+
+    public function showJobPackPdf($id)
+    {
+
+        $invoice=Invoice::where('id',$id)->first()->toArray();
+        $invoiceDetails=InvoiceDetail::with('material')->where('invoice_id',$id)->get()->toArray();
+
+        $contact=Contact::where('id',$invoice->contact_id)->first()->toArray();
+        $homeAddr=Address::where('contact_id',$invoice->contact_id)->where('address_type',"Home")->first()->toArray();
+        $deliveryAddr=Address::where('contact_id',$invoice->contact_id)->where('address_type',"Delivery")->first()->toArray();
+
+        $jobDetails=Job::where('id',$invoice->job_id)->first()->toArray();
+        $jobImages=JobImage::where('job_id',$invoice->job_id)->get()->toArray();
+
+        $teams=Team::get()->toArray();
+        // return view('invoice.job_pack_pdf',['invoice'=>$invoice,'invoiceDetails'=>$invoiceDetails,'contact'=>$contact,'homeAddr'=>$homeAddr,'deliveryAddr'=>$deliveryAddr,'jobDetails'=>$jobDetails,'jobImages'=>$jobImages,'teams'=>$teams]);
+
+        $undergroundHz=JobPackOption::where('cat_name','underground')->get();
+        $overheadHz=JobPackOption::where('cat_name','overhead')->get();
+        $otherHz=JobPackOption::where('cat_name','otherhazard')->get();
+        $accStorage=JobPackOption::where('cat_name','accstorage')->get();
+        $jobWorks=JobPackOption::where('cat_name','jobwork')->get();
+
+        $pdf = PDF::loadView('invoice.job_pack_pdf', compact('invoice', 'invoiceDetails','contact','homeAddr','deliveryAddr','jobImages','jobDetails','teams','undergroundHz','overheadHz','otherHz','accStorage','jobWorks'));
+
+        return $pdf->download('jobpack.pdf');
+
     }
 
 }

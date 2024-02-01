@@ -98,8 +98,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('get-contact-details/{id}',[InvoiceController::class,'getContactDetails'])->name('getContactDetails');
     Route::get('get-material-details/{id}',[InvoiceController::class,'getMaterialDetails'])->name('getMaterialDetails');
     Route::get('view-invoice-pdf/{id?}',[InvoiceController::class,'viewInvoicePdf'])->name('view.invoicePdf');
-
-
+    Route::post('add-job-pack',[InvoiceController::class,'storeJobPack'])->name('jobpack.create');
+    Route::get('download-job-pack/{id}',[InvoiceController::class,'showJobPackPdf'])->name('jobpack.download');
     //asset
     Route::get('asset',[AssetController::class,'index'])->name('asset.list');
     Route::get('create-asset',[AssetController::class,'addAsset'])->name('asset.add');

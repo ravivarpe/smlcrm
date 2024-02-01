@@ -2,8 +2,8 @@
  @extends('includes.header')
 
  @section('content')
- 
- 
+
+
 
  <!-- Content Wrapper. Contains page content -->
 
@@ -126,30 +126,31 @@
                 <div class="inbox-mail-details ">
                 <div class="mailbox-body">
                    <div class="row m-0 p-20" >
-                    
+
                          <ul id="tabs" class="nav nav-tabs text-left d-inline-block" role="tablist">
                            <li><a href="#tab0" data-toggle="tab" class="active" aria-selected="true" role="tab"><i class="fa fa-pencil-square-o"></i></a></li>
                          <li><a href="#tab1" data-toggle="tab" aria-selected="false" role="tab"> <i class="fa fa-paperclip"></i> 0</a></li>
                          <li><a href="#tab3" data-toggle="tab" aria-selected="false" role="tab"><i class="fa fa-info-circle"></i></a></li>
-                       </ul> 
+                       </ul>
                        <ul id="tabs" class="nav nav-tabs text-right float-right " role="tablist">
                          <li><a href="#tab_site_visits" data-toggle="tab" aria-selected="false" role="tab">Site Visits (1)</a></li>
                          <li><a href="#tab4" data-toggle="tab" aria-selected="false" role="tab">People (3)</a></li>
                          <li><a href="#tab5" data-toggle="tab" aria-selected="false" role="tab">Jobs ({{count($jobs)}})</a></li>
                          <li><a href="#tab7" data-toggle="tab" aria-selected="false" role="tab">Materials </a></li>
+                         <li><a href="#jobpack1" data-toggle="tab" aria-selected="false" role="tab">Job Pack1 </a></li>
                          @foreach ($invoiceTypes as $key=>$invoiceType )
                           <li><a href="#tab{{$key+8}}" data-toggle="tab" aria-selected="false" role="tab" data-id="{{$invoiceType->id}}}">{{$invoiceType->type_name}}</a></li>
 
                          @endforeach
 
 
-                       
+
 
 
                             <li><a href="#tab13" data-toggle="tab" aria-selected="false" role="tab">Task </a></li>
-                          
+
                          </ul>
-                      
+
 
 
                       <div id="tabs_content_container" class="tab-content">
@@ -232,7 +233,27 @@
                             <td><a href="#">View</a></td>
                             </tr>
                          @endforeach
-                         </tbody></table>	</div>
+                         </tbody></table></div>
+
+                         <div id="jobpack1" class="tab-pane fade print_show" aria-labelledby="tab5-tab" role="tabpanel">
+                            <h2 class="print_only">Job Packs</h2>
+                            <table class="col_cont_large">
+                            <tbody>
+                               <tr>
+                               <td colspan="3" class="add"><a href="{{url('create-job')}}" class="normal_button button">Add a job</a></td>
+                              </tr>
+                            @foreach ($jobpacks  as $jobpack )
+                               <tr class="Complete">
+                                   <td>{{$jobpack->id}}</td>
+                               <td><a href="#">{{$jobpack->job->job_title}}</a></td>
+
+                               <td><span class="task_cat Complete"></span> </td>
+                               <td><a href="{{url('download-job-pack')}}/{{$jobpack->id}}">View</a></td>
+                               </tr>
+                            @endforeach
+                            </tbody></table></div>
+
+
                          <div id="tab7" class="tab-pane fade print_show" aria-labelledby="tab7-tab" role="tabpanel">
                          <h2 class="print_only">Materials</h2>
                          <table class="col_cont_large">
@@ -466,6 +487,6 @@
 
     });
  </script>
- 
- 
+
+
  @endsection

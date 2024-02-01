@@ -14,6 +14,7 @@ use App\Models\PlanningTask;
 use App\Models\InvoiceType;
 use App\Models\Invoice;
 use App\Models\CallLog;
+use App\Models\JobPack;
 
 class JobController extends Controller
 {
@@ -151,7 +152,9 @@ class JobController extends Controller
         $snaggings=Snagging::with(['company','contact','team'])->where('contact_id',$job->contact_id)->get();
 
         $callLogs=CallLog::with(['staff','job'])->where('job_id',$jobId)->get();
-        return view('jobs.view_job',['job'=>$job,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies,'snaggings'=>$snaggings,'invoiceTypes'=>$invoiceTypes,'quotes'=>$quotes,'callLogs'=>$callLogs]);
+        $jobpacks=JobPack::with('job')->where('contact_id',$job->contact_id)->get();
+
+        return view('jobs.view_job',['job'=>$job,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies,'snaggings'=>$snaggings,'invoiceTypes'=>$invoiceTypes,'quotes'=>$quotes,'callLogs'=>$callLogs,'jobpacks'=>$jobpacks]);
     }
 
     public function changeJobStage(Request $request,$id)
