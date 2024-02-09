@@ -122,7 +122,7 @@
 
 
                             <div class="col-sm-12 col-md-3">
-                            <img src="{{url('uploads/jobphotos')}}/{{$jobImage->image_name}}" class="rounded float-start" alt="{{$jobImage->image_name}}" style="height: 250px;width:100%">
+                            <img src="{{url('public/uploads/jobphotos')}}/{{$jobImage->image_name}}" class="rounded float-start" alt="{{$jobImage->image_name}}" style="height: 250px;width:100%">
                             </div>
                             @endforeach
 
@@ -130,9 +130,9 @@
 
                           </div>
 
-                          <br><br>
+                          <br/><br/>
 
-                            <input type="hidden" value="{{$contact->id}}" name="contact_id"/>
+
                             <div class="row">
                                 <h4 style=" margin-left:15px;">On Site Survey</h4>
                             </div>

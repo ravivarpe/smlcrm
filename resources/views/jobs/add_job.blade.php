@@ -71,11 +71,11 @@
                      <div class="form-group">
                         <label>Delivery Address</label>
                            <div>
-                           <input type="text" name="address" placeholder="Address" value="" id="address">
-                           <input type="text" name="address2" placeholder="Address 2" value="" id="address2">
-                           <input type="text" name="address3" placeholder="Address 3" value="" id="address3">
-                           <select name="country">
-                           <option value="">Select a country..</option></select></div>
+                           <input type="text" name="address" placeholder="Address" value="" id="line1">
+                           <input type="text" name="address2" placeholder="Address 2" value="" id="line2">
+                           <input type="text" name="address3" placeholder="Address 3" value="" id="line3">
+                           <input type="text" name="country" placeholder="Country " value="United Kingdom" id="country">
+                          </div>
                            <div>
                            <input type="text" name="city" placeholder="City" value="" id="city">
                            <input type="text" name="state" placeholder="County/State" value="" id="state">
@@ -128,7 +128,7 @@
                      </div>
                      <div class="form-group">
                         <label>Planning Calendar</label>
-                    <input type="checkbox" value="1" name="plan_calendar"> <label for="planning calender">Tick to add a new task to the planning calendar</label>
+                    <input type="checkbox" value="1" name="plan_calendar" checked> <label for="planning calender">Tick to add a new task to the planning calendar</label>
                     </div>
                     <div class="form-group">
                         <label>Resin Customers?</label>
@@ -146,14 +146,14 @@
                      <div class="form-group row mx-0">
                       <label>Phone/Mobile</label>
                       <div class="col-sm-12 px-0">
-                      <input class="col-sm-5" type="number" class="form-control" placeholder="Enter Phone" required>
-                      <input class="col-sm-5"  type="number" class="form-control" placeholder="Enter Mobile" ></div>
+                      <input class="col-sm-5" type="number" class="form-control" placeholder="Enter Phone" id="phone" required>
+                      <input class="col-sm-5"  type="number" class="form-control" placeholder="Enter Mobile" id="phone1" ></div>
                    </div>
                    <div class="form-group row mx-0">
                       <label>Email Id</label>
                       <div class="col-sm-12 px-0">
-                      <input class="col-sm-5" type="email" class="form-control" placeholder="Enter email" required>
-                      <input class="col-sm-5"  type="email" class="form-control" placeholder="Enter email"></div>
+                      <input class="col-sm-5" type="email" class="form-control" placeholder="Enter email" id="email" required>
+                      <input class="col-sm-5"  type="email" class="form-control" placeholder="Enter email" id="email1"></div>
                    </div>
                      <div class="form-group">
                         <label>Individual</label>
@@ -247,6 +247,30 @@
                  event.preventDefault();
                  $('#contact_name').val(ui.item.label); // display the selected text
                  $('#contact_id').val(ui.item.value); // save selected id to input
+
+         // save selected id to input
+                var cid=$('#contact_id').val();
+                $.ajax({
+                    url:"{{url('get-contact-details')}}/"+cid,
+                    type: 'get',
+                    success: function( data ) {
+                        console.log(data);
+                        var contactdata=data;
+                        $('#line1').val(contactdata.line1);
+                        $('#line2').val(contactdata.line2);
+                        $('#line3').val(contactdata.line3);
+                        $('#city').val(contactdata.city);
+                        $('#state').val(contactdata.state);
+                        $('#country').val(contactdata.country);
+                        $('#zip').val(contactdata.pincode);
+                        $('#phone').val(contactdata.contact_number.replace(" ", ""));
+                        $('#phone1').val(contactdata.mobile);
+                        $('#email').val(contactdata.email1);
+                        $('#email2').val(contactdata.email2);
+
+                    }
+                });
+
                   return false;
                 }
         });
@@ -261,6 +285,32 @@
         $('#start_date').datepicker({
         format: "dd-mm-yyyy",
       });
+
+
+      $('#postcode_lookup').click(function(event){
+            event.preventDefault();
+             var postcode=$('#zip').val();
+             if(postcode!=null && postcode!='undefined' && postcode!='')
+             {
+                $.ajax({
+                    url:"{{url('get-address')}}/"+postcode,
+                    type: 'get',
+
+                    success: function( data ) {
+                        console.log(data);
+                        var  addr=data.split('<~>');
+                        $('#line2').val(addr[0]);
+                        $('#city').val(addr[1]);
+                        $('#state').val(addr[2]);
+
+                    }
+                });
+             }
+        });
+
+
+
+
 
 
 

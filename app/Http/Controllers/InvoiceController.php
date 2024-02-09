@@ -266,10 +266,53 @@ class InvoiceController extends Controller
     public function storeJobPack(Request $request)
     {
 
+        //dd($request->all());
         $data=$request->except('_token');
 
         $jobPack=JobPack::create($data);
 
+        $ughazardids=$data['ughazardid'];
+        $ughzopt=$data['ughzopt'];
+        $ugDes=$data['ugDes'];
+
+        $ovhazardid=$data['ovhazardid'];
+        $ovhzopt=$data['ovhzopt'];
+        $ovDes=$data['ovDes'];
+
+        $othazardid=$data['othazardid'];
+        $othzopt=$data['othzopt'];
+        $otDes=$data['otDes'];
+
+        $acsthazardid=$data['acsthazardid'];
+        $acsthzopt=$data['acsthzopt'];
+        $acstDes=$data['acstDes'];
+
+        $jwhazardid=$data['jwhazardid'];
+        $jwhzopt=$data['jwhzopt'];
+
+        for($i=0;$i<count($ughazardids);$i++)
+        {
+            JobPackDetail::create(['job_pack_id'=>$jobPack->id,'jp_option_id'=>$ughazardids[$i] , 'opt_val'=>$ughzopt[$i] ,'jp_desc'=>$ugDes[$i] , 'isvideo'=>'0']);
+        }
+
+        for($i=0;$i<count($ovhazardid);$i++)
+        {
+            JobPackDetail::create(['job_pack_id'=>$jobPack->id,'jp_option_id'=>$ovhazardid[$i] , 'opt_val'=>$ovhzopt[$i] ,'jp_desc'=>$ovDes[$i] , 'isvideo'=>'0']);
+        }
+
+        for($i=0;$i<count($othazardid);$i++)
+        {
+            JobPackDetail::create(['job_pack_id'=>$jobPack->id,'jp_option_id'=>$othazardid[$i] , 'opt_val'=>$othzopt[$i] ,'jp_desc'=>$otDes[$i] , 'isvideo'=>'0']);
+        }
+
+        for($i=0;$i<count($acsthazardid);$i++)
+        {
+            JobPackDetail::create(['job_pack_id'=>$jobPack->id,'jp_option_id'=>$acsthazardid[$i] , 'opt_val'=>$acsthzopt[$i] ,'jp_desc'=>$acstDes[$i] , 'isvideo'=>'0']);
+        }
+        for($i=0;$i<count($jwhazardid);$i++)
+        {
+            JobPackDetail::create(['job_pack_id'=>$jobPack->id,'jp_option_id'=>$jwhazardid[$i] , 'opt_val'=>$jwhzopt[$i]]);
+        }
 
 
         return redirect('view-contact/'.$request->contact_id);
@@ -278,27 +321,30 @@ class InvoiceController extends Controller
     public function showJobPackPdf($id)
     {
 
-        $invoice=Invoice::where('id',$id)->first()->toArray();
-        $invoiceDetails=InvoiceDetail::with('material')->where('invoice_id',$id)->get()->toArray();
+        $jobPack=JobPack::with(['job'])->where('id',$id)->first()->toArray();
+        $invoice=Invoice::where('id',$jobPack['invoice_id'])->first()->toArray();
+        $invoiceDetails=InvoiceDetail::with('material')->where('invoice_id',$invoice['id'])->get()->toArray();
 
-        $contact=Contact::where('id',$invoice->contact_id)->first()->toArray();
-        $homeAddr=Address::where('contact_id',$invoice->contact_id)->where('address_type',"Home")->first()->toArray();
-        $deliveryAddr=Address::where('contact_id',$invoice->contact_id)->where('address_type',"Delivery")->first()->toArray();
+        $contact=Contact::where('id',$invoice['contact_id'])->first()->toArray();
+        $homeAddr=Address::where('contact_id',$invoice['contact_id'])->where('address_type',"Home")->first()->toArray();
+        $deliveryAddr=Address::where('contact_id',$invoice['contact_id'])->where('address_type',"Delivery")->first()->toArray();
 
-        $jobDetails=Job::where('id',$invoice->job_id)->first()->toArray();
-        $jobImages=JobImage::where('job_id',$invoice->job_id)->get()->toArray();
+        $jobDetails=Job::where('id',$jobPack['job_id'])->first()->toArray();
+        $jobImages=JobImage::where('job_id',$jobDetails['id'])->get()->toArray();
 
         $teams=Team::get()->toArray();
         // return view('invoice.job_pack_pdf',['invoice'=>$invoice,'invoiceDetails'=>$invoiceDetails,'contact'=>$contact,'homeAddr'=>$homeAddr,'deliveryAddr'=>$deliveryAddr,'jobDetails'=>$jobDetails,'jobImages'=>$jobImages,'teams'=>$teams]);
 
-        $undergroundHz=JobPackOption::where('cat_name','underground')->get();
-        $overheadHz=JobPackOption::where('cat_name','overhead')->get();
-        $otherHz=JobPackOption::where('cat_name','otherhazard')->get();
-        $accStorage=JobPackOption::where('cat_name','accstorage')->get();
-        $jobWorks=JobPackOption::where('cat_name','jobwork')->get();
+        $undergroundHz=JobPackOption::where('cat_name','underground')->get()->toArray();
+        $overheadHz=JobPackOption::where('cat_name','overhead')->get()->toArray();
+        $otherHz=JobPackOption::where('cat_name','otherhazard')->get()->toArray();
+        $accStorage=JobPackOption::where('cat_name','accstorage')->get()->toArray();
+        $jobWorks=JobPackOption::where('cat_name','jobwork')->get()->toArray();
 
-        $pdf = PDF::loadView('invoice.job_pack_pdf', compact('invoice', 'invoiceDetails','contact','homeAddr','deliveryAddr','jobImages','jobDetails','teams','undergroundHz','overheadHz','otherHz','accStorage','jobWorks'));
+        $jpDetails=JobPackDetail::with(['jpoption'])->where('job_pack_id',$jobPack['id'])->get()->toArray();
 
+        $pdf = PDF::loadView('invoice.job_pack_pdf', compact('invoice', 'invoiceDetails','contact','homeAddr','deliveryAddr','jobImages','jobDetails','teams','undergroundHz','overheadHz','otherHz','accStorage','jobWorks','jpDetails','jobPack'));
+        set_time_limit(300);
         return $pdf->download('jobpack.pdf');
 
     }

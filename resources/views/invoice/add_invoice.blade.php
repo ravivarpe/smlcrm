@@ -363,6 +363,12 @@
                         $('#email1').val(contactdata.email1);
                         $('#email2').val(contactdata.email2);
 
+                        $('#delivery_addr_line1').val(contactdata.line1);
+                        $('#delivery_addr_line2').val(contactdata.line2);
+                        $('#delivery_addr_line3').val(contactdata.line3);
+                        $('#delivery_addr_city').val(contactdata.city);
+                        $('#delivery_addr_state').val(contactdata.state);
+
                     }
                   });
 
