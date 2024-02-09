@@ -139,7 +139,9 @@
                          <li><a href="#tab7" data-toggle="tab" aria-selected="false" role="tab">Materials </a></li>
                          <li><a href="#jobpack1" data-toggle="tab" aria-selected="false" role="tab">Job Pack1 </a></li>
                          @foreach ($invoiceTypes as $key=>$invoiceType )
-                          <li><a href="#tab{{$key+8}}" data-toggle="tab" aria-selected="false" role="tab" data-id="{{$invoiceType->id}}}">{{$invoiceType->type_name}}</a></li>
+                          <li><a href="#tab{{$key+8}}" data-toggle="tab" aria-selected="false" role="tab" data-id="{{$invoiceType->id}}}">{{$invoiceType->type_name}} @if($invoiceType->invoices!=null)
+                            ({{count($invoiceType->invoices)}})
+                         @endif</a></li>
 
                          @endforeach
 

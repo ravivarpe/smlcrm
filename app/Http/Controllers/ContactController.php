@@ -195,9 +195,10 @@ class ContactController extends Controller
         $notesdata=ContactNote::where('contact_id',$id)->get();
         $contasks=Task::where('contact_id',$id)->where('en_contact','Contact')->get();
 
-        $jobs=Job::with('category')->where('contact_id',$id)->get();
+         $jobs=Job::with('category')->where('contact_id',$id)->get();
 
-         $invoiceTypes=InvoiceType::get();
+         $invoiceTypes=InvoiceType::with(['invoices'])->get();
+
 
          $quotes=Invoice::with(['invoicetype'])->where('contact_id',$id)->get();
 

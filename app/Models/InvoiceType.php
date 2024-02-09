@@ -13,4 +13,9 @@ class InvoiceType extends Model
     protected $fillable = [
         'id', 'type_name'
     ];
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class,'type_id','id');
+    }
 }

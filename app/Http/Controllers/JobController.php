@@ -145,7 +145,7 @@ class JobController extends Controller
         $teams=Team::all();
         $jobcategories=JobCategories::all();
         $companies=Company::all();
-        $invoiceTypes=InvoiceType::get();
+        $invoiceTypes=InvoiceType::with(['invoices'])->get();
 
         $quotes=Invoice::with(['invoicetype'])->where('contact_id',$job->contact_id)->get();
 
