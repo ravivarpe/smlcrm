@@ -332,15 +332,22 @@
     <table class="table table-hover" style="width: 100%;">
       <tbody class="table-data">
         <tr class="">
+            <td></td>
+            <td>Yes</td>
+            <td>No</td>
+            <td></td>
+          </tr>
+        <tr class="">
+
           <td>Flexible</td>
-          <td><input type="checkbox" value="0" name="flexibal"></td>
-          <td><input type="checkbox" value="1" name="flexibal"></td>
+          <td><input type="radio" value="1" name="flexibal" checked></td>
+          <td><input type="radio" value="0" name="flexibal"></td>
           <td><input type="text" name="flex_desc" placeholder="Description" class="form-control" value="{{$jobPack['flex_desc']}}"></td>
         </tr>
         <tr class="">
           <td>Annual PC</td>
-          <td><input type="checkbox" value="0" name="annual_pc"></td>
-          <td><input type="checkbox" value="1" name="annual_pc"></td>
+          <td><input type="radio" value="1" name="annual_pc" checked></td>
+          <td><input type="radio" value="0" name="annual_pc"></td>
           <td><input type="text" name="annual_pc_desc" placeholder="Description" class="form-control" value="{{$jobPack['annual_pc_desc']}}"></td>
         </tr>
       </tbody>

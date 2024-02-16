@@ -252,6 +252,31 @@
 
 @section('footer_scripts')
 <script>
+    $(window).load(function() {
+
+        var cid=$('#contact_id').val();
+                $.ajax({
+                    url:"{{url('get-contact-details')}}/"+cid,
+                    type: 'get',
+                    success: function( data ) {
+                        console.log(data);
+                        var contactdata=data;
+                        $('#line1').val(contactdata.line1);
+                        $('#line2').val(contactdata.line2);
+                        $('#line3').val(contactdata.line3);
+                        $('#city').val(contactdata.city);
+                        $('#state').val(contactdata.state);
+                        $('#country').val(contactdata.country);
+                        $('#zip').val(contactdata.pincode);
+                        $('#phone').val(contactdata.contact_number.replace(" ", ""));
+                        $('#phone1').val(contactdata.mobile);
+                        $('#email').val(contactdata.email1);
+                        $('#email1').val(contactdata.email2);
+
+                    }
+                });
+
+    });
    $(document).ready(function(){
     var cid;
 
@@ -284,7 +309,7 @@
                  event.preventDefault();
                  $('#contact_name').val(ui.item.label); // display the selected text
                  $('#contact_id').val(ui.item.value); // save selected id to input
-                 var cid=$('#contact_id').val();
+                var cid=$('#contact_id').val();
                 $.ajax({
                     url:"{{url('get-contact-details')}}/"+cid,
                     type: 'get',

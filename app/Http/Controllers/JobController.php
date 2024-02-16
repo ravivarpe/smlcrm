@@ -126,6 +126,7 @@ class JobController extends Controller
 
         if($request->hasFile('photos'))
         {
+            JobImage::where('job_id',$id)->delete();
             foreach($request->file('photos') as $key => $file)
             {
                 $fileName = time().rand(1,99).'.'.$file->getClientOriginalExtension();
