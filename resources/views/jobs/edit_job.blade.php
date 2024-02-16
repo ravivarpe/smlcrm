@@ -229,8 +229,7 @@
 
                      <div class="form-group">
                         <label>Job Picture upload</label>
-                        <input type="file" name="picture">
-                        <input type="hidden" name="old_picture">
+                        <input type="file" name="photos[]" multiple>
                      </div>
 
 

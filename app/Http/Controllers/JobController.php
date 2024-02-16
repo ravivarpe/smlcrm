@@ -15,6 +15,7 @@ use App\Models\InvoiceType;
 use App\Models\Invoice;
 use App\Models\CallLog;
 use App\Models\JobPack;
+use App\Models\SiteVisitTask;
 
 class JobController extends Controller
 {
@@ -115,19 +116,34 @@ class JobController extends Controller
         unset($data['state']);
         unset($data['city']);
         unset($data['zip']);
-        unset($data['picture']);
-        unset($data['old_picture']);
+
+
         unset($data['contact_name']);
 
         $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
         $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
 
-        Job::where('id',$id)->update($data);
+
+        if($request->hasFile('photos'))
+        {
+            foreach($request->file('photos') as $key => $file)
+            {
+                $fileName = time().rand(1,99).'.'.$file->getClientOriginalExtension();
+                $file->move(public_path('uploads/jobphotos'), $fileName);
+                JobImage::create(['image_name'=>$fileName,'job_id'=>$id]);
+            }
+        }
+
+
 
         if($data['plan_calendar']==1)
          {
             PlanningTask::create(['task_name'=>$data['job_title'], 'start_date'=>$data['start_date'], 'end_date'=>$data['end_date'], 'team_id'=>$data['team_id'] ,'ref_id'=>$id,'task_type'=>"Job"]);
          }
+         unset($data['photos']);
+         unset($data['plan_calendar']);
+
+         Job::where('id',$id)->update($data);
 
         return redirect('jobs')->with('success','Job added successfully!');
 
@@ -154,7 +170,9 @@ class JobController extends Controller
         $callLogs=CallLog::with(['staff','job'])->where('job_id',$jobId)->get();
         $jobpacks=JobPack::with('job')->where('contact_id',$job->contact_id)->get();
 
-        return view('jobs.view_job',['job'=>$job,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies,'snaggings'=>$snaggings,'invoiceTypes'=>$invoiceTypes,'quotes'=>$quotes,'callLogs'=>$callLogs,'jobpacks'=>$jobpacks]);
+        $sitevisittask=SiteVisitTask::with(['contact','team'])->where('contact_id',$job->contact_id)->orderBy('id','DESC')->get();
+
+        return view('jobs.view_job',['job'=>$job,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies,'snaggings'=>$snaggings,'invoiceTypes'=>$invoiceTypes,'quotes'=>$quotes,'callLogs'=>$callLogs,'jobpacks'=>$jobpacks,'sitevisittask'=>$sitevisittask]);
     }
 
     public function changeJobStage(Request $request,$id)

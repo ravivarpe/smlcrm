@@ -27,6 +27,7 @@ use App\Models\Job;
 use App\Models\Invoice;
 use App\Models\InvoiceType;
 use App\Models\JobPack;
+use App\Models\SiteVisitTask;
 
 
 class ContactController extends Controller
@@ -195,15 +196,19 @@ class ContactController extends Controller
         $notesdata=ContactNote::where('contact_id',$id)->get();
         $contasks=Task::where('contact_id',$id)->where('en_contact','Contact')->get();
 
-         $jobs=Job::with('category')->where('contact_id',$id)->get();
+        $jobs=Job::with('category')->where('contact_id',$id)->get();
 
-         $invoiceTypes=InvoiceType::with(['invoices'])->get();
+        $invoiceTypes=InvoiceType::with(['invoices'])->get();
 
 
-         $quotes=Invoice::with(['invoicetype'])->where('contact_id',$id)->get();
+
+        $quotes=Invoice::with(['invoicetype'])->where('contact_id',$id)->get();
 
         $jobpacks=JobPack::with('job')->where('contact_id',$id)->get();
-        return view('contacts.view_contact',['teams'=>$teams,'jobcategories'=>$jobcategories,'contact'=>$contact,'notesdata'=>$notesdata,'contasks'=>$contasks,'jobs'=>$jobs,'quotes'=>$quotes,'invoiceTypes'=>$invoiceTypes,'jobpacks'=>$jobpacks]);
+
+        $sitevisittask=SiteVisitTask::with(['contact','team'])->where('contact_id',$id)->orderBy('id','DESC')->get();
+
+        return view('contacts.view_contact',['teams'=>$teams,'jobcategories'=>$jobcategories,'contact'=>$contact,'notesdata'=>$notesdata,'contasks'=>$contasks,'jobs'=>$jobs,'quotes'=>$quotes,'invoiceTypes'=>$invoiceTypes,'jobpacks'=>$jobpacks,'sitevisittask'=>$sitevisittask]);
     }
 
 

@@ -167,8 +167,11 @@
                         <li><a href="#tab7" data-toggle="tab" aria-selected="false" role="tab">Materials </a></li>
                         <li><a href="#jobpack1" data-toggle="tab" aria-selected="false" role="tab">Job Pack1 </a></li>
                         @foreach ($invoiceTypes as $key=>$invoiceType )
-                         <li><a href="#tab{{$key+8}}" data-toggle="tab" aria-selected="false" role="tab" data-id="{{$invoiceType->id}}}">{{$invoiceType->type_name}} @if($invoiceType->invoices!=null)
-                            ({{count($invoiceType->invoices)}})
+                        @php
+                        $invoices=\App\Helper\CustomerManager::invoicesByType($invoiceType->id,$job->contact_id);
+                        @endphp
+                         <li><a href="#tab{{$key+8}}" data-toggle="tab" aria-selected="false" role="tab" data-id="{{$invoiceType->id}}}">{{$invoiceType->type_name}} @if($invoices!=null)
+                            ({{count($invoices)}})
                          @endif</a></li>
 
                         @endforeach
@@ -245,6 +248,15 @@
                         <tbody><tr>
                         <td colspan="5" class="add"><a href="{{url('get-site-visit')}}/{{$job->id}}" class="normal_button button">Add a site visit</a></td>
                         </tr>
+                        @foreach ($sitevisittask  as $sitevisit )
+                        <tr class="Complete">
+                            <td>{{$sitevisit->id}}</td>
+                        <td><a href="#">{{$sitevisit->task_name}} --{{$sitevisit->start_date}}</a></td>
+                        <td>@if($sitevisit->contact!=null){{$sitevisit->contact->name}}@endif</td>
+                        <td><span class="task_cat Complete">Complete</span> </td>
+                        <td><a href="{{url('get-site-visit')}}/{{$job->contact_id}}">View</a></td>
+                        </tr>
+                       @endforeach
                         </tbody></table>
                         </div>
                         <div id="tab_snagging" class="tab_content print_show" >
@@ -319,7 +331,7 @@
 
                         @foreach ($invoiceTypes as $key=>$invoiceType )
                         @php
-                        $invoices=\App\Helper\CustomerManager::invoicesByType($invoiceType->id,$job->id);
+                        $invoices=\App\Helper\CustomerManager::invoicesByType($invoiceType->id,$job->contact_id);
                         @endphp
 
                         <div id="tab{{$key+8}}" class="tab_content" ><table class="col_cont_large">
