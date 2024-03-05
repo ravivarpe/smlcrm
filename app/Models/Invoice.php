@@ -12,7 +12,7 @@ class Invoice extends Model
         protected $table ='invoices';
 
         protected $fillable = [
-            'id', 'company_id', 'type_id', 'ref_name', 'job_id', 'contact_id', 'phone', 'tags', 'added_date', 'terms_&_conditions', 'discount', 'total_price', 'price_unit', 'vat', 'show_vat', 'delivery_instruction', 'add_to_cal', 'start_date', 'end_date', 'job_description', 'job_details','delivery_date'
+            'id', 'company_id', 'type_id', 'ref_name', 'job_name', 'contact_id', 'phone', 'tags', 'added_date', 'terms_&_conditions', 'discount', 'total_price', 'price_unit', 'vat', 'show_vat', 'delivery_instruction', 'add_to_cal', 'start_date', 'end_date', 'job_description', 'job_details','delivery_date'
         ];
         public function company()
         {

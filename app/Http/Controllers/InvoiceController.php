@@ -16,7 +16,7 @@ use App\Models\Team;
 use App\Models\JobPackOption;
 use App\Models\JobPack;
 use App\Models\JobPackDetail;
-
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 
@@ -83,7 +83,11 @@ class InvoiceController extends Controller
             Address::create(['contact_id'=>$contactId, 'line1'=>$data['delivery_addr_line1'], 'line2'=>$data['delivery_addr_line2'], 'line3'=>$data['delivery_addr_line3'], 'country'=>$data['delivery_addr_country'], 'state'=>$data['delivery_addr_state'], 'city'=>$data['delivery_addr_city'], 'pincode'=>$data['delivery_addr_zip'],'address_type'=>'Delivery']);
          }
 
-         return redirect('view-contact/'.$contactId)->with('success','Invoice added successfully!');
+         $data1=['job_cat_id'=>1, 'contact_id'=>$contactId, 'team_id'=>13, 'job_title'=>'job by'.$data['contact_name'],  'jobdescription'=>$data['job_description'], 'start_date'=>date('Y-m-d'),'end_date'=>date('Y-m-d'),  'responsible'=>Auth::user()->id,  'plan_calendar'=>0, 'resin_cust'=>0, 'job_value'=>$data['total_price'], 'tip_stone_side'=>1, 'status'=>'Pending', 'company_id'=>$data['company_id'],'status_two'=>'Quoted','invoice_id'=>$invoice->id];
+         $job=Job::create($data1);
+
+      //  return redirect('view-contact/'.$contactId)->with('success','Invoice added successfully!');
+         return redirect('view-job-details/'.$job->id)->with('success','Invoice added successfully!');
     }
 
     public function editInvoice($id)

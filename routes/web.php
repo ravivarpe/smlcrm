@@ -144,8 +144,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     //jobs
     Route::get('jobs',[JobController::class,'index'])->name('job.list');
-    Route::get('create-job',[JobController::class,'addJob'])->name('job.add');
-    Route::post('create-job',[JobController::class,'addJobSubmit'])->name('job.add');
+    Route::get('create-job/{invoiceId?}',[JobController::class,'addJob'])->name('job.add');
+    Route::post('create-job/{invoiceId?}',[JobController::class,'addJobSubmit'])->name('job.add');
     Route::get('edit-job/{id}',[JobController::class,'editJob'])->name('job.edit');
     Route::post('edit-job/{id}',[JobController::class,'editJobSubmit'])->name('job.edit');
     Route::get('delete-job/{id}',[JobController::class,'deleteJob'])->name('job.delete');

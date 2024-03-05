@@ -58,8 +58,8 @@
                       </div>
                       <div class="form-group">
                          <label>Job</label>
-                         <input type="text" class="form-control" placeholder="Job" name="job"  id="job">
-                         <input type="hidden" name="job_id" id="job_id" value=""/>
+                         <input type="text" class="form-control" placeholder="Job" name="job_name"  id="job">
+                         {{-- <input type="hidden" name="job_id" id="job_id" value=""/> --}}
                       </div>
                        <div class="form-group">
                         <label>Customer Name</label>
@@ -288,36 +288,36 @@
         cid= $("#company_id").val();
     });
 
-    $('#job').on('keyup',function(){
+    // $('#job').on('keyup',function(){
 
-        $("#job" ).autocomplete({
-        source: function( request, response ) {
+    //     $("#job" ).autocomplete({
+    //     source: function( request, response ) {
 
-                $.ajax({
-                url:"{{url('search-jobs')}}",
-                type: 'get',
+    //             $.ajax({
+    //             url:"{{url('search-jobs')}}",
+    //             type: 'get',
 
-                success: function( data ) {
-                    console.log(data);
-                    response(data);
-                    console.log(response);
-                }
-            });
-            },
-            focus: function(event, ui) {
-                $("contact_name").val(ui.item.label);
-                $('#job_id').val(ui.item.value);
-                return false;
-            },
-            select: function (event, ui) {
-            event.preventDefault();
-            $('#job').val(ui.item.label); // display the selected text
-            $('#job_id').val(ui.item.value); // save selected id to input
-            return false;
-            }
-        });
+    //             success: function( data ) {
+    //                 console.log(data);
+    //                 response(data);
+    //                 console.log(response);
+    //             }
+    //         });
+    //         },
+    //         focus: function(event, ui) {
+    //             $("contact_name").val(ui.item.label);
+    //             $('#job_id').val(ui.item.value);
+    //             return false;
+    //         },
+    //         select: function (event, ui) {
+    //         event.preventDefault();
+    //         $('#job').val(ui.item.label); // display the selected text
+    //         $('#job_id').val(ui.item.value); // save selected id to input
+    //         return false;
+    //         }
+    //     });
 
-        });
+    //     });
 
     $('#contact_name').on('keyup',function(){
 
@@ -368,6 +368,8 @@
                         $('#delivery_addr_line3').val(contactdata.line3);
                         $('#delivery_addr_city').val(contactdata.city);
                         $('#delivery_addr_state').val(contactdata.state);
+                        $('#delivery_addr_zip').val(contactdata.pincode);
+
 
                     }
                   });

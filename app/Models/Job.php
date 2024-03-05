@@ -12,7 +12,7 @@ class Job extends Model
     protected $table = 'jobs';
 
     protected $fillable = [
-        'id', 'job_cat_id', 'contact_id', 'team_id', 'job_title', 'tags', 'jobdescription', 'start_date', 'end_date', 'ref_type', 'responsible', 'priority', 'plan_calendar', 'resin_cust', 'job_value', 'who_see', 'tip_stone_side', 'added_date', 'status', 'individual','company_id','status_two'
+        'id', 'job_cat_id', 'contact_id', 'team_id', 'job_title', 'tags', 'jobdescription', 'start_date', 'end_date', 'ref_type', 'responsible', 'priority', 'plan_calendar', 'resin_cust', 'job_value', 'who_see', 'tip_stone_side', 'added_date', 'status', 'individual','company_id','status_two','invoice_id'
     ];
 
     public function category()

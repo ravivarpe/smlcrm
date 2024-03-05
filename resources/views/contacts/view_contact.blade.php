@@ -245,7 +245,7 @@
                                 <td>{{$job->id}}</td>
                             <td><a href="#">{{$job->job_title}}</a></td>
                             <td>@if($job->category!=null){{$job->category->name}}@endif</td>
-                            <td><span class="task_cat Complete">Complete</span> </td>
+                            <td><span class="task_cat Complete">{{$job->status}}</span> </td>
                             <td><a href="#">View</a></td>
                             </tr>
                          @endforeach
@@ -302,9 +302,9 @@
                          <a href="#" class="send_email" type="company" id="10" finance_id="8">Send</a> |
                          <a href="{{url('view-invoice-pdf')}}/{{$quote->id}}" target="_blank"><i class="fa fa-eye"></i></a> |
                          <a href="#"><i class="fa fa-pencil-square-o"></i></a> |
-                         <a href="{{url('view-jobdetails')}}/{{$quote->id}}">Create Job Pack</a> |
+                         <a href="{{url('create-job')}}/{{$quote->id}}">Create Job Pack</a> |
                          <a href="{{url('create-invoice')}}/{{$contact->id}}">Create Invoice</a> |
-                         <a href="change_finance?copy_id=8"><i class="fa fa-copy"></i></a> |
+                         <a href="#"><i class="fa fa-copy"></i></a> |
                          <a href="{{route('invoice.delete',$quote->id)}}" class="delete_quick" id="8" type="finances"><i class="fa fa-trash-o"></i></a>
                          </td>
                          </tr>

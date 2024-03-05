@@ -25,7 +25,7 @@
                      </div>
                  </div>
                  <div class="card-body">
-                <form action="{{route('job.add')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('job.add',$invoiceId)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="col-sm-12">
                       <div class="row">

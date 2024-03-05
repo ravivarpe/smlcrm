@@ -51,16 +51,16 @@ class JobController extends Controller
        return view('jobs.job_list',['jobs'=>$jobs,'jobcategories'=>$jobcategories,'companies'=>$companies]);
     }
 
-    public function addJob()
+    public function addJob($invoiceId=null)
     {
         $teams=Team::all();
         $jobcategories=JobCategories::all();
         $companies=Company::all();
         $users=User::where('is_staff',1)->get();
-        return view('jobs.add_job',['users'=>$users,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies]);
+        return view('jobs.add_job',['users'=>$users,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies,'invoiceId'=>$invoiceId]);
     }
 
-    public function addJobSubmit(Request $request)
+    public function addJobSubmit(Request $request,$invoiceId=null)
     {
         $request->validate([
             'job_title' =>'required'
@@ -70,6 +70,7 @@ class JobController extends Controller
 
         $data['start_date']=date('Y-m-d',strtotime($data['start_date']));
         $data['end_date']=date('Y-m-d',strtotime($data['end_date']));
+        $data['invoice_id']=$invoiceId;
 
         $job=Job::create($data);
         if($request->hasFile('photos'))
