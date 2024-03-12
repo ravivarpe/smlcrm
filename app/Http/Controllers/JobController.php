@@ -173,8 +173,8 @@ class JobController extends Controller
         $jobpacks=JobPack::with('job')->where('contact_id',$job->contact_id)->get();
 
         $sitevisittask=SiteVisitTask::with(['contact','team'])->where('contact_id',$job->contact_id)->orderBy('id','DESC')->get();
-
-        return view('jobs.view_job',['job'=>$job,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies,'snaggings'=>$snaggings,'invoiceTypes'=>$invoiceTypes,'quotes'=>$quotes,'callLogs'=>$callLogs,'jobpacks'=>$jobpacks,'sitevisittask'=>$sitevisittask]);
+        $jobs=Job::with(['company','category','team','contact','staff'])->where('contact_id',$job->contact_id)->get();
+        return view('jobs.view_job',['job'=>$job,'teams'=>$teams,'jobcategories'=>$jobcategories,'companies'=>$companies,'snaggings'=>$snaggings,'invoiceTypes'=>$invoiceTypes,'quotes'=>$quotes,'callLogs'=>$callLogs,'jobpacks'=>$jobpacks,'sitevisittask'=>$sitevisittask,'jobs'=>$jobs]);
     }
 
     public function changeJobStage(Request $request,$id)

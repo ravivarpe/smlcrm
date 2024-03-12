@@ -350,6 +350,8 @@
                     type: 'get',
                     success: function( data ) {
                         console.log(data);
+                        var phone=data.contact_number.split(" ").join("");
+                        console.log(phone);
                         var contactdata=data;
                         $('#line1').val(contactdata.line1);
                         $('#line2').val(contactdata.line2);
@@ -358,7 +360,7 @@
                         $('#state').val(contactdata.state);
                         $('#country').val(contactdata.country);
                         $('#zip').val(contactdata.pincode);
-                        $('#phone').val(contactdata.contact_number.replace(" ", ""));
+                        $('#phone').val(phone);
                         $('#mobile').val(contactdata.mobile);
                         $('#email1').val(contactdata.email1);
                         $('#email2').val(contactdata.email2);
@@ -596,6 +598,8 @@
                     type: 'get',
                     success: function( data ) {
                         console.log(data.contact_number);
+                        var phone=data.contact_number.split(" ").join("");
+                        console.log(phone);
                         var contactdata=data;
                         $('#line1').val(contactdata.line1);
                         $('#line2').val(contactdata.line2);
@@ -604,7 +608,7 @@
                         $('#state').val(contactdata.state);
                         $('#country').val(contactdata.country);
                         $('#zip').val(contactdata.pincode);
-                        $('#phone').val(data.contact_number.replace(" ", ""));
+                        $('#phone').val(phone);
                         $('#mobile').val(contactdata.mobile);
                         $('#email1').val(contactdata.email1);
                         $('#email2').val(contactdata.email2);

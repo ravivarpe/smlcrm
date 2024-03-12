@@ -134,8 +134,8 @@
                                            <th>Mobile</th>
                                            <th>Email</th>
                                            <th>Post Code</th>
+                                           <th>Type</th>
                                            <th>Enquiry Come From</th>
-                                           <th>Status</th>
                                            <th>Action</th>
                                         </tr>
                                      </thead>

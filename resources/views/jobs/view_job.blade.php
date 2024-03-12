@@ -163,6 +163,7 @@
                         <li><a href="#tab_snagging" data-toggle="tab" aria-selected="false" role="tab">Snagging</a></li>
                         <li><a href="#tab_site_visits" data-toggle="tab" aria-selected="false" role="tab">Site Visits (1)</a></li>
 
+                        <li><a href="#job_tabs" data-toggle="tab" aria-selected="false" role="tab">Jobs</a></li>
 
                         <li><a href="#tab7" data-toggle="tab" aria-selected="false" role="tab">Materials </a></li>
                         <li><a href="#jobpack1" data-toggle="tab" aria-selected="false" role="tab">Job Pack1 </a></li>
@@ -259,6 +260,26 @@
                        @endforeach
                         </tbody></table>
                         </div>
+
+                        <div id="job_tabs" class="tab-pane fade print_show" aria-labelledby="tab5-tab" role="tabpanel">
+                            <h2 class="print_only">Jobs</h2>
+                            <table class="col_cont_large">
+                            <tbody>
+                               <tr>
+                               <td colspan="3" class="add"><a href="{{url('create-job')}}" class="normal_button button">Add a job</a></td>
+                              </tr>
+                            @foreach ($jobs  as $job )
+                               <tr class="Complete">
+                                   <td>{{$job->id}}</td>
+                               <td><a href="{{url('edit-job')}}/{{$job->id}}">{{$job->job_title}}</a></td>
+                               <td>@if($job->category!=null){{$job->category->name}}@endif</td>
+                               <td><span class="task_cat Complete">{{$job->status}}</span> </td>
+                               <td>{{-- <a href="#">View</a>--}}</td>
+                               </tr>
+                            @endforeach
+                            </tbody></table></div>
+
+
                         <div id="tab_snagging" class="tab_content print_show" >
                            <h2 class="print_only">Snagging</h2>
                             <table>
@@ -341,7 +362,10 @@
                         </tr>
                         @foreach ($invoices as $quote)
 
+                         @php
+                             $joByIn=\App\Helper\CustomerManager::jobByInvoice($quote->id);
 
+                         @endphp
                         <tr><td>{{$quote->id}}</td>
                         <td class="no_mob">{{$invoiceType->type_name}} </td>
                         <td class="no_mob" style="max-width:200px;">{{$quote->contact->name}},{{$quote->price_unit}} ,{{$quote->total_price}}</td>
@@ -352,9 +376,9 @@
                         <a href="#" class="send_email" type="company" id="10" finance_id="8">Send</a> |
                         <a href="{{url('view-invoice-pdf')}}/{{$quote->id}}" target="_blank"><i class="fa fa-eye"></i></a> |
                         <a href="#"><i class="fa fa-pencil-square-o"></i></a> |
-                        <a href="{{url('view-jobdetails')}}/{{$quote->id}}">Create Job Pack</a> |
+                        <a href="{{url('edit-job')}}/{{$joByIn->id}}">Create Job Pack</a> |
                         <a href="{{url('create-invoice')}}/{{$job->id}}">Create Invoice</a> |
-                        <a href="change_finance?copy_id=8"><i class="fa fa-copy"></i></a> |
+                        <a href="#"><i class="fa fa-copy"></i></a> |
                         <a href="{{route('invoice.delete',$quote->id)}}" class="delete_quick" id="8" type="finances"><i class="fa fa-trash-o"></i></a>
                         </td>
                         </tr>
