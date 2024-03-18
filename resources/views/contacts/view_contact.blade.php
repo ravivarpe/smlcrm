@@ -137,7 +137,8 @@
                          <li><a href="#tab4" data-toggle="tab" aria-selected="false" role="tab">People (3)</a></li>
                          <li><a href="#tab5" data-toggle="tab" aria-selected="false" role="tab">Jobs ({{count($jobs)}})</a></li>
                          <li><a href="#tab7" data-toggle="tab" aria-selected="false" role="tab">Materials </a></li>
-                         <li><a href="#jobpack1" data-toggle="tab" aria-selected="false" role="tab">Job Pack1 </a></li>
+                         <li><a href="#jobpack_planner" data-toggle="tab" aria-selected="false" role="tab">Job Pack (Planner) </a></li>
+                         <li><a href="#jobpack1" data-toggle="tab" aria-selected="false" role="tab">Job Pack (Customer) </a></li>
                          @foreach ($invoiceTypes as $key=>$invoiceType )
                          @php
                          $invoices=\App\Helper\CustomerManager::invoicesByType($invoiceType->id,$contact->id);
@@ -257,6 +258,24 @@
                             <tbody>
                                <tr>
                                <td colspan="3" class="add"><a href="{{url('create-job')}}" class="normal_button button">Add a job</a></td>
+                              </tr>
+                            @foreach ($jobpacks  as $jobpack )
+                               <tr class="Complete">
+                                   <td>{{$jobpack->id}}</td>
+                               <td><a href="#">{{$jobpack->job->job_title}}</a></td>
+
+                               <td><span class="task_cat Complete"></span> </td>
+                               <td><a href="{{url('download-job-pack')}}/{{$jobpack->id}}">View</a></td>
+                               </tr>
+                            @endforeach
+                            </tbody></table></div>
+
+                         <div id="jobpack1" class="tab-pane fade print_show" aria-labelledby="tab5-tab" role="tabpanel">
+                            <h2 class="print_only">Job Packs</h2>
+                            <table class="col_cont_large">
+                            <tbody>
+                               <tr>
+                               <td colspan="3" class="add"><a href="#" class="normal_button button">Add a job</a></td>
                               </tr>
                             @foreach ($jobpacks  as $jobpack )
                                <tr class="Complete">

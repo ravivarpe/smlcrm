@@ -417,17 +417,17 @@
 <br />
 
 
-
+{{--
 <div class="row">
   <h4 style="margin-left: 15px;">Job Declaration & System of Work</h4>
-</div>
+</div> --}}
 
 
 
 
 
 <br />
-<div class="row">
+{{-- <div class="row">
   <div class="col-lg-6 pinpin">
     <div class="row">
       <label for="inputdate" class="col-sm-2">Job Start Date : {{$jobPack['job_start_date']}}</label>
@@ -489,7 +489,7 @@
       <textarea class="form-control" name="note">{{$jobPack['note']}}</textarea>
     </div>
   </div>
-</div>
+</div> --}}
 
   {{-- <div class="mb-3 row">
     <label for="inputFinalprice" class="col-sm-2">Final Price</label>
@@ -502,8 +502,8 @@
     <div class="col-sm-2">
       <input type="text" name="adv_amt_taken" class="form-control" value="{{$jobPack['adv_amt_taken']}}">
     </div> --}}
-    <label for="inputDepositetaken" class="col-sm-4">Customer Signature _________________</label>
-    <label for="inputDepositetaken" class="col-sm-4">Surveyor Signature _________________</label>
+    {{-- <label for="inputDepositetaken" class="col-sm-4">Customer Signature _________________</label>
+    <label for="inputDepositetaken" class="col-sm-4">Surveyor Signature _________________</label> --}}
   </div>
   {{-- <div class="mb-3 row">
     <label for="inputBalanceoncompletion" class="col-sm-2">Balance On Completion</label>
@@ -511,7 +511,7 @@
       <input type="text" name="balance_amt" class="form-control" value="{{$jobPack['balance_amt']}}">
     </div>
   </div> --}}
-  <div class="mb-3 row">
+  {{-- <div class="mb-3 row">
     <label for="inputdate" class="col-sm-2">Date: {{$jobPack['added_date']}}</label>
     <div class="col-sm-2">
       <input type="date" name="added_date" class="form-control" value="{{$jobPack['added_date']}}">
@@ -525,7 +525,7 @@
     </div>
     <label for="inputDepositetaken" class="col-sm-4">Customer Signature _________________</label>
     <label for="inputDepositetaken" class="col-sm-4">Surveyor Signature _________________</label>
-  </div>
+  </div> --}}
 </form>
 <br />
 

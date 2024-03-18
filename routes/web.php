@@ -100,6 +100,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('view-invoice-pdf/{id?}',[InvoiceController::class,'viewInvoicePdf'])->name('view.invoicePdf');
     Route::post('add-job-pack',[InvoiceController::class,'storeJobPack'])->name('jobpack.create');
     Route::get('download-job-pack/{id}',[InvoiceController::class,'showJobPackPdf'])->name('jobpack.download');
+    Route::get('download-job-pack1/{id}',[InvoiceController::class,'showPlannerJobPackPdf'])->name('jobpack1.download');
     //asset
     Route::get('asset',[AssetController::class,'index'])->name('asset.list');
     Route::get('create-asset',[AssetController::class,'addAsset'])->name('asset.add');

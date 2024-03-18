@@ -166,7 +166,8 @@
                         <li><a href="#job_tabs" data-toggle="tab" aria-selected="false" role="tab">Jobs</a></li>
 
                         <li><a href="#tab7" data-toggle="tab" aria-selected="false" role="tab">Materials </a></li>
-                        <li><a href="#jobpack1" data-toggle="tab" aria-selected="false" role="tab">Job Pack1 </a></li>
+                        <li><a href="#jobpack_planner" data-toggle="tab" aria-selected="false" role="tab">Job Pack (Planner) </a></li>
+                        <li><a href="#jobpack1" data-toggle="tab" aria-selected="false" role="tab">Job Pack (Customer) </a></li>
                         @foreach ($invoiceTypes as $key=>$invoiceType )
                         @php
                         $invoices=\App\Helper\CustomerManager::invoicesByType($invoiceType->id,$job->contact_id);
@@ -332,12 +333,31 @@
                         </tr>
                         </tbody></table>
                         </div>
+
+                        <div id="jobpack_planner" class="tab-pane fade print_show" aria-labelledby="tab5-tab" role="tabpanel">
+                            <h2 class="print_only">Job Packs</h2>
+                            <table class="col_cont_large">
+                            <tbody>
+                               <tr>
+                               <td colspan="3" class="add"><a href="{{url('view-jobdetails')}}/{{$job->id}}" class="normal_button button">Add a job Pack</a></td>
+                              </tr>
+                            @foreach ($jobpacks  as $jobpack )
+                               <tr class="Complete">
+                                   <td>{{$jobpack->id}}</td>
+                               <td><a href="#">{{$jobpack->job->job_title}}</a></td>
+
+                               <td><span class="task_cat Complete"></span> </td>
+                               <td><a href="{{url('download-job-pack1')}}/{{$jobpack->id}}">View</a></td>
+                               </tr>
+                            @endforeach
+                            </tbody></table></div>
+
                         <div id="jobpack1" class="tab-pane fade print_show" aria-labelledby="tab5-tab" role="tabpanel">
                             <h2 class="print_only">Job Packs</h2>
                             <table class="col_cont_large">
                             <tbody>
                                <tr>
-                               <td colspan="3" class="add"><a href="{{url('create-job')}}" class="normal_button button">Add a job</a></td>
+                               <td colspan="3" class="add"><a href="{{url('view-jobdetails')}}/{{$job->id}}" class="normal_button button">Add a job Pack</a></td>
                               </tr>
                             @foreach ($jobpacks  as $jobpack )
                                <tr class="Complete">
@@ -376,7 +396,7 @@
                         <a href="#" class="send_email" type="company" id="10" finance_id="8">Send</a> |
                         <a href="{{url('view-invoice-pdf')}}/{{$quote->id}}" target="_blank"><i class="fa fa-eye"></i></a> |
                         <a href="#"><i class="fa fa-pencil-square-o"></i></a> |
-                        <a href="{{url('edit-job')}}/{{$joByIn->id}}">Create Job Pack</a> |
+                        <a href="{{url('view-jobdetails')}}/{{$joByIn->id}}">Create Job Pack</a> |
                         <a href="{{url('create-invoice')}}/{{$job->id}}">Create Invoice</a> |
                         <a href="#"><i class="fa fa-copy"></i></a> |
                         <a href="{{route('invoice.delete',$quote->id)}}" class="delete_quick" id="8" type="finances"><i class="fa fa-trash-o"></i></a>

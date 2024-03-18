@@ -156,11 +156,11 @@
                                  <input type="hidden" name="ughazardid[]" value="{{$item1->id}}"/>
                                  <tr class="">
                                     <td>{{$item1->option_name}}</td>
-                                    <td><input type="checkbox" value="1" name="ughzopt[]"></td>
-                                    <td><input type="checkbox" value="2" name="ughzopt[]"></td>
-                                    <td><input type="checkbox" value="3" name="ughzopt[]"></td>
-                                    <td style="width: 15%"><input type="text" placeholder="Description" class="form-control" name="ugDes[]"></td>
-                                    <td><input type="checkbox" value="1" name="ugVideo[]"></td>
+                                    <td><input type="radio" value="1" name="ughzopt[{{$item1->id}}][]"></td>
+                                    <td><input type="radio" value="2" name="ughzopt[{{$item1->id}}][]"></td>
+                                    <td><input type="radio" value="3" name="ughzopt[{{$item1->id}}][]" checked></td>
+                                    <td style="width: 15%"><input type="text" placeholder="Description" class="form-control" name="ugDes[{{$item1->id}}][]"></td>
+                                    <td><input type="checkbox" value="1" name="ugVideo[{{$item1->id}}][]"></td>
                                  </tr>
                                  @endforeach
 
@@ -187,11 +187,11 @@
                                  <input type="hidden" name="ovhazardid[]" value="{{$item1->id}}"/>
                                  <tr class="">
                                     <td>{{$item1->option_name}}</td>
-                                    <td><input type="checkbox" value="1" name="ovhzopt[]"></td>
-                                    <td><input type="checkbox" value="2" name="ovhzopt[]"></td>
-                                    <td><input type="checkbox" value="3" name="ovhzopt[]"></td>
-                                    <td style="width: 15%"><input type="text" placeholder="Description" class="form-control" name="ovDes[]"></td>
-                                    <td><input type="checkbox" value="1" name="ovVideo[]"></td>
+                                    <td><input type="radio" value="1" name="ovhzopt[{{$item1->id}}][]"></td>
+                                    <td><input type="radio" value="2" name="ovhzopt[{{$item1->id}}][]"></td>
+                                    <td><input type="radio" value="3" name="ovhzopt[{{$item1->id}}][]" checked></td>
+                                    <td style="width: 15%"><input type="text" placeholder="Description" class="form-control" name="ovDes[{{$item1->id}}][]"></td>
+                                    <td><input type="checkbox" value="1" name="ovVideo[{{$item1->id}}][]"></td>
                                  </tr>
                                  @endforeach
                                 </tbody>
@@ -216,11 +216,11 @@
                                  <input type="hidden" name="othazardid[]" value="{{$item1->id}}"/>
                                  <tr class="">
                                     <td>{{$item1->option_name}}</td>
-                                    <td><input type="checkbox" value="1" name="othzopt[]"></td>
-                                    <td><input type="checkbox" value="2" name="othzopt[]"></td>
-                                    <td><input type="checkbox" value="3" name="othzopt[]"></td>
-                                    <td style="width: 15%"><input type="text" placeholder="Description" class="form-control" name="otDes[]"></td>
-                                    <td><input type="checkbox" value="1" name="otVideo[]"></td>
+                                    <td><input type="radio" value="1" name="othzopt[{{$item1->id}}][]"></td>
+                                    <td><input type="radio" value="2" name="othzopt[{{$item1->id}}][]"></td>
+                                    <td><input type="radio" value="3" name="othzopt[{{$item1->id}}][]" checked></td>
+                                    <td style="width: 15%"><input type="text" placeholder="Description" class="form-control" name="otDes[{{$item1->id}}][]"></td>
+                                    <td><input type="checkbox" value="1" name="otVideo[{{$item1->id}}][]"></td>
                                  </tr>
                                  @endforeach
                                 </tbody>
@@ -249,11 +249,11 @@
                                  <input type="hidden" name="acsthazardid[]" value="{{$item1->id}}"/>
                                  <tr class="">
                                     <td>{{$item1->option_name}}</td>
-                                    <td><input type="checkbox" value="1" name="acsthzopt[]"></td>
-                                    <td><input type="checkbox" value="2" name="acsthzopt[]"></td>
+                                    <td><input type="radio" value="1" name="acsthzopt[{{$item1->id}}][]"></td>
+                                    <td><input type="radio" value="2" name="acsthzopt[{{$item1->id}}][]" checked></td>
 
-                                    <td style="width: 15%"><input type="text" placeholder="Description" class="form-control" name="acstDes[]"></td>
-                                    <td><input type="checkbox" value="1" name="acstVideo[]"></td>
+                                    <td style="width: 15%"><input type="text" placeholder="Description" class="form-control" name="acstDes[{{$item1->id}}][]"></td>
+                                    <td><input type="checkbox" value="1" name="acstVideo[{{$item1->id}}][]"></td>
                                  </tr>
                                  @endforeach
                                 </tbody>
@@ -292,17 +292,17 @@
                                     <input type="hidden" name="jwhazardid[]" value="{{$item1->id}}"/>
                                     <tr class="">
                                         <td>{{$item1->option_name}}</td>
-                                        <td><input type="checkbox" value="1" name="jwhzopt[]"></td>
+                                        <td><input type="checkbox" value="1" name="jwhzopt[{{$item1->id}}][]"></td>
 
                                     </tr>
                                   @endforeach
 
                                    <tr class="">
                                     <td>Method of Payment</td>
-                                    <td><input type="checkbox" value="1" name="payment_method"> Cheque</td>
-                                    <td><input type="checkbox" value="2" name="payment_method"> POS</td>
-                                    <td><input type="checkbox" value="3" name="payment_method"> Card</td>
-                                    <td><input type="checkbox" value="4" name="payment_method"> Cash</td>
+                                    <td><input type="radio" value="1" name="payment_method" checked> Cheque</td>
+                                    <td><input type="radio" value="2" name="payment_method"> POS</td>
+                                    <td><input type="radio" value="3" name="payment_method"> Card</td>
+                                    <td><input type="radio" value="4" name="payment_method"> Cash</td>
                                    </tr>
 
 
