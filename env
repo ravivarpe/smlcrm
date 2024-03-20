@@ -13,7 +13,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=newprettyhotco_prettyhotco_resincrmdb
 DB_USERNAME=newprettyhotco_prettyhotco_resin
-DB_PASSWORD=
+DB_PASSWORD=QISf)O1GB3as
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file
