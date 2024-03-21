@@ -535,14 +535,17 @@
 </div>
 
 <div class="row">
-  <label for="inputteam Assined" class="col-sm-2">Team Assigned</label>
-  <div class="col-sm-4">
+  <label for="inputteam Assined" class="col-sm-2">Team Assigned :  @php
+    $key= array_search($jobPack['team_id'], array_column($teams, 'id'));
+     echo $teams[$key]['team_name'];
+   @endphp</label>
+  {{-- <div class="col-sm-4">
     <select class="form-control" name="team_id" style="width: 100%;">
       @foreach ($teams as $team)
       <option value="{{$team['id']}}">{{$team['team_name']}}</option>
       @endforeach
     </select>
-  </div>
+  </div> --}}
 </div>
 
 <div class="row"  style="display: table; width: 100%;">

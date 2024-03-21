@@ -491,26 +491,26 @@
   </div>
 </div>
 
-  {{-- <div class="mb-3 row">
-    <label for="inputFinalprice" class="col-sm-2">Final Price</label>
+  <div class="mb-3 row">
+    <label for="inputFinalprice" class="col-sm-2">Final Price : </label>
     <div class="col-sm-2">
       <input type="text" name="final_price" class="form-control" value="{{$jobPack['final_price']}}">
     </div>
-  </div> --}}
+  </div>
   <div class="mb-3 row">
-    {{-- <label for="inputDepositetaken" class="col-sm-2">Deposit Taken</label>
+    <label for="inputDepositetaken" class="col-sm-2">Deposit Taken : </label>
     <div class="col-sm-2">
       <input type="text" name="adv_amt_taken" class="form-control" value="{{$jobPack['adv_amt_taken']}}">
-    </div> --}}
+    </div>
     <label for="inputDepositetaken" class="col-sm-4">Customer Signature _________________</label>
     <label for="inputDepositetaken" class="col-sm-4">Surveyor Signature _________________</label>
   </div>
-  {{-- <div class="mb-3 row">
-    <label for="inputBalanceoncompletion" class="col-sm-2">Balance On Completion</label>
+  <div class="mb-3 row">
+    <label for="inputBalanceoncompletion" class="col-sm-2">Balance On Completion: </label>
     <div class="col-sm-2">
       <input type="text" name="balance_amt" class="form-control" value="{{$jobPack['balance_amt']}}">
     </div>
-  </div> --}}
+  </div> -
   <div class="mb-3 row">
     <label for="inputdate" class="col-sm-2">Date: {{$jobPack['added_date']}}</label>
     <div class="col-sm-2">
@@ -519,7 +519,7 @@
   </div>
   <br />
   <div class="mb-3 row">
-    <label for="inputdate" class="col-sm-2">Date</label>
+    <label for="inputdate" class="col-sm-2">Date : {{$jobPack['added_date']}}</label>
     <div class="col-sm-2">
       <input type="date" name="added_date1" class="form-control" value="{{$jobPack['added_date']}}">
     </div>
@@ -535,14 +535,18 @@
 </div>
 
 <div class="row">
-  <label for="inputteam Assined" class="col-sm-2">Team Assigned</label>
-  <div class="col-sm-4">
+  <label for="inputteam Assined" class="col-sm-2">Team Assigned :  @php
+    $key= array_search($jobPack['team_id'], array_column($teams, 'id'));
+     echo $teams[$key]['team_name'];
+   @endphp
+   </label>
+  {{-- <div class="col-sm-4">
     <select class="form-control" name="team_id" style="width: 100%;">
       @foreach ($teams as $team)
       <option value="{{$team['id']}}">{{$team['team_name']}}</option>
       @endforeach
     </select>
-  </div>
+  </div> --}}
 </div>
 
 <div class="row"  style="display: table; width: 100%;">
