@@ -1,4 +1,4 @@
-APP_NAME=CRMSupport
+APP_NAME=
 APP_ENV=local
 APP_KEY=base64:TuUW4PfGsb0loi/ypLo8uaZb+t49E6/WysUDH4DpAA8=
 APP_DEBUG=true
