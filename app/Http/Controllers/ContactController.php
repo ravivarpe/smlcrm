@@ -228,4 +228,17 @@ class ContactController extends Controller
 
         return redirect('contacts')->with('success','Contact Note added successfully!');
     }
+
+    public function getCustomerSubCategory($catId)
+    {
+        $subcategories=SubCategory::where('category_id',$catId)->get();
+        $str="";
+        foreach($subcategories as $subcat)
+        {
+            $str.='<option value="'.$subcat->id.'">'.$subcat->sub_category_name.'</option>';
+        }
+
+        echo $str;
+
+    }
 }

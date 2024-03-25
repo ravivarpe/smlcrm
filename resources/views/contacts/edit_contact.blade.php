@@ -120,10 +120,10 @@
                         <input type="text" class="form-control" placeholder="Vat No" name="vat_no" value="{{$contact->vat_no}}">
                      </div>
 
-                     <div class="form-group">
+                     {{-- <div class="form-group">
                         <label>Date of Birth</label>
                         <input id='minMaxExample' type="text" class="form-control" value="{{$contact->dob}}" placeholder="Enter Date..." name="dob">
-                     </div>
+                     </div> --}}
                      <div class="form-group">
                         <label>Address</label>
                            <div>
@@ -199,6 +199,17 @@
                     }
                 });
              }
+        });
+
+        $('#cust_category').change(function(){
+              var catId=$(this).val();
+              $.ajax({
+                url:"{{url('get-sub-category')}}/"+catId,
+                type:'GET',
+                success:function(res){
+                   $('#subcateogry').html(res);
+                }
+              });
         });
 
 

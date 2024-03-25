@@ -41,7 +41,7 @@
                       </div>
                      <div class="form-group col-sm-5">
                         <label>Customer Category</label>
-                        <select class="form-control" name="category_id">
+                        <select class="form-control" name="category_id" id="cust_category">
                            @foreach ($categories as $category)
                               <option value="{{$category->id}}">{{$category->name}}</option>
                            @endforeach
@@ -49,10 +49,10 @@
                      </div>
                       <div class="form-group col-sm-5">
                         <label>Customer Sub Category</label>
-                        <select class="form-control" name="sub_category_id">
-                            @foreach ($subcategories as $sub_cat)
+                        <select class="form-control" name="sub_category_id" id="subcateogry">
+                            {{-- @foreach ($subcategories as $sub_cat)
                              <option value="{{$sub_cat->id}}">{{$sub_cat->sub_category_name}}</option>
-                           @endforeach
+                           @endforeach --}}
                         </select>
                      </div>
                       </div>
@@ -122,10 +122,10 @@
                         <input type="text" class="form-control" placeholder="Vat No" name="vat_no">
                      </div>
 
-                     <div class="form-group">
+                     {{-- <div class="form-group">
                         <label>Date of Birth</label>
                         <input id='minMaxExample' type="text" class="form-control" placeholder="Enter Date..." name="dob">
-                     </div>
+                     </div> --}}
                      <div class="form-group">
                         <label>Address</label>
                            <div>
@@ -196,6 +196,18 @@
                 });
              }
         });
+
+        $('#cust_category').change(function(){
+              var catId=$(this).val();
+              $.ajax({
+                url:"{{url('get-sub-category')}}/"+catId,
+                type:'GET',
+                success:function(res){
+                   $('#subcateogry').html(res);
+                }
+              });
+        });
+
 
 
     });
