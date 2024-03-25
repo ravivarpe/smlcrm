@@ -98,10 +98,10 @@
                                <label class="control-label">When to do it?</label>
                                <input type="text" placeholder="dd-mm-yyyy"  name="start_date" class="form-control" id="start_date1" required>
                             </div>
-                            <div class="col-md-6 form-group">
+                            {{-- <div class="col-md-6 form-group">
                                <label class="control-label">Add a deadline</label>
                                <input type="text" placeholder="dd-mm-yyyy"  name="end_date" class="form-control" id="end_date1" required>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-6 form-group">
                                <label class="control-label">Who's Responsible</label>
